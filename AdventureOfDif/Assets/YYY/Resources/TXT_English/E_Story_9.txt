@@ -1,0 +1,116 @@
+Story_85
+In a hidden corner of the abandoned buildings in the Yellow Zone.
+Story_85
+The female journalist stood in the central clearing with two temporary government agents.
+Story_85
+The man and woman exuded a suffocating air of authority, their expressions cold and stern.
+Story_86
+Aeris, Lyra, and Felicia hid in the shadows, waiting for the journalist's signal.
+Story_86
+This journalist had been publishing stories that praised the trio for pushing back the demonic forces.
+Story_86
+But the unintended result was making the government look powerless in comparison.
+Story_86
+The scales of power were tipping in favor of the Battle Maiden Association.
+Purple
+"The government keeps demanding 'balance,' so the news I bring today should satisfy you, right?"
+Story_87
+The journalist, dressed in her office uniform, pulled a thick stack of documents from her bag.
+Gray
+"You better know what you're doing, journalist. Government budget allocation isn’t something your 'sensationalist reports' can influence."
+Story_87
+The male agent folded his arms, his icy gaze locking onto the journalist.
+Purple
+"Budget? Right, thanks to my reports, the public believes the Battle Maiden Association is the one keeping the city safe. And the government?"
+Purple
+"Helpless? Hiding behind desks, signing meaningless orders while the demons have their way?"
+Story_87
+The male agent took a step forward, his lips curling into a mocking smile as his sharp eyes narrowed.
+Gray
+"So what do you want? Spit it out. Your reports are driving this city to the brink of collapse. "
+Gray
+"Do you want the Battle Maiden Association to replace the government?"
+Purple
+"And you? What have you done besides letting bandits run wild in the Yellow Zone and making shady deals with the demons?"
+Story_87
+At those words, Felicia raised an eyebrow in the shadows and whispered softly to Aeris.
+LightRed
+"Did you see that? That woman... something's off about her."
+Story_87
+Aeris followed Felicia's gaze, noticing the faint, subtle shift in the female agent's expression.
+Story_87
+The male agent’s voice broke the tension, his tone irritable.
+Gray
+"Bandits and demons? Baseless accusations won’t hold water with the government."
+Story_87
+The journalist lifted the documents in her hand, waving them slightly.
+Purple
+"These are the records—fund flows in the Yellow Zone and the origins of the weapons being traded with the demons. Unfortunately, your government's oversight has too many cracks to ignore."
+Story_87
+The air grew heavy as the male agent’s face darkened, and he stepped closer to the journalist.
+Gray
+"What do you want?"
+Story_87
+At that moment, the female agent suddenly smiled—a sickly sweet smile that carried a chilling undertone.
+DarkRed
+"She's just testing us, isn’t she? But perhaps we can give her an answer."
+Story_87
+Felicia’s expression sharpened instantly, and she quickly whispered.
+LightRed
+"She's a demon! That woman’s a demon!"
+Story_87
+Aeris and Lyra's faces hardened as realization struck.
+LightBlue
+"Go. We can't wait any longer!"
+Story_88
+The three emerged from the shadows simultaneously, breaking the tense stalemate. The male agent immediately reacted, grabbing the journalist and pressing his gun to her temple.
+Gray
+"Don't move! One step closer, and I'll blow her brains out!"
+Story_88
+The journalist gasped, eyes wide with panic. The papers in her hand scattered across the ground as she panted in shock.
+LightRed
+"Let her go!"
+Story_88
+Lyra and Felicia assumed fighting stances, their gazes locked on the scene.
+DarkRed
+"You Battle Maidens really are naive. The government wants power, but we... we need time."
+Story_89
+The moment the words fell, the female agent's figure disappeared. In the blink of an eye, she reappeared behind the male agent.
+Gray
+"What—?!"
+Story_89
+Blood splattered. The female agent’s bullet pierced through the male agent’s chest.
+Story_89
+His body froze momentarily before collapsing to the ground, his face frozen in disbelief and shock.
+Story_90
+The female agent's eyes turned a deep crimson, small horns emerging on her forehead. In the shadows behind her, faint wings unfurled.
+DarkRed
+"Calm down. I’m not your enemy. In fact, we share the same goal."
+LightBlue
+"Same goal? Haven't you demons been invading this city?!"
+DarkRed
+"Invading? We’ve already lost any hope of victory."
+Story_90
+She folded her wings, her tone grave yet resolute.
+DarkRed
+"You Battle Maidens have defended this city, but we... we only want a way out."
+DarkRed
+"Maris, that arrogant fool, is out of options. She thought she could use human bandits against you, but she’s no longer fit to lead us."
+LightBlue
+"So you want us to deal with her for you?"
+DarkRed
+"No, I already have a plan."
+Story_90
+She smiled faintly, continuing.
+DarkRed
+"Maris is in the Yellow Zone, trading weapons with the bandit leader at a 'slave market.' Let those overconfident thugs capture her."
+DarkRed
+"We demons will seize the opportunity to retreat with our spoils, and you—you’ll be hailed as heroes who 'liberated the city.'"
+Purple
+"This... this is a deal?"
+Story_90
+The female agent gave a small nod toward the journalist.
+DarkRed
+"That’s right, journalist. This is the only way. A way for all of us to survive."
+DarkRed
+"And you—you’ll write a sensational story that ends the tension between the government and the Battle Maiden Association."

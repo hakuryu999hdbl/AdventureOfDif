@@ -1,0 +1,52 @@
+Story_46
+The sky stretched out like blood, casting a crimson-black glow across the plaza.
+Story_46
+This was the "Red Zone," a sinister domain in the demon realm, where countless writhing tentacles covered the ground in a grotesque display.
+Story_46
+The tentacles seemed alive, twisting together endlessly and occasionally bursting out from the earth, shooting upward like giant predators reaching for the heavens.
+Story_46
+The air reeked of a nauseating stench and was thick with dense miasma, devoid of any trace of survivors.
+Story_21
+At the center of the plaza, shrouded in the shadows of the tentacles, stood the demon general Malice Tenebral.
+Story_22
+Clad in a jet-black gothic dress, her piercing red eyes coldly surveyed the three warriors before her.
+Story_22
+Her demonic wings moved slowly behind her, exuding an overwhelming sense of intimidation.
+Green
+"Welcome to my domain, foolish battle maidens."
+Story_22
+Malice spoke with a chilling smile, her cold voice echoing through the air, silencing even the writhing of the tentacles for a moment.
+Green
+"Now that you have set foot here, you cannot advance unless you defeat me."
+Green
+"And even if you do, there's no guarantee you will leave here alive."
+LightRed
+"We never planned to leave alive!"
+Story_47
+Ferishia stepped forward, gripping her flaming sword tightly.
+Story_47
+Her eyes burned with both anger and determination.
+LightBlue
+"We'll end everything here and now by defeating you!"
+Story_47
+Iris maintained a calm demeanor as she held her icy blade, her sharp gaze fixed on Malice.
+LightBlue
+"We won't retreat in fear. If we're going to fall, it'll be fighting until the very end!"
+Green
+"Hmph, very well. Let me enjoy your futile resistance to the fullest."
+Story_48
+Malice spread her wings, making her figure appear even more imposing.
+Story_48
+In her hand, she held a long crimson sword, the blade swirling with miasma, as if pulsating with a malevolent life force.
+Story_48
+The sword glowed with an even darker and more sinister light, amplifying her overwhelming presence.
+LightRed
+"Raira, are you ready?"
+Story_49
+Ferishia turned back, and Raira, holding a glowing ball of lightning, nodded energetically.
+Yellow
+"Of course! Let's take this monster down together!"
+Story_49
+The three warriors exchanged determined glances and leaped into action simultaneously.
+Story_49
+The final battle in the Red Zone was about to begin.

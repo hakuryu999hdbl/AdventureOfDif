@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: fe390e4b3f424514ebdf415e7186554d
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Rosethorn
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 4f4e48c84ed9f1f4bbb0b3ba810bb39a, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

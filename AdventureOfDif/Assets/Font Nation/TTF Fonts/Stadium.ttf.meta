@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: ea50ac7eda8f8d141986394d74743887
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Stadium
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 09f2505fd8923cf4db0d9b511d88df39, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

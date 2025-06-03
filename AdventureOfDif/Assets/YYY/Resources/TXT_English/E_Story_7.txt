@@ -1,0 +1,126 @@
+Story_00
+Following a grueling battle, Ferishia, Airisu, and Raira received an invitation from a well-known journalist.
+Story_65
+She had been consistently writing reports and praising their heroics, helping to build their reputations as saviors of humanity.
+Story_65
+Trusting her, the three agreed to meet her at her office.
+Story_65
+Sitting comfortably in the journalist’s office, a tray of hot tea was placed before them. 
+Story_65
+Smiling warmly, the journalist said:
+Purple
+"You’ve worked so hard recently. Please, enjoy this tea. You deserve a break."
+Story_65
+Unaware of the trap, the three drank the tea.
+Story_66
+Moments later, their vision blurred, and they fell unconscious.
+Story_00
+……
+Story_00
+……
+Story_00
+……
+Story_67
+When Ferishia regained consciousness, she found herself suspended in a dim storage room. 
+Story_67
+Her hands were tied behind her back, her legs bound tightly with ropes, and her body hung precariously with her high heels barely touching the floor.
+Story_67
+A gag muffled her voice, reducing her cries to incoherent “mmph” sounds.
+Story_67
+Her attempts to use her fire abilities failed—her powers were sealed by a glowing collar strapped around her neck.
+Story_67
+Turning her head with difficulty, she saw Airisu and Raira in the same predicament, hanging helplessly beside her.
+Story_68
+The door creaked open, and the journalist entered with a calm yet conflicted expression.
+Purple
+“I’m sorry for doing this to you,” 
+Story_68
+she said softly.
+Purple
+“but this is the decision of the Battle Maiden Association’s higher-ups.”
+Story_68
+Ferishia’s emerald-green eyes widened in shock. 
+Story_68
+She let out a muffled cry, struggling against her restraints.
+Purple
+“Do you really think wiping out all the demonic creatures is the ultimate victory? ”
+Purple
+“If you eliminate the Red Zones entirely, what will become of the Battle Maiden Association? ”
+Purple
+“How will it survive without an enemy to fight? ”
+Purple
+“Do you think the government would continue funding us?”
+Story_68
+Ferishia froze as the horrifying realization dawned on her.
+Story_68
+She recalled seeing battle maidens among the enemies during recent battles.
+Story_68
+Could the association have been collaborating with the demons all along?
+Purple
+“I’ve warned you repeatedly through my messages,”
+Story_68
+the journalist continued, exasperated. 
+Purple
+“You pushed the frontlines too fast, leaving the association no choice but to sacrifice you three as scapegoats.”
+Story_69
+The three were escorted out of the building and onto a police vehicle.
+Story_69
+As they arrived at the courthouse, an angry crowd greeted them, shouting 
+MAN
+“Traitors!” 
+Story_69
+And throwing trash, eggs, and stones at them. Bound and gagged, they could only endure the humiliation.
+Story_70
+In the courtroom, their shock turned to horror as they saw the presiding judge.
+LightRed
+“Maris?!”
+Story_70
+Ferishia screamed through her gag, but the muffled sound barely escaped her lips.
+Story_71
+The judge, hiding her demonic features, was none other than Maris Tenebral.
+Green
+“With evidence provided by the Battle Maiden Association.”
+Green
+“Ferishia, Airisu, and Raira are found guilty of insubordination and the murder of Commander Karisa.”
+Story_71
+Maris declared with a sinister smile. 
+Green
+“I hereby strip you of all human rights and sentence you to life imprisonment.”
+Story_72
+The three maidens struggled violently, their muffled screams echoing through the courtroom. 
+Story_72
+Police officers struggled to hold them down 
+Story_72
+Until one of the battle maidens used a whip to strike them into submission.
+Story_73
+Their "cells" turned out to be three iron cages displayed prominently in the courthouse plaza.
+Story_75
+Kneeling inside the cramped cages, their hands tied above their heads, they were fully exposed to the enraged crowd.
+Story_77
+The gathered citizens hurled insults, garbage, and food scraps at them, shouting 
+MAN
+“Traitors!” “Murderers!”
+Story_76
+The once-revered heroines were now the targets of public hatred.
+Story_76
+Raira sobbed uncontrollably.
+Story_76
+Airisu closed her eyes as if to shut out the world.
+Story_76
+And Ferishia stared at the crowd, her eyes burning with fury and sorrow.
+Story_77
+Among the crowd, Maris smirked wickedly, satisfied with the scene.
+Green
+“You wanted to protect these humans? How ironic. Now, let them destroy you.”
+Story_74
+At that moment, the three maidens realized that their worst nightmare wasn’t being defeated
+Story_74
+By demons—it was being betrayed by the very people they had sworn to protect.
+Story_74
+Ending Achieved:【Raising a Tiger to Devour You】
+GetItem_1
+Item Acquired
+Story_00
+All CG have been unlocked
+Story_00
+Starting a New Game
