@@ -7,15 +7,6 @@ public class EnemyVision : MonoBehaviour
     public Enemy Enemy;
     public bool isFriend;
 
-    public enum VisionType
-    {
-        ShortRangeVision,//负责拔刀和进入战斗状态
-        LongRangeVision//负责选中目标敌人
-    }
-
-    [Header("敌人视觉类型")]
-    public VisionType visionType = VisionType.ShortRangeVision;
-
 
 
     private void OnTriggerStay2D(Collider2D collision)//检测到玩家显示
@@ -26,15 +17,11 @@ public class EnemyVision : MonoBehaviour
             if (collision.gameObject.tag == "Player")
             {
 
-              
 
 
-                if (visionType == VisionType.ShortRangeVision) 
-                {
-                    Enemy.isAttack = true;
 
-                }
-               
+                Enemy.isAttack = true;
+
 
                 //Enemy.CurrentTarget = Enemy._Player.gameObject;
             }//敌人攻击玩家
@@ -43,11 +30,7 @@ public class EnemyVision : MonoBehaviour
             {
 
 
-                if (visionType == VisionType.ShortRangeVision)
-                {
-                    Enemy.isAttack = true;
-
-                }
+                Enemy.isAttack = true;
 
                 //Enemy.CurrentTarget = collision.gameObject;
 
@@ -62,11 +45,7 @@ public class EnemyVision : MonoBehaviour
             {
 
 
-                if (visionType == VisionType.ShortRangeVision)
-                {
-                    Enemy.isAttack = true;
-
-                }
+                Enemy.isAttack = true;
 
                 //Enemy.CurrentTarget = collision.gameObject;
 
@@ -85,19 +64,14 @@ public class EnemyVision : MonoBehaviour
         {
             if (collision.gameObject.tag == "Player" )
             {
-                if (visionType == VisionType.ShortRangeVision)
-                {
-                    Enemy.isAttack = false;
-                }
+                Enemy.isAttack = false;
+
             }//敌人停止攻击玩家
 
             if (collision.gameObject.tag == "Friend")
             {
 
-                if (visionType == VisionType.ShortRangeVision)
-                {
-                    Enemy.isAttack = false;
-                }
+                Enemy.isAttack = false;
 
             }//敌人停止攻击队友
 
@@ -106,10 +80,7 @@ public class EnemyVision : MonoBehaviour
         {
             if (collision.gameObject.tag == "Enemy")
             {
-                if (visionType == VisionType.ShortRangeVision)
-                {
-                    Enemy.isAttack = false;
-                }
+                Enemy.isAttack = false;
 
             }//队友停止攻击敌人
 

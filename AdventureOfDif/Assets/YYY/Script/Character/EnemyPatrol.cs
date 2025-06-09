@@ -26,6 +26,6 @@ public class EnemyPatrol : MonoBehaviour
 
     private void ChangeTargetPlace()
     {
-        Enemy.RoomGenerator.ChangeTargetPlace(this.gameObject,3);
+        //Enemy.RoomGenerator.ChangeTargetPlace(this.gameObject,3);
     }
 }

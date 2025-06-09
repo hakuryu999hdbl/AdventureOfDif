@@ -139,14 +139,14 @@ public class Player : MonoBehaviour
             if (isRunning)
             {
                 moveSpeed = 2; speed = 4;
-                ChangeStrength(-2);
+
 
 
             }
             else
             {
                 moveSpeed = 1; speed = 2;
-                ChangeStrength(1);
+
 
             }
 
@@ -155,7 +155,7 @@ public class Player : MonoBehaviour
         else
         {
             moveSpeed = 0;
-            ChangeStrength(3);
+
 
         }
 
@@ -466,7 +466,7 @@ public class Player : MonoBehaviour
     void UpdateAllBar()
     {
         //更新UI
-        UIManager.instance.UpdateStrengthBar(currentStrength, maxStrength);
+        UIManager.instance.UpdateSexBar(currentSex, maxSex);
         UIManager.instance.UpdateHealthBar(currentHealth, maxHealth);
     }
     [Header("特效")]
@@ -615,7 +615,6 @@ public class Player : MonoBehaviour
 
                 anim.Play("dead");
 
-                Critical.SetActive(false);
                 return;
             }
 
@@ -658,22 +657,21 @@ public class Player : MonoBehaviour
 
 
 
-    [Header("体力值")]
-    public int currentStrength;
-    public int maxStrength;
+    [Header("淫乱值")]
+    public int currentSex;
+    public int maxSex;
 
 
 
-    public void ChangeStrength(int amount)
+    public void ChangeSex(int amount)
     {
 
-        currentStrength = Mathf.Clamp(currentStrength + amount, 0, maxStrength);
-        UIManager.instance.UpdateStrengthBar(currentStrength, maxStrength);
+        currentSex = Mathf.Clamp(currentSex + amount, 0, maxSex);
+        UIManager.instance.UpdateSexBar(currentSex, maxSex);
     }
 
 
     [Header("UI条 暴击值")]
-    public GameObject Critical;
 
     public int currentCritical;
     public int maxCritical;
@@ -685,15 +683,6 @@ public class Player : MonoBehaviour
         //Debug.Log("充能");
         if (!isDie)
         {
-
-            if (currentCritical <= 0)
-            {
-                Critical.SetActive(false);
-            }
-            else
-            {
-                Critical.SetActive(true);
-            }
 
 
         }//如果是已经Die了，那么这个淫乱槽不需要出现
