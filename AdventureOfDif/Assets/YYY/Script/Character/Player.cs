@@ -234,10 +234,15 @@ public class Player : MonoBehaviour
 
             if (attackPressTime < 0.2f)
             {
-
-                if (isRunning)
+                if (!IsGrounded())
                 {
                     PlayDodge(); // 闪避
+                    anim.Play("jump_attack");
+                }
+                else if (isRunning)
+                {
+                    PlayDodge(); // 闪避
+                    anim.Play("run_attack");
                 }
                 else
                 {
@@ -450,11 +455,14 @@ public class Player : MonoBehaviour
 
     void CheckJump()
     {
-
-
         // 应用重力
         zVelocity += gravity * Time.deltaTime;
-        zHeight += zVelocity * Time.deltaTime;
+      
+        if (!isDodge) 
+        {
+            zHeight += zVelocity * Time.deltaTime;
+        }
+       
 
         bool isGroundedNow = zHeight <= 0f;
 
@@ -464,6 +472,8 @@ public class Player : MonoBehaviour
             {
                 frameEvents._Effect_falldown();// 播放落地音效等逻辑
             }
+
+
 
             zHeight = 0f;
             zVelocity = 0f;
@@ -525,14 +535,6 @@ public class Player : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
-
     [Header("闪避触发")]
 
 
@@ -550,20 +552,10 @@ public class Player : MonoBehaviour
             if (isDodge) return;//防止连续闪避
 
 
-            if (inputX == 0 && inputY == 0)
-            {
-                Vector2 dodgeDir = new Vector2(-StopX, -StopY).normalized;//站立的时候向后闪避
-                if (dodgeDir == Vector2.zero) return;
+            Vector2 dodgeDir = new Vector2(StopX, StopY).normalized;//站立的时候向后闪避
+            if (dodgeDir == Vector2.zero) return;
 
-                StartCoroutine(Dodge(dodgeDir, 15f, 2f));
-            }
-            else
-            {
-                Vector2 dodgeDir = new Vector2(StopX, StopY).normalized;//移动的时候向后冲刺
-                if (dodgeDir == Vector2.zero) return;
-
-                StartCoroutine(Dodge(dodgeDir, 15f, 2f));
-            }
+            StartCoroutine(Dodge(dodgeDir, 15f, 2f));
 
 
             //手动再添加一个冷却
@@ -593,11 +585,11 @@ public class Player : MonoBehaviour
 
         // 音效、体力扣除
         frameEvents._SE_Clothes();
-        //ChangeStrength(-50);
 
 
 
-        anim.Play("run_attack");
+
+      
 
         isDodge = true;
 
