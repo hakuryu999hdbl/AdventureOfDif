@@ -150,7 +150,7 @@ public class Player : MonoBehaviour
 
             }
 
-          
+
         }
         else
         {
@@ -165,15 +165,15 @@ public class Player : MonoBehaviour
 
         CheckAttack();
 
+        CheckJump();
 
 
 
+        if (!canMove)
+        {
+            input = Vector2.zero;
 
-       if (!canMove)
-       {
-           input = Vector2.zero;
-       
-       }//玩家只有在不攻击的时候才能移动，闪避的时候也无法叠加
+        }//玩家只有在不攻击的时候才能移动，闪避的时候也无法叠加
 
 
 
@@ -226,7 +226,7 @@ public class Player : MonoBehaviour
         isAttacking = false;
 
 
-      
+
 
         if (!attackTriggered)
         {
@@ -234,7 +234,16 @@ public class Player : MonoBehaviour
 
             if (attackPressTime < 0.2f)
             {
-                PlayNormalAttack(); // 普通攻击
+
+                if (isRunning)
+                {
+                    PlayDodge(); // 闪避
+                }
+                else
+                {
+                    PlayNormalAttack(); // 普通攻击
+                }
+
             }
             else
             {
@@ -266,14 +275,14 @@ public class Player : MonoBehaviour
 
             ChangeCritical(10);//按下暴击率快速上升
         }
-        else 
+        else
         {
             ChangeCritical(-5);//松开暴击率快速下降
         }
     }
 
     [Header("攻击")]
-    public  int currentCombo = 0;
+    public int currentCombo = 0;
     public bool isAttacking2 = false;
     public bool canCombo = false;
     public bool comboQueued = false;
@@ -281,6 +290,8 @@ public class Player : MonoBehaviour
 
     public void PlayNormalAttack()
     {
+
+        TryCrit();
 
         if (!isAttacking2)
         {
@@ -352,7 +363,287 @@ public class Player : MonoBehaviour
     #endregion
 
 
-   
+    /// <summary>
+    /// 闪避与跳跃系统
+    /// </summary>
+    #region
+    [Header("闪避键按下")]
+    private float dodgePressTime = 0f;      // 持续按下时长计时器
+    private bool dodgeTriggered = false;    // 是否已经触发攻击动作（防止反复触发）
+
+
+
+
+    void Dodge_Start()
+    {
+        if (!isDie)
+        {
+            isDodging = true;
+            dodgePressTime = 0f;
+
+            dodgeTriggered = false;
+        }
+
+    }
+    void Dodge_Cancel()
+    {
+
+        if (!isDie)
+        {
+            isDodging = false;
+
+            if (!dodgeTriggered)
+            {
+                if (dodgePressTime < 0.2f)
+                {
+                    //PlayDodge(); // 闪避
+                    PlayJump();
+                }
+                else
+                {
+                    //魔族变身
+
+                    //PlayChargeAttack(); // 蓄力攻击
+                }
+
+                dodgePressTime = 0;
+
+                dodgeTriggered = true;
+            }
+        }
+
+
+
+    }
+
+    void CheckDodge()
+    {
+        if (isDodging && !dodgeTriggered)
+        {
+            dodgePressTime += Time.deltaTime;
+
+        }
+    }
+
+
+    [Header("模拟跳跃")]
+    // 模拟跳跃高度
+    float zHeight = 0f;
+    float zVelocity = 0f;
+    float gravity = -9.8f; // 可以调成 -20f 更快落下
+    float jumpForce = 5f;
+
+    // 角色跳跃偏移对象（Spine动画对象）
+    float groundY = 0f; // 初始化地面位置
+    bool wasInAir = false; // 前一帧是否在空中
+    public void PlayJump()
+    {
+        if (IsGrounded()) 
+        {
+            Debug.Log("跳跃");
+            zVelocity = jumpForce;
+            frameEvents._SE_Clothes();
+        }
+     
+
+    }
+
+    void CheckJump()
+    {
+
+
+        // 应用重力
+        zVelocity += gravity * Time.deltaTime;
+        zHeight += zVelocity * Time.deltaTime;
+
+        bool isGroundedNow = zHeight <= 0f;
+
+        if (isGroundedNow)
+        {
+            if (wasInAir) // 刚刚落地的那一帧
+            {
+                frameEvents._Effect_falldown();// 播放落地音效等逻辑
+            }
+
+            zHeight = 0f;
+            zVelocity = 0f;
+            groundY = transform.position.y;
+        }
+
+        if (zHeight > 0f)
+        {
+            Vector3 pos = transform.position;
+            pos.y = groundY + zHeight;
+            transform.position = pos;
+
+            anim.SetBool("Jump", true);
+        }
+        else
+        {
+            anim.SetBool("Jump", false);
+        }
+
+        // 更新前一帧状态
+        wasInAir = !isGroundedNow;
+
+
+        UpdateShadow();//控制影子大小
+    }
+
+    private bool IsGrounded()
+    {
+        return zHeight <= 0.01f; // 只要高度为 0 即为落地
+    }
+
+
+
+    [Header("影子控制")]
+    public Transform shadow;              // 影子对象
+    public Vector2 shadowBaseScale = new Vector2(1f, 1f); // 原始大小
+    public float shadowMinScale = 0.3f;   // 最小缩放（跳最高时）
+    public float maxJumpHeight = 3f;      // 最大跳跃高度（用于缩放比例）
+
+    void UpdateShadow()
+    {
+        if (shadow == null) return;
+
+        // 1. 保持影子在地面（角色 X，地面 Y）
+        Vector3 pos = transform.position;
+        shadow.position = new Vector3(pos.x, groundY, pos.z);
+
+        // 2. 计算当前缩放（高度越高越小）
+        float t = Mathf.Clamp01(zHeight / maxJumpHeight); // 0~1
+        float scale = Mathf.Lerp(1f, shadowMinScale, t);  // 1 ~ 最小
+        shadow.localScale = shadowBaseScale * scale;
+
+        // 可选：你也可以改变 Alpha 值
+        var color = shadow.GetComponent<SpriteRenderer>().color;
+        color.a = Mathf.Lerp(1f, 0.6f, t);
+        shadow.GetComponent<SpriteRenderer>().color = color;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    [Header("闪避触发")]
+
+
+    //public float dodgeSpeed = 10f;
+    //public float dodgeDistance = 0.5f;
+    public LayerMask obstacleLayer;
+
+    public bool isDodge = false;//闪避动画期间的Dodge
+
+
+    void PlayDodge()
+    {
+        if (!isOutOfStrength)
+        {
+            if (isDodge) return;//防止连续闪避
+
+
+            if (inputX == 0 && inputY == 0)
+            {
+                Vector2 dodgeDir = new Vector2(-StopX, -StopY).normalized;//站立的时候向后闪避
+                if (dodgeDir == Vector2.zero) return;
+
+                StartCoroutine(Dodge(dodgeDir, 15f, 2f));
+            }
+            else
+            {
+                Vector2 dodgeDir = new Vector2(StopX, StopY).normalized;//移动的时候向后冲刺
+                if (dodgeDir == Vector2.zero) return;
+
+                StartCoroutine(Dodge(dodgeDir, 15f, 2f));
+            }
+
+
+            //手动再添加一个冷却
+            isOutOfStrength = true;
+            Invoke("OutOfStrengthCollDown", 0.5f);
+        }
+
+    }
+
+    [Header("冷却提示")]
+    bool isOutOfStrength = false;
+    void OutOfStrengthCollDown()
+    {
+        isOutOfStrength = false;
+    }
+
+
+    IEnumerator Dodge(Vector2 direction, float dodgeSpeed, float dodgeDistance)
+    {
+
+        //闪避后连击取消
+        if (currentHealth > 0)
+        {
+            Invoke("ResetCombo", 1f);//防止挂了又站起来
+        }
+
+
+        // 音效、体力扣除
+        frameEvents._SE_Clothes();
+        //ChangeStrength(-50);
+
+
+
+        anim.Play("run_attack");
+
+        isDodge = true;
+
+        canMove = false; // 【在闪避的一段时间内无法上下左右移动】防止位移冲突
+
+        float movedDistance = 0f;
+
+
+        while (movedDistance < dodgeDistance)
+        {
+            float step = dodgeSpeed * Time.fixedDeltaTime;
+
+            Vector3 newPos = rbody.position + direction * step;
+
+            // 检测闪避方向是否有障碍物（使用 BoxCast 替代 Raycast）
+            Vector2 boxSize = new Vector2(0.5f, 0.5f); // 角色体积大小，请根据实际角色尺寸设置
+            if (Physics2D.BoxCast(rbody.position, boxSize, 0f, direction, 0.1f, obstacleLayer))
+            {
+                Debug.Log("障碍物检测到，终止闪避");
+                break;
+            }
+
+            rbody.MovePosition(newPos);  // 物理安全移动
+            movedDistance += step;
+
+            yield return new WaitForFixedUpdate();
+        }
+
+
+
+        Invoke(nameof(DodgingOver), 0.6f);// 让子弹时间更容易触发
+
+        canMove = true; // 【在闪避的一段时间内无法上下左右移动】防止位移冲突
+
+
+
+
+    }
+
+    void DodgingOver()
+    {
+        isDodge = false;
+    }
+
+
+    #endregion
 
     /// <summary>
     /// 多端输入
@@ -409,11 +700,11 @@ public class Player : MonoBehaviour
 
     private void OnDodgeStarted(InputAction.CallbackContext context)
     {
-        
+        Dodge_Start();
     }
     private void OnDodgeCanceled(InputAction.CallbackContext context)
     {
-        
+        Dodge_Cancel();
     }
 
     [Header("手机端触发")]
@@ -445,12 +736,12 @@ public class Player : MonoBehaviour
     public bool isDodging = false;//持续按下闪避键
     public void ButtonSetDodge()
     {
-        
+        Dodge_Start();
     }
     public void ButtonSetDodgeOver()
     {
 
-        
+        Dodge_Cancel();
     }
 
     #endregion
@@ -693,16 +984,16 @@ public class Player : MonoBehaviour
 
     private void TryCrit()
     {
+
         // 计算当前暴击率
         float critRate = (float)currentCritical / (float)maxCritical;
 
-        // 判定是否暴击
-        if (Random.value < critRate)
+        // 只有在暴击率大于等于 60% 时，才可能暴击
+        if (critRate >= 0.6f)
         {
             strike.isCritial = true;
 
-            // 扣除暴击值
-            ChangeCritical(-maxCritical); // 或者换成一部分
+
         }
         else
         {

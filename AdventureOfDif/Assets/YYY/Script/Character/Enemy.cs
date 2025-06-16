@@ -534,7 +534,8 @@ public class Enemy : MonoBehaviour
         //显示暴击
         Critial.SetActive(true);
 
-
+        //暴击清零
+        player.ChangeCritical(-player.maxCritical);
 
     }//暴击
 
