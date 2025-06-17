@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -234,13 +235,20 @@ public class Player : MonoBehaviour
 
             if (attackPressTime < 0.2f)
             {
+
+                AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
+                if (state.IsName("jump_attack")) 
+                {
+                    return;
+                }//防止连续飞踢
+
                 if (!IsGrounded())
                 {
                     //这个落地依旧触发down，有没有方法将被踢飞的isGround和踢击isGround区别开来
                     if (StopX < 0)
-                        Knockback(-3);
+                        Knockback(-3,2);
                     else if (StopX > 0)
-                        Knockback(3);
+                        Knockback(3,2);
                     anim.Play("jump_attack");
                 }
                 else if (isRunning)
@@ -449,8 +457,9 @@ public class Player : MonoBehaviour
     {
         if (IsGrounded()) 
         {
-            Debug.Log("跳跃");
+            //Debug.Log("跳跃");
             zVelocity = jumpForce;
+            airborneState = AirborneType.Jump;////////////////////////////////////////////////////////////////
             frameEvents._SE_Clothes();
         }
      
@@ -472,17 +481,29 @@ public class Player : MonoBehaviour
 
         if (isGroundedNow)
         {
-            if (wasInAir) // 刚刚落地的那一帧
+            if (wasInAir)
             {
-                frameEvents._Effect_falldown();// 播放落地音效等逻辑
-                Knockdown();
+                frameEvents._Effect_falldown(); // 公共落地音效
+
+                if (airborneState == AirborneType.Jump)
+                {
+                    // 普通跳跃落地
+                }
+                else if (airborneState == AirborneType.Knocked)
+                {
+                    // 被踢击落地
+                    Knockdown();
+
+                    Debug.Log(" 被踢击落地");
+                    anim.SetTrigger("Player_Down");
+                }
             }
-
-
 
             zHeight = 0f;
             zVelocity = 0f;
+            knockbackX = 0f;
             groundY = transform.position.y;
+            airborneState = AirborneType.None; // 重置状态
         }
 
         if (zHeight > 0f)
@@ -551,17 +572,24 @@ public class Player : MonoBehaviour
     [Header("被击飞")]
     float knockbackX = 0f; // 击飞时的水平速度（正负代表方向）
 
-    public void Knockback(float force)
+    public void Knockback(float force,float JumpForce)
     {
-        knockbackX = force; // 例如 -3 或 3
-        zVelocity = jumpForce; // 同样上弹
+        knockbackX = force;
+        zVelocity = JumpForce;//这里被击飞或者飞踢力度不同
+        
 
-        // 改变朝向
         if (knockbackX < 0)
             anim.gameObject.transform.localScale = new Vector3(-1, 1, 1);
         else if (knockbackX > 0)
             anim.gameObject.transform.localScale = new Vector3(1, 1, 1);
     }
+
+
+    //分开落地触发
+    enum AirborneType { None, Jump, Knocked }
+
+    AirborneType airborneState = AirborneType.None;
+
 
 
     [Header("闪避触发")]
@@ -862,6 +890,7 @@ public class Player : MonoBehaviour
                 //击倒再站起(和暴击结合)只有站在地上才能被击倒
                 if (Random.Range(0, 2) == 0 && !isDie && currentHealth > 0 && IsGrounded())
                 {
+                    Critial.SetActive(true);
                     Knockdown();
                 }
                 else
@@ -877,13 +906,13 @@ public class Player : MonoBehaviour
                     }
 
                     //PlayJump();
-
+                    airborneState = AirborneType.Knocked;////////////////////////////////////////////////////////////////
 
                     // 可以加一个简易翻面处理（仅左右）
                     if (StopX < 0)
-                        Knockback(3);
+                        Knockback(3,10);
                     else if (StopX > 0)
-                        Knockback(-3);
+                        Knockback(-3,10);
                 }
 
 
@@ -960,21 +989,21 @@ public class Player : MonoBehaviour
     }
     public void Knockdown()
     {
-        //击倒再站起
-        if (Random.Range(0, 2) == 0 && !isDie && currentHealth > 0)
+
+        isDie = true;
+
+        //anim.CrossFade("down", 0f);//强制播放
+        anim.Play("down");
+
+        //防止最后一下又击倒站起
+        if (currentHealth > 0)
         {
-            isDie = true;
-
-            anim.Play("down");
-
-            //防止最后一下又击倒站起
-            if (currentHealth > 0)
-            {
-                Invoke("GetUp", 0.5f);//比起敌人，玩家可以更快站起来
-            }
-
-            Critial.SetActive(true);
+            Invoke("GetUp", 0.5f);//比起敌人，玩家可以更快站起来
         }
+
+
+        //目前玩家每次落地都触发，改为被暴击触发
+        //Critial.SetActive(true);
 
     }//击倒
 

@@ -115,7 +115,7 @@ public class Enemy : MonoBehaviour
 
     public AIPath aiPath;// A* 路径控制器
 
-  
+
 
 
     [Header("速度岔开")]
@@ -261,7 +261,7 @@ public class Enemy : MonoBehaviour
 
 
 
-   
+
 
 
 
@@ -290,7 +290,7 @@ public class Enemy : MonoBehaviour
         {
             attackTimer += Time.deltaTime;
 
-            if (attackTimer >= attackCooldown) 
+            if (attackTimer >= attackCooldown)
             {
                 Attack_Start(); // 攻击警告开始闪
 
@@ -536,7 +536,7 @@ public class Enemy : MonoBehaviour
             if (amount < 0)
             {
 
-              
+
 
 
                 //if (Random.Range(0, 3) == 0 && !isDie && currentHealth > 0 && amount != -currentHealth)
@@ -568,32 +568,39 @@ public class Enemy : MonoBehaviour
                 //    return;
                 //}
 
-            
+
                 //击倒再站起(和暴击结合)只有站在地上才能被击倒
-                if (Random.Range(0, 2) == 0 && !isDie && currentHealth > 0 &&IsGrounded())
+                if (Random.Range(0, 2) == 0 && !isDie && currentHealth > 0 && IsGrounded())
                 {
                     Knockdown();
                 }
                 else
                 {
-                    switch (Random.Range(0, 2))
+                    if (!isDie) 
                     {
-                        case 0:
-                            anim.Play("hurt_1");
-                            break;
-                        case 1:
-                            anim.Play("hurt_2");
-                            break;
-                    }
+                        switch (Random.Range(0, 2))
+                        {
+                            case 0:
+                                anim.Play("hurt_1");
+                                break;
+                            case 1:
+                                anim.Play("hurt_2");
+                                break;
+                        }
 
-                    //PlayJump();
+                        //PlayJump();
 
 
-                    // 可以加一个简易翻面处理（仅左右）
-                    if (StopX < 0)
-                        Knockback(3);
-                    else if (StopX > 0)
-                        Knockback(-3);
+                        // 可以加一个简易翻面处理（仅左右）
+                        if (StopX < 0)
+                            Knockback(3);
+                        else if (StopX > 0)
+                            Knockback(-3);
+
+                    }//处于倒地期间收到攻击不会触发受击动画
+
+
+                  
                 }
             }
 
@@ -650,7 +657,7 @@ public class Enemy : MonoBehaviour
         }
 
 
-       
+
 
     }
 
@@ -661,7 +668,7 @@ public class Enemy : MonoBehaviour
 
     void GetUp()
     {
-        if (currentHealth > 0)
+        if (currentHealth > 0 && IsGrounded())//双方只有在地上才能爬起
         {
             isDie = false;
             anim.Play("down_getup");
