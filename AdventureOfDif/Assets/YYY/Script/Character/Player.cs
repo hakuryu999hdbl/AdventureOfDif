@@ -236,7 +236,11 @@ public class Player : MonoBehaviour
             {
                 if (!IsGrounded())
                 {
-                    PlayDodge(); // 闪避
+                    //这个落地依旧触发down，有没有方法将被踢飞的isGround和踢击isGround区别开来
+                    if (StopX < 0)
+                        Knockback(-3);
+                    else if (StopX > 0)
+                        Knockback(3);
                     anim.Play("jump_attack");
                 }
                 else if (isRunning)
@@ -435,8 +439,8 @@ public class Player : MonoBehaviour
     // 模拟跳跃高度
     float zHeight = 0f;
     float zVelocity = 0f;
-    float gravity = -9.8f; // 可以调成 -20f 更快落下
-    float jumpForce = 5f;
+    float gravity = -20f; // 可以调成 -20f 更快落下
+    float jumpForce = 10f;//原来是5f
 
     // 角色跳跃偏移对象（Spine动画对象）
     float groundY = 0f; // 初始化地面位置
@@ -457,12 +461,12 @@ public class Player : MonoBehaviour
     {
         // 应用重力
         zVelocity += gravity * Time.deltaTime;
-      
-        if (!isDodge) 
-        {
-            zHeight += zVelocity * Time.deltaTime;
-        }
-       
+        zHeight += zVelocity * Time.deltaTime;
+        //if (!isDodge) 
+        //{
+        //    zHeight += zVelocity * Time.deltaTime;
+        //}
+
 
         bool isGroundedNow = zHeight <= 0f;
 
@@ -471,6 +475,7 @@ public class Player : MonoBehaviour
             if (wasInAir) // 刚刚落地的那一帧
             {
                 frameEvents._Effect_falldown();// 播放落地音效等逻辑
+                Knockdown();
             }
 
 
@@ -498,6 +503,17 @@ public class Player : MonoBehaviour
 
 
         UpdateShadow();//控制影子大小
+
+        //被击飞
+        if (!IsGrounded() && knockbackX != 0f)
+        {
+            transform.position += new Vector3(knockbackX * Time.deltaTime, 0f, 0f);
+        }
+
+        if (isGroundedNow)
+        {
+            knockbackX = 0f; // 落地停止水平击飞
+        }
     }
 
     private bool IsGrounded()
@@ -532,7 +548,20 @@ public class Player : MonoBehaviour
         shadow.GetComponent<SpriteRenderer>().color = color;
     }
 
+    [Header("被击飞")]
+    float knockbackX = 0f; // 击飞时的水平速度（正负代表方向）
 
+    public void Knockback(float force)
+    {
+        knockbackX = force; // 例如 -3 或 3
+        zVelocity = jumpForce; // 同样上弹
+
+        // 改变朝向
+        if (knockbackX < 0)
+            anim.gameObject.transform.localScale = new Vector3(-1, 1, 1);
+        else if (knockbackX > 0)
+            anim.gameObject.transform.localScale = new Vector3(1, 1, 1);
+    }
 
 
     [Header("闪避触发")]
@@ -782,16 +811,6 @@ public class Player : MonoBehaviour
             if (amount < 0)
             {
 
-                switch (Random.Range(0, 2))
-                {
-                    case 0:
-                        anim.Play("hurt_1");
-                        break;
-                    case 1:
-                        anim.Play("hurt_2");
-                        break;
-                }
-
 
                 //if (!isDie&&canMove)//处于攻击状态下无法防御
                 //{
@@ -837,6 +856,39 @@ public class Player : MonoBehaviour
                 //    }
                 //
                 //}
+
+
+
+                //击倒再站起(和暴击结合)只有站在地上才能被击倒
+                if (Random.Range(0, 2) == 0 && !isDie && currentHealth > 0 && IsGrounded())
+                {
+                    Knockdown();
+                }
+                else
+                {
+                    switch (Random.Range(0, 2))
+                    {
+                        case 0:
+                            anim.Play("hurt_1");
+                            break;
+                        case 1:
+                            anim.Play("hurt_2");
+                            break;
+                    }
+
+                    //PlayJump();
+
+
+                    // 可以加一个简易翻面处理（仅左右）
+                    if (StopX < 0)
+                        Knockback(3);
+                    else if (StopX > 0)
+                        Knockback(-3);
+                }
+
+
+
+
 
             }//格挡
 
@@ -901,25 +953,30 @@ public class Player : MonoBehaviour
                 return;
             }
 
-            //击倒再站起
-            if (Random.Range(0, 2) == 0 && !isDie && currentHealth > 0)
-            {
-                isDie = true;
-
-                anim.Play("down");
-
-                //防止最后一下又击倒站起
-                if (currentHealth > 0)
-                {
-                    Invoke("GetUp", 0.5f);//比起敌人，玩家可以更快站起来
-                }
-
-                Critial.SetActive(true);
-            }
+            
 
         }
 
     }
+    public void Knockdown()
+    {
+        //击倒再站起
+        if (Random.Range(0, 2) == 0 && !isDie && currentHealth > 0)
+        {
+            isDie = true;
+
+            anim.Play("down");
+
+            //防止最后一下又击倒站起
+            if (currentHealth > 0)
+            {
+                Invoke("GetUp", 0.5f);//比起敌人，玩家可以更快站起来
+            }
+
+            Critial.SetActive(true);
+        }
+
+    }//击倒
 
     void HurtOver()
     {

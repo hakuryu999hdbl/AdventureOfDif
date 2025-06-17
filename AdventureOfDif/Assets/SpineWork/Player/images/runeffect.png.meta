@@ -263,7 +263,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      runeffect_0: 7584550186994904443
+      runeffect_1: 3945927803220002638
+      runeffect_2: -875037995963143508
+      runeffect_3: 4964878182579653524
+      runeffect_4: -6840667071104289766
+      runeffect_5: 8625357051890926589
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

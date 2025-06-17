@@ -839,6 +839,10 @@ MonoBehaviour:
   attack_Collider: {fileID: 7492053745455533681}
   _Target: {fileID: 7447802515958920555}
   CurrentTarget: {fileID: 0}
+  shadow: {fileID: 5065653485277758728}
+  shadowBaseScale: {x: 1, y: 1}
+  shadowMinScale: 0.3
+  maxJumpHeight: 3
   Strike_Effect: {fileID: 4353980718796142171}
   BloodEffect: {fileID: 1622069723160390679, guid: 3cbb102f876966040a9c79278e3e6a63,
     type: 3}

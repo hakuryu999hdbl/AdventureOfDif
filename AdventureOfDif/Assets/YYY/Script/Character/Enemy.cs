@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Pathfinding;
+using UnityEngine.InputSystem.Utilities;
 
 public class Enemy : MonoBehaviour
 {
@@ -196,7 +197,7 @@ public class Enemy : MonoBehaviour
         }
 
 
-
+        CheckJump();
         //一旦target没有了就自动玩家
         //if (CurrentTarget == null)
         //{
@@ -356,6 +357,144 @@ public class Enemy : MonoBehaviour
 
 
 
+    /// <summary>
+    /// 跳跃系统
+    /// </summary>
+    #region
+    [Header("模拟跳跃")]
+    // 模拟跳跃高度
+    float zHeight = 0f;
+    float zVelocity = 0f;
+    float gravity = -20f; // 可以调成 -20f 更快落下
+    float jumpForce = 10f;//原来是5f
+
+    // 角色跳跃偏移对象（Spine动画对象）
+    float groundY = 0f; // 初始化地面位置
+    bool wasInAir = false; // 前一帧是否在空中
+    public void PlayJump()
+    {
+        if (IsGrounded())
+        {
+            Debug.Log("跳跃");
+            zVelocity = jumpForce;
+            frameEvents._SE_Clothes();
+        }
+
+
+    }
+
+    void CheckJump()
+    {
+        // 应用重力
+        zVelocity += gravity * Time.deltaTime;
+        zHeight += zVelocity * Time.deltaTime;
+        //if (!isDodge) 
+        //{
+        //    zHeight += zVelocity * Time.deltaTime;
+        //}
+
+
+        bool isGroundedNow = zHeight <= 0f;
+
+        if (isGroundedNow)
+        {
+            if (wasInAir) // 刚刚落地的那一帧
+            {
+                frameEvents._Effect_falldown();// 播放落地音效等逻辑
+                Knockdown();
+            }
+
+
+
+            zHeight = 0f;
+            zVelocity = 0f;
+            groundY = transform.position.y;
+        }
+
+        if (zHeight > 0f)
+        {
+            Vector3 pos = transform.position;
+            pos.y = groundY + zHeight;
+            transform.position = pos;
+
+            //anim.SetBool("Jump", true);
+        }
+        else
+        {
+            //anim.SetBool("Jump", false);
+        }
+
+        // 更新前一帧状态
+        wasInAir = !isGroundedNow;
+
+
+        UpdateShadow();//控制影子大小
+
+
+        //被击飞
+        if (!IsGrounded() && knockbackX != 0f)
+        {
+            transform.position += new Vector3(knockbackX * Time.deltaTime, 0f, 0f);
+        }
+
+        if (isGroundedNow)
+        {
+            knockbackX = 0f; // 落地停止水平击飞
+
+        }
+    }
+
+    private bool IsGrounded()
+    {
+        return zHeight <= 0.01f; // 只要高度为 0 即为落地
+    }
+
+
+
+    [Header("影子控制")]
+    public Transform shadow;              // 影子对象
+    public Vector2 shadowBaseScale = new Vector2(1f, 1f); // 原始大小
+    public float shadowMinScale = 0.3f;   // 最小缩放（跳最高时）
+    public float maxJumpHeight = 3f;      // 最大跳跃高度（用于缩放比例）
+
+    void UpdateShadow()
+    {
+        if (shadow == null) return;
+
+        // 1. 保持影子在地面（角色 X，地面 Y）
+        Vector3 pos = transform.position;
+        shadow.position = new Vector3(pos.x, groundY, pos.z);
+
+        // 2. 计算当前缩放（高度越高越小）
+        float t = Mathf.Clamp01(zHeight / maxJumpHeight); // 0~1
+        float scale = Mathf.Lerp(1f, shadowMinScale, t);  // 1 ~ 最小
+        shadow.localScale = shadowBaseScale * scale;
+
+        // 可选：你也可以改变 Alpha 值
+        var color = shadow.GetComponent<SpriteRenderer>().color;
+        color.a = Mathf.Lerp(1f, 0.6f, t);
+        shadow.GetComponent<SpriteRenderer>().color = color;
+    }
+
+
+    [Header("被击飞")]
+    float knockbackX = 0f; // 击飞时的水平速度（正负代表方向）
+
+    public void Knockback(float force)
+    {
+        knockbackX = force; // 例如 -3 或 3
+        zVelocity = jumpForce; // 同样上弹
+
+        // 改变朝向
+        if (knockbackX < 0)
+            anim.gameObject.transform.localScale = new Vector3(-1, 1, 1);
+        else if (knockbackX > 0)
+            anim.gameObject.transform.localScale = new Vector3(1, 1, 1);
+    }
+
+
+
+    #endregion
 
 
 
@@ -397,15 +536,7 @@ public class Enemy : MonoBehaviour
             if (amount < 0)
             {
 
-                switch (Random.Range(0, 2))
-                {
-                    case 0:
-                        anim.Play("hurt_1");
-                        break;
-                    case 1:
-                        anim.Play("hurt_2");
-                        break;
-                }
+              
 
 
                 //if (Random.Range(0, 3) == 0 && !isDie && currentHealth > 0 && amount != -currentHealth)
@@ -437,6 +568,33 @@ public class Enemy : MonoBehaviour
                 //    return;
                 //}
 
+            
+                //击倒再站起(和暴击结合)只有站在地上才能被击倒
+                if (Random.Range(0, 2) == 0 && !isDie && currentHealth > 0 &&IsGrounded())
+                {
+                    Knockdown();
+                }
+                else
+                {
+                    switch (Random.Range(0, 2))
+                    {
+                        case 0:
+                            anim.Play("hurt_1");
+                            break;
+                        case 1:
+                            anim.Play("hurt_2");
+                            break;
+                    }
+
+                    //PlayJump();
+
+
+                    // 可以加一个简易翻面处理（仅左右）
+                    if (StopX < 0)
+                        Knockback(3);
+                    else if (StopX > 0)
+                        Knockback(-3);
+                }
             }
 
             //伤害类型
@@ -492,11 +650,7 @@ public class Enemy : MonoBehaviour
         }
 
 
-        //击倒再站起(和暴击结合)
-        if (Random.Range(0, 2) == 0 && !isDie && currentHealth > 0)
-        {
-            Knockdown();
-        }
+       
 
     }
 
