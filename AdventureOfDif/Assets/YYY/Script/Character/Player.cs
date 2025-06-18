@@ -25,8 +25,16 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (!isDie)
+        if (currentHealth <= 0) 
         {
+            anim.Play("dead");
+            rbody.simulated = false;
+            return;
+        }
+
+        if (!isDie && currentHealth > 0)
+        {
+
             BaseMove();//站走跑攻
 
 
@@ -35,6 +43,9 @@ public class Player : MonoBehaviour
         {
             rbody.velocity = Vector2.zero; // 停止所有移动
         }
+
+
+        UpdateShadow();//控制影子大小
 
         // 每帧更新剑物体的旋转
         Strike_Effect.transform.Rotate(0, 0, 100 * Time.deltaTime);
@@ -50,7 +61,13 @@ public class Player : MonoBehaviour
             state.IsName("attack_4") ||
             state.IsName("rage") ||
             state.IsName("hurt_1") ||
-            state.IsName("hurt_2"))
+            state.IsName("hurt_2") ||
+
+           state.IsName("Down") ||
+           state.IsName("down") ||
+           state.IsName("down_getup") ||
+           state.IsName("dead")
+           )
         {
             canMove = false;
         }
@@ -165,7 +182,7 @@ public class Player : MonoBehaviour
 
 
         CheckAttack();
-
+        CheckDodge();
         CheckJump();
 
 
@@ -237,7 +254,7 @@ public class Player : MonoBehaviour
             {
 
                 AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
-                if (state.IsName("jump_attack")) 
+                if (state.IsName("jump_attack"))
                 {
                     return;
                 }//防止连续飞踢
@@ -246,9 +263,9 @@ public class Player : MonoBehaviour
                 {
                     //这个落地依旧触发down，有没有方法将被踢飞的isGround和踢击isGround区别开来
                     if (StopX < 0)
-                        Knockback(-3,2);
+                        FlyKick(-3);
                     else if (StopX > 0)
-                        Knockback(3,2);
+                        FlyKick(3);
                     anim.Play("jump_attack");
                 }
                 else if (isRunning)
@@ -381,10 +398,10 @@ public class Player : MonoBehaviour
 
 
     /// <summary>
-    /// 闪避与跳跃系统
+    /// 闪避(冲刺)与跳跃系统
     /// </summary>
     #region
-    [Header("闪避键按下")]
+    [Header("闪避（跳跃）键按下")]
     private float dodgePressTime = 0f;      // 持续按下时长计时器
     private bool dodgeTriggered = false;    // 是否已经触发攻击动作（防止反复触发）
 
@@ -455,14 +472,14 @@ public class Player : MonoBehaviour
     bool wasInAir = false; // 前一帧是否在空中
     public void PlayJump()
     {
-        if (IsGrounded()) 
+        if (IsGrounded())
         {
             //Debug.Log("跳跃");
             zVelocity = jumpForce;
-            airborneState = AirborneType.Jump;////////////////////////////////////////////////////////////////
+            airborneState = AirborneType.Jump;////////////////////////////////////////////////////////////////(跳起和飞踢落地都需要这个)
             frameEvents._SE_Clothes();
         }
-     
+
 
     }
 
@@ -495,7 +512,7 @@ public class Player : MonoBehaviour
                     Knockdown();
 
                     Debug.Log(" 被踢击落地");
-                    anim.SetTrigger("Player_Down");
+                    anim.SetTrigger("Player_Down");//因为被击落地动画器怎么也转不过来所以只能
                 }
             }
 
@@ -504,6 +521,7 @@ public class Player : MonoBehaviour
             knockbackX = 0f;
             groundY = transform.position.y;
             airborneState = AirborneType.None; // 重置状态
+            isKnockback = false; // ✔ 落地结束击飞状态
         }
 
         if (zHeight > 0f)
@@ -523,7 +541,7 @@ public class Player : MonoBehaviour
         wasInAir = !isGroundedNow;
 
 
-        UpdateShadow();//控制影子大小
+       
 
         //被击飞
         if (!IsGrounded() && knockbackX != 0f)
@@ -569,14 +587,15 @@ public class Player : MonoBehaviour
         shadow.GetComponent<SpriteRenderer>().color = color;
     }
 
-    [Header("被击飞")]
+    [Header("被击飞与飞踢")]
     float knockbackX = 0f; // 击飞时的水平速度（正负代表方向）
 
-    public void Knockback(float force,float JumpForce)
+    public void Knockback(float force)
     {
         knockbackX = force;
-        zVelocity = JumpForce;//这里被击飞或者飞踢力度不同
-        
+        zVelocity = 10;//这里被击飞力度
+        airborneState = AirborneType.Knocked; // 设置为不可操作
+        isKnockback = true;//被击飞期间无法受伤/切断输入
 
         if (knockbackX < 0)
             anim.gameObject.transform.localScale = new Vector3(-1, 1, 1);
@@ -584,19 +603,30 @@ public class Player : MonoBehaviour
             anim.gameObject.transform.localScale = new Vector3(1, 1, 1);
     }
 
+    public void FlyKick(float force)
+    {
+        knockbackX = force;
+        zVelocity = 2;//飞踢力度
+        airborneState = AirborneType.Jump; // 可操作
+
+        if (knockbackX < 0)
+            anim.gameObject.transform.localScale = new Vector3(-1, 1, 1);
+        else if (knockbackX > 0)
+            anim.gameObject.transform.localScale = new Vector3(1, 1, 1);
+    }
 
     //分开落地触发
     enum AirborneType { None, Jump, Knocked }
 
     AirborneType airborneState = AirborneType.None;
 
-
+    private bool isKnockback = false; // 被击飞中无法输入、无法受击
 
     [Header("闪避触发")]
 
 
-    //public float dodgeSpeed = 10f;
-    //public float dodgeDistance = 0.5f;
+    public float dodgeSpeed = 10f;
+    public float dodgeDistance = 0.5f;
     public LayerMask obstacleLayer;
 
     public bool isDodge = false;//闪避动画期间的Dodge
@@ -646,7 +676,7 @@ public class Player : MonoBehaviour
 
 
 
-      
+
 
         isDodge = true;
 
@@ -731,29 +761,47 @@ public class Player : MonoBehaviour
     }
     private void OnRunStarted(InputAction.CallbackContext context)
     {
-        isRunning = true;
+        if (!isDie && !isKnockback && currentHealth > 0)
+        {
+            isRunning = true;
+        }
     }
     private void OnRunCanceled(InputAction.CallbackContext context)
     {
-        isRunning = false;
+        if (!isDie && !isKnockback && currentHealth > 0)
+        {
+            isRunning = false;
+        }
     }
 
     private void OnAttackStarted(InputAction.CallbackContext context)
     {
-        Attack_Start();
+        if (!isDie && !isKnockback && currentHealth > 0)
+        {
+            Attack_Start();
+        }
     }
     private void OnAttackCanceled(InputAction.CallbackContext context)
     {
-        Attack_Cancel();
+        if (!isDie && !isKnockback && currentHealth > 0)
+        {
+            Attack_Cancel();
+        }
     }
 
     private void OnDodgeStarted(InputAction.CallbackContext context)
     {
-        Dodge_Start();
+        if (!isDie && !isKnockback && currentHealth > 0)
+        {
+            Dodge_Start();
+        }
     }
     private void OnDodgeCanceled(InputAction.CallbackContext context)
     {
-        Dodge_Cancel();
+        if (!isDie && !isKnockback && currentHealth > 0)
+        {
+            Dodge_Cancel();
+        }
     }
 
     [Header("手机端触发")]
@@ -763,34 +811,58 @@ public class Player : MonoBehaviour
     public bool isRunning = false;//持续按下跑步键
     public void ButtonSetRun()
     {
-        isRunning = true;
+        if (!isDie && !isKnockback && currentHealth > 0)
+        {
+            isRunning = true;
+        }
+
     }
     public void ButtonSetStop()
     {
-        isRunning = false;
+        if (!isDie && !isKnockback && currentHealth > 0)
+        {
+            isRunning = false;
+        }
+
     }
 
     //手机端触发
     public bool isAttacking = false;//持续按下攻击键
     public void ButtonSetAttack()
     {
-        Attack_Start();
+        if (!isDie && !isKnockback && currentHealth > 0)
+        {
+            Attack_Start();
+        }
+
     }
     public void ButtonSetAttackOver()
     {
-        Attack_Cancel();
+        if (!isDie && !isKnockback && currentHealth > 0)
+        {
+            Attack_Cancel();
+        }
+
     }
 
     //手机端触发
     public bool isDodging = false;//持续按下闪避键
     public void ButtonSetDodge()
     {
-        Dodge_Start();
+
+        if (!isDie && !isKnockback && currentHealth > 0)
+        {
+            Dodge_Start();
+        }
+
     }
     public void ButtonSetDodgeOver()
     {
+        if (!isDie && !isKnockback && currentHealth >0)
+        {
+            Dodge_Cancel();
+        }
 
-        Dodge_Cancel();
     }
 
     #endregion
@@ -830,7 +902,7 @@ public class Player : MonoBehaviour
 
     public void ChangeHealth(int amount, int TypeOfAttack)//【攻击方式】 0无  1剑击特效  2闪电特效  3冻结
     {
-        if (!isScreaming)
+        if (!isScreaming&&currentHealth>0 &&IsGrounded())//死亡后不受击，玩家在空中的时候不受击
         {
 
 
@@ -840,55 +912,9 @@ public class Player : MonoBehaviour
             {
 
 
-                //if (!isDie&&canMove)//处于攻击状态下无法防御
-                //{
-                //    // 计算体力百分比
-                //    float strengthPercent = (float)currentStrength / maxStrength;
-                //
-                //    // 根据体力百分比决定防御几率（体力越高越容易防御）
-                //    // 比如体力满时为 100% 几率，体力最低时为 10%
-                //    float blockChance = Mathf.Lerp(0.1f, 1f, strengthPercent);
-                //
-                //    if (Random.value < blockChance)
-                //    {
-                //        anim.SetTrigger("Block");
-                //
-                //        // 防御成功扣除体力
-                //        ChangeStrength(-50);
-                //
-                //
-                //        switch (Random.Range(0, 3))
-                //        {
-                //            case 0:
-                //                frameEvents._Attack_sword_clash2();
-                //                break;
-                //            case 1:
-                //                frameEvents._Attack_sword_clash3();
-                //                break;
-                //            case 2:
-                //                frameEvents._Attack_sword_clash4();
-                //                break;
-                //        }
-                //
-                //
-                //        //显示伤害
-                //        HudText.HUD(0);//0会显示Miss
-                //
-                //        //火花特效
-                //        Vector3 offset_2 = new Vector3(0, 0, 2); // 这里的1表示沿Z轴上升的距离，可以根据需要调整
-                //        Vector3 spawnPosition_2 = transform.position + offset_2;
-                //        GameObject effectPrefabs_2 = Instantiate(SparkEffect, spawnPosition_2, transform.rotation);
-                //        Destroy(effectPrefabs_2, 2f);
-                //
-                //        return;
-                //    }
-                //
-                //}
 
-
-
-                //击倒再站起(和暴击结合)只有站在地上才能被击倒
-                if (Random.Range(0, 2) == 0 && !isDie && currentHealth > 0 && IsGrounded())
+                //击倒再站起(和暴击结合)只有站在地上，不处于被击飞才能被击倒
+                if (Random.Range(0, 2) == 0 && !isDie && currentHealth > 0 && IsGrounded() && !isKnockback)
                 {
                     Critial.SetActive(true);
                     Knockdown();
@@ -905,14 +931,12 @@ public class Player : MonoBehaviour
                             break;
                     }
 
-                    //PlayJump();
-                    airborneState = AirborneType.Knocked;////////////////////////////////////////////////////////////////
 
                     // 可以加一个简易翻面处理（仅左右）
                     if (StopX < 0)
-                        Knockback(3,10);
+                        Knockback(3);
                     else if (StopX > 0)
-                        Knockback(-3,10);
+                        Knockback(-3);
                 }
 
 
@@ -966,8 +990,6 @@ public class Player : MonoBehaviour
 
 
 
-            //受伤时连击取消
-            Invoke("ResetCombo", 1f);
 
 
 
@@ -976,13 +998,19 @@ public class Player : MonoBehaviour
                 isDie = true;
 
 
-
                 anim.Play("dead");
 
                 return;
             }
+            else
+            {
+                //死亡时收到伤害不再重置站姿
+                //受伤时连击取消
+                Invoke("ResetCombo", 1f);
 
-            
+            }
+
+
 
         }
 

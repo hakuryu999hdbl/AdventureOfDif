@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
         {
             BaseMove();//站走跑攻
 
-
+            //aiPath.canMove = true;
 
 
         }
@@ -55,11 +55,22 @@ public class Enemy : MonoBehaviour
             attack_Collider.SetActive(false);
 
 
+            // 只要到底，立即贴地
+            Vector3 pos = transform.position;
+            pos.y = groundY;
+            transform.position = pos;
+
+            zHeight = 0f;
+            zVelocity = 0f;
+
+            //aiPath.canMove = false;
+
+
         }
 
 
 
-
+        UpdateShadow();//控制影子大小
 
 
 
@@ -87,7 +98,13 @@ public class Enemy : MonoBehaviour
             state.IsName("attack_4") ||
             state.IsName("rage") ||
             state.IsName("hurt_1") ||
-            state.IsName("hurt_2"))
+            state.IsName("hurt_2") ||
+
+            state.IsName("Down") ||
+            state.IsName("down") ||
+            state.IsName("down_getup") ||
+            state.IsName("dead")
+            )
         {
             aiPath.canMove = false;
 
@@ -428,7 +445,7 @@ public class Enemy : MonoBehaviour
         wasInAir = !isGroundedNow;
 
 
-        UpdateShadow();//控制影子大小
+       
 
 
         //被击飞
@@ -535,38 +552,6 @@ public class Enemy : MonoBehaviour
 
             if (amount < 0)
             {
-
-
-
-
-                //if (Random.Range(0, 3) == 0 && !isDie && currentHealth > 0 && amount != -currentHealth)
-                //{
-                //    anim.SetTrigger("Block");
-                //
-                //    switch (Random.Range(0, 3))
-                //    {
-                //        case 0:
-                //            frameEvents._Attack_sword_clash2();
-                //            break;
-                //        case 1:
-                //            frameEvents._Attack_sword_clash3();
-                //            break;
-                //        case 2:
-                //            frameEvents._Attack_sword_clash4();
-                //            break;
-                //    }
-                //
-                //    //显示伤害
-                //    HudText.HUD(0);//0会显示Miss
-                //
-                //    //火花特效
-                //    Vector3 offset_2 = new Vector3(0, 0, 2); // 这里的1表示沿Z轴上升的距离，可以根据需要调整
-                //    Vector3 spawnPosition_2 = transform.position + offset_2;
-                //    GameObject effectPrefabs_2 = Instantiate(SparkEffect, spawnPosition_2, transform.rotation);
-                //    Destroy(effectPrefabs_2, 2f);
-                //
-                //    return;
-                //}
 
 
                 //击倒再站起(和暴击结合)只有站在地上才能被击倒
@@ -721,6 +706,10 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         isDie = true;
+
+
+        
+
         anim.Play("dead");//防止倒下又起来,搞了第二死亡
 
         Invoke("Disappear", 1f);
