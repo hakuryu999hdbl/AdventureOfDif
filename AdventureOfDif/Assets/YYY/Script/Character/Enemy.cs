@@ -330,8 +330,23 @@ public class Enemy : MonoBehaviour
 
     void Attack_Start()
     {
-        anim.Play("attack_1", 0, 0);
+     
 
+        switch (Random.Range(0, 4))
+        {
+            case 0:
+                anim.Play("attack_1", 0, 0);
+                break;
+            case 1:
+                anim.Play("attack_2", 0, 0);
+                break;
+            case 2:
+                anim.Play("attack_3", 0, 0);
+                break;
+            case 3:
+                anim.Play("attack_4", 0, 0);
+                break;
+        }
 
 
         switch (Random.Range(0, 3))
@@ -445,7 +460,7 @@ public class Enemy : MonoBehaviour
         wasInAir = !isGroundedNow;
 
 
-       
+
 
 
         //被击飞
@@ -541,7 +556,7 @@ public class Enemy : MonoBehaviour
 
 
 
-    public void ChangeHealth(int amount, int TypeOfAttack)//【攻击方式  0无  1剑击特效  2闪电特效  3冻结
+    public void ChangeHealth(int amount, int TypeOfAttack)//【攻击方式】  0轻攻击  1重攻击（击飞）  2剑击特效 
     {
 
         if (!isScreaming)
@@ -554,14 +569,16 @@ public class Enemy : MonoBehaviour
             {
 
 
+
+
                 //击倒再站起(和暴击结合)只有站在地上才能被击倒
-                if (Random.Range(0, 2) == 0 && !isDie && currentHealth > 0 && IsGrounded())
+                if (Random.Range(0, 4) == 0 && !isDie && currentHealth > 0 && IsGrounded())
                 {
                     Knockdown();
                 }
                 else
                 {
-                    if (!isDie) 
+                    if (!isDie)
                     {
                         switch (Random.Range(0, 2))
                         {
@@ -575,27 +592,46 @@ public class Enemy : MonoBehaviour
 
                         //PlayJump();
 
+                        if (TypeOfAttack == 0)
+                        {
 
-                        // 可以加一个简易翻面处理（仅左右）
-                        if (StopX < 0)
-                            Knockback(3);
-                        else if (StopX > 0)
-                            Knockback(-3);
+                            Invoke("AnimBack", 0.5f);//防止动画回不去
+
+                            //受伤后重新计数（这在GetUp）
+                            attackTimer = 0f;
+                            isInAttackDelay = true;
+
+
+                        }//被击飞
+                        if (TypeOfAttack == 1)
+                        {
+                            // 可以加一个简易翻面处理（仅左右）
+                            if (StopX < 0)
+                                Knockback(3);
+                            else if (StopX > 0)
+                                Knockback(-3);
+                        }//被击飞
+
 
                     }//处于倒地期间收到攻击不会触发受击动画
 
 
-                  
+
                 }
+
+
+
+
+                RoomGenerator.AddCombo();//连击显示
             }
 
             //伤害类型
             switch (TypeOfAttack)
             {
-                case 1:
+                case 2:
                     Strike_Effect.SetActive(true);//剑伤害
                     break;
-                case 2:
+                case 3:
                     //Palsy_Effect.SetActive(true);//雷电伤害
                     break;
             }
@@ -644,6 +680,12 @@ public class Enemy : MonoBehaviour
 
 
 
+    }
+
+
+    void  AnimBack()
+    {
+        anim.Play("stand");
     }
 
     void HurtOver()

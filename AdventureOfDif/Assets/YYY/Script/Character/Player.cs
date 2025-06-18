@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
         //当这些动画在播放的时候玩家不能移动
         AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
 
+
         if (state.IsName("attack_1") ||
             state.IsName("attack_2") ||
             state.IsName("attack_3") ||
@@ -77,6 +78,22 @@ public class Player : MonoBehaviour
         }
 
 
+
+        //轻击
+        if (state.IsName("attack_1") ||
+          state.IsName("attack_2") ||
+          state.IsName("attack_3") ||
+          state.IsName("attack_4"))
+        {
+            strike.TypeOfAttack = 0;
+        }
+
+        //重击
+        if (state.IsName("run_attack") ||
+         state.IsName("jump_attack"))
+        {
+            strike.TypeOfAttack = 1;
+        }
 
     }
 
@@ -929,7 +946,7 @@ public class Player : MonoBehaviour
     [Header("暴击")]
     public GameObject Critial;
 
-    public void ChangeHealth(int amount, int TypeOfAttack)//【攻击方式】 0无  1剑击特效  2闪电特效  3冻结
+    public void ChangeHealth(int amount, int TypeOfAttack)//【攻击方式】  0轻攻击  1重攻击（击飞）  2剑击特效 
     {
         if (!isScreaming&&currentHealth> 0 && !isDie && IsGrounded() && !isKnockback)//冷却不受击，死亡后不受击，倒地不受击，玩家在空中的时候不受击（跳跃/被击飞），被击飞不受击
         {
@@ -980,10 +997,10 @@ public class Player : MonoBehaviour
             //伤害类型
             switch (TypeOfAttack)
             {
-                case 1:
+                case 2:
                     Strike_Effect.SetActive(true);//剑伤害
                     break;
-                case 2:
+                case 3:
                     //Palsy_Effect.SetActive(true);//雷电伤害
                     break;
             }

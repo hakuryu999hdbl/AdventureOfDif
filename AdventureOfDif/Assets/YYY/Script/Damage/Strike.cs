@@ -21,7 +21,7 @@ public class Strike : MonoBehaviour
     public float chargeTime = 0f; // 由 Player 传入的蓄力时间
     private void OnEnable()
     {
-        TypeOfAttack = 1;//剑伤
+        //TypeOfAttack = 1;//剑伤
 
         baseDamage = Damage; // 保存原始值
         appliedDamage = baseDamage + Random.Range(-50, 50); // 例如±10范围

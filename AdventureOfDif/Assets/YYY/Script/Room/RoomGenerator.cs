@@ -90,11 +90,54 @@ public class RoomGenerator : MonoBehaviour
     #endregion
 
 
+    /// <summary>
+    /// 连击数字显示
+    /// </summary>
+    #region
+    [Header("连击显示")]
+    private int currentCombo = 0;
+    private float comboTimer = 0f;
+    public float comboResetTime = 3f; // 3秒内没打人就归零
+
+    public GameObject comboTextUI;
+    public Text comboText;
+
+    private void Update()
+    {
+        if (currentCombo > 0)
+        {
+            comboTimer += Time.deltaTime;
+            if (comboTimer >= comboResetTime)
+            {
+                ResetCombo();
+            }
+        }
+    }
+
+    public void AddCombo()
+    {
+        currentCombo++;
+        comboTimer = 0f;
+
+        if (currentCombo >= 3)
+        {
+            comboTextUI.SetActive(true);
+            comboText.text = "Combo x" + currentCombo;
+        }
+    }
+
+    public void ResetCombo()
+    {
+        currentCombo = 0;
+        comboTextUI.SetActive(false);
+        comboTimer = 0f;
+    }
+
+
+    #endregion
 
 
 
-
-    
 
 
     /// <summary>
