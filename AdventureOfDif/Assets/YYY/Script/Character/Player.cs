@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
             anim.Play("dead");
             rbody.simulated = false;
             return;
-        }
+        }//死亡完全切断所有输入
 
         if (!isDie && currentHealth > 0)
         {
@@ -103,7 +103,11 @@ public class Player : MonoBehaviour
     private void BaseMove()
     {
 
+        CheckAttack();
+        CheckDodge();
+        CheckJump();//不是按钮按下多久
 
+        if (isKnockback) { return; }//被击飞时切断方向键输入
 
         //这个是拉杆控制，最优先，如果手柄没有输入，再检测手柄键盘等
         inputX = Joystick.Horizontal;
@@ -181,17 +185,15 @@ public class Player : MonoBehaviour
 
 
 
-        CheckAttack();
-        CheckDodge();
-        CheckJump();
+       
 
 
 
-        if (!canMove)
+        if (!canMove||isKnockback)
         {
             input = Vector2.zero;
 
-        }//玩家只有在不攻击的时候才能移动，闪避的时候也无法叠加
+        }//玩家只有在不攻击的时候才能移动，闪避的时候也无法叠加,被击飞时也无法移动
 
 
 
@@ -483,6 +485,15 @@ public class Player : MonoBehaviour
 
     }
 
+
+    IEnumerator TriggerKnockdownOnLanding()
+    {
+        yield return null; // 等一帧，防止被 BaseMove 覆盖
+
+        Knockdown();
+    }//冻结一切输入立刻触发倒地动画
+
+
     void CheckJump()
     {
         // 应用重力
@@ -509,10 +520,28 @@ public class Player : MonoBehaviour
                 else if (airborneState == AirborneType.Knocked)
                 {
                     // 被踢击落地
-                    Knockdown();
+                    // Knockdown();
+                    //
+                    // Debug.Log(" 被踢击落地");
+                    // anim.SetTrigger("Player_Down");//因为被击落地动画器怎么也转不过来所以只能
 
-                    Debug.Log(" 被踢击落地");
-                    anim.SetTrigger("Player_Down");//因为被击落地动画器怎么也转不过来所以只能
+                    // ✔ 立刻冻结
+                    inputX = 0;
+                    inputY = 0;
+                    StopX = 0;
+                    StopY = 0;
+                    rbody.velocity = Vector2.zero;
+                    moveSpeed = 0;
+
+                    canMove = false;
+
+                    // ✔ 直接让动画跳进 down，不交给状态机判断
+                    anim.Play("down", 0, 0);
+
+                    // ✔ 设定标记，在下一帧正式 Knockdown()
+                    StartCoroutine(TriggerKnockdownOnLanding());
+
+                    Debug.Log("【击飞落地】冻结输入 + 播放 down");
                 }
             }
 
@@ -521,7 +550,7 @@ public class Player : MonoBehaviour
             knockbackX = 0f;
             groundY = transform.position.y;
             airborneState = AirborneType.None; // 重置状态
-            isKnockback = false; // ✔ 落地结束击飞状态
+           
         }
 
         if (zHeight > 0f)
@@ -902,7 +931,7 @@ public class Player : MonoBehaviour
 
     public void ChangeHealth(int amount, int TypeOfAttack)//【攻击方式】 0无  1剑击特效  2闪电特效  3冻结
     {
-        if (!isScreaming&&currentHealth>0 &&IsGrounded())//死亡后不受击，玩家在空中的时候不受击
+        if (!isScreaming&&currentHealth> 0 && !isDie && IsGrounded() && !isKnockback)//冷却不受击，死亡后不受击，倒地不受击，玩家在空中的时候不受击（跳跃/被击飞），被击飞不受击
         {
 
 
@@ -912,12 +941,15 @@ public class Player : MonoBehaviour
             {
 
 
-
-                //击倒再站起(和暴击结合)只有站在地上，不处于被击飞才能被击倒
-                if (Random.Range(0, 2) == 0 && !isDie && currentHealth > 0 && IsGrounded() && !isKnockback)
+                if (Random.Range(0, 2) == 1)
                 {
-                    Critial.SetActive(true);
-                    Knockdown();
+                    if (currentHealth > 0 && IsGrounded()) 
+                    {
+                        //击倒再站起(和暴击结合)只有站在地上才能被击倒
+                        Critial.SetActive(true);
+                        Knockdown();
+                    }
+
                 }
                 else
                 {
@@ -1048,7 +1080,7 @@ public class Player : MonoBehaviour
         isDie = false;
         anim.Play("down_getup");
 
-
+        isKnockback = false; // ✔ 落地结束击飞状态
     }
 
 

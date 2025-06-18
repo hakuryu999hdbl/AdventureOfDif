@@ -380,6 +380,8 @@ MonoBehaviour:
   shadowBaseScale: {x: 1, y: 1}
   shadowMinScale: 0.3
   maxJumpHeight: 3
+  dodgeSpeed: 10
+  dodgeDistance: 0.5
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
