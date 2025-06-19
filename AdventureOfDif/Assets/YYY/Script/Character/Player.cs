@@ -61,6 +61,8 @@ public class Player : MonoBehaviour
             state.IsName("attack_3") ||
             state.IsName("attack_4") ||
             state.IsName("rage") ||
+            state.IsName("grab_throw") ||
+
             state.IsName("hurt_1") ||
             state.IsName("hurt_2") ||
 
@@ -272,6 +274,15 @@ public class Player : MonoBehaviour
             if (attackPressTime < 0.2f)
             {
 
+
+                if (isHoldingObject) 
+                {
+                    anim.SetTrigger("Throw");
+
+                    return;
+
+                }//如果手上持有物品，那么优先扔出去            
+
                 AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
                 if (state.IsName("jump_attack"))
                 {
@@ -365,7 +376,7 @@ public class Player : MonoBehaviour
         isAttacking2 = true;
         anim.Play("attack_1", 0, 0);
 
-
+       
     }
 
     public void ResetCombo()
@@ -481,7 +492,7 @@ public class Player : MonoBehaviour
 
     [Header("模拟跳跃")]
     // 模拟跳跃高度
-    float zHeight = 0f;
+    public float zHeight = 0f;
     float zVelocity = 0f;
     float gravity = -20f; // 可以调成 -20f 更快落下
     float jumpForce = 10f;//原来是5f
@@ -601,7 +612,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         return zHeight <= 0.01f; // 只要高度为 0 即为落地
     }
@@ -770,6 +781,57 @@ public class Player : MonoBehaviour
 
     #endregion
 
+
+    /// <summary>
+    /// 投掷系统
+    /// </summary>
+    #region
+    [Header("投掷物品")]
+    public bool isHoldingObject = false;//是否抓住物品
+    public GameObject Obstacle_Attack_1;
+
+    public void OnGrabCollision(GrabbableObject.GrabbableType item)
+    {
+        if (!isHoldingObject)
+        {
+            isHoldingObject = true;//当玩家举起物品的时候无法跑步，无法跳跃
+
+
+            anim.SetBool("IsGrabbing", true);
+        }
+    }
+
+
+
+
+    public void ThrowHeldObject() // 由 grab_throw 动画末尾事件触发
+    {
+        GameObject obj = Instantiate(Obstacle_Attack_1, transform.position, Quaternion.identity);
+
+        // 方向判断（以角色朝向为基准）
+        float dir = StopX > 0 ? 1f : -1f;
+
+        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.simulated = true;
+            rb.velocity = new Vector2(8f * dir, 5f); // 水平+上抛弧线，可调整
+        }
+
+        // 激活爆炸逻辑
+        ThrowHeldObject script = obj.GetComponent<ThrowHeldObject>();
+        if (script != null)
+        {
+            script.Launch();
+        }
+
+        // 播完投掷动画后，角色状态复位
+        isHoldingObject = false;
+        anim.SetBool("IsGrabbing", false);
+    }
+
+    #endregion
+
     /// <summary>
     /// 多端输入
     /// </summary>
@@ -809,14 +871,23 @@ public class Player : MonoBehaviour
     {
         if (!isDie && !isKnockback && currentHealth > 0)
         {
-            isRunning = true;
+            if (!isHoldingObject) 
+            {
+                isRunning = true;
+            }//抓住物品无法跑
+
+           
         }
     }
     private void OnRunCanceled(InputAction.CallbackContext context)
     {
         if (!isDie && !isKnockback && currentHealth > 0)
         {
-            isRunning = false;
+            if (!isHoldingObject)
+            {
+                isRunning = false;
+            }//抓住物品无法跑
+           
         }
     }
 
@@ -839,14 +910,25 @@ public class Player : MonoBehaviour
     {
         if (!isDie && !isKnockback && currentHealth > 0)
         {
-            Dodge_Start();
+            if (!isHoldingObject)
+            {
+                Dodge_Start();
+
+            }//抓住物品无法跳
+           
         }
     }
     private void OnDodgeCanceled(InputAction.CallbackContext context)
     {
         if (!isDie && !isKnockback && currentHealth > 0)
         {
-            Dodge_Cancel();
+
+            if (!isHoldingObject)
+            {
+                Dodge_Cancel();
+
+            }//抓住物品无法跳
+           
         }
     }
 
