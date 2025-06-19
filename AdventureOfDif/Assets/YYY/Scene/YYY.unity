@@ -387,8 +387,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   isDodge: 0
-  Obstacle_Attack_1: {fileID: 6657398186620034209, guid: 52f4eb19e9ca652438e182e6224de833,
+  isHoldingObject: 0
+  Obstacle_Attack: {fileID: 6657398186620034209, guid: 52f4eb19e9ca652438e182e6224de833,
     type: 3}
+  characterSkin: {fileID: 534242812}
   moveAction: {fileID: 389908679454232702, guid: deaf91781ed4539448d73a93eae4fb40,
     type: 3}
   inputActions: {fileID: -944628639613478452, guid: deaf91781ed4539448d73a93eae4fb40,

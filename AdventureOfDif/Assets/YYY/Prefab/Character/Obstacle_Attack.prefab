@@ -207,8 +207,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   impactEffect: {fileID: 1111807069115479475, guid: 7e1b014125f11814e9d0d19f78ccfad3,
     type: 3}
-  destroyOnImpact: 1
-  Obstacle_Attack_Image: {fileID: 3711450274745443521}
+  spriteRenderer: {fileID: 1755986704101701436}
+  tanker: {fileID: 21300000, guid: f84d39e79992bed4ea5f3ff962c32c7a, type: 3}
+  inbox: {fileID: 21300000, guid: d756d1eb59d50cb45b63a2f0917592a2, type: 3}
+  Inbox: {fileID: 2053813118689278148, guid: 594e0583be7ba0646af012ffd888a69f, type: 3}
 --- !u!50 &1964736695643820368
 Rigidbody2D:
   serializedVersion: 4

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static GrabbableObject;
 
 
 
@@ -788,8 +789,11 @@ public class Player : MonoBehaviour
     #region
     [Header("投掷物品")]
     public bool isHoldingObject = false;//是否抓住物品
-    public GameObject Obstacle_Attack_1;
+    public GameObject Obstacle_Attack;
 
+    GrabbableObject.GrabbableType heldItemType;
+
+    public CharacterSkin characterSkin;//角色
     public void OnGrabCollision(GrabbableObject.GrabbableType item)
     {
         if (!isHoldingObject)
@@ -798,6 +802,9 @@ public class Player : MonoBehaviour
 
 
             anim.SetBool("IsGrabbing", true);
+
+            heldItemType = (GrabbableType)item; // 进行 enum 转换
+            characterSkin.ShowCurrentAll(heldItemType);
         }
     }
 
@@ -806,7 +813,7 @@ public class Player : MonoBehaviour
 
     public void ThrowHeldObject() // 由 grab_throw 动画末尾事件触发
     {
-        GameObject obj = Instantiate(Obstacle_Attack_1, transform.position, Quaternion.identity);
+        GameObject obj = Instantiate(Obstacle_Attack, transform.position, Quaternion.identity);
 
         // 方向判断（以角色朝向为基准）
         float dir = StopX > 0 ? 1f : -1f;
@@ -815,14 +822,14 @@ public class Player : MonoBehaviour
         if (rb != null)
         {
             rb.simulated = true;
-            rb.velocity = new Vector2(8f * dir, 5f); // 水平+上抛弧线，可调整
+            rb.velocity = new Vector2(4f * dir, 2f); // 水平+上抛弧线，可调整【8/5】
         }
 
         // 激活爆炸逻辑
         ThrowHeldObject script = obj.GetComponent<ThrowHeldObject>();
         if (script != null)
         {
-            script.Launch();
+            script.Launch(heldItemType);
         }
 
         // 播完投掷动画后，角色状态复位

@@ -160,6 +160,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 327ff398374400643b15d8afccaaf3c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: 0
+  spriteRenderer: {fileID: 3550190078066771236}
+  tanker: {fileID: 21300000, guid: 049c79810b52a7c439020b527d99fd92, type: 3}
+  inbox: {fileID: 21300000, guid: bcf14f9b23fe093478cb3bb2dac2c4c8, type: 3}
 --- !u!58 &3535789051591666729
 CircleCollider2D:
   m_ObjectHideFlags: 0

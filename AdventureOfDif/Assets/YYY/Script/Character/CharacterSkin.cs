@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 using Spine;
+using static GrabbableObject;
 
 public class CharacterSkin : MonoBehaviour
 {
@@ -21,22 +22,27 @@ public class CharacterSkin : MonoBehaviour
         skeletonAnimation = GetComponent<SkeletonMecanim>();
     
         //初始皮肤
-        ShowCurrentAll();
+        //ShowCurrentAll();
     
     }
-    public void ShowCurrentAll()
+
+    GrabbableObject.GrabbableType heldItemType;
+    public void ShowCurrentAll(GrabbableObject.GrabbableType item)
     {
         //初始设置为混合皮肤
-    
-        blendSkin.AddSkin(skeletonAnimation.Skeleton.Data.FindSkin("color_1"));
+
+        switch (item) 
+        {
+            case GrabbableType.Tanker:
+                blendSkin.AddSkin(skeletonAnimation.Skeleton.Data.FindSkin("color_1"));
+                break;
+            case GrabbableType.Inbox:
+                blendSkin.AddSkin(skeletonAnimation.Skeleton.Data.FindSkin("color_2"));
+                break;
+
+        }
 
 
-        //blendSkin.AddSkin(skeletonAnimation.Skeleton.Data.FindSkin("YYY/Head/YYY_Head_color1"));
-        //blendSkin.AddSkin(skeletonAnimation.Skeleton.Data.FindSkin("YYY/Legs/YYY_Legs_color1"));
-        //blendSkin.AddSkin(skeletonAnimation.Skeleton.Data.FindSkin("YYY/Hat/YYY_Hat_color10"));//叶语嫣发饰
-        //
-        //blendSkin.AddSkin(skeletonAnimation.Skeleton.Data.FindSkin("Weapon/Weapon_color3"));
-    
         skeletonAnimation.Skeleton.SetSkin(blendSkin);
         skeletonAnimation.Skeleton.SetSlotsToSetupPose();
     

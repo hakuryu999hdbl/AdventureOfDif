@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GrabbableObject;
 
 public class ThrowHeldObject : MonoBehaviour
 {
@@ -18,9 +19,27 @@ public class ThrowHeldObject : MonoBehaviour
 
     private bool hasBeenThrown = false;
 
+    public SpriteRenderer spriteRenderer;
+    public Sprite tanker, inbox;
+    public GameObject Inbox;
+
+    GrabbableObject.GrabbableType heldItemType;
+
     // 由玩家投掷时调用
-    public void Launch()
+    public void Launch(GrabbableObject.GrabbableType item)
     {
+        switch (item)
+        {
+            case GrabbableType.Tanker:
+                spriteRenderer.sprite = tanker;
+                break;
+            case GrabbableType.Inbox:
+                spriteRenderer.sprite = inbox;
+                break;
+        }
+
+        heldItemType = item;
+
         hasBeenThrown = true;
         zVelocity = 10f;
         groundY = transform.position.y;
@@ -37,7 +56,19 @@ public class ThrowHeldObject : MonoBehaviour
             zHeight = 0f;
             hasLanded = true;
 
-            Explode();
+            switch (heldItemType)
+            {
+                case GrabbableType.Tanker:
+                    Explode();
+                    break;
+                case GrabbableType.Inbox:
+                    GameObject Obstacle = Instantiate(Inbox, transform.position, Quaternion.identity);
+                    Obstacle.GetComponent<GrabbableObject>().SetSkin(GrabbableType.Inbox);
+                    Destroy(gameObject);
+                    break;
+            }
+
+          
         }
 
         // 伪3D的 Y 位置更新
@@ -67,7 +98,7 @@ public class ThrowHeldObject : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
 
-            if (collision.gameObject.GetComponent<Enemy>() != null )
+            if (collision.gameObject.GetComponent<Enemy>() != null)
             {
 
                 collision.gameObject.GetComponent<Enemy>().ChangeHealth(100, 1);//击飞伤害
@@ -83,7 +114,7 @@ public class ThrowHeldObject : MonoBehaviour
 
 
 
-     
+
     }
 
 }
