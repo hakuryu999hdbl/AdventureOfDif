@@ -359,7 +359,7 @@ Transform:
   m_GameObject: {fileID: 1366921451283133195}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.06, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1126,6 +1126,7 @@ MonoBehaviour:
   _Player: {fileID: 0}
   player: {fileID: 0}
   RoomGenerator: {fileID: 0}
+  isRape: 0
   isAttack: 0
   isDie: 0
   anim: {fileID: 244199073064420641}
@@ -1302,6 +1303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 2231485002929699995}
+  isTrigger: 0
 --- !u!61 &4462034682140132264
 BoxCollider2D:
   m_ObjectHideFlags: 0
