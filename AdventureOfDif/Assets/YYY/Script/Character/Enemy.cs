@@ -37,7 +37,15 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isDie)
+        if (isRape)
+        {
+            //处于强奸中不能移动
+            moveSpeed = 0;
+            aiPath.maxSpeed = 0f;
+
+        
+        }
+        else if (!isDie)
         {
             BaseMove();//站走跑攻
 
@@ -102,6 +110,11 @@ public class Enemy : MonoBehaviour
             state.IsName("block") ||
             state.IsName("fly") ||
 
+
+
+            state.IsName("charge_hit") ||
+
+
             state.IsName("Down") ||
             state.IsName("down") ||
             state.IsName("down_getup") ||
@@ -117,8 +130,33 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public bool isRape = false;
     public bool isAttack = false;
     public bool isDie = false;
+
+
+    private void OnTriggerEnter2D(Collider2D collision)//检测到玩家显示
+    {
+
+        if (collision.gameObject.tag == "Player")
+        {
+            if (collision.gameObject.GetComponent<Player>().isDie)
+            {
+                isRape = true;
+                anim.Play("lewd");
+
+                gameObject.transform.position = collision.gameObject.transform.position;
+                shadow.transform.position = collision.gameObject.GetComponent<Player>().shadow.transform.position;
+                collision.gameObject.GetComponent<Player>().shadow.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+
+                collision.gameObject.GetComponent<Player>().characterSkin.HideSkeleton();
+
+
+                collision.gameObject.GetComponent<Player>().isRape = true;
+            }
+
+        }//敌人捕获玩家
+    }
 
     /// <summary>
     /// 基础数值
@@ -157,7 +195,16 @@ public class Enemy : MonoBehaviour
 
         float dist = Vector2.Distance(current, target);
 
-        if (!isAttack)
+
+        if (isChargeAttack != 0)
+        {
+            if (IsGrounded()) 
+            {
+                ChargeAttack();
+            }
+
+        }
+        else if (!isAttack)
         {
             // 设置速度与动画状态
             if (dist > 1)
@@ -166,8 +213,8 @@ public class Enemy : MonoBehaviour
 
                 if (tag != "Friend")
                 {
-                    //目前战斗下全员跑
-                    moveSpeed = 2;
+                    //敌人全部走过来，跑留给冲刺攻击
+                    moveSpeed = 1;
                     aiPath.maxSpeed = RunSpeed;
                 }
                 else
@@ -289,7 +336,7 @@ public class Enemy : MonoBehaviour
     /// 攻击系统
     /// </summary>
     #region
-    [Header("蓄力攻击")]
+    [Header("普通攻击")]
 
 
     public GameObject attack;//伤害朝向
@@ -332,7 +379,7 @@ public class Enemy : MonoBehaviour
 
     void Attack_Start()
     {
-     
+
 
         switch (Random.Range(0, 4))
         {
@@ -371,6 +418,28 @@ public class Enemy : MonoBehaviour
     public void Attack_Cancel()
     {
         isInAttackDelay = false;
+
+    }
+
+    [Header("蓄力攻击")]
+    public int isChargeAttack = 0;//敌人蓄力冲过来  0没有触发  1蓄力握拳  2冲锋   
+    public void ChargeAttack()
+    {
+        switch (isChargeAttack)
+        {
+            case 1:
+                //蓄力握拳
+                moveSpeed = 0;
+                aiPath.maxSpeed = 0.01f;
+                break;
+            case 2:
+                //冲锋
+                moveSpeed = 2;
+                aiPath.maxSpeed = 7f;
+                anim.SetInteger("Speed", moveSpeed);
+                break;
+        }
+
 
     }
 
@@ -478,7 +547,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         return zHeight <= 0.01f; // 只要高度为 0 即为落地
     }
@@ -627,6 +696,8 @@ public class Enemy : MonoBehaviour
                             attackTimer = 0f;
                             isInAttackDelay = true;
 
+                            //受伤后冲刺清零
+                            isChargeAttack = 0;
 
                         }//被击飞
                         if (TypeOfAttack == 1)
@@ -709,14 +780,14 @@ public class Enemy : MonoBehaviour
     }
     void Fly()
     {
-        if (!IsGrounded()) 
+        if (!IsGrounded())
         {
             anim.Play("fly");
         }
-        
+
     }
 
-    void  AnimBack()
+    void AnimBack()
     {
         anim.Play("stand");
     }
@@ -783,7 +854,7 @@ public class Enemy : MonoBehaviour
         isDie = true;
 
 
-        
+
 
         anim.Play("dead");//防止倒下又起来,搞了第二死亡
 

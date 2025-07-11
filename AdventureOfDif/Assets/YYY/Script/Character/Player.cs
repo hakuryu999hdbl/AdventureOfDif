@@ -25,7 +25,15 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
- 
+
+        if (isRape)
+        {
+            anim.Play("None");
+            rbody.simulated = false;
+            ChangeSex(2);
+            return;
+        }//被捕获切断所有输入
+
         if (currentHealth <= 0) 
         {
             anim.Play("dead");
@@ -102,6 +110,7 @@ public class Player : MonoBehaviour
 
     }
 
+    public bool isRape = false;
     public bool isDie = false;
 
     /// <summary>

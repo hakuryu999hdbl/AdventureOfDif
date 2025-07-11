@@ -48,6 +48,23 @@ public class CharacterSkin : MonoBehaviour
     
         Debug.Log("设置皮肤");
     }
+
+
+
+
+    public void HideSkeleton() 
+    {
+        skeletonAnimation.Skeleton.A = 0f; // 完全透明
+    }
+
+    public void ShowSkeleton()
+    {
+        skeletonAnimation.Skeleton.A = 1f; // 完全不透明
+    }
+
+
+
+
     #endregion
 
     /// <summary>
@@ -146,6 +163,9 @@ public class CharacterSkin : MonoBehaviour
 
         }
     }
+
+
+
 
     #endregion
 

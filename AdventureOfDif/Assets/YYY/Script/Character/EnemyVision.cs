@@ -7,6 +7,8 @@ public class EnemyVision : MonoBehaviour
     public Enemy Enemy;
     public bool isFriend;
 
+    //冲刺攻击重置
+    public GameObject EnemyVision_2;
 
 
     private void OnTriggerStay2D(Collider2D collision)//检测到玩家显示
@@ -17,7 +19,12 @@ public class EnemyVision : MonoBehaviour
             if (collision.gameObject.tag == "Player")
             {
 
-
+                if (Enemy.isChargeAttack == 2)
+                { 
+                    Enemy.isChargeAttack = 0;
+                    Enemy.anim.Play("charge_hit");
+                    //EnemyVision_2.SetActive(true); 
+                }//冲刺攻击
 
 
                 Enemy.isAttack = true;
@@ -55,14 +62,14 @@ public class EnemyVision : MonoBehaviour
 
         }
 
-      
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)//检测到玩家显示
     {
         if (!isFriend)
         {
-            if (collision.gameObject.tag == "Player" )
+            if (collision.gameObject.tag == "Player")
             {
                 Enemy.isAttack = false;
 
