@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
 
         if (isRape)
         {
-            anim.Play("None");
+
             rbody.simulated = false;
             ChangeSex(2);
             return;

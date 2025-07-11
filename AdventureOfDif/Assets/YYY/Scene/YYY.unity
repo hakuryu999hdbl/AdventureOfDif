@@ -363,6 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frameEvents: {fileID: 534242814}
+  isRape: 0
   isDie: 0
   anim: {fileID: 534242809}
   rbody: {fileID: 65564745}
@@ -1927,7 +1928,7 @@ PrefabInstance:
     - target: {fileID: 7238442787060647853, guid: 594e0583be7ba0646af012ffd888a69f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.89
+      value: 18.76
       objectReference: {fileID: 0}
     - target: {fileID: 7238442787060647853, guid: 594e0583be7ba0646af012ffd888a69f,
         type: 3}
@@ -2457,7 +2458,7 @@ Transform:
   m_GameObject: {fileID: 534242806}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.06, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7011,7 +7012,7 @@ PrefabInstance:
     - target: {fileID: 7238442787060647853, guid: 594e0583be7ba0646af012ffd888a69f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.89
+      value: 18.76
       objectReference: {fileID: 0}
     - target: {fileID: 7238442787060647853, guid: 594e0583be7ba0646af012ffd888a69f,
         type: 3}
@@ -7432,7 +7433,7 @@ PrefabInstance:
     - target: {fileID: 7238442787060647853, guid: 594e0583be7ba0646af012ffd888a69f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.89
+      value: 18.76
       objectReference: {fileID: 0}
     - target: {fileID: 7238442787060647853, guid: 594e0583be7ba0646af012ffd888a69f,
         type: 3}
@@ -7917,6 +7918,11 @@ PrefabInstance:
       propertyPath: AudioManager
       value: 
       objectReference: {fileID: 1011113004}
+    - target: {fileID: 6355507590036067530, guid: 91df628e27ab1ae488b2f947d3d59f07,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6987948351437209287, guid: 91df628e27ab1ae488b2f947d3d59f07,
         type: 3}
       propertyPath: m_Name
