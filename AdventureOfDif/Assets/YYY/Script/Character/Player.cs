@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+ 
         if (currentHealth <= 0) 
         {
             anim.Play("dead");
@@ -63,9 +63,11 @@ public class Player : MonoBehaviour
             state.IsName("attack_4") ||
             state.IsName("rage") ||
             state.IsName("grab_throw") ||
+            state.IsName("block") ||
 
             state.IsName("hurt_1") ||
             state.IsName("hurt_2") ||
+            state.IsName("fly") ||
 
            state.IsName("Down") ||
            state.IsName("down") ||
@@ -1047,6 +1049,31 @@ public class Player : MonoBehaviour
             {
 
 
+                if (Random.Range(0, 4) == 0 && canMove) //处于攻击状态下无法防御
+                {
+                    anim.Play("block");
+
+                    switch (Random.Range(0, 3))
+                    {
+                        case 0:
+                            frameEvents._Attack_sword_clash2();
+                            break;
+                        case 1:
+                            frameEvents._Attack_sword_clash3();
+                            break;
+                        case 2:
+                            frameEvents._Attack_sword_clash4();
+                            break;
+                    }
+
+
+                    //显示伤害
+                    HudText.HUD(0);//0会显示Miss
+
+                    return;
+                }
+
+
                 if (Random.Range(0, 2) == 1)
                 {
                     if (currentHealth > 0 && IsGrounded()) 
@@ -1068,6 +1095,7 @@ public class Player : MonoBehaviour
                             anim.Play("hurt_2");
                             break;
                     }
+                    Invoke("Fly", 0.3f);//如果在空中触发被击飞动画
 
 
                     // 可以加一个简易翻面处理（仅左右）
@@ -1150,6 +1178,14 @@ public class Player : MonoBehaviour
 
 
 
+        }
+
+    }
+    void Fly()
+    {
+        if (!IsGrounded())
+        {
+            anim.Play("fly");
         }
 
     }

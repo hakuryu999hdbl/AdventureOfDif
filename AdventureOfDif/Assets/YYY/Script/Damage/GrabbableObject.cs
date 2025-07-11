@@ -11,18 +11,35 @@ public class GrabbableObject : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Sprite tanker, inbox;
 
+    public bool isInitialized = false;//如果我是放在场景里的那么执行Start,如果不是，那么执行
     void Start() 
     {
-        switch(Random.Range(0,2))
+        
+
+        if (!isInitialized) 
         {
-            case 0:
-                SetSkin(GrabbableType.Tanker);
-                break;
-            case 1:
-                SetSkin(GrabbableType.Inbox);
-                break;
+            switch (Random.Range(0, 2))
+            {
+                case 0:
+                    SetSkin(GrabbableType.Tanker);
+                    break;
+                case 1:
+                    SetSkin(GrabbableType.Inbox);
+                    break;
+            }
+
+            //if (item == GrabbableType.Tanker)
+            //{
+            //    SetSkin(GrabbableType.Tanker);
+            //}
+            //
+            //if (item == GrabbableType.Inbox)
+            //{
+            //    SetSkin(GrabbableType.Inbox);
+            //}
         }
-    
+       
+
     }
 
     GrabbableObject.GrabbableType heldItemType;

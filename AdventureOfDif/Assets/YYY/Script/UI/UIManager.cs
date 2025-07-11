@@ -44,9 +44,14 @@ public class UIManager : MonoBehaviour
 
     public void UpdateSexBar(int curAmount, int maxAmount)
     {
-        SexBar.fillAmount = (float)curAmount / (float)maxAmount;
-    }
+        float percent = Mathf.Clamp01((float)curAmount / (float)maxAmount);
 
+        // 确保使用的是材质实例（不共享全局材质）
+        if (SexBar.material != null)
+        {
+            SexBar.material.SetFloat("_SexValue", percent);
+        }
+    }
 
     public void UpdateCriticalBar(int curAmount, int maxAmount)
     {

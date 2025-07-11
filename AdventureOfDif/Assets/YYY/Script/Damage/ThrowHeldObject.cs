@@ -64,6 +64,7 @@ public class ThrowHeldObject : MonoBehaviour
                 case GrabbableType.Inbox:
                     GameObject Obstacle = Instantiate(Inbox, transform.position, Quaternion.identity);
                     Obstacle.GetComponent<GrabbableObject>().SetSkin(GrabbableType.Inbox);
+                    Obstacle.GetComponent<GrabbableObject>().isInitialized = true;
                     Destroy(gameObject);
                     break;
             }

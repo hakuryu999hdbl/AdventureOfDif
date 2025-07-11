@@ -99,6 +99,8 @@ public class Enemy : MonoBehaviour
             state.IsName("rage") ||
             state.IsName("hurt_1") ||
             state.IsName("hurt_2") ||
+            state.IsName("block") ||
+            state.IsName("fly") ||
 
             state.IsName("Down") ||
             state.IsName("down") ||
@@ -568,7 +570,29 @@ public class Enemy : MonoBehaviour
             if (amount < 0)
             {
 
+                if (Random.Range(0, 4) == 0 && !isDie && currentHealth > 0 && IsGrounded()) //（非死非空中）一定几率防御
+                {
+                    anim.Play("block");
 
+                    switch (Random.Range(0, 3))
+                    {
+                        case 0:
+                            frameEvents._Attack_sword_clash2();
+                            break;
+                        case 1:
+                            frameEvents._Attack_sword_clash3();
+                            break;
+                        case 2:
+                            frameEvents._Attack_sword_clash4();
+                            break;
+                    }
+
+
+                    //显示伤害
+                    HudText.HUD(0);//0会显示Miss
+
+                    return;
+                }
 
 
                 //击倒再站起(和暴击结合)只有站在地上才能被击倒
@@ -580,6 +604,7 @@ public class Enemy : MonoBehaviour
                 {
                     if (!isDie)
                     {
+
                         switch (Random.Range(0, 2))
                         {
                             case 0:
@@ -589,6 +614,7 @@ public class Enemy : MonoBehaviour
                                 anim.Play("hurt_2");
                                 break;
                         }
+                        Invoke("Fly", 0.3f);//如果在空中触发被击飞动画
 
                         //PlayJump();
 
@@ -681,7 +707,14 @@ public class Enemy : MonoBehaviour
 
 
     }
-
+    void Fly()
+    {
+        if (!IsGrounded()) 
+        {
+            anim.Play("fly");
+        }
+        
+    }
 
     void  AnimBack()
     {
