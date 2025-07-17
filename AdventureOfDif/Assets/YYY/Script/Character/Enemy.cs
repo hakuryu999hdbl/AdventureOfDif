@@ -614,6 +614,7 @@ public class Enemy : MonoBehaviour
 
     [Header("特效")]
     public GameObject Strike_Effect;//剑光特效
+    public GameObject Hit_Effect;//打击特效
     public GameObject BloodEffect;//受伤特效
     public GameObject SparkEffect;//火星特效
 
@@ -627,7 +628,7 @@ public class Enemy : MonoBehaviour
 
 
 
-    public void ChangeHealth(int amount, int TypeOfAttack)//【攻击方式】  0轻攻击  1重攻击（击飞）  2剑击特效 
+    public void ChangeHealth(int amount, int TypeOfAttack)//【攻击方式】  0轻攻击(打击特效)  1重攻击（击飞）(打击特效)  2剑击特效 
     {
 
         if (!isScreaming)
@@ -725,6 +726,11 @@ public class Enemy : MonoBehaviour
             //伤害类型
             switch (TypeOfAttack)
             {
+                case 0:
+                case 1:
+                    Hit_Effect.SetActive(true);//打击伤害
+                    break;
+
                 case 2:
                     Strike_Effect.SetActive(true);//剑伤害
                     break;

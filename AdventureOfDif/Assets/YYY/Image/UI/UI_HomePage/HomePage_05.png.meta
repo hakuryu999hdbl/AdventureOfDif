@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: f0f2ac10439327e46b894ea884f56dfc
+guid: 04d00057c4c07264b9624e816ddf3447
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5515053923887564436
-    second: Wall_08_0
+      213: -1834042636690048758
+    second: HomePage_05_0
+  - first:
+      213: 4217853859000232763
+    second: HomePage_05_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +49,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -113,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Wall_08_0
+      name: HomePage_05_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 332
-        height: 204
+        width: 1419
+        height: 1406
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,8 +130,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c69be8d1da79673b0800000000000000
-      internalID: -5515053923887564436
+      spriteID: a093b2960fb2c86e0800000000000000
+      internalID: -1834042636690048758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HomePage_05_1
+      rect:
+        serializedVersion: 2
+        x: 1491
+        y: 1141
+        width: 7
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3b2834dcb3d88a30800000000000000
+      internalID: 4217853859000232763
       vertices: []
       indices: 
       edges: []
@@ -136,7 +160,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -144,7 +168,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Wall_08_0: -5515053923887564436
+      HomePage_05_0: -1834042636690048758
+      HomePage_05_1: 4217853859000232763
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

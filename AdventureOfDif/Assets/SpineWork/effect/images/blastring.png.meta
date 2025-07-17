@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: f0f2ac10439327e46b894ea884f56dfc
+guid: 9afedf39174ad7648a4e0d629c133a2f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5515053923887564436
-    second: Wall_08_0
+      213: 4216648081613994041
+    second: blastring_0
+  - first:
+      213: -8239096671644161023
+    second: blastring_1
+  - first:
+      213: -4089934727160764727
+    second: blastring_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Wall_08_0
+      name: blastring_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 332
-        height: 204
+        y: 63
+        width: 21
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,8 +133,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c69be8d1da79673b0800000000000000
-      internalID: -5515053923887564436
+      spriteID: 9383f67e61b848a30800000000000000
+      internalID: 4216648081613994041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blastring_1
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 17
+        width: 81
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10ceb80da39d8ad80800000000000000
+      internalID: -8239096671644161023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blastring_2
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 0
+        width: 80
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c66c09f802ad37c0800000000000000
+      internalID: -4089934727160764727
       vertices: []
       indices: 
       edges: []
@@ -143,8 +191,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Wall_08_0: -5515053923887564436
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

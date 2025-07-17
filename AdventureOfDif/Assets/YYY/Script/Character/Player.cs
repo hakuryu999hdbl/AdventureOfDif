@@ -1029,6 +1029,7 @@ public class Player : MonoBehaviour
     }
     [Header("特效")]
     public GameObject Strike_Effect;//剑光特效
+    public GameObject Hit_Effect;//打击特效
     public GameObject BloodEffect;//受伤特效
     public GameObject SparkEffect;//火星特效
 
@@ -1046,7 +1047,7 @@ public class Player : MonoBehaviour
     [Header("暴击")]
     public GameObject Critial;
 
-    public void ChangeHealth(int amount, int TypeOfAttack)//【攻击方式】  0轻攻击  1重攻击（击飞）  2剑击特效 
+    public void ChangeHealth(int amount, int TypeOfAttack)//【攻击方式】  0轻攻击(打击特效)  1重攻击（击飞）(打击特效)  2剑击特效 
     {
         if (!isScreaming&&currentHealth> 0 && !isDie && IsGrounded() && !isKnockback)//冷却不受击，死亡后不受击，倒地不受击，玩家在空中的时候不受击（跳跃/被击飞），被击飞不受击
         {
@@ -1123,6 +1124,11 @@ public class Player : MonoBehaviour
             //伤害类型
             switch (TypeOfAttack)
             {
+                case 0:
+                case 1:
+                    Hit_Effect.SetActive(true);//打击伤害
+                    break;
+
                 case 2:
                     Strike_Effect.SetActive(true);//剑伤害
                     break;
