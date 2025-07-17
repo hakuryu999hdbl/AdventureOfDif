@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2b0bc0c22c7331145b1ece6b83ac3ec9
+guid: a5f209467c9f88848b1e72990fce8ab9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7574408512788714034
-    second: batarm_0
+      213: -5769494813051388860
+    second: Road_05_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 490
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: batarm_0
+      name: Road_05_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 75
-        height: 45
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,8 +127,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 23257745964bd1960800000000000000
-      internalID: 7574408512788714034
+      spriteID: 44cfc9e1903aeefa0800000000000000
+      internalID: -5769494813051388860
       vertices: []
       indices: 
       edges: []
@@ -136,7 +136,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -144,7 +144,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      batarm_0: 7574408512788714034
+      Road_05_0: -5769494813051388860
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

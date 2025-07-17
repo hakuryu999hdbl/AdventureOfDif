@@ -143,7 +143,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      lick_5_0: -5877414135159342292
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
