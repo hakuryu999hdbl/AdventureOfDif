@@ -9,7 +9,23 @@ public class UIManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+
     }
+
+    /// <summary>
+    /// 主菜单
+    /// </summary>
+    #region
+    public GameObject PlayerList, SettingList, ExitList;
+    public int CurrentChooseList;//0 PlayerList  1Setting  2ExitList
+    public void ChangeShowList(int ShowList) 
+    {
+
+
+
+    }
+
+    #endregion
 
     /// <summary>
     /// 血条等各种值
@@ -96,4 +112,37 @@ public class UIManager : MonoBehaviour
         }
     }
     #endregion
+
+
+
+    /// <summary>
+    /// 区域背景音乐
+    /// </summary>
+    #region
+
+    public void Start()
+    {
+        PlayRegionBGM(0);
+
+
+    }
+    public void PlayRegionBGM(int ChangeBGM)
+    {
+        if (ChangeBGM==0) 
+        {
+            BGM.instance.AudioPlayMenuMusic(-1);//播放主菜单背景音乐
+        }
+        else
+        {
+            BGM.instance.AudioPlayBackgroundMusic(-1);//播放场景内背景音乐
+        }
+        
+
+    }
+
+    #endregion
+
+
+
+   
 }

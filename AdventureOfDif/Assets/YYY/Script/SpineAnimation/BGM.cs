@@ -10,7 +10,7 @@ public class BGM : MonoBehaviour
     public AudioSource audioS;
 
     [Header("追逐音乐")]
-    public List<AudioClip> ChaseMusicList; // 使用List来存储多个音乐
+    public List<AudioClip> MenuMusicList; // 使用List来存储多个音乐
     public bool isPlaying;
 
     [Header("背景音乐")]
@@ -23,19 +23,20 @@ public class BGM : MonoBehaviour
         audioS = GetComponent<AudioSource>();
     }
 
-    public void AudioPlayChaseMusic(int BGMNumber)
+    public void AudioPlayMenuMusic(int BGMNumber)
     {
-        if (!isPlaying && ChaseMusicList.Count > 0)
+        Stop();
+        if (!isPlaying && MenuMusicList.Count > 0)
         {
 
             if (BGMNumber < 0)
             {
                 // 从列表中随机选择一首音乐
-                audioS.clip = ChaseMusicList[Random.Range(0, ChaseMusicList.Count)];
+                audioS.clip = MenuMusicList[Random.Range(0, MenuMusicList.Count)];
             }
             else
             {
-                audioS.clip = ChaseMusicList[BGMNumber];
+                audioS.clip = MenuMusicList[BGMNumber];
             }//如果是小于0，那么随机播放，如果大于0，那么指定该序号播放
           
 
@@ -51,6 +52,7 @@ public class BGM : MonoBehaviour
 
     public void AudioPlayBackgroundMusic(int BGMNumber)
     {
+        Stop();
         if (!isPlaying && BackgroundMusicList.Count > 0)
         {
 

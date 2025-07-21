@@ -13,11 +13,6 @@ public class RoomGenerator : MonoBehaviour
     void Start()
     {
 
-        Invoke("PlayRegionBGM", 0.2f);//让主菜单的音乐先行
-
-
-
-
 
 
 
@@ -64,30 +59,6 @@ public class RoomGenerator : MonoBehaviour
     #endregion
 
 
-    /// <summary>
-    /// 区域背景音乐
-    /// </summary>
-    #region
-    [Header("区域BGM")]
-    public BGM BGM;//用于红区等背景音乐
-    public int CurrentRegionSituation;
-    public void PlayRegionBGM()
-    {
-        switch (CurrentRegionSituation)
-        {
-            case 1:
-                BGM.AudioPlayBackgroundMusic(-1);//播放红区等背景音乐
-                break;
-            case 0:
-            case 2:
-            case 3:
-                BGM.AudioPlayChaseMusic(-1);//播放红区等背景音乐
-                break;
-        }
-
-    }
-
-    #endregion
 
 
     /// <summary>
