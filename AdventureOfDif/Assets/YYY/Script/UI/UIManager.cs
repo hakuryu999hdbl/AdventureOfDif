@@ -32,7 +32,7 @@ public class UIManager : MonoBehaviour
     {
 
       
-        //Settting版面内上下按钮在四个按钮中上下切换选中状态
+        //Settting版面内上下按钮在四个按钮中上下切换选中状态，
 
         // 更新当前选择索引
         CurrentChooseList = ShowList;
