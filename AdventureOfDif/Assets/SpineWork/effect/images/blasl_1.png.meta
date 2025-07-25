@@ -407,7 +407,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      blasl_1_0: -2876162198750708886
+      blasl_1_1: -7585479416213681980
+      blasl_1_10: 4257619973313517203
+      blasl_1_11: -4167360175625350892
+      blasl_1_2: -5170498435682749067
+      blasl_1_3: -4368586832984171824
+      blasl_1_4: 5687985431208703409
+      blasl_1_5: 8337437168831652271
+      blasl_1_6: 4068671014167315099
+      blasl_1_7: 6773258239455839357
+      blasl_1_8: -3028374046882601450
+      blasl_1_9: 7323262729087303842
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

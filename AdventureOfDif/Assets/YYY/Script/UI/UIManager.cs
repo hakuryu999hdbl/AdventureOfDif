@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour
     {
         instance = this;
 
+        //默认选择PlayList
+        Invoke("DelayPlayButon",1F);
     }
 
     /// <summary>
@@ -18,13 +20,56 @@ public class UIManager : MonoBehaviour
     #region
     public GameObject PlayerList, SettingList, ExitList;
     public int CurrentChooseList;//0 PlayerList  1Setting  2ExitList
+
+    public Button Play_Button, Setting_Button, Exit_Button;
+
+    public void DelayPlayButon() 
+    {
+        ChangeShowList(0);
+    }
+
     public void ChangeShowList(int ShowList) 
     {
 
+      
+        //Settting版面内上下按钮在四个按钮中上下切换选中状态
 
+        // 更新当前选择索引
+        CurrentChooseList = ShowList;
 
+        // 控制三个 List 的显示和隐藏
+        PlayerList.SetActive(ShowList == 0);
+        SettingList.SetActive(ShowList == 1);
+        ExitList.SetActive(ShowList == 2);
+
+        // 切换按钮的选中状态
+        switch (ShowList)
+        {
+            case 0:
+                Play_Button.Select(); // 或 anim.SetTrigger("Selected")
+                break;
+            case 1:
+                Setting_Button.Select();
+                break;
+            case 2:
+                Exit_Button.Select();
+                break;
+        }
+    } //默认显示0 PlayerList，显示一个List，另外两个List隐藏，左右方向键能够来回切换List//List状态显示为，对应Button动画器显示Selected
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            ChangeShowList((CurrentChooseList + 1) % 3);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            ChangeShowList((CurrentChooseList + 2) % 3); // ( +2 ) 相当于 -1
+        }
     }
 
+    
     #endregion
 
     /// <summary>
