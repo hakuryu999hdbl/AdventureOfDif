@@ -17,7 +17,7 @@ public class BGM : MonoBehaviour
     public List<AudioClip> BackgroundMusicList;// 使用List来存储多个音乐
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         instance = this;
         audioS = GetComponent<AudioSource>();

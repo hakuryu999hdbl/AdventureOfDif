@@ -858,6 +858,8 @@ public class Player : MonoBehaviour
     [SerializeField] private InputActionReference moveAction;//方向键控制
     [SerializeField] private InputActionAsset inputActions;//跑攻闪
 
+    public bool isInputBlocked = false;//在暂停菜单界面暂时切断玩家的输入
+
     private InputAction runAction;
 
     private InputAction AttackAction;
@@ -887,7 +889,7 @@ public class Player : MonoBehaviour
     }
     private void OnRunStarted(InputAction.CallbackContext context)
     {
-        if (!isDie && !isKnockback && currentHealth > 0)
+        if (!isDie && !isKnockback && currentHealth > 0 && !isInputBlocked)
         {
             if (!isHoldingObject) 
             {
@@ -899,7 +901,7 @@ public class Player : MonoBehaviour
     }
     private void OnRunCanceled(InputAction.CallbackContext context)
     {
-        if (!isDie && !isKnockback && currentHealth > 0)
+        if (!isDie && !isKnockback && currentHealth > 0 && !isInputBlocked)
         {
             if (!isHoldingObject)
             {
@@ -911,14 +913,14 @@ public class Player : MonoBehaviour
 
     private void OnAttackStarted(InputAction.CallbackContext context)
     {
-        if (!isDie && !isKnockback && currentHealth > 0)
+        if (!isDie && !isKnockback && currentHealth > 0 && !isInputBlocked)
         {
             Attack_Start();
         }
     }
     private void OnAttackCanceled(InputAction.CallbackContext context)
     {
-        if (!isDie && !isKnockback && currentHealth > 0)
+        if (!isDie && !isKnockback && currentHealth > 0 && !isInputBlocked)
         {
             Attack_Cancel();
         }
@@ -926,7 +928,7 @@ public class Player : MonoBehaviour
 
     private void OnDodgeStarted(InputAction.CallbackContext context)
     {
-        if (!isDie && !isKnockback && currentHealth > 0)
+        if (!isDie && !isKnockback && currentHealth > 0 && !isInputBlocked)
         {
             if (!isHoldingObject)
             {
@@ -938,7 +940,7 @@ public class Player : MonoBehaviour
     }
     private void OnDodgeCanceled(InputAction.CallbackContext context)
     {
-        if (!isDie && !isKnockback && currentHealth > 0)
+        if (!isDie && !isKnockback && currentHealth > 0 && !isInputBlocked)
         {
 
             if (!isHoldingObject)
@@ -957,7 +959,7 @@ public class Player : MonoBehaviour
     public bool isRunning = false;//持续按下跑步键
     public void ButtonSetRun()
     {
-        if (!isDie && !isKnockback && currentHealth > 0)
+        if (!isDie && !isKnockback && currentHealth > 0 && !isInputBlocked)
         {
             isRunning = true;
         }
@@ -965,7 +967,7 @@ public class Player : MonoBehaviour
     }
     public void ButtonSetStop()
     {
-        if (!isDie && !isKnockback && currentHealth > 0)
+        if (!isDie && !isKnockback && currentHealth > 0 && !isInputBlocked)
         {
             isRunning = false;
         }
@@ -976,7 +978,7 @@ public class Player : MonoBehaviour
     public bool isAttacking = false;//持续按下攻击键
     public void ButtonSetAttack()
     {
-        if (!isDie && !isKnockback && currentHealth > 0)
+        if (!isDie && !isKnockback && currentHealth > 0 && !isInputBlocked)
         {
             Attack_Start();
         }
@@ -984,7 +986,7 @@ public class Player : MonoBehaviour
     }
     public void ButtonSetAttackOver()
     {
-        if (!isDie && !isKnockback && currentHealth > 0)
+        if (!isDie && !isKnockback && currentHealth > 0 && !isInputBlocked)
         {
             Attack_Cancel();
         }
@@ -996,7 +998,7 @@ public class Player : MonoBehaviour
     public void ButtonSetDodge()
     {
 
-        if (!isDie && !isKnockback && currentHealth > 0)
+        if (!isDie && !isKnockback && currentHealth > 0 && !isInputBlocked)
         {
             Dodge_Start();
         }
@@ -1004,7 +1006,7 @@ public class Player : MonoBehaviour
     }
     public void ButtonSetDodgeOver()
     {
-        if (!isDie && !isKnockback && currentHealth >0)
+        if (!isDie && !isKnockback && currentHealth > 0 && !isInputBlocked)
         {
             Dodge_Cancel();
         }
