@@ -16,7 +16,7 @@ public class MenuManager : MonoBehaviour
     public int CurrentChooseList = 0;//0 PlayerList  1Setting  2ExitList
     public int currentIndex = 0;//0 Play  1 GAME    2 CONTROL     3 VOICE     4 LANGUACE   5 Exit_Yes  6 Exit_No
 
-    public GameObject PlayerList, SettingList, ExitList;//各项列表
+    public GameObject PlayerList, SettingList, ExitList, SaveList;//各项列表
     public Button Play_Button, Setting_Button, Exit_Button;//按钮切换列表
 
     private void Start()
@@ -27,10 +27,12 @@ public class MenuManager : MonoBehaviour
         BGM.instance.AudioPlayMenuMusic(-1);//播放主菜单背景音乐
     }
 
+    public Button PlayButton;
 
     public void DelayPlayButon()
     {
         ChangeShowList(0);
+
     }//开始默认选中Play
 
     public void ChangeShowList(int ShowList)
@@ -53,49 +55,90 @@ public class MenuManager : MonoBehaviour
                 break;
             case 1:
                 Setting_Button.Select();
-                //ChangeShowList_Setting(0);//默认选中GAME
                 break;
             case 2:
                 Exit_Button.Select();
-                //ChangeShowList_Exit(0);//默认选中Yes
                 break;
         }
     } //默认显示0 PlayerList，显示一个List，另外两个List隐藏，左右方向键能够来回切换List//List状态显示为，对应Button动画器显示Selected
 
+    public int PlayerList_Index = 0;//0开始游戏的图标  1存档界面图标
+
+    [Header("存档列表")]
+    public List<Button> SaveButtons = new List<Button>();
+    public List<GameObject> SaveButtons_Hightlight = new List<GameObject>();
+    private int saveIndex = 0;
+    void ChangeSaveIndex(int delta)
+    {
+        saveIndex = (saveIndex + delta + SaveButtons.Count) % SaveButtons.Count;
+        SaveButtons[saveIndex].Select();
+
+        foreach (var obj in SaveButtons_Hightlight)
+        {
+            if (obj != null)
+                obj.SetActive(false);
+        }
+
+        SaveButtons_Hightlight[saveIndex].SetActive(true);
+    }
+
 
     [Header("设置列表")]
     public List<Button> SettingButtons = new List<Button>();
+    public List<GameObject> SettingButtons_Hightlight = new List<GameObject>();
     private int settingIndex = 0;
     void ChangeSettingIndex(int delta)
     {
         settingIndex = (settingIndex + delta + SettingButtons.Count) % SettingButtons.Count;
         SettingButtons[settingIndex].Select();
-        //SettingButtons[exitIndex].GetComponent<Animator>().Play("Selected", 0, 0);
-        SettingButtons[currentIndex].GetComponent<UIHighlightSwitcher>().ActivateThis();
+
+        foreach (var obj in SettingButtons_Hightlight)
+        {
+            if (obj != null)
+                obj.SetActive(false);
+        }
+
+        SettingButtons_Hightlight[settingIndex].SetActive(true);
     }
 
 
     [Header("退出列表")]
     public List<Button> ExitButtons = new List<Button>();
+    public List<GameObject> ExitButtons_Hightlight = new List<GameObject>();
     private int exitIndex = 0;
     void ChangeExitIndex(int delta)
     {
         exitIndex = (exitIndex + delta + ExitButtons.Count) % ExitButtons.Count;
         ExitButtons[exitIndex].Select();
-        //ExitButtons[exitIndex].GetComponent<Animator>().Play("Selected", 0, 0);
-        ExitButtons[currentIndex].GetComponent<UIHighlightSwitcher>().ActivateThis();
+
+
+        foreach (var obj in ExitButtons_Hightlight)
+        {
+            if (obj != null)
+                obj.SetActive(false);
+        }
+
+        ExitButtons_Hightlight[exitIndex].SetActive(true);
     }
 
 
-
-
-
+    [System.Obsolete]
     public void StartGame()
     {
+        FindObjectOfType<SceneTransitionController>().StartGame("YYY");
 
-        SceneManager.LoadScene("YYY", LoadSceneMode.Single);
+        //SceneManager.LoadScene("YYY", LoadSceneMode.Single);
 
     }//开始游戏
+
+    public void OpenSave() 
+    {
+        PlayButton.Select();
+
+        PlayerList_Index = 1;
+        PlayButton.gameObject.SetActive(false);
+        SaveList.SetActive(true);
+    }//打开存档界面
 
     public void Exit_Yes() 
     {
@@ -163,6 +206,20 @@ public class MenuManager : MonoBehaviour
             // 当前菜单项内的上下切换
             switch (CurrentChooseList)
             {
+                case 0://PlayerList
+                    if (PlayerList_Index == 0)
+                    {
+                        PlayButton.Select();
+                    }
+                    else
+                    {
+                        if (dir.y > 0.5f)
+                            ChangeSaveIndex(-1);
+                        else if (dir.y < -0.5f)
+                            ChangeSaveIndex(1);
+                    }
+
+                    break;
                 case 1: // SettingList
                     if (dir.y > 0.5f)
                         ChangeSettingIndex(-1);
@@ -181,6 +238,7 @@ public class MenuManager : MonoBehaviour
             ChangeShowList(CurrentChooseList);//保持目前显示List
         }
 
+        AudioManager.instance.AudioPlay(AudioManager.instance.Attack_hit2);
     }
 
     private void OnConfirm(InputAction.CallbackContext ctx)
@@ -188,16 +246,85 @@ public class MenuManager : MonoBehaviour
         // 执行当前选中按钮的点击逻辑
         switch (CurrentChooseList)
         {
-            case 0: Play_Button.onClick.Invoke(); break;
-            case 1: Setting_Button.onClick.Invoke(); break;
-            case 2: Exit_Button.onClick.Invoke(); break;
+            case 0:
+
+                if (PlayerList_Index==0) 
+                {
+                    OpenSave();
+                }
+                else
+                {
+                    switch (saveIndex)
+                    {
+                        case 0://存档1
+                            StartGame();
+                            break;
+                        case 1://存档2
+                            StartGame();
+                            break;
+                        case 2://存档3
+                            StartGame();
+                            break;
+                    }
+                }   
+                break;
+            case 1:
+
+                switch (settingIndex) 
+                {
+                    case 0://game
+                        break;
+                    case 1://control
+                        break;
+                    case 2://voice
+                        break;
+                    case 3://language
+                        break;
+                }
+
+
+
+                break;
+            case 2:
+                switch (exitIndex)
+                {
+                    case 0://yes
+                        Exit_Yes();
+                        break;
+                    case 1://no
+                        Exit_No();
+                        break;
+                }
+                break;
         }
+
+        ChangeShowList(CurrentChooseList);//保持目前显示List
+        AudioManager.instance.AudioPlay(AudioManager.instance.Attack_hit2);
     }
 
     private void OnCancel(InputAction.CallbackContext ctx)
     {
         // 可选：退出菜单、返回上一级等
-        Debug.Log("取消");
+        //Debug.Log("取消");
+
+        // 执行当前选中按钮的点击逻辑
+        switch (CurrentChooseList)
+        {
+            case 0:
+
+                PlayerList_Index = 0;
+                PlayButton.gameObject.SetActive(true);
+                SaveList.SetActive(false);
+                break;
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+        }
+
+        AudioManager.instance.AudioPlay(AudioManager.instance.Attack_hit2);
     }
     #endregion
 

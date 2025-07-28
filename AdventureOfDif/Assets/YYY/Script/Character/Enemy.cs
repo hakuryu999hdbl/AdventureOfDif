@@ -135,28 +135,28 @@ public class Enemy : MonoBehaviour
     public bool isDie = false;
 
 
-    private void OnTriggerEnter2D(Collider2D collision)//检测到玩家显示
-    {
-
-        if (collision.gameObject.tag == "Player")
-        {
-            if (collision.gameObject.GetComponent<Player>().isDie)
-            {
-                isRape = true;
-                anim.Play("lewd");
-
-                gameObject.transform.position = collision.gameObject.transform.position;
-                shadow.transform.position = collision.gameObject.GetComponent<Player>().shadow.transform.position;
-                collision.gameObject.GetComponent<Player>().shadow.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-
-                collision.gameObject.GetComponent<Player>().characterSkin.HideSkeleton();
-
-
-                collision.gameObject.GetComponent<Player>().isRape = true;
-            }
-
-        }//敌人捕获玩家
-    }
+   // private void OnTriggerEnter2D(Collider2D collision)//检测到玩家显示
+   // {
+   //
+   //     if (collision.gameObject.tag == "Player")
+   //     {
+   //         if (collision.gameObject.GetComponent<Player>().isDie)
+   //         {
+   //             isRape = true;
+   //             anim.Play("lewd");
+   //
+   //             gameObject.transform.position = collision.gameObject.transform.position;
+   //             shadow.transform.position = collision.gameObject.GetComponent<Player>().shadow.transform.position;
+   //             collision.gameObject.GetComponent<Player>().shadow.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+   //
+   //             collision.gameObject.GetComponent<Player>().characterSkin.HideSkeleton();
+   //
+   //
+   //             collision.gameObject.GetComponent<Player>().isRape = true;
+   //         }
+   //
+   //     }//敌人捕获玩家
+   // }
 
     /// <summary>
     /// 基础数值
