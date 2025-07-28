@@ -8,8 +8,13 @@ public class ParallaxLayer : MonoBehaviour
     public float parallaxFactor = 0.5f;  // 0 = 不动（远处），1 = 跟随摄像机完全同步（前景）
     private Vector3 previousCameraPosition;
 
+   
     void Start()
     {
+       GameObject Player = GameObject.FindGameObjectWithTag("Player");
+        Vector3 pos = transform.position;
+        pos.x = Player.transform.position.x;
+        transform.position = pos;
 
         cameraTransform = Camera.main.transform;
 

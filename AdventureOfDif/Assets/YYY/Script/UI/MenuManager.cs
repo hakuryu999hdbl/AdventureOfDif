@@ -238,7 +238,7 @@ public class MenuManager : MonoBehaviour
             ChangeShowList(CurrentChooseList);//保持目前显示List
         }
 
-        AudioManager.instance.AudioPlay(AudioManager.instance.Attack_hit2);
+        AudioManager.instance.AudioPlay(AudioManager.instance.Attack_pai1);
     }
 
     private void OnConfirm(InputAction.CallbackContext ctx)
@@ -324,7 +324,7 @@ public class MenuManager : MonoBehaviour
                 break;
         }
 
-        AudioManager.instance.AudioPlay(AudioManager.instance.Attack_hit2);
+        AudioManager.instance.AudioPlay(AudioManager.instance.SE_Glass);
     }
     #endregion
 

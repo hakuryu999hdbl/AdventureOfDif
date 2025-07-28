@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
-
+using Cinemachine;
 
 public class RoomGenerator : MonoBehaviour
 {
@@ -17,7 +17,7 @@ public class RoomGenerator : MonoBehaviour
 
 
 
-
+        SetArea();
 
 
         Scan();
@@ -39,9 +39,37 @@ public class RoomGenerator : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// 关卡
+    /// </summary>
+    #region
+
+    public GameObject Area_1, Area_2, Area_3;
+    public CinemachineConfiner confiner;//摄像机边界
+    public GameObject Player;//开头把玩家送到地图入口
+
+    public void SetArea() 
+    {
+        GameObject NewArea =Instantiate(Area_3, transform.position, Quaternion.identity);
+
+        // 找到新区域里的 CameraBounds（PolygonCollider2D）
+        PolygonCollider2D newBounds = NewArea.transform.Find("CameraBounds").GetComponent<PolygonCollider2D>();
+        SetNewBounds(newBounds);
 
 
+        // 把玩家的位置设为这个出生点
+       Transform PlayerPoint = NewArea.transform.Find("PointForPlayer_1");
+       Player.transform.position = PlayerPoint.position;
+    }
 
+
+    public void SetNewBounds(PolygonCollider2D newBounds)
+    {
+        confiner.m_BoundingShape2D = newBounds;
+        confiner.InvalidatePathCache(); // 强制刷新路径缓存，防止摄像机卡住
+    }
+
+    #endregion
 
     /// <summary>
     /// 设置寻路，离开场景进入地图标准与寻路

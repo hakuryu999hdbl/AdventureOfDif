@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class MoveCamera : MonoBehaviour
 {
-    public GameObject Player;//全场景寻找玩家
-
-    void FixedUpdate()
+    public Transform CameraPoint; // Player中的CameraPoint
+    public float followSpeed = 5f;
+    void Start()
     {
-        transform.position = Player.transform.position;
-
-
+        if (CameraPoint != null)
+        {
+            transform.position = new Vector3(CameraPoint.position.x, CameraPoint.position.y, transform.position.z);
+        }
+    }
+    void LateUpdate()
+    {
+        if (CameraPoint != null)
+        {
+            Vector3 targetPosition = new Vector3(CameraPoint.position.x, CameraPoint.position.y, transform.position.z);
+            transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
+        }
     }
 }
