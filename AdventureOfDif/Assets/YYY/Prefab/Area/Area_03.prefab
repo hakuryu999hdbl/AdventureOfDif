@@ -96,7 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2735119305244761307}
   m_Layer: 0
-  m_Name: Area_3
+  m_Name: Area_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1020,6 +1020,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Go
+      objectReference: {fileID: 0}
+    - target: {fileID: 2754899177847531547, guid: ef2290044b76ca64b990f0a4967ae4b1,
+        type: 3}
+      propertyPath: ExitName
+      value: Area02_2
       objectReference: {fileID: 0}
     - target: {fileID: 9184936702893522623, guid: ef2290044b76ca64b990f0a4967ae4b1,
         type: 3}

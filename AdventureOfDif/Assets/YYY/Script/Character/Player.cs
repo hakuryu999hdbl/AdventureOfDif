@@ -887,6 +887,36 @@ public class Player : MonoBehaviour
 
 
     }
+
+    
+    private void OnDisable()
+    {
+        if (runAction != null)
+        {
+            runAction.started -= OnRunStarted;
+            runAction.canceled -= OnRunCanceled;
+        }
+
+        if (AttackAction != null)
+        {
+            AttackAction.started -= OnAttackStarted;
+            AttackAction.canceled -= OnAttackCanceled;
+        }
+
+        if (DodgeAction != null)
+        {
+            DodgeAction.started -= OnDodgeStarted;
+            DodgeAction.canceled -= OnDodgeCanceled;
+        }
+    }//重刷场景时自动解绑
+
+    private void OnEnable()
+    {
+        RegisterHandle();
+    }//重刷场景时自动解绑
+
+
+
     private void OnRunStarted(InputAction.CallbackContext context)
     {
         if (!isDie && !isKnockback && currentHealth > 0 && !isInputBlocked)

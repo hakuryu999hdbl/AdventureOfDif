@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public class AreaExit : MonoBehaviour
     private bool triggered = false;
 
     RoomGenerator RoomGenerator;//寻找RoomGenerator
+
+    public String ExitName;
 
     void Start() 
     {
@@ -21,6 +24,9 @@ public class AreaExit : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             triggered = true;
+
+
+            GameFlowData.nextAreaId = ExitName;//记录下一个前往区域
             RoomGenerator.LoadNextArea();
         }
     }

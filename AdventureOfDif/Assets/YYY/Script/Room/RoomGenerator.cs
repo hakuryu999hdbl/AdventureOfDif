@@ -15,10 +15,23 @@ public class RoomGenerator : MonoBehaviour
     {
 
 
+        switch (GameFlowData.nextAreaId) 
+        {
+            default:
+            case "Area01_1":
+            case "Area01_2":
+                SetArea(0);
+                break;
+            case "Area02_1":
+            case "Area02_2":
+                SetArea(1);
+                break;
+            case "Area03_1":
+                SetArea(2);
+                break;
+        }
 
-
-
-        SetArea(2);
+       
 
 
         Scan();
@@ -69,8 +82,25 @@ public class RoomGenerator : MonoBehaviour
 
 
         // 把玩家的位置设为这个出生点
-       Transform PlayerPoint = NewArea.transform.Find("PointForPlayer_1");
-       Player.transform.position = PlayerPoint.position;
+
+        switch (GameFlowData.nextAreaId)
+        {
+            default:
+            case "Area01_1":
+            case "Area02_1":
+            case "Area03_1":
+                Transform PlayerPoint = NewArea.transform.Find("PointForPlayer_1");
+                Player.transform.position = PlayerPoint.position;
+                break;
+
+            case "Area01_2":
+            case "Area02_2":
+                Transform PlayerPoint_2 = NewArea.transform.Find("PointForPlayer_2");
+                Player.transform.position = PlayerPoint_2.position;
+                break;
+        }
+
+       
     }
 
 
@@ -83,9 +113,19 @@ public class RoomGenerator : MonoBehaviour
     [System.Obsolete]
     public void LoadNextArea() 
     {
-        //FindObjectOfType<SceneTransitionController>().StartGame("YYY");
+        SceneTransitionController transition = FindObjectOfType<SceneTransitionController>();
 
-        SceneManager.LoadScene("YYY", LoadSceneMode.Single);
+        if (transition != null)
+        {
+            transition.StartGame("YYY");
+            //FindObjectOfType<SceneTransitionController>().StartGame("YYY");
+        }
+        else
+        {
+            //为了直接打开YYY场景也可以跳转
+            SceneManager.LoadScene("YYY", LoadSceneMode.Single);
+        }
+
     }
 
     #endregion
