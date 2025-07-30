@@ -381,9 +381,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58f6b2ccbd5ef6f49980683a8654390f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Area_1: {fileID: 6602222090444185819, guid: 7b7ada35cc2b852438806b73611c4040, type: 3}
-  Area_2: {fileID: 1967909261539020752, guid: 7948c008e0e065e4090d50d44d3aaacf, type: 3}
-  Area_3: {fileID: 218134277489668189, guid: 0745b55c8bf7e3f4ebfdc29289756e8c, type: 3}
+  areaList:
+  - {fileID: 6602222090444185819, guid: 7b7ada35cc2b852438806b73611c4040, type: 3}
+  - {fileID: 1967909261539020752, guid: 7948c008e0e065e4090d50d44d3aaacf, type: 3}
+  - {fileID: 218134277489668189, guid: 0745b55c8bf7e3f4ebfdc29289756e8c, type: 3}
   confiner: {fileID: 1973605812}
   Player: {fileID: 65564740}
   AstarPath: {fileID: 249096737}
@@ -699,7 +700,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &383355724
 RectTransform:
   m_ObjectHideFlags: 0
@@ -820,7 +821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &389814644
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3851,7 +3852,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1654553338
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4626,7 +4627,7 @@ PrefabInstance:
     - target: {fileID: 3881087803549984437, guid: ec536a7718376554185e4a856d5ae230,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3881087803549984439, guid: ec536a7718376554185e4a856d5ae230,
         type: 3}

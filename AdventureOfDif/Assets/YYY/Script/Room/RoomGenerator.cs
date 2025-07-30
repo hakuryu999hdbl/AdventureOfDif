@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class RoomGenerator : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class RoomGenerator : MonoBehaviour
 
 
 
-        SetArea();
+        SetArea(2);
 
 
         Scan();
@@ -43,14 +44,24 @@ public class RoomGenerator : MonoBehaviour
     /// 关卡
     /// </summary>
     #region
+    [Header("关卡")]
 
-    public GameObject Area_1, Area_2, Area_3;
+    public List<GameObject> areaList; // 在Inspector中添加Area_1~3
+    private int currentAreaIndex = 0;
+
+
+
     public CinemachineConfiner confiner;//摄像机边界
     public GameObject Player;//开头把玩家送到地图入口
 
-    public void SetArea() 
+    public void SetArea(int index) 
     {
-        GameObject NewArea =Instantiate(Area_3, transform.position, Quaternion.identity);
+
+
+
+
+        GameObject NewArea = Instantiate(areaList[index], Vector3.zero, Quaternion.identity);
+
 
         // 找到新区域里的 CameraBounds（PolygonCollider2D）
         PolygonCollider2D newBounds = NewArea.transform.Find("CameraBounds").GetComponent<PolygonCollider2D>();
@@ -67,6 +78,14 @@ public class RoomGenerator : MonoBehaviour
     {
         confiner.m_BoundingShape2D = newBounds;
         confiner.InvalidatePathCache(); // 强制刷新路径缓存，防止摄像机卡住
+    }//放置相机边界
+
+    [System.Obsolete]
+    public void LoadNextArea() 
+    {
+        //FindObjectOfType<SceneTransitionController>().StartGame("YYY");
+
+        SceneManager.LoadScene("YYY", LoadSceneMode.Single);
     }
 
     #endregion
