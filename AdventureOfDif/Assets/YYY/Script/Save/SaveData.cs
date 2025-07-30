@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SaveData : MonoBehaviour
+[System.Serializable]
+public class SaveData
 {
     public string slotName = "CurrentPlayer"; //存档名称名字
     public string saveTime;// 存档时间（字符串）

@@ -9,7 +9,8 @@ public class SaveSlotUI : MonoBehaviour
 
     public string slotName; // "CurrentPlayer1", "CurrentPlayer2", "CurrentPlayer3"
 
-    public Text nameText, timeText, nextAreaIdText;
+    public Text nameText, timeText;
+    //public Text nextAreaIdText;
     public Image thumbnail;
 
 
@@ -30,8 +31,9 @@ public class SaveSlotUI : MonoBehaviour
             //这个槽位有存档
 
             SaveData data = SaveManager.LoadGame(slotName);
+            nameText.text = slotName;
             timeText.text = data.saveTime;
-            nextAreaIdText.text = data.NextAreaId;
+            //nextAreaIdText.text = data.NextAreaId;
 
             thumbnail.sprite = Thumbnail_1; // 以后可以换成 data.thumbnail
 
@@ -43,7 +45,7 @@ public class SaveSlotUI : MonoBehaviour
 
             nameText.text = "Unnamed";
             timeText.text = "--------------------";
-            nextAreaIdText.text = "";
+            //nextAreaIdText.text = "";
 
 
             thumbnail.sprite = defaultThumbnail; // 以后可以换成 data.thumbnail
@@ -66,14 +68,15 @@ public class SaveSlotUI : MonoBehaviour
             GameFlowData.CurrentPlayer = slotName;//临时储存当前是哪个档
 
             // 跳转游戏主场景
-            //menuManager.StartGame()
+            menuManager.StartGame();
 
         }
         else
         {
             //新建存档
             //UIManager.instance.SaveNameMenu.SetActive(true);
-
+            menuManager.CurrentSaveSlotUI = this;
+            menuManager.OnConfirmNameInput();
 
         }
 

@@ -328,4 +328,35 @@ public class MenuManager : MonoBehaviour
     }
     #endregion
 
+    /// <summary>
+    /// 存档统合
+    /// </summary>
+    #region
+    [Header("存档界面UI")]
+    public SaveSlotUI CurrentSaveSlotUI;
+
+    public void OnConfirmNameInput()
+    {
+        if (CurrentSaveSlotUI != null)
+        {
+
+            // 新建存档
+            SaveData newData = new SaveData(CurrentSaveSlotUI.slotName);
+
+            newData.slotName = CurrentSaveSlotUI.slotName;//记住档的名字
+
+
+            SaveManager.SaveGame(newData);
+
+            CurrentSaveSlotUI.Refresh();//更新当前存档内容
+        }
+
+    }//玩家确定这个存档名称
+
+
+    public void OpenSaveURL()
+    {
+        Application.OpenURL(Application.persistentDataPath);
+    }//打开存档位置文件夹
+    #endregion
 }
