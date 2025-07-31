@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using static GrabbableObject;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class MenuManager : MonoBehaviour
 {
@@ -35,8 +36,22 @@ public class MenuManager : MonoBehaviour
 
     }//开始默认选中Play
 
+
+    //冷却时间
+    private float inputCooldown = 0.2f;
+    private float lastInputTime = -999f;
+
+
     public void ChangeShowList(int ShowList)
     {
+
+        #region 冷却时间
+        if (Time.time - lastInputTime < inputCooldown)
+            return;
+
+        lastInputTime = Time.time;
+        #endregion
+
         //Settting版面内上下按钮在四个按钮中上下切换选中状态，
 
         // 更新当前选择索引
@@ -47,20 +62,42 @@ public class MenuManager : MonoBehaviour
         SettingList.SetActive(ShowList == 1);
         ExitList.SetActive(ShowList == 2);
 
+        // 延迟一帧选中，避免在 SetActive 后 UI 还未准备好
+        StartCoroutine(DelayedSelect(ShowList));
+
         // 切换按钮的选中状态
+        //switch (ShowList)
+        //{
+        //    case 0:
+        //        EventSystem.current.SetSelectedGameObject(Play_Button.gameObject); // 或 anim.SetTrigger("Selected")
+        //        break;
+        //    case 1:
+        //        EventSystem.current.SetSelectedGameObject(Setting_Button.gameObject);
+        //        break;
+        //    case 2:
+        //        EventSystem.current.SetSelectedGameObject(Exit_Button.gameObject);
+        //        break;
+        //}
+    } //默认显示0 PlayerList，显示一个List，另外两个List隐藏，左右方向键能够来回切换List//List状态显示为，对应Button动画器显示Selected
+
+    private IEnumerator DelayedSelect(int ShowList)
+    {
+        yield return null;
+
         switch (ShowList)
         {
             case 0:
-                Play_Button.Select(); // 或 anim.SetTrigger("Selected")
+                EventSystem.current.SetSelectedGameObject(Play_Button.gameObject);
                 break;
             case 1:
-                Setting_Button.Select();
+                EventSystem.current.SetSelectedGameObject(Setting_Button.gameObject);
                 break;
             case 2:
-                Exit_Button.Select();
+                EventSystem.current.SetSelectedGameObject(Exit_Button.gameObject);
                 break;
         }
-    } //默认显示0 PlayerList，显示一个List，另外两个List隐藏，左右方向键能够来回切换List//List状态显示为，对应Button动画器显示Selected
+    }
+
 
     public int PlayerList_Index = 0;//0开始游戏的图标  1存档界面图标
 
@@ -159,20 +196,24 @@ public class MenuManager : MonoBehaviour
     private InputAction moveAction;
     private InputAction confirmAction;
     private InputAction cancelAction;
+    private InputAction deleteAction;
 
     private void OnEnable()
     {
         moveAction = inputActions.FindAction("Move");
         confirmAction = inputActions.FindAction("Attack");  // 或者用名为 "Submit"
         cancelAction = inputActions.FindAction("Dodge");    // 或者用名为 "Cancel"
+        deleteAction = inputActions.FindAction("Run");    // 或者用名为 "Delete"
 
         moveAction.performed += OnMove;
         confirmAction.started += OnConfirm;
         cancelAction.started += OnCancel;
+        deleteAction.started += OnDelete;
 
         moveAction.Enable();
         confirmAction.Enable();
         cancelAction.Enable();
+        deleteAction.Enable();
     }
 
     private void OnDisable()
@@ -180,14 +221,28 @@ public class MenuManager : MonoBehaviour
         moveAction.performed -= OnMove;
         confirmAction.started -= OnConfirm;
         cancelAction.started -= OnCancel;
+        deleteAction.started -= OnDelete;
 
         moveAction.Disable();
         confirmAction.Disable();
         cancelAction.Disable();
+        deleteAction.Disable();
     }
+
+    //冷却时间
+    private float inputCooldown2 = 0.2f;
+    private float lastInputTime2 = -999f;
 
     private void OnMove(InputAction.CallbackContext ctx)
     {
+
+        #region 冷却时间
+        if (Time.time - lastInputTime2 < inputCooldown2)
+            return;
+
+        lastInputTime2 = Time.time;
+        #endregion
+
         Vector2 dir = ctx.ReadValue<Vector2>();
         if (dir.x != 0)
         {
@@ -235,10 +290,12 @@ public class MenuManager : MonoBehaviour
                     break;
             }
 
-            ChangeShowList(CurrentChooseList);//保持目前显示List
+           
         }
 
         AudioManager.instance.AudioPlay(AudioManager.instance.Attack_pai1);
+
+        ChangeShowList(CurrentChooseList);//保持目前显示List
     }
 
     private void OnConfirm(InputAction.CallbackContext ctx)
@@ -257,15 +314,17 @@ public class MenuManager : MonoBehaviour
                     switch (saveIndex)
                     {
                         case 0://存档1
-                            StartGame();
+                            CurrentSaveSlotUI = Save_1;                         
                             break;
                         case 1://存档2
-                            StartGame();
+                            CurrentSaveSlotUI = Save_2;
                             break;
                         case 2://存档3
-                            StartGame();
+                            CurrentSaveSlotUI = Save_3;
                             break;
                     }
+
+                    CurrentSaveSlotUI.OnLoadClicked();
                 }   
                 break;
             case 1:
@@ -326,6 +385,46 @@ public class MenuManager : MonoBehaviour
 
         AudioManager.instance.AudioPlay(AudioManager.instance.SE_Glass);
     }
+
+    private void OnDelete(InputAction.CallbackContext ctx)
+    {
+        // 可选：退出菜单、返回上一级等
+        //Debug.Log("取消");
+
+        // 执行当前选中按钮的点击逻辑
+        switch (CurrentChooseList)
+        {
+            case 0:
+
+                if (PlayerList_Index == 1)
+                {
+                    switch (saveIndex)
+                    {
+                        case 0://删除存档1
+                            CurrentSaveSlotUI = Save_1;
+                            break;
+                        case 1://删除存档2
+                            CurrentSaveSlotUI = Save_2;
+                            break;
+                        case 2://删除存档3
+                            CurrentSaveSlotUI = Save_3;
+                            break;
+                    }
+
+                    CurrentSaveSlotUI.OnDeleteClicked();
+                }
+
+                break;
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+        }
+
+        //AudioManager.instance.AudioPlay(AudioManager.instance.SE_Glass);
+    }
     #endregion
 
     /// <summary>
@@ -334,6 +433,8 @@ public class MenuManager : MonoBehaviour
     #region
     [Header("存档界面UI")]
     public SaveSlotUI CurrentSaveSlotUI;
+    public SaveSlotUI Save_1, Save_2, Save_3;
+
 
     public void OnConfirmNameInput()
     {

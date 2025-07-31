@@ -2960,6 +2960,9 @@ MonoBehaviour:
   inputActions: {fileID: -944628639613478452, guid: deaf91781ed4539448d73a93eae4fb40,
     type: 3}
   CurrentSaveSlotUI: {fileID: 0}
+  Save_1: {fileID: 270279378}
+  Save_2: {fileID: 70459370}
+  Save_3: {fileID: 1853101477}
 --- !u!1 &812145191
 GameObject:
   m_ObjectHideFlags: 0
