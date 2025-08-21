@@ -18,14 +18,13 @@ public class EnemyVision : MonoBehaviour
         {
             if (collision.gameObject.tag == "Player")
             {
-
-                if (Enemy.isChargeAttack == 2)
-                { 
-                    Enemy.isChargeAttack = 0;
-                    Enemy.anim.Play("charge_hit");
-                    //EnemyVision_2.SetActive(true); 
-                }//冲刺攻击
-
+                //暂时隐藏这个冲刺攻击功能
+                //if (Enemy.isChargeAttack == 2)
+                //{ 
+                //    Enemy.isChargeAttack = 0;
+                //    Enemy.anim.Play("charge_hit");
+                //    //EnemyVision_2.SetActive(true); 
+                //}//冲刺攻击
 
                 Enemy.isAttack = true;
 
@@ -33,15 +32,15 @@ public class EnemyVision : MonoBehaviour
                 //Enemy.CurrentTarget = Enemy._Player.gameObject;
             }//敌人攻击玩家
 
-            if (collision.gameObject.tag == "Friend")
-            {
-
-
-                Enemy.isAttack = true;
-
-                //Enemy.CurrentTarget = collision.gameObject;
-
-            }//敌人攻击队友
+            //if (collision.gameObject.tag == "Friend")
+            //{
+            //
+            //
+            //    Enemy.isAttack = true;
+            //
+            //    //Enemy.CurrentTarget = collision.gameObject;
+            //
+            //}//敌人攻击队友
 
 
 
@@ -75,12 +74,12 @@ public class EnemyVision : MonoBehaviour
 
             }//敌人停止攻击玩家
 
-            if (collision.gameObject.tag == "Friend")
-            {
-
-                Enemy.isAttack = false;
-
-            }//敌人停止攻击队友
+           // if (collision.gameObject.tag == "Friend")
+           // {
+           //
+           //     Enemy.isAttack = false;
+           //
+           // }//敌人停止攻击队友
 
         }
         else

@@ -4,7 +4,7 @@ using Cinemachine;
 
 public class AreaEncounterController : MonoBehaviour
 {
-
+    public GameObject[] Go;//清理区域解锁下一个场景入口
     public RoomGenerator RoomGenerator;//寻找RoomGenerator
 
     [Header("敌人生成")]
@@ -18,7 +18,6 @@ public class AreaEncounterController : MonoBehaviour
     public PolygonCollider2D cameraBoundsCollider_All;
 
     [Header("摄像机控制")]
-    //public CinemachineConfiner confiner;
     private bool areaActivated = false;//是否被触发一遍
 
 
@@ -33,7 +32,8 @@ public class AreaEncounterController : MonoBehaviour
     {
         if (!areaActivated && collision.CompareTag("Player"))
         {
-            ActivateArea();
+            Invoke("ActivateArea", 0.5f);//有些场景直接出来会碰到来不及触发
+            //ActivateArea();
         }
     }
 
@@ -43,8 +43,6 @@ public class AreaEncounterController : MonoBehaviour
 
         // 1. 设置相机边界
         RoomGenerator.SetNewBounds(cameraBoundsCollider);
-        //confiner.m_BoundingShape2D = cameraBoundsCollider;
-        //confiner.InvalidatePathCache();
 
         // 2. 封锁通路
         if (blockade != null)
@@ -56,7 +54,10 @@ public class AreaEncounterController : MonoBehaviour
             int randomIndex = Random.Range(0, spawnPoints.Length);
             Transform spawnPoint = spawnPoints[randomIndex];
 
-            GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+            Vector2 offset = Random.insideUnitCircle.normalized * Random.Range(1.5f, 0.5f);
+            Vector3 spawnPosition = spawnPoint.position + new Vector3(offset.x, offset.y, 0);
+
+            GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
             aliveEnemies.Add(enemy);
         }
 
@@ -79,6 +80,17 @@ public class AreaEncounterController : MonoBehaviour
                     blockade.SetActive(false);
 
                 RoomGenerator.SetNewBounds(cameraBoundsCollider_All);
+
+                RoomGenerator.GoGo.SetActive(true);//提示清理完毕
+
+                if (Go != null)
+                {
+                    foreach (GameObject g in Go)
+                    {
+                        if (g != null)
+                            g.SetActive(true);
+                    }
+                }//离开场景入口展示
 
                 Destroy(gameObject); // 删除这个触发器（可选）
                 yield break;

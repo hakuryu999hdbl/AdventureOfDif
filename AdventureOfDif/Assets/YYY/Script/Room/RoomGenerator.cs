@@ -194,7 +194,12 @@ public class RoomGenerator : MonoBehaviour
 
     #endregion
 
-
+    /// <summary>
+    /// 前进提示
+    /// </summary>
+    #region
+    public GameObject GoGo;
+    #endregion
 
 
 
