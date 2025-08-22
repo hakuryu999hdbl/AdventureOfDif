@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static GrabbableObject;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 
 
@@ -28,6 +29,9 @@ public class Player : MonoBehaviour
 
         if (isRape)
         {
+            CheckAttack();
+
+            ChangeStruggle(-1);
 
             rbody.simulated = false;
             ChangeSex(2);
@@ -581,7 +585,7 @@ public class Player : MonoBehaviour
                     // ✔ 设定标记，在下一帧正式 Knockdown()
                     StartCoroutine(TriggerKnockdownOnLanding());
 
-                    Debug.Log("【击飞落地】冻结输入 + 播放 down");
+                    //Debug.Log("【击飞落地】冻结输入 + 播放 down");
                 }
             }
 
@@ -943,14 +947,16 @@ public class Player : MonoBehaviour
 
     private void OnAttackStarted(InputAction.CallbackContext context)
     {
-        if (!isDie && !isKnockback && currentHealth > 0 && !isInputBlocked)
+        if (isRape) { Struggle_Start(); }
+        else if (!isDie && !isKnockback && currentHealth > 0 && !isInputBlocked)
         {
             Attack_Start();
         }
     }
     private void OnAttackCanceled(InputAction.CallbackContext context)
     {
-        if (!isDie && !isKnockback && currentHealth > 0 && !isInputBlocked)
+        if (isRape) { Struggle_Cancel(); }
+        else if (!isDie && !isKnockback && currentHealth > 0 && !isInputBlocked)
         {
             Attack_Cancel();
         }
@@ -1008,7 +1014,8 @@ public class Player : MonoBehaviour
     public bool isAttacking = false;//持续按下攻击键
     public void ButtonSetAttack()
     {
-        if (!isDie && !isKnockback && currentHealth > 0 && !isInputBlocked)
+        if (isRape) { Struggle_Start(); }
+        else if (!isDie && !isKnockback && currentHealth > 0 && !isInputBlocked)
         {
             Attack_Start();
         }
@@ -1016,7 +1023,9 @@ public class Player : MonoBehaviour
     }
     public void ButtonSetAttackOver()
     {
-        if (!isDie && !isKnockback && currentHealth > 0 && !isInputBlocked)
+
+        if (isRape) { Struggle_Cancel(); }
+        else if (!isDie && !isKnockback && currentHealth > 0 && !isInputBlocked)
         {
             Attack_Cancel();
         }
@@ -1326,6 +1335,77 @@ public class Player : MonoBehaviour
         {
             strike.isCritial = false;
         }
+    }
+
+    [Header("挣扎值")]
+    public int currentStruggle;
+    public int maxStruggle;
+
+    public void ChangeStruggle(int amount)
+    {
+
+        currentStruggle = Mathf.Clamp(currentStruggle + amount, 0, maxStruggle);
+        UIManager.instance.UpdateStruggleBar(currentStruggle, maxStruggle);
+
+        if (currentStruggle >= maxStruggle) 
+        {
+            Debug.Log("挣扎成功");
+            EscapeFromRape();
+
+        }
+    }
+
+    bool struggleTriggered = false;
+    void Struggle_Start() 
+    {
+        struggleTriggered = false;
+    }
+    void Struggle_Cancel()
+    {
+
+        if (!struggleTriggered) 
+        {
+            ChangeStruggle(100);
+            struggleTriggered = true;
+        }
+    }
+
+    public GameObject enemyRaper;
+    public List<Enemy> observingEnemies = new List<Enemy>();//围观的敌人
+    public void EscapeFromRape()
+    {
+        // 恢复影子可见
+        shadow.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 143f / 255f); // α = 143/255
+
+        // 恢复身体显示
+        characterSkin.ShowSkeleton();
+
+        // 玩家重置状态
+        isRape = false;
+        isDie = false; // 如果你希望挣扎成功后恢复行动
+
+        // 播放起身动画（可选）
+        anim.Play("down_getup");
+
+        // 找到正在抓住的敌人，也让他恢复
+        if (enemyRaper != null)
+        {
+            enemyRaper.GetComponent<Enemy>().ReleasePlayer();
+            enemyRaper = null;
+        }
+
+        ChangeStruggle(-maxStruggle);
+        rbody.simulated = true;
+
+        // 清空所有围观敌人状态
+        foreach (Enemy e in observingEnemies)
+        {
+            if (e != null)
+            {
+                e.isRape = false;
+            }
+        }
+        observingEnemies.Clear();
     }
     #endregion
 

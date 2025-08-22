@@ -29,6 +29,21 @@ public class EnemyVision : MonoBehaviour
                 Enemy.isAttack = true;
 
 
+                if (collision.gameObject.GetComponent<Player>().isDie && collision.gameObject.GetComponent<Player>().isRape == false && Enemy.isRape == false)
+                {
+                    Enemy.CatchPlayer();
+                }
+
+                if (collision.gameObject.GetComponent<Player>().isDie && collision.gameObject.GetComponent<Player>().isRape && Enemy.isRape == false)
+                {
+                    //别的敌人抓住了玩家,站着不动
+                    Enemy.isRape = true;
+
+                    // 加入围观列表（避免重复添加）
+                    if (!collision.gameObject.GetComponent<Player>().observingEnemies.Contains(Enemy))
+                        collision.gameObject.GetComponent<Player>().observingEnemies.Add(Enemy);
+                }
+
                 //Enemy.CurrentTarget = Enemy._Player.gameObject;
             }//敌人攻击玩家
 

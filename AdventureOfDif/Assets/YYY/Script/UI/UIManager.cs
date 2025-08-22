@@ -27,6 +27,10 @@ public class UIManager : MonoBehaviour
     public Image CriticalBar;
     public GameObject R;
 
+    [Header("挣扎值")]
+    public Image StruggleBar;
+    public GameObject Struggle;
+
     // 用于闪烁控制
     private float flashTimer = 0f;
     private bool flashOn = false;
@@ -97,6 +101,26 @@ public class UIManager : MonoBehaviour
             R.SetActive(false);
         }
     }
+
+
+    public void UpdateStruggleBar(int curAmount, int maxAmount)
+    {
+        StruggleBar.fillAmount = (float)curAmount / (float)maxAmount;
+
+        if (curAmount <= 0)
+        {
+
+            Struggle.SetActive(false);
+           
+        }
+        else
+        {
+
+            Struggle.SetActive(true);
+
+        }
+    }
+
     #endregion
 
 
