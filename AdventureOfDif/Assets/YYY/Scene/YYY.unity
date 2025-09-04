@@ -209,6 +209,7 @@ MonoBehaviour:
   currentStruggle: 0
   maxStruggle: 1000
   enemyRaper: {fileID: 0}
+  observingEnemies: []
 --- !u!4 &65564742
 Transform:
   m_ObjectHideFlags: 0
@@ -224,8 +225,8 @@ Transform:
   m_Children:
   - {fileID: 1162173332}
   - {fileID: 1924186326}
-  - {fileID: 1489750644}
   - {fileID: 1405070531}
+  - {fileID: 1489750644}
   - {fileID: 534242807}
   - {fileID: 885366860}
   - {fileID: 781486558}
@@ -2249,7 +2250,6 @@ MonoBehaviour:
   Damage: -400
   DamageToPlayer: 0
   DamageToEnemy: 1
-  DamageToFriend: 0
   TypeOfAttack: 0
   isCritial: 0
   chargeTime: 0
@@ -3769,7 +3769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hudText: {fileID: 4407327141790781514, guid: 646ea7a5b78e36746b73073e2ac8a8d0, type: 3}
-  isFriend: 1
+  isEnemy: 0
 --- !u!1 &1622040252
 GameObject:
   m_ObjectHideFlags: 0
@@ -4856,6 +4856,11 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 141531807913293491, guid: 91df628e27ab1ae488b2f947d3d59f07,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4629384637733971216, guid: 91df628e27ab1ae488b2f947d3d59f07,
         type: 3}
       propertyPath: m_Mesh
       value: 

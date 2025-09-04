@@ -43,6 +43,7 @@ public class Enemy : MonoBehaviour
             moveSpeed = 0;
             aiPath.maxSpeed = 0f;
 
+            
         
         }
         else if (!isDie)
@@ -135,30 +136,6 @@ public class Enemy : MonoBehaviour
     public bool isDie = false;
 
 
-  //  private void OnTriggerEnter2D(Collider2D collision)//检测到玩家显示
-  //  {
-  // 
-  //      if (collision.gameObject.tag == "Player")
-  //      {
-  //          if (collision.gameObject.GetComponent<Player>().isDie && collision.gameObject.GetComponent<Player>().isRape! &&!isRape)
-  //          {
-  //              isRape = true;
-  //              anim.Play("lewd");
-  // 
-  //              gameObject.transform.position = collision.gameObject.transform.position;
-  //              shadow.transform.position = collision.gameObject.GetComponent<Player>().shadow.transform.position;
-  //              collision.gameObject.GetComponent<Player>().shadow.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-  // 
-  //              collision.gameObject.GetComponent<Player>().characterSkin.HideSkeleton();
-  // 
-  // 
-  //              collision.gameObject.GetComponent<Player>().isRape = true;
-  //          }
-  // 
-  //      }//敌人捕获玩家
-  //  }
-
-
     public void CatchPlayer() 
     {
         isRape = true;
@@ -231,48 +208,24 @@ public class Enemy : MonoBehaviour
         else if (!isAttack)
         {
             // 设置速度与动画状态
-            if (dist > 1)
-            {
-
-
-                if (tag != "Friend")
-                {
-                    //敌人全部走过来，跑留给冲刺攻击
-                    moveSpeed = 1;
-                    aiPath.maxSpeed = RunSpeed;
-                }
-                else
-                {
-                    //非巡逻队友跟，随情况下会你走/我也走/你跑/我也跑
-
-                    if (player.isRunning)
-                    {
-                        moveSpeed = 2;
-                        aiPath.maxSpeed = RunSpeed;
-                    }
-                    else
-                    {
-
-                        moveSpeed = 1;
-                        aiPath.maxSpeed = WalkSpeed;
-
-                    }
-
-                }
+            //if (dist > 1)
+            //{
+            //
+            //    moveSpeed = 1;
+            //    aiPath.maxSpeed = RunSpeed;
+            //
+            //}
+            //else
+            //{
+            //    moveSpeed = 0;
+            //    aiPath.maxSpeed = 0.01f;
+            //}
 
 
 
-
-
-
-
-            }
-            else
-            {
-                moveSpeed = 0;
-                aiPath.maxSpeed = 0.01f;
-            }
-
+            //让isAttack来决定移动还是攻击（目前这个同时测量距离currentTarget和isAttack可能是导致敌人站着不动的原因之一）
+            moveSpeed = 1;
+            aiPath.maxSpeed = RunSpeed;
 
         }
         else
@@ -293,6 +246,7 @@ public class Enemy : MonoBehaviour
         //{
         //    //CurrentTarget = _Player;
         //}
+
 
 
         bool isLeft = transform.position.x < _Player.transform.position.x;
@@ -467,19 +421,28 @@ public class Enemy : MonoBehaviour
 
     }
 
+    public void CleanupStatus() 
+    {
+        isChargeAttack = 0;
+        
+        anim.Play("stand");
+
+    }//强制回归初始状态
+    
+
     #endregion
 
 
 
 
     /// <summary>
-    /// 巡逻系统
+    /// 索敌系统
     /// </summary>
     #region
     [Header("索敌系统")]
     public GameObject _Target;//持续寻路对象
 
-    public GameObject CurrentTarget;//当前的目标
+    public GameObject CurrentTarget;//当前的目标（这个会用于敌人攻击玩家原来站着的位置）
     #endregion
 
 
@@ -657,9 +620,6 @@ public class Enemy : MonoBehaviour
 
         if (!isScreaming)
         {
-
-
-
 
             if (amount < 0)
             {
@@ -911,7 +871,7 @@ public class Enemy : MonoBehaviour
     public void UpdateHealthBar(int curAmount, int maxAmount)
     {
         HealthBar.fillAmount = (float)curAmount / (float)maxAmount;
-    }//Enemy，Friend，NPC替代UIManager的地方
+    }//Enemy可能没有血条，但是Boss因该是要的所以先留着，替代UIManager的地方
 
 
 
@@ -919,67 +879,6 @@ public class Enemy : MonoBehaviour
 
 
 
-
-    /// <summary>
-    /// 阵营转换
-    /// </summary>
-    #region
-    [Header("阵营转换")]
-    public EnemyVision vision;
-    public EnemyVision vision_2;
-    public Strike strike;
-    public Image HealthValueImage;
-
-    //切换为队友
-    public void ConvertToFriend()
-    {
-        //  修改标签
-        this.tag = "Friend";
-
-        //  视野脚本：变成队友
-        vision.isFriend = true;
-
-        //  视野脚本2：变成队友
-        vision_2.isFriend = true;
-
-        //  攻击脚本：攻击敌人，不再攻击队友
-        strike.DamageToPlayer = false;
-        strike.DamageToEnemy = true;
-        strike.DamageToFriend = false;
-
-        //  改变血条颜色为绿色（友军色）
-        HealthValueImage.color = Color.green;
-
-        attack_Collider.GetComponent<SpriteRenderer>().color = Color.green;
-
-
-        Debug.Log($"{gameObject.name} has switched to Friend.");
-    }
-
-    // 切换为敌人
-    public void ConvertToEnemy()
-    {
-        // 修改标签
-        this.tag = "Enemy";
-
-        // 视野脚本：不是队友
-        vision.isFriend = false;
-
-        // 攻击脚本：攻击玩家和友军，不攻击敌人
-        strike.DamageToPlayer = true;
-        strike.DamageToEnemy = false;
-        strike.DamageToFriend = true;
-
-        // 改变血条颜色为红色（敌人色）
-        HealthValueImage.color = Color.red;
-
-
-
-        attack_Collider.GetComponent<SpriteRenderer>().color = Color.red;
-
-        Debug.Log($"{gameObject.name} has switched to Enemy.");
-    }
-    #endregion
 
 
 

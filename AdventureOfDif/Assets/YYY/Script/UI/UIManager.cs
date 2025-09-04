@@ -32,8 +32,8 @@ public class UIManager : MonoBehaviour
     public GameObject Struggle;
 
     // 用于闪烁控制
-    private float flashTimer = 0f;
-    private bool flashOn = false;
+    //private float flashTimer = 0f;
+    //private bool flashOn = false;
 
     public void UpdateHealthBar(int curAmount, int maxAmount)
     {
