@@ -842,7 +842,9 @@ MonoBehaviour:
   attack_Collider: {fileID: 7492053745455533681}
   isChargeAttack: 0
   _Target: {fileID: 7447802515958920555}
+  LockTarget: {fileID: 0}
   CurrentTarget: {fileID: 0}
+  enemyVision_2: {fileID: 4870378587058351624}
   shadow: {fileID: 5065653485277758728}
   shadowBaseScale: {x: 1, y: 1}
   shadowMinScale: 0.3
@@ -1288,7 +1290,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 2231485002929699995}
-  EnemyVision_2: {fileID: 5279720072056339288}
 --- !u!61 &3477750681116824488
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1423,12 +1424,12 @@ GameObject:
   - component: {fileID: 1296484228360873847}
   - component: {fileID: 1910045917692969323}
   m_Layer: 1
-  m_Name: AntiOverlapping
+  m_Name: "AntiOverlapping\uFF08ifEnableEnemywillBeMoved\uFF09"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1296484228360873847
 Transform:
   m_ObjectHideFlags: 0

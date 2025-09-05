@@ -1100,7 +1100,7 @@ public class Player : MonoBehaviour
             {
 
 
-                if (Random.Range(0, 4) == 0 && canMove) //处于攻击状态下无法防御
+                if (Random.Range(0, 4) == 0 && canMove&&!isHoldingObject) //处于攻击，举起物品状态下无法防御
                 {
                     anim.Play("block");
 
@@ -1157,7 +1157,10 @@ public class Player : MonoBehaviour
                 }
 
 
-
+               // if (isHoldingObject) 
+               // {
+               //     ThrowHeldObject();
+               // }//举着物品被攻击时物品会扔出去
 
 
             }//格挡

@@ -7,6 +7,7 @@ public class EnemyVision_2 : MonoBehaviour
     public Enemy Enemy;
     public bool isTrigger = false;
 
+
     private void OnTriggerEnter2D(Collider2D collision)//检测到玩家显示
     {
 
@@ -25,8 +26,7 @@ public class EnemyVision_2 : MonoBehaviour
                 Invoke("Run", 1f);
 
 
-                //重置状态
-                //Invoke("SetTrigger", 2f);
+                
             }
            
         }//敌人攻击玩家
@@ -38,14 +38,28 @@ public class EnemyVision_2 : MonoBehaviour
     {
         Enemy.isChargeAttack = 2;
 
-        //Enemy.CurrentTarget.transform.position = Enemy.transform.position;
+
+
+        // 锁定目标点（生成一个空物体在玩家当前位置）
+        GameObject lockPoint = new GameObject("ChargeTarget");
+        lockPoint.transform.position = Enemy.player.transform.position;
+        Enemy.LockTarget = lockPoint.transform;
     }
+
+    public void ResetChargeAttack() 
+    {
+        //重置状态
+        Invoke("SetTrigger", 2f);
+    }
+
 
     private void SetTrigger()
     {
         if (Enemy.IsGrounded())
         {
             isTrigger = false;
+
+            Debug.Log("重置");
         }
         else 
         {

@@ -43,8 +43,12 @@ public class Enemy : MonoBehaviour
             moveSpeed = 0;
             aiPath.maxSpeed = 0f;
 
-            
-        
+
+            //非强奸中的其他敌人强制站立/清除冲锋状态
+            if (_Player.GetComponent<Player>().enemyRaper != gameObject) 
+            {
+                CleanupStatus();
+            }
         }
         else if (!isDie)
         {
@@ -134,7 +138,10 @@ public class Enemy : MonoBehaviour
     public bool isRape = false;
     public bool isAttack = false;
     public bool isDie = false;
-
+    /// <summary>
+    /// 捕获系统
+    /// </summary>
+    #region
 
     public void CatchPlayer() 
     {
@@ -158,6 +165,7 @@ public class Enemy : MonoBehaviour
         AnimBack(); // 或者回到待机动作
     }
 
+    #endregion
 
     /// <summary>
     /// 基础数值
@@ -248,9 +256,31 @@ public class Enemy : MonoBehaviour
         //}
 
 
+        if (isChargeAttack == 2 && LockTarget != null)
+        {
+            CurrentTarget = LockTarget.gameObject;
 
-        bool isLeft = transform.position.x < _Player.transform.position.x;
-        CurrentTarget = isLeft ? player.Target_Right : player.Target_Left;
+
+            if (Vector2.Distance(transform.position, LockTarget.position) < 1.5f)
+            {
+                isChargeAttack = 0;
+                Destroy(LockTarget.gameObject);
+                LockTarget = null;
+
+                // 执行攻击动画/回到巡逻等逻辑
+                anim.Play("charge_hit");
+
+                //重置攻击状态
+                enemyVision_2.ResetChargeAttack();
+
+            }
+        }
+        else
+        {
+            // 正常逻辑
+            bool isLeft = transform.position.x < _Player.transform.position.x;
+            CurrentTarget = isLeft ? player.Target_Right : player.Target_Left;
+        }
 
 
         // 八方向判断（上下左右为主）
@@ -442,7 +472,15 @@ public class Enemy : MonoBehaviour
     [Header("索敌系统")]
     public GameObject _Target;//持续寻路对象
 
+    [HideInInspector]
+    public Transform LockTarget = null;//玩家原来站的点位
+
     public GameObject CurrentTarget;//当前的目标（这个会用于敌人攻击玩家原来站着的位置）
+
+    //冲刺攻击重置
+    public EnemyVision_2 enemyVision_2;
+
+
     #endregion
 
 

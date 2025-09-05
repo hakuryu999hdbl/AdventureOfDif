@@ -90,32 +90,32 @@ public class ThrowHeldObject : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (!hasBeenThrown) return;
-
-
-        //玩家和队友伤害
-        if (collision.gameObject.tag == "Enemy")
-        {
-
-            if (collision.gameObject.GetComponent<Enemy>() != null)
-            {
-
-                collision.gameObject.GetComponent<Enemy>().ChangeHealth(100, 1);//击飞伤害
-
-                GameObject effectPrefabs = Instantiate(impactEffect, transform.position, Quaternion.identity);
-                Destroy(effectPrefabs, 1f);
-
-                Destroy(gameObject);
-            }
-
-
-        }
-
-
-
-
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (!hasBeenThrown) return;
+    //
+    //
+    //    //玩家伤害
+    //    if (collision.gameObject.tag == "Enemy")
+    //    {
+    //
+    //        if (collision.gameObject.GetComponent<Enemy>() != null)
+    //        {
+    //
+    //            collision.gameObject.GetComponent<Enemy>().ChangeHealth(-100, -1);//击飞伤害
+    //
+    //            GameObject effectPrefabs = Instantiate(impactEffect, transform.position, Quaternion.identity);
+    //            Destroy(effectPrefabs, 1f);
+    //
+    //            Destroy(gameObject);
+    //        }
+    //
+    //
+    //    }
+    //
+    //
+    //
+    //
+    //}
 
 }
