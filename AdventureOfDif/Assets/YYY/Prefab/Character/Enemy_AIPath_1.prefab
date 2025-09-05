@@ -841,6 +841,8 @@ MonoBehaviour:
   attack: {fileID: 760764894458314857}
   attack_Collider: {fileID: 7492053745455533681}
   isChargeAttack: 0
+  isThrowAttack: 0
+  Obstacle_Attack: {fileID: 0}
   _Target: {fileID: 7447802515958920555}
   LockTarget: {fileID: 0}
   CurrentTarget: {fileID: 0}
@@ -1009,6 +1011,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemy: {fileID: 2231485002929699995}
   isTrigger: 0
+  EnemyNumber: 1
 --- !u!61 &4462034682140132264
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1184,7 +1187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7503480712993536695}
   m_Layer: 0
-  m_Name: Enemy_AIPath
+  m_Name: Enemy_AIPath_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

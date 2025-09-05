@@ -7,6 +7,7 @@ public class EnemyVision_2 : MonoBehaviour
     public Enemy Enemy;
     public bool isTrigger = false;
 
+    public int EnemyNumber;//1冲锋  2投掷
 
     private void OnTriggerEnter2D(Collider2D collision)//检测到玩家显示
     {
@@ -17,13 +18,27 @@ public class EnemyVision_2 : MonoBehaviour
             {
                 isTrigger = true;//先别再触发
 
+                switch (EnemyNumber) 
+                {
+                    case 1:
+                        //进入蓄力状态1秒
+                        Enemy.isChargeAttack = 1;
+                        Enemy.anim.Play("charge_ready");
 
-                //进入蓄力状态1秒
-                Enemy.isChargeAttack = 1;
-                Enemy.anim.Play("charge_ready");
+                        //跑步冲锋状态
+                        Invoke("Run", 1f);
+                        break;
 
-                //跑步冲锋状态
-                Invoke("Run", 1f);
+                    case 2:
+                        //进入蓄力状态1秒
+                        Enemy.anim.Play("throw_ready");
+
+                        //投掷状态
+                        Invoke("Throw", 1f);
+                        break;
+                }
+
+               
 
 
                 
@@ -38,12 +53,15 @@ public class EnemyVision_2 : MonoBehaviour
     {
         Enemy.isChargeAttack = 2;
 
-
-
         // 锁定目标点（生成一个空物体在玩家当前位置）
         GameObject lockPoint = new GameObject("ChargeTarget");
         lockPoint.transform.position = Enemy.player.transform.position;
         Enemy.LockTarget = lockPoint.transform;
+    }
+
+    private void Throw() 
+    {
+        Enemy.anim.Play("throw_out");
     }
 
     public void ResetChargeAttack() 

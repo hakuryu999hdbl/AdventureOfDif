@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Pathfinding;
 using UnityEngine.InputSystem.Utilities;
+using static GrabbableObject;
 
 public class Enemy : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class Enemy : MonoBehaviour
     public FrameEvents frameEvents;
 
     [Header("寻找玩家/RoomGenerator")]
+    [HideInInspector]
     public GameObject _Player;//玩家
+    [HideInInspector]
     public Player player;
-
+    [HideInInspector]
     public RoomGenerator RoomGenerator;//寻找RoomGenerator
 
     private void Start()
@@ -116,9 +119,12 @@ public class Enemy : MonoBehaviour
             state.IsName("fly") ||
 
 
-
+           
             state.IsName("charge_hit") ||
 
+            state.IsName("throw_ready") ||
+            state.IsName("throw_out") ||
+            state.IsName("stand_laugh") ||
 
             state.IsName("Down") ||
             state.IsName("down") ||
@@ -138,6 +144,8 @@ public class Enemy : MonoBehaviour
     public bool isRape = false;
     public bool isAttack = false;
     public bool isDie = false;
+
+
     /// <summary>
     /// 捕获系统
     /// </summary>
@@ -149,7 +157,10 @@ public class Enemy : MonoBehaviour
         anim.Play("lewd");
 
         gameObject.transform.position = _Player.transform.position;
-        shadow.transform.position = _Player.GetComponent<Player>().shadow.transform.position;
+        //shadow.transform.position = _Player.GetComponent<Player>().shadow.transform.position;
+        shadow.gameObject.SetActive(false);//始终控制不好影子的位置
+
+
         _Player.GetComponent<Player>().shadow.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
 
         _Player.GetComponent<Player>().characterSkin.HideSkeleton();
@@ -163,9 +174,12 @@ public class Enemy : MonoBehaviour
     {
         isRape = false;
         AnimBack(); // 或者回到待机动作
+
+        shadow.gameObject.SetActive(true);//始终控制不好影子的位置
     }
 
     #endregion
+
 
     /// <summary>
     /// 基础数值
@@ -213,7 +227,20 @@ public class Enemy : MonoBehaviour
             }
 
         }
-        else if (!isAttack)
+        else
+
+
+       // if (isThrowAttack != 0)
+       // {
+       //     if (IsGrounded())
+       //     {
+       //         ThrowAttack();
+       //     }
+       //
+       // }
+       // else
+
+        if (!isAttack)
         {
             // 设置速度与动画状态
             //if (dist > 1)
@@ -271,7 +298,7 @@ public class Enemy : MonoBehaviour
                 anim.Play("charge_hit");
 
                 //重置攻击状态
-                enemyVision_2.ResetChargeAttack();
+                //enemyVision_2.ResetChargeAttack();
 
             }
         }
@@ -332,13 +359,7 @@ public class Enemy : MonoBehaviour
 
 
     #endregion
-
-
-
-
-
-
-
+   
 
     /// <summary>
     /// 攻击系统
@@ -351,10 +372,10 @@ public class Enemy : MonoBehaviour
     public GameObject attack_Collider;//伤害碰撞体
 
 
-
-    private float attackTimer = 0f;
+    //TODO：敌人站在玩家身边不动可能和这里有关系
+    public float attackTimer = 0f;
     private float attackCooldown = 1f; // 原本 Invoke 的 1f
-    private bool isInAttackDelay = false;
+    public bool isInAttackDelay = false;
 
     void BaseAttack()
     {
@@ -369,7 +390,6 @@ public class Enemy : MonoBehaviour
                 Attack_Start(); // 攻击警告开始闪
 
                 attackTimer = 0f;
-
 
                 isInAttackDelay = true;
             }
@@ -453,16 +473,47 @@ public class Enemy : MonoBehaviour
 
     public void CleanupStatus() 
     {
-        isChargeAttack = 0;
-        
-        anim.Play("stand");
+        if (currentHealth > 0) 
+        {
+            isChargeAttack = 0;
+
+            anim.Play("stand");
+        }
+
+      
 
     }//强制回归初始状态
-    
+
+
+    [Header("远程攻击")]
+    public GameObject Obstacle_Attack;
+ 
+    public void ThrowHeldObject() 
+    {
+        GameObject obj = Instantiate(Obstacle_Attack, transform.position, Quaternion.identity);
+
+        // 方向判断（以角色朝向为基准）
+        float dir = StopX > 0 ? 1f : -1f;
+
+        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.simulated = true;
+            rb.velocity = new Vector2(4f * dir, 2f); // 水平+上抛弧线，可调整【8/5】
+        }
+
+        // 激活爆炸逻辑
+        ThrowHeldObject script = obj.GetComponent<ThrowHeldObject>();
+        if (script != null)
+        {
+            script.Launch(GrabbableType.Tanker);
+        }
+
+        enemyVision_2.isTrigger = false;
+
+    }
 
     #endregion
-
-
 
 
     /// <summary>
@@ -817,7 +868,11 @@ public class Enemy : MonoBehaviour
 
     void AnimBack()
     {
-        anim.Play("stand");
+        if (currentHealth > 0) 
+        {
+            anim.Play("stand");
+        }
+         
     }
 
     void HurtOver()
@@ -886,7 +941,7 @@ public class Enemy : MonoBehaviour
 
         anim.Play("dead");//防止倒下又起来,搞了第二死亡
 
-        Invoke("Disappear", 1f);
+        Invoke("Disappear", 0.8f);
     }//死亡
 
 

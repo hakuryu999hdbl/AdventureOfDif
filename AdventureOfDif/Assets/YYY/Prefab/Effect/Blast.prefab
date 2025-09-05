@@ -205,6 +205,6 @@ MonoBehaviour:
   Damage: -1000
   DamageToPlayer: 0
   DamageToEnemy: 1
-  TypeOfAttack: 0
+  TypeOfAttack: 1
   isCritial: 0
   chargeTime: 0

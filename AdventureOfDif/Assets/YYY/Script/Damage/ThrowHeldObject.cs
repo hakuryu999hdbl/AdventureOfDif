@@ -25,18 +25,28 @@ public class ThrowHeldObject : MonoBehaviour
 
     GrabbableObject.GrabbableType heldItemType;
 
+    [Header("是否不改变贴图")]
+    public bool DoNotChangeImage = false;
+
+
     // 由玩家投掷时调用
     public void Launch(GrabbableObject.GrabbableType item)
     {
-        switch (item)
+        if (!DoNotChangeImage) 
         {
-            case GrabbableType.Tanker:
-                spriteRenderer.sprite = tanker;
-                break;
-            case GrabbableType.Inbox:
-                spriteRenderer.sprite = inbox;
-                break;
+
+            switch (item)
+            {
+                case GrabbableType.Tanker:
+                    spriteRenderer.sprite = tanker;
+                    break;
+                case GrabbableType.Inbox:
+                    spriteRenderer.sprite = inbox;
+                    break;
+            }
         }
+
+       
 
         heldItemType = item;
 
