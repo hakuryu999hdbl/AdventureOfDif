@@ -1,0 +1,1554 @@
+fileFormatVersion: 2
+guid: 34f4df8ec2cfc554ea91603e63784880
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2026335930192848592
+    second: Tx_Burst_radial_02_0
+  - first:
+      213: -4494370757745576239
+    second: Tx_Burst_radial_02_1
+  - first:
+      213: 4233519761493922367
+    second: Tx_Burst_radial_02_2
+  - first:
+      213: -1434421287652684641
+    second: Tx_Burst_radial_02_3
+  - first:
+      213: -5525677820030209310
+    second: Tx_Burst_radial_02_4
+  - first:
+      213: 4748151451237279157
+    second: Tx_Burst_radial_02_5
+  - first:
+      213: -5072600952858735199
+    second: Tx_Burst_radial_02_6
+  - first:
+      213: 3322291702903799131
+    second: Tx_Burst_radial_02_7
+  - first:
+      213: 1266903977014244291
+    second: Tx_Burst_radial_02_8
+  - first:
+      213: 4756523946547180838
+    second: Tx_Burst_radial_02_9
+  - first:
+      213: -1467582838759185598
+    second: Tx_Burst_radial_02_10
+  - first:
+      213: -8533930983233507588
+    second: Tx_Burst_radial_02_11
+  - first:
+      213: 5072831721262541762
+    second: Tx_Burst_radial_02_12
+  - first:
+      213: 3032787786751669881
+    second: Tx_Burst_radial_02_13
+  - first:
+      213: 2989048990397701035
+    second: Tx_Burst_radial_02_14
+  - first:
+      213: 4646227922108489930
+    second: Tx_Burst_radial_02_15
+  - first:
+      213: -8287298197048797836
+    second: Tx_Burst_radial_02_16
+  - first:
+      213: 1468641822880671499
+    second: Tx_Burst_radial_02_17
+  - first:
+      213: -3807369898543724343
+    second: Tx_Burst_radial_02_18
+  - first:
+      213: -5555639341836272961
+    second: Tx_Burst_radial_02_19
+  - first:
+      213: -5060978036902202887
+    second: Tx_Burst_radial_02_20
+  - first:
+      213: -5340901801402325703
+    second: Tx_Burst_radial_02_21
+  - first:
+      213: -7115734074787244846
+    second: Tx_Burst_radial_02_22
+  - first:
+      213: -5641402650921225097
+    second: Tx_Burst_radial_02_23
+  - first:
+      213: -2105814694454299421
+    second: Tx_Burst_radial_02_24
+  - first:
+      213: 9004078460702413949
+    second: Tx_Burst_radial_02_25
+  - first:
+      213: 4447322553675455434
+    second: Tx_Burst_radial_02_26
+  - first:
+      213: 1036895677062296100
+    second: Tx_Burst_radial_02_27
+  - first:
+      213: 2418417493419238273
+    second: Tx_Burst_radial_02_28
+  - first:
+      213: -8723892934150073521
+    second: Tx_Burst_radial_02_29
+  - first:
+      213: -6412353201845501346
+    second: Tx_Burst_radial_02_30
+  - first:
+      213: 5598802807237600295
+    second: Tx_Burst_radial_02_31
+  - first:
+      213: -5529337846541197002
+    second: Tx_Burst_radial_02_32
+  - first:
+      213: -8193527834731689467
+    second: Tx_Burst_radial_02_33
+  - first:
+      213: -8288459276502505502
+    second: Tx_Burst_radial_02_34
+  - first:
+      213: 7714991357631931987
+    second: Tx_Burst_radial_02_35
+  - first:
+      213: -2498234191867916319
+    second: Tx_Burst_radial_02_36
+  - first:
+      213: 3437076021778703224
+    second: Tx_Burst_radial_02_37
+  - first:
+      213: -6393394057526970066
+    second: Tx_Burst_radial_02_38
+  - first:
+      213: 5293054600411956150
+    second: Tx_Burst_radial_02_39
+  - first:
+      213: -6447721164694792778
+    second: Tx_Burst_radial_02_40
+  - first:
+      213: 7904069778385215024
+    second: Tx_Burst_radial_02_41
+  - first:
+      213: 8999145253146240678
+    second: Tx_Burst_radial_02_42
+  - first:
+      213: -9086696740297736483
+    second: Tx_Burst_radial_02_43
+  - first:
+      213: -9058073853909203046
+    second: Tx_Burst_radial_02_44
+  - first:
+      213: -2392231202446247719
+    second: Tx_Burst_radial_02_45
+  - first:
+      213: 485750717777779545
+    second: Tx_Burst_radial_02_46
+  - first:
+      213: 900722605156950383
+    second: Tx_Burst_radial_02_47
+  - first:
+      213: -6916454438052718660
+    second: Tx_Burst_radial_02_48
+  - first:
+      213: 2450068664321368294
+    second: Tx_Burst_radial_02_49
+  - first:
+      213: -6361127024918859660
+    second: Tx_Burst_radial_02_50
+  - first:
+      213: -8071035448346119115
+    second: Tx_Burst_radial_02_51
+  - first:
+      213: -4625486280715771061
+    second: Tx_Burst_radial_02_52
+  - first:
+      213: -8898114561526566908
+    second: Tx_Burst_radial_02_53
+  - first:
+      213: 1515009779017268873
+    second: Tx_Burst_radial_02_54
+  - first:
+      213: -6981507872918901888
+    second: Tx_Burst_radial_02_55
+  - first:
+      213: -2428906290564655251
+    second: Tx_Burst_radial_02_56
+  - first:
+      213: 8179878137421081508
+    second: Tx_Burst_radial_02_57
+  - first:
+      213: -3910231961629572831
+    second: Tx_Burst_radial_02_58
+  - first:
+      213: 5264439617414888513
+    second: Tx_Burst_radial_02_59
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 0
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_0
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 1386
+        width: 342
+        height: 345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d661c2eacdfe1c10800000000000000
+      internalID: 2026335930192848592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_1
+      rect:
+        serializedVersion: 2
+        x: 1239
+        y: 1172
+        width: 630
+        height: 681
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d6fba7ab99c0a1c0800000000000000
+      internalID: -4494370757745576239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_2
+      rect:
+        serializedVersion: 2
+        x: 2199
+        y: 1433
+        width: 330
+        height: 507
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f32117dfacb70ca30800000000000000
+      internalID: 4233519761493922367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_3
+      rect:
+        serializedVersion: 2
+        x: 2546
+        y: 1567
+        width: 448
+        height: 359
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9c04335079e71ce0800000000000000
+      internalID: -1434421287652684641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_4
+      rect:
+        serializedVersion: 2
+        x: 2738
+        y: 1537
+        width: 173
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e238d98c49d053b0800000000000000
+      internalID: -5525677820030209310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_5
+      rect:
+        serializedVersion: 2
+        x: 2158
+        y: 1075
+        width: 403
+        height: 321
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b5e0ce8692d4e140800000000000000
+      internalID: 4748151451237279157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_6
+      rect:
+        serializedVersion: 2
+        x: 2565
+        y: 1104
+        width: 39
+        height: 279
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ad0c852f408a99b0800000000000000
+      internalID: -5072600952858735199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_7
+      rect:
+        serializedVersion: 2
+        x: 2623
+        y: 1114
+        width: 341
+        height: 426
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5dfec793b62b1e20800000000000000
+      internalID: 3322291702903799131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_8
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 779
+        width: 85
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c3b67a6472f49110800000000000000
+      internalID: 1266903977014244291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_9
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 737
+        width: 210
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62575970451920240800000000000000
+      internalID: 4756523946547180838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_10
+      rect:
+        serializedVersion: 2
+        x: 1427
+        y: 798
+        width: 56
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 243ac490f2912abe0800000000000000
+      internalID: -1467582838759185598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_11
+      rect:
+        serializedVersion: 2
+        x: 1533
+        y: 769
+        width: 198
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfeaaa64cf2619980800000000000000
+      internalID: -8533930983233507588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_12
+      rect:
+        serializedVersion: 2
+        x: 2465
+        y: 869
+        width: 12
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cbef2fc291566640800000000000000
+      internalID: 5072831721262541762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_13
+      rect:
+        serializedVersion: 2
+        x: 2577
+        y: 815
+        width: 74
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 976f9747c60a61a20800000000000000
+      internalID: 3032787786751669881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_14
+      rect:
+        serializedVersion: 2
+        x: 2649
+        y: 896
+        width: 10
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bab15e8583c3b7920800000000000000
+      internalID: 2989048990397701035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_15
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 635
+        width: 171
+        height: 244
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac027caada7ba7040800000000000000
+      internalID: 4646227922108489930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_16
+      rect:
+        serializedVersion: 2
+        x: 1211
+        y: 663
+        width: 158
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 475db21a23a9dfc80800000000000000
+      internalID: -8287298197048797836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_17
+      rect:
+        serializedVersion: 2
+        x: 2274
+        y: 685
+        width: 75
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b07a51be4f9a16410800000000000000
+      internalID: 1468641822880671499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_18
+      rect:
+        serializedVersion: 2
+        x: 2327
+        y: 818
+        width: 62
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c849c4ef31892bc0800000000000000
+      internalID: -3807369898543724343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_19
+      rect:
+        serializedVersion: 2
+        x: 2478
+        y: 810
+        width: 25
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbaf9a1247766e2b0800000000000000
+      internalID: -5555639341836272961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_20
+      rect:
+        serializedVersion: 2
+        x: 2683
+        y: 824
+        width: 67
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f1f3662a4bc3c9b0800000000000000
+      internalID: -5060978036902202887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_21
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 639
+        width: 113
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 935ab23eb1e41e5b0800000000000000
+      internalID: -5340901801402325703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_22
+      rect:
+        serializedVersion: 2
+        x: 1768
+        y: 658
+        width: 94
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d4d92c4f85df3d90800000000000000
+      internalID: -7115734074787244846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_23
+      rect:
+        serializedVersion: 2
+        x: 2806
+        y: 733
+        width: 70
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 774b4ecad26b5b1b0800000000000000
+      internalID: -5641402650921225097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_24
+      rect:
+        serializedVersion: 2
+        x: 2822
+        y: 678
+        width: 25
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e4f04641b4a6c2e0800000000000000
+      internalID: -2105814694454299421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_25
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 633
+        width: 41
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d74d9e387a9e4fc70800000000000000
+      internalID: 9004078460702413949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_26
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 547
+        width: 126
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acb9865bc4018bd30800000000000000
+      internalID: 4447322553675455434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_27
+      rect:
+        serializedVersion: 2
+        x: 1891
+        y: 628
+        width: 56
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 422bf64ef1bc36e00800000000000000
+      internalID: 1036895677062296100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_28
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 416
+        width: 157
+        height: 211
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18328dd95e1ff8120800000000000000
+      internalID: 2418417493419238273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_29
+      rect:
+        serializedVersion: 2
+        x: 1162
+        y: 427
+        width: 105
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f43d179f8918ee680800000000000000
+      internalID: -8723892934150073521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_30
+      rect:
+        serializedVersion: 2
+        x: 1890
+        y: 553
+        width: 53
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5209adacbeb207a0800000000000000
+      internalID: -6412353201845501346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_31
+      rect:
+        serializedVersion: 2
+        x: 2183
+        y: 528
+        width: 24
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7246bdc4d71f2bd40800000000000000
+      internalID: 5598802807237600295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_32
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 539
+        width: 42
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 631e9c53688d343b0800000000000000
+      internalID: -5529337846541197002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_33
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 519
+        width: 144
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50aca8178ddba4e80800000000000000
+      internalID: -8193527834731689467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_34
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 440
+        width: 40
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e7e6c0c33a79fc80800000000000000
+      internalID: -8288459276502505502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_35
+      rect:
+        serializedVersion: 2
+        x: 2231
+        y: 428
+        width: 25
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3562cd493c7211b60800000000000000
+      internalID: 7714991357631931987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_36
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 241
+        width: 134
+        height: 189
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ef4afb1d3d745dd0800000000000000
+      internalID: -2498234191867916319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_37
+      rect:
+        serializedVersion: 2
+        x: 1874
+        y: 314
+        width: 70
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 873e1207e62f2bf20800000000000000
+      internalID: 3437076021778703224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_38
+      rect:
+        serializedVersion: 2
+        x: 2927
+        y: 375
+        width: 45
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e29f2047af91647a0800000000000000
+      internalID: -6393394057526970066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_39
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 302
+        width: 72
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b34d428d15b47940800000000000000
+      internalID: 5293054600411956150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_40
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 205
+        width: 162
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b5599f13c71586a0800000000000000
+      internalID: -6447721164694792778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_41
+      rect:
+        serializedVersion: 2
+        x: 1107
+        y: 300
+        width: 53
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03e1d8cf595e0bd60800000000000000
+      internalID: 7904069778385215024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_42
+      rect:
+        serializedVersion: 2
+        x: 1217
+        y: 278
+        width: 35
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a6acef9de263ec70800000000000000
+      internalID: 8999145253146240678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_43
+      rect:
+        serializedVersion: 2
+        x: 1230
+        y: 198
+        width: 91
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dde7ad4457195e180800000000000000
+      internalID: -9086696740297736483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_44
+      rect:
+        serializedVersion: 2
+        x: 1866
+        y: 270
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a970d7452d14b4280800000000000000
+      internalID: -9058073853909203046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_45
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 46
+        width: 203
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d8f59d55661dced0800000000000000
+      internalID: -2392231202446247719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_46
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 54
+        width: 24
+        height: 213
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95b198644bbbdb600800000000000000
+      internalID: 485750717777779545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_47
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 198
+        width: 10
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f616b89ef62008c00800000000000000
+      internalID: 900722605156950383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_48
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 73
+        width: 122
+        height: 177
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb791b26551d300a0800000000000000
+      internalID: -6916454438052718660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_49
+      rect:
+        serializedVersion: 2
+        x: 1325
+        y: 167
+        width: 22
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e0e03c1874600220800000000000000
+      internalID: 2450068664321368294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_50
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 135
+        width: 96
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 470f29c6cacb8b7a0800000000000000
+      internalID: -6361127024918859660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_51
+      rect:
+        serializedVersion: 2
+        x: 2253
+        y: 196
+        width: 60
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5347ebb950cedff80800000000000000
+      internalID: -8071035448346119115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_52
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 114
+        width: 68
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b436e7c0cb8fecfb0800000000000000
+      internalID: -4625486280715771061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_53
+      rect:
+        serializedVersion: 2
+        x: 1413
+        y: 106
+        width: 26
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4007a7553fb838480800000000000000
+      internalID: -8898114561526566908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_54
+      rect:
+        serializedVersion: 2
+        x: 1434
+        y: 37
+        width: 63
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98e319dfd55660510800000000000000
+      internalID: 1515009779017268873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_55
+      rect:
+        serializedVersion: 2
+        x: 1547
+        y: 70
+        width: 16
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08b63164493bc1f90800000000000000
+      internalID: -6981507872918901888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_56
+      rect:
+        serializedVersion: 2
+        x: 1694
+        y: 70
+        width: 55
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d679e2ef89aca4ed0800000000000000
+      internalID: -2428906290564655251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_57
+      rect:
+        serializedVersion: 2
+        x: 2465
+        y: 60
+        width: 36
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4aba7feb3d3c48170800000000000000
+      internalID: 8179878137421081508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_58
+      rect:
+        serializedVersion: 2
+        x: 2754
+        y: 136
+        width: 77
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 121c0b98fb01cb9c0800000000000000
+      internalID: -3910231961629572831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tx_Burst_radial_02_59
+      rect:
+        serializedVersion: 2
+        x: 2730
+        y: 93
+        width: 30
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14cf18990fb0f0940800000000000000
+      internalID: 5264439617414888513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
