@@ -14,7 +14,7 @@ public class RoomGenerator : MonoBehaviour
     void Start()
     {
 
-
+        //根据当前临时存档读取位置
         switch (GameFlowData.nextAreaId) 
         {
             default:
@@ -48,8 +48,7 @@ public class RoomGenerator : MonoBehaviour
         //Invoke("SetEnemy", 2.5f);
         //Invoke("SetEnemy", 3f);
         //Invoke("SetEnemy", 3.5f);
-        //
-        //Invoke("SetFriend", 6f);
+ 
     }
 
 
@@ -194,7 +193,12 @@ public class RoomGenerator : MonoBehaviour
 
     #endregion
 
-
+    /// <summary>
+    /// 前进提示
+    /// </summary>
+    #region
+    public GameObject GoGo;
+    #endregion
 
 
 
@@ -232,20 +236,7 @@ public class RoomGenerator : MonoBehaviour
         enemyList.Add(NewEnemy);
 
     }
-    public void SetFriend()
-    {
-
-
-
-        GameObject NewEnemy = Instantiate(Enemy, transform.position, Quaternion.identity);
-        enemyList.Add(NewEnemy);
-
-
-        Enemy enemy = NewEnemy.transform.Find("Enemy").GetComponent<Enemy>();
-        enemy.ConvertToFriend();
-
-
-    }
+ 
 
     #endregion
 

@@ -25,18 +25,28 @@ public class ThrowHeldObject : MonoBehaviour
 
     GrabbableObject.GrabbableType heldItemType;
 
+    [Header("是否不改变贴图")]
+    public bool DoNotChangeImage = false;
+
+
     // 由玩家投掷时调用
     public void Launch(GrabbableObject.GrabbableType item)
     {
-        switch (item)
+        if (!DoNotChangeImage) 
         {
-            case GrabbableType.Tanker:
-                spriteRenderer.sprite = tanker;
-                break;
-            case GrabbableType.Inbox:
-                spriteRenderer.sprite = inbox;
-                break;
+
+            switch (item)
+            {
+                case GrabbableType.Tanker:
+                    spriteRenderer.sprite = tanker;
+                    break;
+                case GrabbableType.Inbox:
+                    spriteRenderer.sprite = inbox;
+                    break;
+            }
         }
+
+       
 
         heldItemType = item;
 
@@ -90,32 +100,32 @@ public class ThrowHeldObject : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (!hasBeenThrown) return;
-
-
-        //玩家和队友伤害
-        if (collision.gameObject.tag == "Enemy")
-        {
-
-            if (collision.gameObject.GetComponent<Enemy>() != null)
-            {
-
-                collision.gameObject.GetComponent<Enemy>().ChangeHealth(100, 1);//击飞伤害
-
-                GameObject effectPrefabs = Instantiate(impactEffect, transform.position, Quaternion.identity);
-                Destroy(effectPrefabs, 1f);
-
-                Destroy(gameObject);
-            }
-
-
-        }
-
-
-
-
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (!hasBeenThrown) return;
+    //
+    //
+    //    //玩家伤害
+    //    if (collision.gameObject.tag == "Enemy")
+    //    {
+    //
+    //        if (collision.gameObject.GetComponent<Enemy>() != null)
+    //        {
+    //
+    //            collision.gameObject.GetComponent<Enemy>().ChangeHealth(-100, -1);//击飞伤害
+    //
+    //            GameObject effectPrefabs = Instantiate(impactEffect, transform.position, Quaternion.identity);
+    //            Destroy(effectPrefabs, 1f);
+    //
+    //            Destroy(gameObject);
+    //        }
+    //
+    //
+    //    }
+    //
+    //
+    //
+    //
+    //}
 
 }

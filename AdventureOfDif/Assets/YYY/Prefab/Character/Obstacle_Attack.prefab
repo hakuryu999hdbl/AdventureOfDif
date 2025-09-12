@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1755986704101701436}
   - component: {fileID: 4022453517524501570}
   - component: {fileID: 5623389965281884041}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Obstacle
   m_TagString: obstacle
   m_Icon: {fileID: 0}
@@ -134,7 +134,8 @@ GameObject:
   - component: {fileID: 149352820489304942}
   - component: {fileID: 5328310357186099700}
   - component: {fileID: 1964736695643820368}
-  m_Layer: 13
+  - component: {fileID: 8621385081565700377}
+  m_Layer: 0
   m_Name: Obstacle_Attack
   m_TagString: obstacle
   m_Icon: {fileID: 0}
@@ -192,7 +193,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.56}
-  m_Radius: 0.7
+  m_Radius: 2
 --- !u!114 &5328310357186099700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,3 +239,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8621385081565700377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6657398186620034209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3549fedb943cbd439f4b2a328c180ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: -100
+  DamageToPlayer: 0
+  DamageToEnemy: 1
+  TypeOfAttack: 1
+  isCritial: 0
+  chargeTime: 0
