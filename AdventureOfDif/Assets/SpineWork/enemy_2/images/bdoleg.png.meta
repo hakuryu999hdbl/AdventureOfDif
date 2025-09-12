@@ -143,7 +143,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bdoleg_0: 8898195089068387228
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
