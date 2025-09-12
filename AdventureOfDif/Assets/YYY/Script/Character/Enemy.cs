@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Pathfinding;
 using UnityEngine.InputSystem.Utilities;
+using static GrabbableObject;
 
 public class Enemy : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class Enemy : MonoBehaviour
     public FrameEvents frameEvents;
 
     [Header("寻找玩家/RoomGenerator")]
+    [HideInInspector]
     public GameObject _Player;//玩家
+    [HideInInspector]
     public Player player;
-
+    [HideInInspector]
     public RoomGenerator RoomGenerator;//寻找RoomGenerator
 
     private void Start()
@@ -43,7 +46,12 @@ public class Enemy : MonoBehaviour
             moveSpeed = 0;
             aiPath.maxSpeed = 0f;
 
-        
+
+            //非强奸中的其他敌人强制站立/清除冲锋状态
+            if (_Player.GetComponent<Player>().enemyRaper != gameObject) 
+            {
+                CleanupStatus();
+            }
         }
         else if (!isDie)
         {
@@ -111,9 +119,12 @@ public class Enemy : MonoBehaviour
             state.IsName("fly") ||
 
 
-
+           
             state.IsName("charge_hit") ||
 
+            state.IsName("throw_ready") ||
+            state.IsName("throw_out") ||
+            state.IsName("stand_laugh") ||
 
             state.IsName("Down") ||
             state.IsName("down") ||
@@ -135,28 +146,40 @@ public class Enemy : MonoBehaviour
     public bool isDie = false;
 
 
-   // private void OnTriggerEnter2D(Collider2D collision)//检测到玩家显示
-   // {
-   //
-   //     if (collision.gameObject.tag == "Player")
-   //     {
-   //         if (collision.gameObject.GetComponent<Player>().isDie)
-   //         {
-   //             isRape = true;
-   //             anim.Play("lewd");
-   //
-   //             gameObject.transform.position = collision.gameObject.transform.position;
-   //             shadow.transform.position = collision.gameObject.GetComponent<Player>().shadow.transform.position;
-   //             collision.gameObject.GetComponent<Player>().shadow.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-   //
-   //             collision.gameObject.GetComponent<Player>().characterSkin.HideSkeleton();
-   //
-   //
-   //             collision.gameObject.GetComponent<Player>().isRape = true;
-   //         }
-   //
-   //     }//敌人捕获玩家
-   // }
+    /// <summary>
+    /// 捕获系统
+    /// </summary>
+    #region
+
+    public void CatchPlayer() 
+    {
+        isRape = true;
+        anim.Play("lewd");
+
+        gameObject.transform.position = _Player.transform.position;
+        //shadow.transform.position = _Player.GetComponent<Player>().shadow.transform.position;
+        shadow.gameObject.SetActive(false);//始终控制不好影子的位置
+
+
+        _Player.GetComponent<Player>().shadow.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+
+        _Player.GetComponent<Player>().characterSkin.HideSkeleton();
+
+
+        _Player.GetComponent<Player>().isRape = true;
+
+        _Player.GetComponent<Player>().enemyRaper = this.gameObject;
+    }
+    public void ReleasePlayer()
+    {
+        isRape = false;
+        AnimBack(); // 或者回到待机动作
+
+        shadow.gameObject.SetActive(true);//始终控制不好影子的位置
+    }
+
+    #endregion
+
 
     /// <summary>
     /// 基础数值
@@ -204,51 +227,40 @@ public class Enemy : MonoBehaviour
             }
 
         }
-        else if (!isAttack)
+        else
+
+
+       // if (isThrowAttack != 0)
+       // {
+       //     if (IsGrounded())
+       //     {
+       //         ThrowAttack();
+       //     }
+       //
+       // }
+       // else
+
+        if (!isAttack)
         {
             // 设置速度与动画状态
-            if (dist > 1)
-            {
-
-
-                if (tag != "Friend")
-                {
-                    //敌人全部走过来，跑留给冲刺攻击
-                    moveSpeed = 1;
-                    aiPath.maxSpeed = RunSpeed;
-                }
-                else
-                {
-                    //非巡逻队友跟，随情况下会你走/我也走/你跑/我也跑
-
-                    if (player.isRunning)
-                    {
-                        moveSpeed = 2;
-                        aiPath.maxSpeed = RunSpeed;
-                    }
-                    else
-                    {
-
-                        moveSpeed = 1;
-                        aiPath.maxSpeed = WalkSpeed;
-
-                    }
-
-                }
+            //if (dist > 1)
+            //{
+            //
+            //    moveSpeed = 1;
+            //    aiPath.maxSpeed = RunSpeed;
+            //
+            //}
+            //else
+            //{
+            //    moveSpeed = 0;
+            //    aiPath.maxSpeed = 0.01f;
+            //}
 
 
 
-
-
-
-
-            }
-            else
-            {
-                moveSpeed = 0;
-                aiPath.maxSpeed = 0.01f;
-            }
-
+            //让isAttack来决定移动还是攻击（目前这个同时测量距离currentTarget和isAttack可能是导致敌人站着不动的原因之一）
+            moveSpeed = 1;
+            aiPath.maxSpeed = RunSpeed;
 
         }
         else
@@ -271,8 +283,31 @@ public class Enemy : MonoBehaviour
         //}
 
 
-        bool isLeft = transform.position.x < _Player.transform.position.x;
-        CurrentTarget = isLeft ? player.Target_Right : player.Target_Left;
+        if (isChargeAttack == 2 && LockTarget != null)
+        {
+            CurrentTarget = LockTarget.gameObject;
+
+
+            if (Vector2.Distance(transform.position, LockTarget.position) < 1.5f)
+            {
+                isChargeAttack = 0;
+                Destroy(LockTarget.gameObject);
+                LockTarget = null;
+
+                // 执行攻击动画/回到巡逻等逻辑
+                anim.Play("charge_hit");
+
+                //重置攻击状态
+                //enemyVision_2.ResetChargeAttack();
+
+            }
+        }
+        else
+        {
+            // 正常逻辑
+            bool isLeft = transform.position.x < _Player.transform.position.x;
+            CurrentTarget = isLeft ? player.Target_Right : player.Target_Left;
+        }
 
 
         // 八方向判断（上下左右为主）
@@ -324,13 +359,7 @@ public class Enemy : MonoBehaviour
 
 
     #endregion
-
-
-
-
-
-
-
+   
 
     /// <summary>
     /// 攻击系统
@@ -343,10 +372,10 @@ public class Enemy : MonoBehaviour
     public GameObject attack_Collider;//伤害碰撞体
 
 
-
-    private float attackTimer = 0f;
+    //TODO：敌人站在玩家身边不动可能和这里有关系
+    public float attackTimer = 0f;
     private float attackCooldown = 1f; // 原本 Invoke 的 1f
-    private bool isInAttackDelay = false;
+    public bool isInAttackDelay = false;
 
     void BaseAttack()
     {
@@ -361,7 +390,6 @@ public class Enemy : MonoBehaviour
                 Attack_Start(); // 攻击警告开始闪
 
                 attackTimer = 0f;
-
 
                 isInAttackDelay = true;
             }
@@ -443,19 +471,67 @@ public class Enemy : MonoBehaviour
 
     }
 
+    public void CleanupStatus() 
+    {
+        if (currentHealth > 0) 
+        {
+            isChargeAttack = 0;
+
+            anim.Play("stand");
+        }
+
+      
+
+    }//强制回归初始状态
+
+
+    [Header("远程攻击")]
+    public GameObject Obstacle_Attack;
+ 
+    public void ThrowHeldObject() 
+    {
+        GameObject obj = Instantiate(Obstacle_Attack, transform.position, Quaternion.identity);
+
+        // 方向判断（以角色朝向为基准）
+        float dir = StopX > 0 ? 1f : -1f;
+
+        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.simulated = true;
+            rb.velocity = new Vector2(4f * dir, 2f); // 水平+上抛弧线，可调整【8/5】
+        }
+
+        // 激活爆炸逻辑
+        ThrowHeldObject script = obj.GetComponent<ThrowHeldObject>();
+        if (script != null)
+        {
+            script.Launch(GrabbableType.Tanker);
+        }
+
+        enemyVision_2.isTrigger = false;
+
+    }
+
     #endregion
 
 
-
-
     /// <summary>
-    /// 巡逻系统
+    /// 索敌系统
     /// </summary>
     #region
     [Header("索敌系统")]
     public GameObject _Target;//持续寻路对象
 
-    public GameObject CurrentTarget;//当前的目标
+    [HideInInspector]
+    public Transform LockTarget = null;//玩家原来站的点位
+
+    public GameObject CurrentTarget;//当前的目标（这个会用于敌人攻击玩家原来站着的位置）
+
+    //冲刺攻击重置
+    public EnemyVision_2 enemyVision_2;
+
+
     #endregion
 
 
@@ -634,9 +710,6 @@ public class Enemy : MonoBehaviour
         if (!isScreaming)
         {
 
-
-
-
             if (amount < 0)
             {
 
@@ -795,7 +868,11 @@ public class Enemy : MonoBehaviour
 
     void AnimBack()
     {
-        anim.Play("stand");
+        if (currentHealth > 0) 
+        {
+            anim.Play("stand");
+        }
+         
     }
 
     void HurtOver()
@@ -864,7 +941,7 @@ public class Enemy : MonoBehaviour
 
         anim.Play("dead");//防止倒下又起来,搞了第二死亡
 
-        Invoke("Disappear", 1f);
+        Invoke("Disappear", 0.8f);
     }//死亡
 
 
@@ -874,7 +951,7 @@ public class Enemy : MonoBehaviour
     {
         Destroy(AllOfThis);
 
-        RoomGenerator.SetEnemy();
+       // RoomGenerator.SetEnemy();
 
         Time.timeScale = 1;//防止 Critial消失之前次物体已经被毁坏，然后卡住不动了
     }
@@ -887,74 +964,14 @@ public class Enemy : MonoBehaviour
     public void UpdateHealthBar(int curAmount, int maxAmount)
     {
         HealthBar.fillAmount = (float)curAmount / (float)maxAmount;
-    }//Enemy，Friend，NPC替代UIManager的地方
+    }//Enemy可能没有血条，但是Boss因该是要的所以先留着，替代UIManager的地方
+
 
 
     #endregion
 
 
 
-
-    /// <summary>
-    /// 阵营转换
-    /// </summary>
-    #region
-    [Header("阵营转换")]
-    public EnemyVision vision;
-    public EnemyVision vision_2;
-    public Strike strike;
-    public Image HealthValueImage;
-
-    //切换为队友
-    public void ConvertToFriend()
-    {
-        //  修改标签
-        this.tag = "Friend";
-
-        //  视野脚本：变成队友
-        vision.isFriend = true;
-
-        //  视野脚本2：变成队友
-        vision_2.isFriend = true;
-
-        //  攻击脚本：攻击敌人，不再攻击队友
-        strike.DamageToPlayer = false;
-        strike.DamageToEnemy = true;
-        strike.DamageToFriend = false;
-
-        //  改变血条颜色为绿色（友军色）
-        HealthValueImage.color = Color.green;
-
-        attack_Collider.GetComponent<SpriteRenderer>().color = Color.green;
-
-
-        Debug.Log($"{gameObject.name} has switched to Friend.");
-    }
-
-    // 切换为敌人
-    public void ConvertToEnemy()
-    {
-        // 修改标签
-        this.tag = "Enemy";
-
-        // 视野脚本：不是队友
-        vision.isFriend = false;
-
-        // 攻击脚本：攻击玩家和友军，不攻击敌人
-        strike.DamageToPlayer = true;
-        strike.DamageToEnemy = false;
-        strike.DamageToFriend = true;
-
-        // 改变血条颜色为红色（敌人色）
-        HealthValueImage.color = Color.red;
-
-
-
-        attack_Collider.GetComponent<SpriteRenderer>().color = Color.red;
-
-        Debug.Log($"{gameObject.name} has switched to Enemy.");
-    }
-    #endregion
 
 
 
