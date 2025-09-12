@@ -5,63 +5,96 @@ using UnityEngine;
 public class EnemyVision : MonoBehaviour
 {
     public Enemy Enemy;
+    public bool isFriend;
 
-
+    //冲刺攻击重置
+    public GameObject EnemyVision_2;
 
 
     private void OnTriggerStay2D(Collider2D collision)//检测到玩家显示
     {
 
-
-        if (collision.gameObject.tag == "Player")
+        if (!isFriend)
         {
-            if (collision.gameObject.GetComponent<Player>().isDie && Enemy.isRape == false)
+            if (collision.gameObject.tag == "Player")
             {
-                if (collision.gameObject.GetComponent<Player>().isRape == false)
-                {
-                  
 
-                    // 寻找场景中所有其他敌人，设置围观
-                    GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-                    foreach (GameObject e in allEnemies)
-                    {
-                        Enemy other = e.GetComponent<Enemy>();
-                        if (other != null && other != Enemy && !Enemy.player.observingEnemies.Contains(other))
-                        {
-                            other.isRape = true; // 进入围观状态
-                            Enemy.player.observingEnemies.Add(other);
+                if (Enemy.isChargeAttack == 2)
+                { 
+                    Enemy.isChargeAttack = 0;
+                    Enemy.anim.Play("charge_hit");
+                    //EnemyVision_2.SetActive(true); 
+                }//冲刺攻击
 
-                        }
-                    }
 
-                    Enemy.CatchPlayer();
-                }
-
-            }
-            else
-            {
                 Enemy.isAttack = true;
-            }
+
+
+                //Enemy.CurrentTarget = Enemy._Player.gameObject;
+            }//敌人攻击玩家
+
+            if (collision.gameObject.tag == "Friend")
+            {
+
+
+                Enemy.isAttack = true;
+
+                //Enemy.CurrentTarget = collision.gameObject;
+
+            }//敌人攻击队友
 
 
 
+        }
+        else
+        {
+            if (collision.gameObject.tag == "Enemy")
+            {
 
-        }//敌人攻击玩家
+
+                Enemy.isAttack = true;
+
+                //Enemy.CurrentTarget = collision.gameObject;
+
+            }//队友攻击敌人
 
 
 
-
+        }
 
 
     }
 
     private void OnTriggerExit2D(Collider2D collision)//检测到玩家显示
     {
-        if (collision.gameObject.tag == "Player")
+        if (!isFriend)
         {
-            Enemy.isAttack = false;
+            if (collision.gameObject.tag == "Player")
+            {
+                Enemy.isAttack = false;
 
-        }//敌人停止攻击玩家
+            }//敌人停止攻击玩家
+
+            if (collision.gameObject.tag == "Friend")
+            {
+
+                Enemy.isAttack = false;
+
+            }//敌人停止攻击队友
+
+        }
+        else
+        {
+            if (collision.gameObject.tag == "Enemy")
+            {
+                Enemy.isAttack = false;
+
+            }//队友停止攻击敌人
+
+
+
+        }//队友停止射击敌人
+
 
 
     }

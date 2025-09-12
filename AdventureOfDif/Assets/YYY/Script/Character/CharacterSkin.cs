@@ -162,14 +162,6 @@ public class CharacterSkin : MonoBehaviour
             player.ThrowHeldObject();
 
         }
-
-        if (enemy != null)
-        {
-            enemy.ThrowHeldObject();
-
-        }
-
-
     }
 
 

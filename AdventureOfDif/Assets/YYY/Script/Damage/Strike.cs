@@ -8,6 +8,7 @@ public class Strike : MonoBehaviour
     public int Damage;
     public bool DamageToPlayer = true;
     public bool DamageToEnemy = true;
+    public bool DamageToFriend = true;
 
     [Header("伤害类型")]
     public int TypeOfAttack;
@@ -82,7 +83,22 @@ public class Strike : MonoBehaviour
 
 
 
-       
+        if (collision.gameObject.tag == "Friend")
+        {
+
+            if (collision.gameObject.GetComponent<Enemy>() != null && DamageToFriend)
+            {
+
+
+
+                collision.gameObject.GetComponent<Enemy>().ChangeHealth(appliedDamage, TypeOfAttack);//普通伤害
+
+
+
+            }
+
+
+        }
 
     }
 

@@ -10,6 +10,7 @@ TagManager:
   - RoomGenerator
   - Environment
   - Mission
+  - Friend
   - Plant
   - Attack
   layers:

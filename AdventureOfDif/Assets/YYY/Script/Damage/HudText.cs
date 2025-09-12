@@ -12,7 +12,7 @@ public class HudText : MonoBehaviour
     /// 文字预制体
     /// </summary>
     public GameObject hudText;
-    public bool isEnemy = false;//玩家受到伤害为{红-1}，敌人受到伤害为{白1}
+    public bool isFriend = false;//玩家和队友受到伤害为{红-1}，敌人受到伤害为{白1}
     /// <summary>
     /// 生成伤害文字
     /// </summary>
@@ -29,14 +29,14 @@ public class HudText : MonoBehaviour
 
         if (damage < 0)
         {
-            if (isEnemy)
+            if (!isFriend)
             {
 
                 hud.GetComponent<HUD>().color = 0;//敌人受伤为白
             }
             else
             {
-                hud.GetComponent<HUD>().color = 1;//玩家受伤为红
+                hud.GetComponent<HUD>().color = 1;//玩家和队友受伤为红
             }
         }
         else

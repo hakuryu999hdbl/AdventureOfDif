@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7672362659453054270}
   - component: {fileID: 9048189836735173297}
   - component: {fileID: 3535789051591666729}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Obstacle
   m_TagString: obstacle
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2053813118689278148}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -164,7 +164,6 @@ MonoBehaviour:
   spriteRenderer: {fileID: 3550190078066771236}
   tanker: {fileID: 21300000, guid: 049c79810b52a7c439020b527d99fd92, type: 3}
   inbox: {fileID: 21300000, guid: bcf14f9b23fe093478cb3bb2dac2c4c8, type: 3}
-  isInitialized: 0
 --- !u!58 &3535789051591666729
 CircleCollider2D:
   m_ObjectHideFlags: 0
