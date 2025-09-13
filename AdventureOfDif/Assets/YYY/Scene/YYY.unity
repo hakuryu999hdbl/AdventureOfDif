@@ -1435,6 +1435,7 @@ GameObject:
   - component: {fileID: 534242813}
   - component: {fileID: 534242812}
   - component: {fileID: 534242815}
+  - component: {fileID: 534242816}
   m_Layer: 0
   m_Name: Spine(Player)
   m_TagString: Untagged
@@ -1712,6 +1713,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a04997ed027aa41870f4dd47544853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &534242816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534242806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d9daf47f098ab428a7b686165d61dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharAnimator: {fileID: 534242809}
+  walkDustPath: VFX/Prefab/VFX_Dust_Walk
+  runDustPath: VFX/Prefab/VFX_Dust_Run
+  walkSpawnDistance: 0.9
+  runSpawnDistance: 0.5
+  GenerateOffsetWalk: 0.5
+  GenerateOffsetRun: 0.8
 --- !u!1 &558114219
 GameObject:
   m_ObjectHideFlags: 0

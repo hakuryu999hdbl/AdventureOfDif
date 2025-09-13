@@ -87,6 +87,9 @@ public class ThrowHeldObject : MonoBehaviour
         pos.y = groundY + zHeight;
         transform.position = pos;
     }
+    //[Header("路径：Resources/VFX/Prefab/VFX_Explosion_normal")]
+    //public string Explosion_normal_Path = "VFX/Prefab/VFX_Explosion_normal";
+    //private GameObject Explosion_normal_Prefab;
 
     void Explode()
     {
@@ -94,6 +97,8 @@ public class ThrowHeldObject : MonoBehaviour
         {
             GameObject effect = Instantiate(impactEffect, transform.position, Quaternion.identity);
             Destroy(effect, 1f);
+
+            //Explosion_normal_Prefab = Resources.Load<GameObject>(Explosion_normal_Path);
         }
 
         Destroy(gameObject);
