@@ -354,11 +354,11 @@ public class Player : MonoBehaviour
 
             }
 
-            ChangeCritical(10);//按下暴击率快速上升
+            //ChangeCritical(10);//按下暴击率快速上升
         }
         else
         {
-            ChangeCritical(-5);//松开暴击率快速下降
+            //ChangeCritical(-5);//松开暴击率快速下降
         }
     }
 
@@ -538,6 +538,9 @@ public class Player : MonoBehaviour
         Knockdown();
     }//冻结一切输入立刻触发倒地动画
 
+    [Header("当玩家在空中的时候可以隐藏碰撞体防止卡一下")]
+    public CircleCollider2D Collider2D;
+
 
     void CheckJump()
     {
@@ -607,7 +610,11 @@ public class Player : MonoBehaviour
 
             anim.SetBool("Jump", true);
 
- 
+
+            //当玩家在空中的时候可以隐藏碰撞体防止卡一下
+            Collider2D.enabled = false;
+
+
         }
         else
         {
@@ -615,6 +622,10 @@ public class Player : MonoBehaviour
             pos.z = 0f; // 落地恢复排序
             transform.position = pos;
             anim.SetBool("Jump", false);
+
+
+            //落地出现碰撞体
+            Collider2D.enabled = true;
         }
 
         // 更新前一帧状态
@@ -1074,6 +1085,7 @@ public class Player : MonoBehaviour
         //更新UI
         UIManager.instance.UpdateSexBar(currentSex, maxSex);
         UIManager.instance.UpdateHealthBar(currentHealth, maxHealth);
+        UIManager.instance.UpdateCriticalBar(currentCritical, maxCritical);
     }
     [Header("特效")]
     public GameObject Strike_Effect;//剑光特效
@@ -1322,7 +1334,7 @@ public class Player : MonoBehaviour
         {
 
 
-        }//如果是已经Die了，那么这个淫乱槽不需要出现
+        }//如果是已经Die了，那么这个
 
         currentCritical = Mathf.Clamp(currentCritical + amount, 0, maxCritical);
         UIManager.instance.UpdateCriticalBar(currentCritical, maxCritical);

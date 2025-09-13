@@ -14,7 +14,7 @@ public class EnemyVision_2 : MonoBehaviour
 
         if (collision.gameObject.tag == "Player"&&!isTrigger)
         {
-            if (Enemy.IsGrounded()) 
+            if (Enemy.IsGrounded()&&Enemy.isRape==false) 
             {
                 isTrigger = true;//先别再触发
 

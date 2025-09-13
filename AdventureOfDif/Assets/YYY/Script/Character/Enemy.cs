@@ -42,6 +42,11 @@ public class Enemy : MonoBehaviour
     {
         if (isRape)
         {
+
+            //防止被更改状态的强制间断动画触发
+            //RapeTimer += Time.deltaTime;
+            //if (RapeTimer > 1f) { anim.Play("lewd"); RapeTimer = 0; }
+
             //处于强奸中不能移动
             moveSpeed = 0;
             aiPath.maxSpeed = 0f;
@@ -150,6 +155,9 @@ public class Enemy : MonoBehaviour
     /// 捕获系统
     /// </summary>
     #region
+    [Header("捕获后的为了防止动画被更改")]
+    public float RapeTimer;
+
 
     public void CatchPlayer() 
     {
@@ -720,6 +728,9 @@ public class Enemy : MonoBehaviour
 
             if (amount < 0)
             {
+                //增加玩家暴击值
+                player.ChangeCritical(100);
+
 
                 if (Random.Range(0, 4) == 0 && !isDie && currentHealth > 0 && IsGrounded()) //（非死非空中）一定几率防御
                 {

@@ -761,6 +761,7 @@ GameObject:
   - component: {fileID: 8292781970223667366}
   - component: {fileID: 2567488997809830533}
   - component: {fileID: 3742000746787723305}
+  - component: {fileID: 7758462365736354603}
   m_Layer: 0
   m_Name: SmallCanvas
   m_TagString: Untagged
@@ -867,6 +868,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hudText: {fileID: 4407327141790781514, guid: 646ea7a5b78e36746b73073e2ac8a8d0, type: 3}
   isEnemy: 1
+  numberSprites:
+  - {fileID: 21300000, guid: 9843d925123f8b742bc4f815424d9e63, type: 3}
+  - {fileID: 21300000, guid: 4e70e518e7359504e96a12041cb88174, type: 3}
+  - {fileID: 21300000, guid: 8e27e195d52d1db4784574a21dc58402, type: 3}
+  - {fileID: 21300000, guid: 5250b64510b8b9d4d90b213633d8ab88, type: 3}
+  - {fileID: 21300000, guid: a7b3812ec18416f40a556315e08ab8cc, type: 3}
+  - {fileID: 21300000, guid: 638224c0165959745a0d399a40acd6b7, type: 3}
+  - {fileID: 21300000, guid: 33702a4031e626a469e32f7d7775444c, type: 3}
+  - {fileID: 21300000, guid: 919c11d1716c7864b9e1c972af5d3de8, type: 3}
+  - {fileID: 21300000, guid: 167bf3e4412c18845a651da326742b9c, type: 3}
+  - {fileID: 21300000, guid: be27e301c9eabda45989dfb4a6422312, type: 3}
+  digitPrefab: {fileID: 8723377073703624295, guid: 11c899190cf4a854a93d661ab59724ac,
+    type: 3}
+  spacing: 20
+--- !u!114 &7758462365736354603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2356681438578035777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6a04997ed027aa41870f4dd47544853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3059288131013217681
 GameObject:
   m_ObjectHideFlags: 0
@@ -1579,6 +1606,8 @@ MonoBehaviour:
   aiPath: {fileID: 1148966818677694293}
   attack: {fileID: 7405149657214027024}
   attack_Collider: {fileID: 414999762336551992}
+  attackTimer: 0
+  isInAttackDelay: 0
   isChargeAttack: 0
   Obstacle_Attack: {fileID: 4068797132111943887, guid: 7f590ac600da84d409a29714e876394d,
     type: 3}
