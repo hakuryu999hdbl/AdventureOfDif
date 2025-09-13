@@ -590,18 +590,26 @@ public class Enemy : MonoBehaviour
             groundY = transform.position.y;
         }
 
+
         if (zHeight > 0f)
         {
             Vector3 pos = transform.position;
             pos.y = groundY + zHeight;
+            pos.z = -1f; // 跳跃时到前面
             transform.position = pos;
 
             //anim.SetBool("Jump", true);
+
+
         }
         else
         {
+            Vector3 pos = transform.position;
+            pos.z = 0f; // 落地恢复排序
+            transform.position = pos;
             //anim.SetBool("Jump", false);
         }
+
 
         // 更新前一帧状态
         wasInAir = !isGroundedNow;

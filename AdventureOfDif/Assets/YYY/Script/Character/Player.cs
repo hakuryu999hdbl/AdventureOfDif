@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -601,12 +602,18 @@ public class Player : MonoBehaviour
         {
             Vector3 pos = transform.position;
             pos.y = groundY + zHeight;
+            pos.z = -1f; // 跳跃时到前面
             transform.position = pos;
 
             anim.SetBool("Jump", true);
+
+ 
         }
         else
         {
+            Vector3 pos = transform.position;
+            pos.z = 0f; // 落地恢复排序
+            transform.position = pos;
             anim.SetBool("Jump", false);
         }
 
