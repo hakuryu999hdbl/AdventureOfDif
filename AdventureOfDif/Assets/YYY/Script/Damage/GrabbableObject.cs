@@ -18,25 +18,25 @@ public class GrabbableObject : MonoBehaviour
 
         if (!isInitialized) 
         {
-            switch (Random.Range(0, 2))
-            {
-                case 0:
-                    SetSkin(GrabbableType.Tanker);
-                    break;
-                case 1:
-                    SetSkin(GrabbableType.Inbox);
-                    break;
-            }
+            //switch (Random.Range(0, 2))
+            //{
+            //    case 0:
+            //        SetSkin(GrabbableType.Tanker);
+            //        break;
+            //    case 1:
+            //        SetSkin(GrabbableType.Inbox);
+            //        break;
+            //}
 
-            //if (item == GrabbableType.Tanker)
-            //{
-            //    SetSkin(GrabbableType.Tanker);
-            //}
-            //
-            //if (item == GrabbableType.Inbox)
-            //{
-            //    SetSkin(GrabbableType.Inbox);
-            //}
+            if (item == GrabbableType.Tanker)
+            {
+                SetSkin(GrabbableType.Tanker);
+            }
+            
+            if (item == GrabbableType.Inbox)
+            {
+                SetSkin(GrabbableType.Inbox);
+            }
         }
        
 

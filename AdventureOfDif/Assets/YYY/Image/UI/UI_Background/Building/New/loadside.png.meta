@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: aeecb6a190fc0a847aa5e5eb6d7d337e
+guid: 8c33c1cb89390cd43b37c1663b273a7f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1423559903243298385
-    second: Car_07_0
+      213: 7926585077177422617
+    second: loadside_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -47,9 +47,9 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
-  spriteExtrude: 0
+  spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
+  alignment: 7
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Car_07_0
+      name: loadside_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 294
-        height: 202
+        width: 420
+        height: 337
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,8 +127,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1566e4d803081c310800000000000000
-      internalID: 1423559903243298385
+      spriteID: 913921f7123e00e60800000000000000
+      internalID: 7926585077177422617
       vertices: []
       indices: 
       edges: []
@@ -144,7 +144,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Car_07_0: 1423559903243298385
+      loadside_0: 7926585077177422617
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

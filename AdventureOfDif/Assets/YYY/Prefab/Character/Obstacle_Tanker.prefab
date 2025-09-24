@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9048189836735173297}
   - component: {fileID: 3535789051591666729}
   m_Layer: 0
-  m_Name: Obstacle
+  m_Name: Obstacle_Tanker
   m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
