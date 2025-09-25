@@ -507,20 +507,54 @@ public class Player : MonoBehaviour
     }
 
 
+
+
+
     [Header("模拟跳跃")]
     // 模拟跳跃高度
-    public float zHeight = 0f;
+    public float zHeight = 0f; // 相对当前Platform（地面基准）的离地高度
     float zVelocity = 0f;
     float gravity = -20f; // 可以调成 -20f 更快落下
     float jumpForce = 10f;//原来是5f
 
+    [Header("地面基准与公差")]
+    public float GroundEpsilon = 0.02f; // 落地公差：越大越“黏地”
+
     // 角色跳跃偏移对象（Spine动画对象）
-    float groundY = 0f; // 初始化地面位置
+    public float groundY = 0f; // 初始化地面位置// 世界坐标中的跑道基线Y（不含平台厚度）
+
     bool wasInAir = false; // 前一帧是否在空中
+
+
+    // 将 Platform 作为“当前地面基准Z”（例如 0 / 3 / 1.5 ...）
+    // 用属性保证切换平台时不会“瞬移”
+    [SerializeField] private float _platform = 0.01f;
+    public float Platform
+    {
+        get => _platform;
+        set
+        {
+            if (Mathf.Approximately(_platform, value)) return;
+
+            // 切换平台：保持“世界高度（_platform + zHeight）”不变
+            float worldZBefore = _platform + zHeight;
+            _platform = value;
+            zHeight = worldZBefore - _platform;
+
+            // 若当前已在地面附近，直接夹到0，避免负值渗入
+            if (zHeight < 0f && Mathf.Abs(zHeight) <= GroundEpsilon)
+                zHeight = 0f;
+        }
+    }
+
     public void PlayJump()
     {
         if (IsGrounded())
         {
+
+            // 让平台暂时“不可判定”，允许跳起来
+            //zHeight = Platform + 0.01f; // 立刻把高度略微抬高，脱离地面
+
             //Debug.Log("跳跃");
             zVelocity = jumpForce;
             airborneState = AirborneType.Jump;////////////////////////////////////////////////////////////////(跳起和飞踢落地都需要这个)
@@ -544,19 +578,20 @@ public class Player : MonoBehaviour
 
     void CheckJump()
     {
-        // 应用重力
+        // 1) 重力与高度积分（相对当前Platform的高度）
         zVelocity += gravity * Time.deltaTime;
         zHeight += zVelocity * Time.deltaTime;
-        //if (!isDodge) 
-        //{
-        //    zHeight += zVelocity * Time.deltaTime;
-        //}
 
 
-        bool isGroundedNow = zHeight <= 0f;
+
+        //bool isGroundedNow = zHeight <= 0f;
+        // 2) 是否落地（只看相对高度 zHeight）
+        bool isGroundedNow = zHeight <= GroundEpsilon;
 
         if (isGroundedNow)
         {
+
+
             if (wasInAir)
             {
                 frameEvents._Effect_falldown(); // 公共落地音效
@@ -593,48 +628,87 @@ public class Player : MonoBehaviour
                 }
             }
 
+
+
+            // 3) 归零相对高度，归零垂直速度
             zHeight = 0f;
             zVelocity = 0f;
             knockbackX = 0f;
-            groundY = transform.position.y;
+
+          
+            // 4) 重新计算 groundY：把“当前世界Y - Platform”作为基线
+            //   这样下一帧用统一公式回写位置不会跳变
+            groundY = transform.position.y - Platform;
+
+
+
             airborneState = AirborneType.None; // 重置状态
            
         }
 
-        if (zHeight > 0f)
-        {
-            Vector3 pos = transform.position;
-            pos.y = groundY + zHeight;
-            pos.z = -1f; // 跳跃时到前面
-            transform.position = pos;
 
+        // 5) 统一位置回写
+        Vector3 pos = transform.position;
+        if (!isGroundedNow) // 空中
+        {
+            pos.y = groundY + Platform + zHeight;
+            pos.z = -1f;
             anim.SetBool("Jump", true);
-
-
-            //当玩家在空中的时候可以隐藏碰撞体防止卡一下
-            Collider2D.enabled = false;
-
-
+            if (Collider2D) Collider2D.enabled = false;
         }
-        else
+        else // 落地
         {
-            Vector3 pos = transform.position;
-            pos.z = 0f; // 落地恢复排序
-            transform.position = pos;
+            pos.y = groundY + Platform;
+            pos.z = 0f;
             anim.SetBool("Jump", false);
-
-
-            //落地出现碰撞体
-            Collider2D.enabled = true;
+            if (Collider2D) Collider2D.enabled = true;
         }
+        transform.position = pos;
 
-        // 更新前一帧状态
+
+
+
+
+
+        //if (zHeight > Platform)
+        //{
+        //    Vector3 pos = transform.position;
+        //    pos.y = groundY + zHeight;
+        //    pos.z = -1f; // 跳跃时到前面
+        //    transform.position = pos;
+        //
+        //    anim.SetBool("Jump", true);
+        //
+        //
+        //    //当玩家在空中的时候可以隐藏碰撞体防止卡一下
+        //    Collider2D.enabled = false;
+        //
+        //
+        //}
+        //else
+        //{
+        //    Vector3 pos = transform.position;
+        //
+        //    pos.y = groundY; // 一定不要用 Platform
+        //
+        //    pos.z = 0f; // 落地恢复排序
+        //    transform.position = pos;
+        //    anim.SetBool("Jump", false);
+        //
+        //
+        //    //落地出现碰撞体
+        //    Collider2D.enabled = true;
+        //}
+
+
+
+
+        // 6) 记录上一帧是否在空中
         wasInAir = !isGroundedNow;
 
 
-       
 
-        //被击飞
+        // 7) 水平击飞（仍按你原逻辑）
         if (!IsGrounded() && knockbackX != 0f)
         {
             transform.position += new Vector3(knockbackX * Time.deltaTime, 0f, 0f);
@@ -646,11 +720,16 @@ public class Player : MonoBehaviour
         }
     }
 
+
     public bool IsGrounded()
     {
-        return zHeight <= 0.01f; // 只要高度为 0 即为落地
-    }
+        //return zHeight <= 0.01f; // 只要高度为 0 即为落地
+        //return zHeight <= Platform; //通过改变这个来让玩家被定在空中
 
+        // 只看相对高度是否接近0，而不是和 Platform 比较
+        return zHeight <= GroundEpsilon;
+    }
+    //public float Platform = 0.01f;
 
 
     [Header("影子控制")]
@@ -665,7 +744,7 @@ public class Player : MonoBehaviour
 
         // 1. 保持影子在地面（角色 X，地面 Y）
         Vector3 pos = transform.position;
-        shadow.position = new Vector3(pos.x, groundY, pos.z);
+        shadow.position = new Vector3(pos.x, groundY + Platform, pos.z);
 
         // 2. 计算当前缩放（高度越高越小）
         float t = Mathf.Clamp01(zHeight / maxJumpHeight); // 0~1
@@ -673,45 +752,77 @@ public class Player : MonoBehaviour
         shadow.localScale = shadowBaseScale * scale;
 
         // 可选：你也可以改变 Alpha 值
-        var color = shadow.GetComponent<SpriteRenderer>().color;
-        color.a = Mathf.Lerp(1f, 0.6f, t);
-        shadow.GetComponent<SpriteRenderer>().color = color;
+        //var color = shadow.GetComponent<SpriteRenderer>().color;
+        //color.a = Mathf.Lerp(1f, 0.6f, t);
+        //shadow.GetComponent<SpriteRenderer>().color = color;
+
+        var sr = shadow.GetComponent<SpriteRenderer>();
+        if (sr)
+        {
+            var color = sr.color;
+            color.a = Mathf.Lerp(1f, 0.6f, t);
+            sr.color = color;
+        }
     }
 
     [Header("被击飞与飞踢")]
-    float knockbackX = 0f; // 击飞时的水平速度（正负代表方向）
+    bool isKnockback = false;
+    enum AirborneType { None, Jump, Knocked }
+    AirborneType airborneState = AirborneType.None;
+    float knockbackX = 0f;
+
 
     public void Knockback(float force)
     {
         knockbackX = force;
-        zVelocity = 10;//这里被击飞力度
-        airborneState = AirborneType.Knocked; // 设置为不可操作
-        isKnockback = true;//被击飞期间无法受伤/切断输入
-
-        if (knockbackX < 0)
-            anim.gameObject.transform.localScale = new Vector3(-1, 1, 1);
-        else if (knockbackX > 0)
-            anim.gameObject.transform.localScale = new Vector3(1, 1, 1);
+        zVelocity = 10f;
+        airborneState = AirborneType.Knocked;
+        isKnockback = true;
+        anim.gameObject.transform.localScale = new Vector3(force < 0 ? -1 : 1, 1, 1);
     }
 
     public void FlyKick(float force)
     {
         knockbackX = force;
-        zVelocity = 2;//飞踢力度
-        airborneState = AirborneType.Jump; // 可操作
-
-        if (knockbackX < 0)
-            anim.gameObject.transform.localScale = new Vector3(-1, 1, 1);
-        else if (knockbackX > 0)
-            anim.gameObject.transform.localScale = new Vector3(1, 1, 1);
+        zVelocity = 2f;
+        airborneState = AirborneType.Jump;
+        anim.gameObject.transform.localScale = new Vector3(force < 0 ? -1 : 1, 1, 1);
     }
 
-    //分开落地触发
-    enum AirborneType { None, Jump, Knocked }
 
-    AirborneType airborneState = AirborneType.None;
-
-    private bool isKnockback = false; // 被击飞中无法输入、无法受击
+    //float knockbackX = 0f; // 击飞时的水平速度（正负代表方向）
+    //
+    //public void Knockback(float force)
+    //{
+    //    knockbackX = force;
+    //    zVelocity = 10;//这里被击飞力度
+    //    airborneState = AirborneType.Knocked; // 设置为不可操作
+    //    isKnockback = true;//被击飞期间无法受伤/切断输入
+    //
+    //    if (knockbackX < 0)
+    //        anim.gameObject.transform.localScale = new Vector3(-1, 1, 1);
+    //    else if (knockbackX > 0)
+    //        anim.gameObject.transform.localScale = new Vector3(1, 1, 1);
+    //}
+    //
+    //public void FlyKick(float force)
+    //{
+    //    knockbackX = force;
+    //    zVelocity = 2;//飞踢力度
+    //    airborneState = AirborneType.Jump; // 可操作
+    //
+    //    if (knockbackX < 0)
+    //        anim.gameObject.transform.localScale = new Vector3(-1, 1, 1);
+    //    else if (knockbackX > 0)
+    //        anim.gameObject.transform.localScale = new Vector3(1, 1, 1);
+    //}
+    //
+    ////分开落地触发
+    //enum AirborneType { None, Jump, Knocked }
+    //
+    //AirborneType airborneState = AirborneType.None;
+    //
+    //private bool isKnockback = false; // 被击飞中无法输入、无法受击
 
     [Header("闪避触发")]
 

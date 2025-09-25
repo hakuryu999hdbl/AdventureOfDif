@@ -42,11 +42,11 @@ public class AreaEncounterController : MonoBehaviour
         areaActivated = true;
 
         // 1. 设置相机边界
-        RoomGenerator.SetNewBounds(cameraBoundsCollider);
+        //RoomGenerator.SetNewBounds(cameraBoundsCollider);
 
         // 2. 封锁通路
-        if (blockade != null)
-            blockade.SetActive(true);
+        //if (blockade != null)
+        //    blockade.SetActive(true);
 
         // 3. 生成敌人
         foreach (GameObject enemyPrefab in enemyPrefabs)

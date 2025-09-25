@@ -51,12 +51,12 @@ public class DustManager : MonoBehaviour
             if (stateInfo.IsName("run")||stateInfo.IsName("grab_run"))
             {
                 currentMode = Mode.Run;
-                Debug.Log("run");
+                //Debug.Log("run");
             }
             else if (stateInfo.IsName("walk")||stateInfo.IsName("grab_walk"))
             {
                 currentMode = Mode.Walk;
-                Debug.Log("walk");
+                //Debug.Log("walk");
             }
             else
             {
