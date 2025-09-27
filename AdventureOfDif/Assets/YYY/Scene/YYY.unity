@@ -424,6 +424,7 @@ MonoBehaviour:
   - {fileID: 1646150128747128934, guid: d13aae03ddc59ef4b932560fcc8ac37e, type: 3}
   - {fileID: 1967909261539020752, guid: 7948c008e0e065e4090d50d44d3aaacf, type: 3}
   - {fileID: 218134277489668189, guid: 0745b55c8bf7e3f4ebfdc29289756e8c, type: 3}
+  - {fileID: 3312832327539875266, guid: f49b981210ff7be45beaa6a151d768dd, type: 3}
   confiner: {fileID: 1973605812}
   Player: {fileID: 65564740}
   AstarPath: {fileID: 249096737}
@@ -1120,7 +1121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 436301101}
   m_Layer: 0
-  m_Name: 1_Roof
+  m_Name: 1_Roof_FrontWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
