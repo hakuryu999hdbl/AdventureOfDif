@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f7a44326b8969db4dbd6e0cd39b775e6
+guid: c6bbaf682a11f7241bc6925e6f004215
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -359383933599515680
-    second: "\u5DF7\u9053\u53C2\u80032_0"
+      213: -2102666907391434036
+    second: home_ring_light_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u5DF7\u9053\u53C2\u80032_0"
+      name: home_ring_light_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2416
-        height: 1020
+        width: 575
+        height: 213
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,8 +127,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0eb71db6736330bf0800000000000000
-      internalID: -359383933599515680
+      spriteID: cc2e6ff8693d1d2e0800000000000000
+      internalID: -2102666907391434036
       vertices: []
       indices: 
       edges: []
@@ -136,7 +136,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -144,7 +144,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\u5DF7\u9053\u53C2\u80032_0": -359383933599515680
+      home_ring_light_0: -2102666907391434036
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

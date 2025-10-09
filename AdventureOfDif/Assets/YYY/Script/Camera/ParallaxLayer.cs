@@ -11,10 +11,10 @@ public class ParallaxLayer : MonoBehaviour
    
     void Start()
     {
-       GameObject Player = GameObject.FindGameObjectWithTag("Player");
-        Vector3 pos = transform.position;
-        pos.x = Player.transform.position.x;
-        transform.position = pos;
+       //GameObject Player = GameObject.FindGameObjectWithTag("Player");
+       // Vector3 pos = transform.position;
+       // pos.x = Player.transform.position.x;
+       // transform.position = pos;
 
         cameraTransform = Camera.main.transform;
 

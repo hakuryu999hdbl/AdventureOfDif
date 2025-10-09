@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: f7a44326b8969db4dbd6e0cd39b775e6
+guid: a95eee3961efa774784d2d67a556b707
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -359383933599515680
-    second: "\u5DF7\u9053\u53C2\u80032_0"
+      213: 6427476687895179806
+    second: home_wall_3_0
+  - first:
+      213: -2471050261266330473
+    second: home_wall_3_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +49,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -113,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u5DF7\u9053\u53C2\u80032_0"
+      name: home_wall_3_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2416
-        height: 1020
+        width: 836
+        height: 845
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,8 +130,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0eb71db6736330bf0800000000000000
-      internalID: -359383933599515680
+      spriteID: e12b8105efbf23950800000000000000
+      internalID: 6427476687895179806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home_wall_3_1
+      rect:
+        serializedVersion: 2
+        x: 1065
+        y: 181
+        width: 9
+        height: 664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79c851b21e015bdd0800000000000000
+      internalID: -2471050261266330473
       vertices: []
       indices: 
       edges: []
@@ -136,7 +160,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -144,7 +168,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\u5DF7\u9053\u53C2\u80032_0": -359383933599515680
+      home_wall_3_0: 6427476687895179806
+      home_wall_3_1: -2471050261266330473
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
