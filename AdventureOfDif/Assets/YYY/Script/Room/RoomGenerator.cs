@@ -17,24 +17,37 @@ public class RoomGenerator : MonoBehaviour
         //根据当前临时存档读取位置
         switch (GameFlowData.nextAreaId) 
         {
-            default:
+            //大路
             case "Area01_1":
             case "Area01_2":
                 SetArea(0);
                 break;
-            
+            //停车场
             case "Area02_1":
             case "Area02_2":
                 SetArea(1);
                 break;
-
+            //仓库
             case "Area03_1":
                 SetArea(2);
                 break;
 
+            //小巷
             case "Area04_1":
             case "Area04_2":
                 SetArea(3);
+                break;
+
+            //健身房
+            case "Area05_1":
+            case "Area05_2":
+            case "Area05_3":
+                SetArea(4);
+                break;
+            default:
+            //健身房内部
+            case "Area06_1":
+                SetArea(5);
                 break;
         }
 
@@ -96,6 +109,8 @@ public class RoomGenerator : MonoBehaviour
             case "Area02_1":
             case "Area03_1":
             case "Area04_1":
+            case "Area05_1":
+            case "Area06_1":
                 Transform PlayerPoint = NewArea.transform.Find("PointForPlayer_1");
                 Player.transform.position = PlayerPoint.position;
                 break;
@@ -103,8 +118,15 @@ public class RoomGenerator : MonoBehaviour
             case "Area01_2":
             case "Area02_2":
             case "Area04_2":
+            case "Area05_2":
                 Transform PlayerPoint_2 = NewArea.transform.Find("PointForPlayer_2");
                 Player.transform.position = PlayerPoint_2.position;
+                break;
+
+
+            case "Area05_3":
+                Transform PlayerPoint_3 = NewArea.transform.Find("PointForPlayer_3");
+                Player.transform.position = PlayerPoint_3.position;
                 break;
         }
 

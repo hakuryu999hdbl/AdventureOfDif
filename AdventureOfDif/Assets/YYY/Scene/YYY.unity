@@ -425,6 +425,8 @@ MonoBehaviour:
   - {fileID: 1967909261539020752, guid: 7948c008e0e065e4090d50d44d3aaacf, type: 3}
   - {fileID: 218134277489668189, guid: 0745b55c8bf7e3f4ebfdc29289756e8c, type: 3}
   - {fileID: 3312832327539875266, guid: f49b981210ff7be45beaa6a151d768dd, type: 3}
+  - {fileID: 5353862127057988490, guid: b249cc969d3e9d34484399c0da6fff93, type: 3}
+  - {fileID: 5709505278263450279, guid: 0f9a356d7fbc9e5408d2af8444265976, type: 3}
   confiner: {fileID: 1973605812}
   Player: {fileID: 65564740}
   AstarPath: {fileID: 249096737}
