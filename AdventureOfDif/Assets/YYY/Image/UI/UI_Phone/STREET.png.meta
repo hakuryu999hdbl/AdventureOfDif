@@ -1,10 +1,25 @@
 fileFormatVersion: 2
-guid: 5a92167015fcdf8429ec1ece886751d7
+guid: 8caf03c0fb5f76646a45733ac18e15ab
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4996164782684723633
-    second: home_wall_Side_0
+      213: 2926294898973026984
+    second: STREET_0
+  - first:
+      213: 6356934546747380186
+    second: STREET_1
+  - first:
+      213: -7172922153978664598
+    second: STREET_2
+  - first:
+      213: -7812963356555836813
+    second: STREET_3
+  - first:
+      213: -8305210660104208069
+    second: STREET_4
+  - first:
+      213: -5908941372294923448
+    second: STREET_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +64,7 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 7
+  alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
@@ -113,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: home_wall_Side_0
+      name: STREET_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 8
-        height: 661
+        width: 21
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,8 +142,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1b95d372661f55540800000000000000
-      internalID: 4996164782684723633
+      spriteID: 8aa2359d4b94c9820800000000000000
+      internalID: 2926294898973026984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: STREET_1
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 1
+        width: 24
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad1594f2a4e583850800000000000000
+      internalID: 6356934546747380186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: STREET_2
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 1
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6962920e49a47c90800000000000000
+      internalID: -7172922153978664598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: STREET_3
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 1
+        width: 18
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3728859d837c29390800000000000000
+      internalID: -7812963356555836813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: STREET_4
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 1
+        width: 18
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3183b358e6fdbc80800000000000000
+      internalID: -8305210660104208069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: STREET_5
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 1
+        width: 24
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84b70c9f0293ffda0800000000000000
+      internalID: -5908941372294923448
       vertices: []
       indices: 
       edges: []
@@ -144,7 +264,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      home_wall_Side_0: 4996164782684723633
+      STREET_0: 2926294898973026984
+      STREET_1: 6356934546747380186
+      STREET_2: -7172922153978664598
+      STREET_3: -7812963356555836813
+      STREET_4: -8305210660104208069
+      STREET_5: -5908941372294923448
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
