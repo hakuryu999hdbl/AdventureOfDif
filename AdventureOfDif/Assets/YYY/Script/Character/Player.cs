@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 using static GrabbableObject;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
@@ -27,6 +28,12 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isInputBlocked)
+        {
+
+            return;
+        }
+
 
         if (isRape)
         {
@@ -983,6 +990,8 @@ public class Player : MonoBehaviour
 
     #endregion
 
+
+
     /// <summary>
     /// 多端输入
     /// </summary>
@@ -998,6 +1007,7 @@ public class Player : MonoBehaviour
     private InputAction AttackAction;
 
     private InputAction DodgeAction;
+
 
     private void RegisterHandle()
     {

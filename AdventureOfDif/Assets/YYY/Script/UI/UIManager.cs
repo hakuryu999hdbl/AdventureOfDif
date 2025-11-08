@@ -135,7 +135,7 @@ public class UIManager : MonoBehaviour
     {
         PlayRegionBGM(1);
 
-
+        UpdatePhonePage_Highlight(); // 初始化高亮
     }
     public void PlayRegionBGM(int ChangeBGM)
     {
@@ -160,19 +160,28 @@ public class UIManager : MonoBehaviour
 
     public Animator Anim_Phone;
 
+    public Player player;
 
     public void OpenPhone()
     {
-        Anim_Phone.SetBool("Open",true);
+        Anim_Phone.SetBool("Open", true);
 
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
+
+        CurrentChooseMenu = 1;
+
+        player.isInputBlocked = true;
     }
 
     public void ClosePhone()
     {
-        Anim_Phone.SetBool("Open",false);
-        Time.timeScale = 1;
+        Anim_Phone.SetBool("Open", false);
 
+        //Time.timeScale = 1;
+
+        CurrentChooseMenu = 0;
+
+        player.isInputBlocked = false;
     }
 
     #endregion
@@ -190,7 +199,9 @@ public class UIManager : MonoBehaviour
 
     private InputAction pauseAction;
 
-    public int CurrentChooseList;
+    public int PhonePage_currentIndex;// 0 Item  1 MAP   2 Photo    3 Setting   4 Gallery  5 MoveList  6 Phone  7 EMAIL
+    public int CurrentChooseMenu;// 0 游戏界面  1 手机界面
+
     private void OnEnable()
     {
 
@@ -198,37 +209,39 @@ public class UIManager : MonoBehaviour
         pauseAction.performed += OnPause;
         pauseAction.Enable();
 
-        //  moveAction = inputActions.FindAction("Move");
-        //  confirmAction = inputActions.FindAction("Attack");  // 或者用名为 "Submit"
-        //  cancelAction = inputActions.FindAction("Dodge");    // 或者用名为 "Cancel"
-        //  deleteAction = inputActions.FindAction("Run");    // 或者用名为 "Delete"
-        //
-        //  moveAction.performed += OnMove;
-        //  confirmAction.started += OnConfirm;
-        //  cancelAction.started += OnCancel;
-        //  deleteAction.started += OnDelete;
-        //
-        //  moveAction.Enable();
-        //  confirmAction.Enable();
-        //  cancelAction.Enable();
-        //  deleteAction.Enable();
+        moveAction = inputActions.FindAction("Move");
+        moveAction.performed += OnMove;
+        moveAction.Enable();
+
+
+        confirmAction = inputActions.FindAction("Attack");  // 或者用名为 "Submit"
+        confirmAction.started += OnConfirm;
+        confirmAction.Enable();
+
+
+        cancelAction = inputActions.FindAction("Dodge");    // 或者用名为 "Cancel"
+        cancelAction.started += OnCancel;
+        cancelAction.Enable();
+
+
     }
 
     private void OnDisable()
     {
-        //moveAction.performed -= OnMove;
-        //confirmAction.started -= OnConfirm;
-        //cancelAction.started -= OnCancel;
-        //deleteAction.started -= OnDelete;
-        //pauseAction.started -= OnPause;
-        //
-        //
-        //moveAction.Disable();
-        //confirmAction.Disable();
-        //cancelAction.Disable();
-        //deleteAction.Disable();
-        //
-        //pauseAction.Disable();
+        pauseAction.started -= OnPause;
+        pauseAction.Disable();
+
+        moveAction.performed -= OnMove;
+        moveAction.Disable();
+
+
+        confirmAction.started -= OnConfirm;
+        confirmAction.Disable();
+
+        cancelAction.started -= OnCancel;
+        cancelAction.Disable();
+
+
     }
 
     //冷却时间
@@ -246,24 +259,36 @@ public class UIManager : MonoBehaviour
         #endregion
 
         Vector2 dir = ctx.ReadValue<Vector2>();
-        if (dir.x != 0)
+
+        if (CurrentChooseMenu==1) 
         {
+            // 当前菜单项内的左右切换
             if (dir.x > 0.5f)
             {
-               
+                PhonePage_currentIndex = Mathf.Clamp(PhonePage_currentIndex + 1, 0, 7);
+                UpdatePhonePage_Highlight();
             }
             else if (dir.x < -0.5f)
             {
-             
+                PhonePage_currentIndex = Mathf.Clamp(PhonePage_currentIndex - 1, 0, 7);
+                UpdatePhonePage_Highlight();
             }
 
-        }
-        else
-        {
-            
+            // 当前菜单项内的上下切换
+            if (dir.y > 0.5f)
+            {
+                PhonePage_currentIndex = Mathf.Clamp(PhonePage_currentIndex - 3, 0, 7);
+                UpdatePhonePage_Highlight();
 
-
+            }
+            else if (dir.y < -0.5f)
+            {
+                PhonePage_currentIndex = Mathf.Clamp(PhonePage_currentIndex + 3, 0, 7);
+                UpdatePhonePage_Highlight();
+            }
         }
+
+       
 
         AudioManager.instance.AudioPlay(AudioManager.instance.Attack_pai1);
 
@@ -273,20 +298,21 @@ public class UIManager : MonoBehaviour
     private void OnConfirm(InputAction.CallbackContext ctx)
     {
         // 执行当前选中按钮的点击逻辑
-        switch (CurrentChooseList)
+        if (CurrentChooseMenu == 1)
         {
-            case 0:
-
-              
-                break;
-            case 1:
+            switch (PhonePage_currentIndex)
+            {
+                case 0:
 
 
+                    break;
+                case 1:
 
-                break;
-            case 2:
-               
-                break;
+                    break;
+                case 2:
+
+                    break;
+            }
         }
 
 
@@ -297,43 +323,17 @@ public class UIManager : MonoBehaviour
     {
 
         // 执行当前选中按钮的点击逻辑
-        switch (CurrentChooseList)
+        if (CurrentChooseMenu == 1) 
         {
-            case 0:
-
-                break;
-            case 1:
-
-                break;
-            case 2:
-
-                break;
+         
+            Invoke(nameof(ClosePhone), 0.2f);
         }
+
+
 
         AudioManager.instance.AudioPlay(AudioManager.instance.SE_Glass);
     }
-
-    private void OnDelete(InputAction.CallbackContext ctx)
-    {
-
-        // 执行当前选中按钮的点击逻辑
-        switch (CurrentChooseList)
-        {
-            case 0:
-
-
-                break;
-            case 1:
-
-                break;
-            case 2:
-
-                break;
-        }
-
-        //AudioManager.instance.AudioPlay(AudioManager.instance.SE_Glass);
-    }
-
+    
     private void OnPause(InputAction.CallbackContext ctx)
     {
 
@@ -349,6 +349,24 @@ public class UIManager : MonoBehaviour
 
         AudioManager.instance.AudioPlay(AudioManager.instance.SE_Glass);
     }
+
+
+
+
+    [SerializeField] private Animator[] PhonePage_Animators; // 手机页面动画器数组
+    private void UpdatePhonePage_Highlight()
+    {
+        for (int i = 0; i < PhonePage_Animators.Length; i++)
+        {
+            if (PhonePage_Animators[i] == null) continue;
+
+            if (i == PhonePage_currentIndex)
+                PhonePage_Animators[i].SetTrigger("Pressed");
+            else
+                PhonePage_Animators[i].SetTrigger("Normal");
+        }
+    }
+
 
 
     #endregion
