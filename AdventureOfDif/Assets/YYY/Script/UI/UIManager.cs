@@ -135,7 +135,9 @@ public class UIManager : MonoBehaviour
     {
         PlayRegionBGM(1);
 
-        UpdatePhonePage_Highlight(); // 初始化高亮
+        UpdatePhonePage_Highlight(); // 初始化【手机主界面】高亮
+
+        ItemUnclockStart();//初始化【菜单界面】高亮
     }
     public void PlayRegionBGM(int ChangeBGM)
     {
@@ -169,10 +171,8 @@ public class UIManager : MonoBehaviour
         //Time.timeScale = 0;
 
         CurrentChooseMenu = 1;
-
         player.isInputBlocked = true;
     }
-
     public void ClosePhone()
     {
         Anim_Phone.SetBool("Open", false);
@@ -180,12 +180,90 @@ public class UIManager : MonoBehaviour
         //Time.timeScale = 1;
 
         CurrentChooseMenu = 0;
-
         player.isInputBlocked = false;
     }
 
+
+
+
+
+    public GameObject ItemPage;
+    public void Open_ItemMenu() 
+    {
+        ItemPage.SetActive(true);
+        CurrentChooseMenu = 2;
+    }
+    public void Close_ItemMenu()
+    {
+        ItemPage.SetActive(false);
+        CurrentChooseMenu = 1;
+    }
+ 
+
+
+
+
+
     #endregion
 
+    /// <summary>
+    /// 物品栏
+    /// </summary>
+    #region
+
+    public List<ItemOptionUI> itemButtons = new List<ItemOptionUI>();
+    int ItemCurrentIndex = 0;
+
+    public void ItemUnclockStart()
+    {
+        foreach (var btn in itemButtons)
+            btn.RefreshFromSave(); // 检查解锁与数量
+
+        // 查找第一个已解锁的物品
+        for (int i = 0; i < itemButtons.Count; i++)
+        {
+            if (itemButtons[i].unlocked)
+            {
+                ItemCurrentIndex = i;
+                break;
+            }
+        }
+
+        UpdateHighlight_Item();
+    }
+
+    void MoveSelection_Item(int step)
+    {
+        if (itemButtons.Count == 0) return;
+
+        // 取消旧高亮
+        itemButtons[ItemCurrentIndex].SetHighlight(false);
+
+        int max = itemButtons.Count;
+        int tries = 0;
+        int idx = ItemCurrentIndex;
+
+        do
+        {
+            idx = (idx + step + max) % max;
+            tries++;
+            if (itemButtons[idx].unlocked)
+            {
+                ItemCurrentIndex = idx;
+                break;
+            }
+        } while (tries < max);
+
+        UpdateHighlight_Item();
+    }
+
+    void UpdateHighlight_Item()
+    {
+        for (int i = 0; i < itemButtons.Count; i++)
+            itemButtons[i].SetHighlight(i == ItemCurrentIndex);
+    }
+
+    #endregion
 
     /// <summary>
     /// 菜单层面多端输入
@@ -195,12 +273,12 @@ public class UIManager : MonoBehaviour
     private InputAction moveAction;
     private InputAction confirmAction;
     private InputAction cancelAction;
-    private InputAction deleteAction;
+
 
     private InputAction pauseAction;
 
     public int PhonePage_currentIndex;// 0 Item  1 MAP   2 Photo    3 Setting   4 Gallery  5 MoveList  6 Phone  7 EMAIL
-    public int CurrentChooseMenu;// 0 游戏界面  1 手机界面
+    public int CurrentChooseMenu;// 0 游戏界面  1 手机界面   2物品栏界面
 
     private void OnEnable()
     {
@@ -288,7 +366,29 @@ public class UIManager : MonoBehaviour
             }
         }
 
-       
+        if (CurrentChooseMenu == 2)
+        {
+            // 当前菜单项内的左右切换
+            if (dir.x > 0.5f)
+            {
+                MoveSelection_Item(+1);
+            }
+            else if (dir.x < -0.5f)
+            {
+                MoveSelection_Item(-1);
+            }
+
+            // 当前菜单项内的上下切换
+            if (dir.y > 0.5f)
+            {
+                MoveSelection_Item(-3);
+            }
+            else if (dir.y < -0.5f)
+            {
+                MoveSelection_Item(+3);
+            }
+
+        }
 
         AudioManager.instance.AudioPlay(AudioManager.instance.Attack_pai1);
 
@@ -297,14 +397,14 @@ public class UIManager : MonoBehaviour
 
     private void OnConfirm(InputAction.CallbackContext ctx)
     {
-        // 执行当前选中按钮的点击逻辑
+        //手机主界面
         if (CurrentChooseMenu == 1)
         {
             switch (PhonePage_currentIndex)
             {
                 case 0:
-
-
+                    //进入物品栏菜单
+                    Invoke(nameof(Open_ItemMenu), 0.2f);
                     break;
                 case 1:
 
@@ -315,6 +415,14 @@ public class UIManager : MonoBehaviour
             }
         }
 
+        if (CurrentChooseMenu == 2)
+        {
+           // itemButtons[ItemCurrentIndex].UseItem();
+        }
+        
+
+
+
 
         AudioManager.instance.AudioPlay(AudioManager.instance.Attack_hit2);
     }
@@ -322,16 +430,33 @@ public class UIManager : MonoBehaviour
     private void OnCancel(InputAction.CallbackContext ctx)
     {
 
-        // 执行当前选中按钮的点击逻辑
+        //手机主界面
         if (CurrentChooseMenu == 1) 
         {
-         
-            Invoke(nameof(ClosePhone), 0.2f);
+            switch (PhonePage_currentIndex)
+            {
+                case 0:
+                    //退出手机
+                    Invoke(nameof(ClosePhone), 0.2f);
+                    break;
+                case 1:
+                  
+                    break;
+                case 2:
+
+                    break;
+            }
+           
         }
 
+        if (CurrentChooseMenu == 2)
+        {
+            //退出物品栏
+            Invoke(nameof(Close_ItemMenu), 0.2f);
+        }
 
+        AudioManager.instance.AudioPlay(AudioManager.instance.Attack_whip_1);
 
-        AudioManager.instance.AudioPlay(AudioManager.instance.SE_Glass);
     }
     
     private void OnPause(InputAction.CallbackContext ctx)
@@ -347,11 +472,11 @@ public class UIManager : MonoBehaviour
             OpenPhone();
         }
 
-        AudioManager.instance.AudioPlay(AudioManager.instance.SE_Glass);
+        AudioManager.instance.AudioPlay(AudioManager.instance.SE_Clothes);
     }
 
 
-
+  
 
     [SerializeField] private Animator[] PhonePage_Animators; // 手机页面动画器数组
     private void UpdatePhonePage_Highlight()
@@ -367,9 +492,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
+  
+
 
 
     #endregion
 
 
+   
 }
