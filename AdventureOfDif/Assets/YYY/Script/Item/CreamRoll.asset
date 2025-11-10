@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3449445fac496694c8c6a92b725d653c, type: 3}
+  m_Name: CreamRoll
+  m_EditorClassIdentifier: 
+  itemKey: CreamRoll
+  icon: {fileID: 21300000, guid: fb32a03d8fa3b7d4e816a277eb897e64, type: 3}
+  displayName:
+    ja: "\u30AF\u30EA\u30FC\u30E0\u30ED\u30FC\u30EB"
+    zhCN: "\u5976\u6CB9\u5377"
+    zhTW: "\u5976\u6CB9\u6372"
+    en: CreamRoll
+    ko: "\uD06C\uB9BC \uB864"
+  description:
+    ja: "\u3075\u308F\u3075\u308F\u306E\u4E00\u5DFB\u304D\u3002\u3057\u3063\u304B\u308A\u6E80\u305F\u3059\u3002"
+    zhCN: "\u677E\u8F6F\u7684\u4E00\u5377\uFF0C\u6062\u590D\u66F4\u624E\u5B9E\u3002"
+    zhTW: "\u9B06\u8EDF\u4E00\u5377\uFF0C\u56DE\u5FA9\u66F4\u624E\u5BE6\u3002"
+    en: Fluffy swirl, a solid bite of recovery.
+    ko: "\uD3ED\uC2E0\uD55C \uD55C \uBC14\uD034, \uB4E0\uB4E0\uD55C \uD68C\uBCF5."
+  effectType: 0
+  amount: 0
+  duration: 0
+  percent: 0

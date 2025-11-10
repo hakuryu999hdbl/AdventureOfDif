@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3449445fac496694c8c6a92b725d653c, type: 3}
+  m_Name: ButtPlug
+  m_EditorClassIdentifier: 
+  itemKey: ButtPlug
+  icon: {fileID: 21300000, guid: 0460e33bc90cb194182a4846688ebfc7, type: 3}
+  displayName:
+    ja: "\u30A2\u30CA\u30EB\u30D7\u30E9\u30B0"
+    zhCN: "\u809B\u585E"
+    zhTW: "\u809B\u585E"
+    en: ButtPlug
+    ko: "\uBC84\uD2B8 \uD50C\uB7EC\uADF8"
+  description:
+    ja: "\u30D0\u30A4\u30D6\u30EC\u30FC\u30BF\u30FC"
+    zhCN: "\u9707\u52A8\u68D2"
+    zhTW: "\u9707\u52D5\u68D2"
+    en: Vibrator
+    ko: "\uBC14\uC774\uBE0C\uB808\uC774\uD130"
+  effectType: 0
+  amount: 0
+  duration: 0
+  percent: 0

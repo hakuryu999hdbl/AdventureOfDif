@@ -1,8 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using NUnit.Framework.Interfaces;
+using TMPro;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static Pathfinding.RaycastModifier;
 
 
 public class UIManager : MonoBehaviour
@@ -11,6 +18,24 @@ public class UIManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+       
+
+    }
+
+
+    public string currentLocale = "zhCN"; // "ja","zhCN","zhTW","en","ko"
+
+    public void Getlanguage() 
+    {
+        switch (PlayerPrefs.GetInt("language"))
+        {
+            case 0: currentLocale = "ja"; break;
+            case 1: currentLocale = "zhCN"; break;
+            case 2: currentLocale = "zhTW"; break;
+            case 3: currentLocale = "en"; break;
+            case 4: currentLocale = "ko"; break;
+
+        }
 
     }
 
@@ -127,7 +152,7 @@ public class UIManager : MonoBehaviour
 
 
     /// <summary>
-    /// 区域背景音乐
+    /// 区域背景音乐（Start在这里）
     /// </summary>
     #region
 
@@ -138,6 +163,17 @@ public class UIManager : MonoBehaviour
         UpdatePhonePage_Highlight(); // 初始化【手机主界面】高亮
 
         ItemUnclockStart();//初始化【菜单界面】高亮
+
+        //PlayerPrefs.SetInt("Cola",12);
+        //PlayerPrefs.SetInt("ChocoBanana",4);
+        //PlayerPrefs.SetInt("Pudding", 3);
+        //PlayerPrefs.SetInt("Potion", 6);
+
+        //初始无物品显示
+        itemIcon.gameObject.SetActive(false);
+        itemNameText.gameObject.SetActive(false);
+        itemDescText.gameObject.SetActive(false);
+
     }
     public void PlayRegionBGM(int ChangeBGM)
     {
@@ -155,13 +191,95 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
+
+    /// <summary>
+    /// BGM/SE设置
+    /// </summary>
+    #region  
+
+    [SerializeField] private GameObject[] SettingPage_highlightObjs; // 设置高亮显示
+    public int SettingPagecurrentIndex = 0;//0 BGM  1 SE
+    private void UpdateSettingPage_Highlight()
+    {
+        for (int i = 0; i < SettingPage_highlightObjs.Length; i++)
+        {
+            SettingPage_highlightObjs[i].SetActive(i == SettingPagecurrentIndex);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+    [Header("BGM/SE设置")]
+    public AudioMixer audioMixer;
+    public AudioMixer BGM_Mixer;
+
+
+
+    public Image BGM_Bar;
+    public Image SE_Bar;
+
+    public float BGMVolume = 0f;
+    public float SEVolume = 0f;
+
+    private const float MinVolume = -80f;
+    private const float MaxVolume = 0f;
+
+
+    //-------- SE --------
+    public void SetSEVolune(float value)
+    {
+        SEVolume = Mathf.Clamp(value, MinVolume, MaxVolume);
+        audioMixer.SetFloat("MainVolume", SEVolume);
+        SE_Bar.fillAmount = Mathf.InverseLerp(MinVolume, MaxVolume, SEVolume);
+    }
+
+    public void SE_Up()
+    {
+        SetSEVolune(SEVolume + 10f);
+        Debug.Log("拉高 SE 音量：" + SEVolume);
+    }
+
+    public void SE_Down()
+    {
+        SetSEVolune(SEVolume - 10f);
+        Debug.Log("降低 SE 音量：" + SEVolume);
+    }
+
+    //-------- BGM --------
+    public void SetBGMVolune(float value)
+    {
+        BGMVolume = Mathf.Clamp(value, MinVolume, MaxVolume);
+        BGM_Mixer.SetFloat("BGMVolume", BGMVolume);
+        BGM_Bar.fillAmount = Mathf.InverseLerp(MinVolume, MaxVolume, BGMVolume);
+    }
+
+    public void BGM_Up()
+    {
+        SetBGMVolune(BGMVolume + 10f);
+        Debug.Log("拉高 BGM 音量：" + BGMVolume);
+    }
+
+    public void BGM_Down()
+    {
+        SetBGMVolune(BGMVolume - 10f);
+        Debug.Log("降低 BGM 音量：" + BGMVolume);
+    }
+
+    #endregion
+
     /// <summary>
     /// 手机菜单系统
     /// </summary>
     #region
-
+    [Header("手机菜单系统")]
     public Animator Anim_Phone;
-
     public Player player;
 
     public void OpenPhone()
@@ -188,21 +306,78 @@ public class UIManager : MonoBehaviour
 
 
     public GameObject ItemPage;
-    public void Open_ItemMenu() 
+    public void Open_ItemMenu()
     {
         ItemPage.SetActive(true);
         CurrentChooseMenu = 2;
+
+        UpdateHighlight_Item();
     }
     public void Close_ItemMenu()
     {
         ItemPage.SetActive(false);
         CurrentChooseMenu = 1;
     }
- 
+
+
+
+    public GameObject MapPage;
+    public void Open_MapMenu()
+    {
+        MapPage.SetActive(true);
+        CurrentChooseMenu = 3;
+
+    }
+    public void Close_MapMenu()
+    {
+        MapPage.SetActive(false);
+        CurrentChooseMenu = 1;
+    }
+
+
+
+    public GameObject SettingPage;
+    public void Open_SettingMenu()
+    {
+        SettingPage.SetActive(true);
+        CurrentChooseMenu = 5;
+    }
+    public void Close_SettingMenu()
+    {
+        SettingPage.SetActive(false);
+        CurrentChooseMenu = 1;
+    }
 
 
 
 
+    [Header("目标文本(状态栏的时间)")]
+    [SerializeField] private Text timeText; // 或 UnityEngine.UI.Text
+
+    [Header("显示格式")]
+    [SerializeField] private bool use24Hour = true;        // 24小时制
+    [SerializeField] private string format24 = "HH:mm";    // 例如 12:00
+    [SerializeField] private string format12 = "h:mm tt";  // 例如 12:00 AM/PM
+
+    private WaitForSecondsRealtime wait;
+
+
+
+    private IEnumerator UpdateClock()
+    {
+        while (true)
+        {
+            if (timeText)
+            {
+                DateTime now = DateTime.Now;
+                string s = use24Hour
+                    ? now.ToString(format24, CultureInfo.InvariantCulture)
+                    : now.ToString(format12, CultureInfo.InvariantCulture);
+                timeText.text = s;
+            }
+            yield return wait; // 实时计时，不受 timeScale 影响
+        }
+    }
 
     #endregion
 
@@ -232,7 +407,7 @@ public class UIManager : MonoBehaviour
         UpdateHighlight_Item();
     }
 
-    void MoveSelection_Item(int step)
+    public void MoveSelection_Item(int step)
     {
         if (itemButtons.Count == 0) return;
 
@@ -263,6 +438,43 @@ public class UIManager : MonoBehaviour
             itemButtons[i].SetHighlight(i == ItemCurrentIndex);
     }
 
+
+    [Header("物品详情UI")]
+    public Image itemIcon;
+    public Text itemNameText;
+    public Text itemDescText;
+
+
+    public void ShowItemInfo(ItemData data,int quantity)
+    {
+        if (data == null) { return; }
+        if(quantity <= 0)
+        {
+            itemIcon.gameObject.SetActive(false);
+            itemNameText.gameObject.SetActive(false);
+            itemDescText.gameObject.SetActive(false);
+        }
+        else
+        {
+            itemIcon.gameObject.SetActive(true);
+            itemNameText.gameObject.SetActive(true);
+            itemDescText.gameObject.SetActive(true);
+        }
+
+        if (itemIcon) itemIcon.sprite = data.icon;
+        if (itemNameText) itemNameText.text = data.displayName.Get(currentLocale);
+        if (itemDescText) itemDescText.text = data.description.Get(currentLocale);
+    }
+
+    public bool IsCurrentItem(ItemOptionUI item)
+    {
+        return itemButtons.Count > 0
+               && ItemCurrentIndex >= 0 && ItemCurrentIndex < itemButtons.Count
+               && itemButtons[ItemCurrentIndex] == item;
+    }
+
+    // 你的 MoveSelection_Item 已有；确保它会跳过 unlocked=false 或 inactive 的项
+
     #endregion
 
     /// <summary>
@@ -278,7 +490,7 @@ public class UIManager : MonoBehaviour
     private InputAction pauseAction;
 
     public int PhonePage_currentIndex;// 0 Item  1 MAP   2 Photo    3 Setting   4 Gallery  5 MoveList  6 Phone  7 EMAIL
-    public int CurrentChooseMenu;// 0 游戏界面  1 手机界面   2物品栏界面
+    public int CurrentChooseMenu;// 0 游戏界面  1 手机界面   2物品栏界面   3地图界面   5设置界面
 
     private void OnEnable()
     {
@@ -302,6 +514,10 @@ public class UIManager : MonoBehaviour
         cancelAction.Enable();
 
 
+
+        //打开时钟
+        wait = new WaitForSecondsRealtime(30f);   // 每秒更新一次；也可改成 30f/60f 省一点
+        StartCoroutine(UpdateClock());
     }
 
     private void OnDisable()
@@ -320,6 +536,10 @@ public class UIManager : MonoBehaviour
         cancelAction.Disable();
 
 
+
+
+        //关闭时钟
+        StopAllCoroutines();
     }
 
     //冷却时间
@@ -328,6 +548,9 @@ public class UIManager : MonoBehaviour
 
     private void OnMove(InputAction.CallbackContext ctx)
     {
+
+        if (player.isInputBlocked == false) { return; }
+
 
         #region 冷却时间
         if (Time.time - lastInputTime2 < inputCooldown2)
@@ -338,7 +561,7 @@ public class UIManager : MonoBehaviour
 
         Vector2 dir = ctx.ReadValue<Vector2>();
 
-        if (CurrentChooseMenu==1) 
+        if (CurrentChooseMenu == 1)
         {
             // 当前菜单项内的左右切换
             if (dir.x > 0.5f)
@@ -364,7 +587,7 @@ public class UIManager : MonoBehaviour
                 PhonePage_currentIndex = Mathf.Clamp(PhonePage_currentIndex + 3, 0, 7);
                 UpdatePhonePage_Highlight();
             }
-        }
+        }//手机菜单主界面
 
         if (CurrentChooseMenu == 2)
         {
@@ -388,7 +611,61 @@ public class UIManager : MonoBehaviour
                 MoveSelection_Item(+3);
             }
 
-        }
+        }//物品栏界面
+
+
+        if (CurrentChooseMenu == 5)
+        {
+            // 当前菜单项内的左右切换
+            if (dir.x > 0.5f)
+            {
+                switch (SettingPagecurrentIndex)
+                {
+                    case 0:
+                        BGM_Up();
+                        break;
+                    case 1:
+                        SE_Up();
+                        break;
+
+                }
+
+            }
+            else if (dir.x < -0.5f)
+            {
+
+                switch (SettingPagecurrentIndex)
+                {
+
+
+                    case 0:
+                        BGM_Down();
+                        break;
+                    case 1:
+                        SE_Down();
+                        break;
+
+                }
+            }
+
+
+            // 当前菜单项内的上下切换
+            if (dir.y > 0.5f)
+            {
+                SettingPagecurrentIndex = Mathf.Clamp(SettingPagecurrentIndex - 1, 0, 2);
+                UpdateSettingPage_Highlight();
+
+
+            }
+            else if (dir.y < -0.5f)
+            {
+                SettingPagecurrentIndex = Mathf.Clamp(SettingPagecurrentIndex + 1, 0, 2);
+                UpdateSettingPage_Highlight();
+
+
+            }
+
+        }//设置界面
 
         AudioManager.instance.AudioPlay(AudioManager.instance.Attack_pai1);
 
@@ -397,6 +674,8 @@ public class UIManager : MonoBehaviour
 
     private void OnConfirm(InputAction.CallbackContext ctx)
     {
+        if (player.isInputBlocked == false) { return; }
+
         //手机主界面
         if (CurrentChooseMenu == 1)
         {
@@ -407,19 +686,25 @@ public class UIManager : MonoBehaviour
                     Invoke(nameof(Open_ItemMenu), 0.2f);
                     break;
                 case 1:
-
+                    //进入地图菜单
+                    Invoke(nameof(Open_MapMenu), 0.2f);
                     break;
                 case 2:
 
                     break;
+                case 3:
+                    //进入设置界面
+                    Invoke(nameof(Open_SettingMenu), 0.2f);
+                    break;
             }
         }
 
+        //物品栏界面
         if (CurrentChooseMenu == 2)
         {
-           // itemButtons[ItemCurrentIndex].UseItem();
+            itemButtons[ItemCurrentIndex].UseItem();
         }
-        
+
 
 
 
@@ -429,24 +714,14 @@ public class UIManager : MonoBehaviour
 
     private void OnCancel(InputAction.CallbackContext ctx)
     {
+        if (player.isInputBlocked == false) { return; }
 
         //手机主界面
-        if (CurrentChooseMenu == 1) 
+        if (CurrentChooseMenu == 1)
         {
-            switch (PhonePage_currentIndex)
-            {
-                case 0:
-                    //退出手机
-                    Invoke(nameof(ClosePhone), 0.2f);
-                    break;
-                case 1:
-                  
-                    break;
-                case 2:
+            //退出手机
+            Invoke(nameof(ClosePhone), 0.2f);
 
-                    break;
-            }
-           
         }
 
         if (CurrentChooseMenu == 2)
@@ -455,10 +730,22 @@ public class UIManager : MonoBehaviour
             Invoke(nameof(Close_ItemMenu), 0.2f);
         }
 
+        if (CurrentChooseMenu == 3)
+        {
+            //退出地图界面
+            Invoke(nameof(Close_MapMenu), 0.2f);
+        }
+
+        if (CurrentChooseMenu == 5)
+        {
+            //退出地图界面
+            Invoke(nameof(Close_SettingMenu), 0.2f);
+        }
+
         AudioManager.instance.AudioPlay(AudioManager.instance.Attack_whip_1);
 
     }
-    
+
     private void OnPause(InputAction.CallbackContext ctx)
     {
 
@@ -476,7 +763,7 @@ public class UIManager : MonoBehaviour
     }
 
 
-  
+
 
     [SerializeField] private Animator[] PhonePage_Animators; // 手机页面动画器数组
     private void UpdatePhonePage_Highlight()
@@ -492,12 +779,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
-  
+
 
 
 
     #endregion
 
 
-   
+
 }

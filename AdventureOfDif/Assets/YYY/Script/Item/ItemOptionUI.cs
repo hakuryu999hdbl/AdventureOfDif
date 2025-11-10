@@ -1,0 +1,122 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class ItemOptionUI : MonoBehaviour
+{
+    public string itemKey;           // 例如 "ITEM_Potion"
+    public Animator highlightAnim;   // 或 GameObject highlightObj
+    public bool unlocked;            // 有无获得（数量>0 等同解锁）
+    public int quantity;             // 数量
+    public Text Quantity;            // 数量显示
+
+    public ItemData data;             // ← 改成引用数据
+
+    public void RefreshFromSave()
+    {
+        quantity = PlayerPrefs.GetInt(itemKey, 0);
+        unlocked = quantity > 0;
+        gameObject.SetActive(unlocked);
+        SetHighlight(false);
+        // TODO: 刷新数量文字
+        Quantity.text = quantity.ToString();
+    }
+
+    public void SetHighlight(bool on)
+    {
+        if (!highlightAnim) return;
+
+
+        if (!highlightAnim.isActiveAndEnabled) return; // 物体未激活或组件被禁用
+        if (highlightAnim.runtimeAnimatorController == null) return; // 没有控制器就别触发
+
+        if (on && unlocked)
+        {
+            highlightAnim.SetTrigger("Pressed");
+            // 把显示内容交给 UIManager
+            UIManager.instance.ShowItemInfo(data, quantity);
+        }
+        else
+        {
+            highlightAnim.SetTrigger("Normal");
+        }
+    }
+
+    public void UseItem()
+    {
+        if (!unlocked || quantity <= 0) return;
+
+        // TODO: 实际消耗逻辑
+        quantity--;
+        PlayerPrefs.SetInt(itemKey, quantity);
+
+        //if (quantity <= 0)
+        //    gameObject.SetActive(false);
+        //
+        //RefreshFromSave();//使用完物品刷新
+
+        Debug.Log("使用物品：" + itemKey);
+
+
+
+        switch(itemKey)
+        {
+            case "Pudding":
+                UIManager.instance.player.ChangeHealth(100,0);
+                break;
+            case "Cola":
+                UIManager.instance.player.ChangeHealth(200, 0);
+                break;
+            case "ChocoBanana":
+                UIManager.instance.player.ChangeHealth(300, 0);
+                break;
+            case "Cone":
+                UIManager.instance.player.ChangeHealth(500, 0);
+                break;
+            case "CreamRoll":
+                UIManager.instance.player.ChangeHealth(700, 0);
+                break;
+            case "FriedCutlet":
+                UIManager.instance.player.ChangeHealth(1000, 0);
+                break;
+            case "Potion":
+                UIManager.instance.player.ChangeSex(100);
+                break;
+            case "Incense":
+                UIManager.instance.player.ChangeSex(200);
+                break;
+            case "ButtPlug":
+                UIManager.instance.player.ChangeSex(500);
+                break;
+            case "Vibrator":
+                UIManager.instance.player.ChangeSex(1000);
+                break;
+        }
+
+        //刷新面板
+        UIManager.instance.ShowItemInfo(data, quantity);
+
+        // 数量用尽
+        if (quantity <= 0)
+        {
+            unlocked = false;
+
+            // 若“我”正是当前选中，先把选择挪走
+            if (UIManager.instance.IsCurrentItem(this))
+            {
+                // 你希望向右/向下选谁就传什么步长（网格 3 列就传 +1 或 +3）
+                UIManager.instance.MoveSelection_Item(+1); // 或 +3
+            }
+
+            // 再把自己隐藏
+            gameObject.SetActive(false);
+            return;
+        }
+
+       
+
+        RefreshFromSave();//使用完物品刷新
+
+    }
+}

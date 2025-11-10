@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 51c99fc0c54e2d148b586310bd92622a
+guid: 135e1ffe3c588a146806fad01f928ba2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7340884004942882301
-    second: "\u5BB6\u53C2\u80031_0"
+      213: 815793743173884503
+    second: UI_Phone_Setting_Bar_2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u5BB6\u53C2\u80031_0"
+      name: UI_Phone_Setting_Bar_2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2223
-        height: 866
+        width: 352
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,8 +127,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: df5a7fbdb1f00e560800000000000000
-      internalID: 7340884004942882301
+      spriteID: 75a9ddf4618425b00800000000000000
+      internalID: 815793743173884503
       vertices: []
       indices: 
       edges: []
@@ -136,14 +136,15 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_Phone_Setting_Bar_2_0: 815793743173884503
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

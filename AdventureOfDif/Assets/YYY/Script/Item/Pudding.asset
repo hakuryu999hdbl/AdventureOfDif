@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3449445fac496694c8c6a92b725d653c, type: 3}
+  m_Name: Pudding
+  m_EditorClassIdentifier: 
+  itemKey: Pudding
+  icon: {fileID: 21300000, guid: 4fce39ccd5b82104e9e6aa6cfbcb2c31, type: 3}
+  displayName:
+    ja: "\u679C\u81A0\u30D7\u30EA\u30F3"
+    zhCN: "\u679C\u80F6\u5E03\u4E01"
+    zhTW: "\u679C\u81A0\u5E03\u4E01"
+    en: Jelly Pudding
+    ko: "\uC824\uB9AC \uD478\uB529"
+  description:
+    ja: "\u5730\u5143\u7279\u88FD\u306EQ\u5F3E\u30B9\u30A4\u30FC\u30C4\u3002\u98DF\u3079\u904E\u304E\u308B\u3068\u820C\u304C\u30AA\u30EC\u30F3\u30B8\u8272\u306B\u306A\u308B\u3068\u304B\u3002"
+    zhCN: "\u672C\u5730\u7279\u5236\u7684Q\u5F39\u751C\u70B9\uFF0C\u636E\u8BF4\u5403\u591A\u4E86\u820C\u5934\u50CF\u67D3\u4E86\u6A59\u8272\u3002"
+    zhTW: "\u5728\u5730\u7279\u88FD\u7684Q\u5F48\u751C\u9EDE\uFF0C\u807D\u8AAA\u5403\u591A\u820C\u982D\u6703\u67D3\u6210\u6A58\u8272\u3002"
+    en: A bouncy local dessert. Rumor says too many will tint your tongue orange.
+    ko: "\uD0F1\uAE00\uD55C \uC9C0\uC5ED \uD2B9\uC0B0 \uB514\uC800\uD2B8. \uB9CE\uC774
+      \uBA39\uC73C\uBA74 \uD600\uAC00 \uC8FC\uD669\uBE5B\uC774 \uB41C\uB2E4\uB294
+      \uC18C\uBB38."
+  effectType: 0
+  amount: 0
+  duration: 0
+  percent: 0

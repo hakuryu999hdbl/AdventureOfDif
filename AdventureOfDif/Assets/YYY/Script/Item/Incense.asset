@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3449445fac496694c8c6a92b725d653c, type: 3}
+  m_Name: Incense
+  m_EditorClassIdentifier: 
+  itemKey: Incense
+  icon: {fileID: 21300000, guid: 9ec1e169bd5b47144a19090d977314eb, type: 3}
+  displayName:
+    ja: "\u30A4\u30F3\u30BB\u30F3\u30B9"
+    zhCN: "\u718F\u9999"
+    zhTW: "\u718F\u9999"
+    en: Incense
+    ko: "\uC778\uC13C\uC2A4"
+  description:
+    ja: "\u307B\u306E\u7518\u3044\u7159\u3002\u611F\u899A\u3092\u3084\u308F\u3089\u304B\u304F\u89E3\u304F\u3002"
+    zhCN: "\u5FAE\u751C\u7684\u70DF\u6C14\uFF0C\u653E\u677E\u5E76\u8F6F\u5316\u611F\u5B98\u3002"
+    zhTW: "\u5FAE\u751C\u7684\u70DF\u6C14\uFF0C\u653E\u677E\u5E76\u8F6F\u5316\u611F\u5B98\u3002"
+    en: Sweet haze that loosens the senses.
+    ko: "\uB2EC\uD070\uD55C \uC5F0\uBB34\uAC00 \uAC10\uAC01\uC744 \uB290\uC2A8\uD558\uAC8C
+      \uD55C\uB2E4."
+  effectType: 0
+  amount: 0
+  duration: 0
+  percent: 0

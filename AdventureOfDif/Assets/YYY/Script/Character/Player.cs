@@ -1297,11 +1297,18 @@ public class Player : MonoBehaviour
                 }
 
 
-               // if (isHoldingObject) 
-               // {
-               //     ThrowHeldObject();
-               // }//举着物品被攻击时物品会扔出去
+                // if (isHoldingObject) 
+                // {
+                //     ThrowHeldObject();
+                // }//举着物品被攻击时物品会扔出去
 
+
+
+                //血特效
+                GameObject effectPrefabs = Instantiate(BloodEffect, transform.position, transform.rotation);
+                Destroy(effectPrefabs, 2f);
+
+                RedScreen.SetActive(true);
 
             }//格挡
 
@@ -1309,6 +1316,9 @@ public class Player : MonoBehaviour
             switch (TypeOfAttack)
             {
                 case 0:
+
+                    break;
+
                 case 1:
                     Hit_Effect.SetActive(true);//打击伤害
                     break;
@@ -1331,7 +1341,7 @@ public class Player : MonoBehaviour
 
             //有1秒左右的伤害冷却
             Invoke("HurtOver", 0.5f);
-            RedScreen.SetActive(true);
+         
             isScreaming = true;
 
 
@@ -1349,9 +1359,7 @@ public class Player : MonoBehaviour
                     break;
             }
 
-            //血特效
-            GameObject effectPrefabs = Instantiate(BloodEffect, transform.position, transform.rotation);
-            Destroy(effectPrefabs, 2f);
+          
 
 
 
