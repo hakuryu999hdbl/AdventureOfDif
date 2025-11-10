@@ -44,6 +44,8 @@ public class ItemData : ScriptableObject
     public LocalizedText displayName; // 名称
     public LocalizedText description; // 简介
 
+    public int Price = 0;            //价格
+
     // 效果
     public ItemEffectType effectType;
     public int amount = 0;            // 通用强度

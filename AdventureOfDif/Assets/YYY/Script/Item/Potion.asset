@@ -26,6 +26,7 @@ MonoBehaviour:
     zhTW: "\u85E5\u5473\u7559\u820C\uFF0C\u5FC3\u7387\u5FAE\u5347\u3002"
     en: Bitter trace, pulse slightly rises.
     ko: "\uC501\uC4F8\uD55C \uC5EC\uC6B4, \uB9E5\uBC15\uC774 \uC870\uAE08 \uC0C1\uC2B9."
+  Price: 6
   effectType: 0
   amount: 0
   duration: 0

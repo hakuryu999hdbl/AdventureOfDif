@@ -28,6 +28,7 @@ MonoBehaviour:
     ko: "\uD0F1\uAE00\uD55C \uC9C0\uC5ED \uD2B9\uC0B0 \uB514\uC800\uD2B8. \uB9CE\uC774
       \uBA39\uC73C\uBA74 \uD600\uAC00 \uC8FC\uD669\uBE5B\uC774 \uB41C\uB2E4\uB294
       \uC18C\uBB38."
+  Price: 12
   effectType: 0
   amount: 0
   duration: 0

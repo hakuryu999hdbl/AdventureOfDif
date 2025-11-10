@@ -26,6 +26,7 @@ MonoBehaviour:
     zhTW: "\u5F88\u5FEB\u5C31\u878D\uFF0C\u4F46\u5E78\u798F\u4F86\u5F97\u66F4\u5FEB\u3002"
     en: Melts fast, happiness faster.
     ko: "\uBE68\uB9AC \uB179\uC9C0\uB9CC \uD589\uBCF5\uC740 \uB354 \uBE60\uB974\uB2E4."
+  Price: 8
   effectType: 0
   amount: 0
   duration: 0

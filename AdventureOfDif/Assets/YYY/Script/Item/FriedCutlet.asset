@@ -26,6 +26,7 @@ MonoBehaviour:
     zhTW: "\u6CB9\u8207\u9E7D\uFF0C\u7D66\u4F60\u6230\u9B25\u7684\u52C1\u982D\u3002"
     en: Salt and grease, ready to fight.
     ko: "\uAE30\uB984\uACFC \uC18C\uAE08, \uC804\uD22C \uAE30\uBD84 \uC0C1\uC2B9."
+  Price: 15
   effectType: 0
   amount: 0
   duration: 0

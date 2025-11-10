@@ -74,6 +74,7 @@ public class FrameEvents : MonoBehaviour
     public void _SE_Set() { audioS.PlayOneShot(AudioManager.SE_Set); }
     public void _SE_Reba() { audioS.PlayOneShot(AudioManager.SE_Reba); }
     public void _SE_Swing() { audioS.PlayOneShot(AudioManager.SE_Swing); }
+    public void _SE_Reji() { audioS.PlayOneShot(AudioManager.SE_Reji); }
     public void _SE_Glass() { audioS.PlayOneShot(AudioManager.SE_Glass); }
     public void _SE_Wings() { audioS.PlayOneShot(AudioManager.SE_Wings); }
 

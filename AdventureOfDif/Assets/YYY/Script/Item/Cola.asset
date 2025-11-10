@@ -26,6 +26,7 @@ MonoBehaviour:
     zhTW: "\u4E00\u53E3\u4E0B\u53BB\u6C23\u6CE1\u76F4\u885D\u5929\u9748\u84CB\u3002"
     en: Sharp fizz that wakes your throat in a gulp.
     ko: "\uD55C \uBAA8\uAE08\uC5D0 \uAE68\uC5B4\uB098\uB294 \uAC15\uD55C \uD0C4\uC0B0."
+  Price: 5
   effectType: 0
   amount: 0
   duration: 0

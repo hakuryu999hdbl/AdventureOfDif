@@ -26,6 +26,7 @@ MonoBehaviour:
     zhTW: "\u9B06\u8EDF\u4E00\u5377\uFF0C\u56DE\u5FA9\u66F4\u624E\u5BE6\u3002"
     en: Fluffy swirl, a solid bite of recovery.
     ko: "\uD3ED\uC2E0\uD55C \uD55C \uBC14\uD034, \uB4E0\uB4E0\uD55C \uD68C\uBCF5."
+  Price: 20
   effectType: 0
   amount: 0
   duration: 0

@@ -18,14 +18,14 @@ public class UIManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-       
+
 
     }
 
 
     public string currentLocale = "zhCN"; // "ja","zhCN","zhTW","en","ko"
 
-    public void Getlanguage() 
+    public void Getlanguage()
     {
         switch (PlayerPrefs.GetInt("language"))
         {
@@ -174,6 +174,9 @@ public class UIManager : MonoBehaviour
         itemNameText.gameObject.SetActive(false);
         itemDescText.gameObject.SetActive(false);
 
+
+        ChangeMoney(0, false);//更新钱
+
     }
     public void PlayRegionBGM(int ChangeBGM)
     {
@@ -312,6 +315,8 @@ public class UIManager : MonoBehaviour
         CurrentChooseMenu = 2;
 
         UpdateHighlight_Item();
+
+        ItemUnclockStart();//初始化【菜单界面】高亮
     }
     public void Close_ItemMenu()
     {
@@ -445,10 +450,10 @@ public class UIManager : MonoBehaviour
     public Text itemDescText;
 
 
-    public void ShowItemInfo(ItemData data,int quantity)
+    public void ShowItemInfo(ItemData data, int quantity)
     {
         if (data == null) { return; }
-        if(quantity <= 0)
+        if (quantity <= 0)
         {
             itemIcon.gameObject.SetActive(false);
             itemNameText.gameObject.SetActive(false);
@@ -490,7 +495,7 @@ public class UIManager : MonoBehaviour
     private InputAction pauseAction;
 
     public int PhonePage_currentIndex;// 0 Item  1 MAP   2 Photo    3 Setting   4 Gallery  5 MoveList  6 Phone  7 EMAIL
-    public int CurrentChooseMenu;// 0 游戏界面  1 手机界面   2物品栏界面   3地图界面   5设置界面
+    public int CurrentChooseMenu;//-1商店界面  0 游戏界面  1 手机界面   2物品栏界面   3地图界面   5设置界面   
 
     private void OnEnable()
     {
@@ -560,6 +565,30 @@ public class UIManager : MonoBehaviour
         #endregion
 
         Vector2 dir = ctx.ReadValue<Vector2>();
+
+
+
+
+
+
+        if (CurrentChooseMenu == -1)
+        {
+
+
+            // 当前菜单项内的上下切换
+            if (dir.y > 0.5f)
+            {
+
+                MoveSelection_Shop(-1);
+
+            }
+            else if (dir.y < -0.5f)
+            {
+                MoveSelection_Shop(1);
+            }
+        }//商店界面
+
+
 
         if (CurrentChooseMenu == 1)
         {
@@ -676,6 +705,14 @@ public class UIManager : MonoBehaviour
     {
         if (player.isInputBlocked == false) { return; }
 
+
+        //商店界面
+        if (CurrentChooseMenu == -1)
+        {
+            shopRows[shopIndex].Buy();
+        }
+
+
         //手机主界面
         if (CurrentChooseMenu == 1)
         {
@@ -697,26 +734,37 @@ public class UIManager : MonoBehaviour
                     Invoke(nameof(Open_SettingMenu), 0.2f);
                     break;
             }
+
+            AudioManager.instance.AudioPlay(AudioManager.instance.Attack_hit2);
         }
 
         //物品栏界面
         if (CurrentChooseMenu == 2)
         {
             itemButtons[ItemCurrentIndex].UseItem();
+
+            AudioManager.instance.AudioPlay(AudioManager.instance.Attack_hit2);
         }
 
 
 
 
 
-        AudioManager.instance.AudioPlay(AudioManager.instance.Attack_hit2);
+
     }
 
     private void OnCancel(InputAction.CallbackContext ctx)
     {
         if (player.isInputBlocked == false) { return; }
 
-        //手机主界面
+
+        if (CurrentChooseMenu == -1)
+        {
+            //退出商店
+            Invoke(nameof(CloseShop), 0.2f);
+        }
+
+
         if (CurrentChooseMenu == 1)
         {
             //退出手机
@@ -785,6 +833,173 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
+    /// <summary>
+    /// 商店系统/金币系统
+    /// </summary>
+    #region
+    [Header("金币")]
+    public Text MoneyText;
+    public Text MoneyText_2;
+    public void ChangeMoney(int amount, bool UseVoice = true)
+    {
+        // 取当前值
+        int currentMoney = PlayerPrefs.GetInt("Money", 0);
+
+        // 修改
+        currentMoney += amount;
+        if (currentMoney < 0) currentMoney = 0;   // 防止出现负数
+
+        // 存回 PlayerPrefs
+        PlayerPrefs.SetInt("Money", currentMoney);
+        PlayerPrefs.Save();
+
+        // 更新 UI
+        MoneyText.text = currentMoney.ToString();
+        MoneyText_2.text = currentMoney.ToString();
+
+        //Debug.Log("目前存档里的钱币: " + currentMoney);
+
+        if (UseVoice) { AudioManager.instance.AudioPlay(AudioManager.instance.SE_Reji); }
+
+    }
 
 
+    [Header("商店类别")]
+    public Image ShopImage, Shop_Line;
+    public Sprite Shop_Sex, Shop_Common_1, Shop_Common_2, Shop_Line_1, Shop_Line_2;
+
+    public GameObject ShopCavans;
+
+    public void OpenShop(int ShopType)//  1超市一  2超市二   3涩情超市
+    {
+        List<ItemData> chosenPool = null;
+        switch (ShopType)
+        {
+
+
+            case 1:
+                ShopImage.sprite = Shop_Common_1;
+                Shop_Line.sprite = Shop_Line_1;
+                chosenPool = shopPool; // 普通商店1
+                break;
+
+            case 2:
+                ShopImage.sprite = Shop_Common_2;
+                Shop_Line.sprite = Shop_Line_1;
+                chosenPool = shopPool; // 普通商店2
+                break;
+
+            case 3:
+                ShopImage.sprite = Shop_Sex;
+                Shop_Line.sprite = Shop_Line_2;
+                chosenPool = shopPool_Sex; // 特殊商品
+                break;
+        }
+
+
+        ShopCavans.SetActive(true);
+
+
+        CurrentChooseMenu = -1;
+        player.isInputBlocked = true;
+
+
+
+        OpenShopWithPool(chosenPool);
+    }
+
+    public void CloseShop()
+    {
+        ShopCavans.SetActive(false);
+
+        CurrentChooseMenu = 0;
+        player.isInputBlocked = false;
+    }
+
+
+
+    [Header("Shop")]
+    public List<ShopItemUI> shopRows;     // 右侧4行
+    public List<ItemData> shopPool;       // 全部可卖物品
+    public List<ItemData> shopPool_Sex;   // 特殊可卖物品
+    public Vector2 priceCoefRange = new Vector2(1.0f, 1.5f); // 不同店折扣/加价
+    int shopIndex;
+
+
+    public void OpenShopWithPool(List<ItemData> pool)
+    {
+        if (pool == null || pool.Count == 0)
+        {
+            Debug.LogWarning("⚠ 没有找到可用商品池！");
+            return;
+        }
+
+
+        float coef = 1.0f;
+
+        // 打乱并挑出前 4 个上架
+        var shuffled = new List<ItemData>(pool);
+        Shuffle(shuffled);
+
+
+
+        for (int i = 0; i < shopRows.Count; i++)
+        {
+            if (i < pool.Count)
+            {
+                var d = pool[i];
+                int price = Mathf.RoundToInt(d.Price * coef * UnityEngine.Random.Range(priceCoefRange.x, priceCoefRange.y));
+                shopRows[i].Setup(d, price, -1, true); // 无限库存示例
+            }
+            else shopRows[i].Setup(null, 0, 0, false);
+        }
+
+        shopIndex = FindFirstActiveRow();
+        UpdateHighlight_Shop();
+        player.isInputBlocked = true;
+        ShopCavans.SetActive(true);
+    }
+
+    int FindFirstActiveRow()
+    {
+        for (int i = 0; i < shopRows.Count; i++)
+            if (shopRows[i].gameObject.activeInHierarchy) return i;
+        return 0;
+    }
+
+    void UpdateHighlight_Shop()
+    {
+        for (int i = 0; i < shopRows.Count; i++)
+            shopRows[i].SetHighlight(i == shopIndex);
+    }
+
+    public void MoveSelection_Shop(int step)
+    {
+        if (shopRows.Count == 0) return;
+        shopRows[shopIndex].SetHighlight(false);
+        int max = shopRows.Count;
+        shopIndex = (shopIndex + step + max) % max;
+        UpdateHighlight_Shop();
+    }
+
+    //public void ConfirmShop()
+    //{
+    //    if (shopRows.Count == 0) return;
+    //    shopRows[shopIndex].Buy();
+    //}
+
+    // 工具
+    void Shuffle<T>(IList<T> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int j = UnityEngine.Random.Range(0, i + 1);
+            (list[i], list[j]) = (list[j], list[i]);
+        }
+    }
+
+
+
+
+    #endregion
 }

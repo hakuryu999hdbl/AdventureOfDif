@@ -951,12 +951,19 @@ public class Enemy : MonoBehaviour
 
     }//击倒
 
+    bool DieBonue = false;//死亡触发金币只能一次
+
     public void Die()
     {
         isDie = true;
 
+      
+        if (!DieBonue)
+        {
+            UIManager.instance.ChangeMoney(Random.Range(1, 10), true);
 
-
+            DieBonue = true;
+        }
 
         anim.Play("dead");//防止倒下又起来,搞了第二死亡
 

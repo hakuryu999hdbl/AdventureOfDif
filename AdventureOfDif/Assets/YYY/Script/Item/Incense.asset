@@ -27,6 +27,7 @@ MonoBehaviour:
     en: Sweet haze that loosens the senses.
     ko: "\uB2EC\uD070\uD55C \uC5F0\uBB34\uAC00 \uAC10\uAC01\uC744 \uB290\uC2A8\uD558\uAC8C
       \uD55C\uB2E4."
+  Price: 10
   effectType: 0
   amount: 0
   duration: 0

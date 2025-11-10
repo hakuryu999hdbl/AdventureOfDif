@@ -49,7 +49,7 @@ public class AudioManager : MonoBehaviour
                      Attack_blood1, Attack_blood2, Attack_blood3,
                      Effect_tear1, Effect_falldown, Effect_tuo, Effect_zipper, SE_Clothes, Effect_camera, Effect_shower, Effect_water_buku_1, Effect_water_buku_2,
                      SE_Semen_1, SE_Semen_2, SE_Semen_3, SE_Semen_fuck_in, SE_Semen_fuck_out,
-                     SE_Water, SE_Set, SE_Reba, SE_Swing, SE_Glass,
+                     SE_Water, SE_Set, SE_Reba, SE_Swing, SE_Reji, SE_Glass,
                      SE_Wings,
 
                      Jinye_zhajin1_fast, Jinye_zhajin1_middle, Jinye_zhajin1_one, Jinye_zhajin1_slow,

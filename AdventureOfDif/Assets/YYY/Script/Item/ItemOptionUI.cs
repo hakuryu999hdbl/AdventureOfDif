@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Purchasing;
 using UnityEngine.UI;
 
 public class ItemOptionUI : MonoBehaviour
@@ -12,6 +13,7 @@ public class ItemOptionUI : MonoBehaviour
     public Text Quantity;            // 数量显示
 
     public ItemData data;             // ← 改成引用数据
+
 
     public void RefreshFromSave()
     {
@@ -113,10 +115,16 @@ public class ItemOptionUI : MonoBehaviour
             gameObject.SetActive(false);
             return;
         }
+        else 
+        {
+            //SetHighlight(true);//还是让自己显示
+        }
 
-       
 
         RefreshFromSave();//使用完物品刷新
 
     }
+
+
+
 }

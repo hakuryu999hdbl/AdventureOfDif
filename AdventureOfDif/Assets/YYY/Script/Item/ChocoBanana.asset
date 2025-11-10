@@ -27,6 +27,7 @@ MonoBehaviour:
     en: Festival treat that perks you up a bit.
     ko: "\uCD95\uC81C \uB178\uC810\uC758 \uB2E8\uB9DB, \uCCB4\uB825\uC744 \uC870\uAE08
       \uD68C\uBCF5."
+  Price: 16
   effectType: 0
   amount: 0
   duration: 0

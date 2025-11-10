@@ -4417,6 +4417,7 @@ MonoBehaviour:
   SE_Set: {fileID: 8300000, guid: 6073449632710d14db4509eb2980d817, type: 3}
   SE_Reba: {fileID: 8300000, guid: 89dedf9457779c047a93314b588114c0, type: 3}
   SE_Swing: {fileID: 8300000, guid: ac370bee7ae686442881cfceec4cf7d7, type: 3}
+  SE_Reji: {fileID: 0}
   SE_Glass: {fileID: 8300000, guid: 09d77a6bde0df0045b01e5126620f909, type: 3}
   SE_Wings: {fileID: 8300000, guid: 31c9aa6358fa8e14ea46c6ca038857dc, type: 3}
   Jinye_zhajin1_fast: {fileID: 8300000, guid: 8efce6470d010fd47a3031f2b2906a68, type: 3}

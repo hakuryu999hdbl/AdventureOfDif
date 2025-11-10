@@ -27,6 +27,7 @@ MonoBehaviour:
     en: Fine waves in sequence, shaving the edge of reason.
     ko: "\uBBF8\uC138\uD55C \uD30C\uB3D9\uC774 \uC5F0\uC18D\uC73C\uB85C, \uC774\uC131\uC758
       \uAC00\uC7A5\uC790\uB9AC\uB97C \uAE4E\uC544\uB0B8\uB2E4."
+  Price: 10
   effectType: 0
   amount: 0
   duration: 0
