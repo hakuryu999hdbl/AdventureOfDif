@@ -40,7 +40,14 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isRape)
+        if (isAVGFreeze) 
+        {
+            //处于AVG中不能移动
+            moveSpeed = 0;
+            aiPath.maxSpeed = 0f;
+            CleanupStatus();
+        }
+        else if (isRape)
         {
 
             //防止被更改状态的强制间断动画触发
@@ -146,6 +153,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public bool isAVGFreeze = false;//处于AVG内部所有敌人停止
     public bool isRape = false;
     public bool isAttack = false;
     public bool isDie = false;

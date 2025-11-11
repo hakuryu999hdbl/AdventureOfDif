@@ -17,7 +17,7 @@ public class RoomGenerator : MonoBehaviour
         //根据当前临时存档读取位置
         switch (GameFlowData.nextAreaId) 
         {
-            default:
+           
             //大路
             case "Area01_1":
             case "Area01_2":
@@ -45,7 +45,8 @@ public class RoomGenerator : MonoBehaviour
             case "Area05_3":
                 SetArea(4);
                 break;
-           
+
+            default:
             //健身房内部
             case "Area06_1":
                 SetArea(5);

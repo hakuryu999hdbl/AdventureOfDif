@@ -24,25 +24,30 @@ public class DialogSystem : MonoBehaviour
     [Header("对话，背景，角色")]
     public GameObject TextButton;
 
-    public Image BG_Image;
-    public Sprite Story_00, 
-                  Story_01, Story_02, Story_03, Story_04, Story_05, Story_06, Story_07, Story_08, Story_09, Story_10,
-                  Story_11, Story_12, Story_13, Story_14, Story_15, Story_16, Story_17, Story_18, Story_19, Story_20, 
-                  Story_21, Story_22, Story_23, Story_24, Story_25, Story_26, Story_27, Story_28,
-                  Story_29, Story_30, Story_31, Story_32, Story_33, Story_34,
-                  Story_35, Story_36, Story_37, Story_38, Story_39, Story_40,
-                  Story_41, Story_42, Story_43, Story_44, Story_45, Story_46, Story_47, Story_48, Story_49,
-                  Story_50, Story_51, Story_52, Story_53, Story_54, Story_55, Story_56, Story_57, Story_58, Story_59, Story_60, Story_61, Story_62, Story_63, Story_64,
-                  Story_65, Story_66, Story_67, Story_68, Story_69, Story_70, Story_71, Story_72, Story_73, Story_74, Story_75, Story_76, Story_77,
-                  Story_78, Story_79, Story_80, Story_81, Story_82, Story_83, Story_84,
-                  Story_85, Story_86, Story_87, Story_88, Story_89, Story_90;
+    [Header("Dif")]
+    public Image Dif_Image;
+    public Sprite Dif_Happy, Dif_Angry, Dif_Sad, Dif_Confusion, Dif_Common;
+    public GameObject Dif_Name;
+    [Header("Enemy")]
+    public Image Enemy_Image;
+    public Sprite Enemy_01;
+    public GameObject Enemy_Name;
+    [Header("Boss")]
+    public Image Boss_Image;
+    public Sprite Boss_Common, Boss_Angry, Boss_Sad, Boss_Shame;
+    public GameObject Boss_Name;
+    [Header("Sin")]
+    public Image Sin_Image;
+    public Sprite Sin_Common, Sin_Happy, Sin_Confusion, Sin_Angry, Sin_Sad, Sin_Like;
+    public GameObject Sin_Name;
+
 
 
     private void OnEnable()
     {
         //textLabel.text = textList[index];
         //index++;
-        Invoke("Read",0.1f);
+        Invoke("Read", 0.1f);
 
     }//一开始不会产生空白，OnEnable会在Start之前，Awake之后被调用
 
@@ -69,51 +74,27 @@ public class DialogSystem : MonoBehaviour
         // Clear the existing dictionary to avoid key conflicts
         textAssets.Clear();
 
-        switch (PlayerPrefs.GetInt("language"))
-        {
-            case 0:
-                textAssets.Add(999, Resources.Load<TextAsset>("TXT_Japanese/J_AI_Animation_Start"));
+        //switch (PlayerPrefs.GetInt("language"))
+        //{
+        //    case 0:
+        //        textAssets.Add(1001, Resources.Load<TextAsset>("TXT_Japanese/J_Story_01"));
+        //        break;
+        //    case 1:
+        //        textAssets.Add(1001, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_Story_01"));
+        //        break;
+        //    case 2:
+        //        textAssets.Add(1001, Resources.Load<TextAsset>("TXT_Traditional_Chinese/C2_Story_01"));
+        //        break;
+        //    case 3:
+        //        textAssets.Add(1001, Resources.Load<TextAsset>("TXT_English/E_Story_01"));
+        //        break;
+        //    case 4:
+        //        textAssets.Add(1001, Resources.Load<TextAsset>("TXT_Korean/K_Story_01"));                                                                                             
+        //        break;
+        //}
 
-                textAssets.Add(1001, Resources.Load<TextAsset>("TXT_Japanese/J_Story_1"));
-                textAssets.Add(1002, Resources.Load<TextAsset>("TXT_Japanese/J_Story_2"));
-                textAssets.Add(1003, Resources.Load<TextAsset>("TXT_Japanese/J_Story_3"));
-                textAssets.Add(1004, Resources.Load<TextAsset>("TXT_Japanese/J_Story_4"));
-                textAssets.Add(1005, Resources.Load<TextAsset>("TXT_Japanese/J_Story_5"));
-                textAssets.Add(1006, Resources.Load<TextAsset>("TXT_Japanese/J_Story_6"));
-                textAssets.Add(1007, Resources.Load<TextAsset>("TXT_Japanese/J_Story_7"));
-                textAssets.Add(1008, Resources.Load<TextAsset>("TXT_Japanese/J_Story_8"));
-                textAssets.Add(1009, Resources.Load<TextAsset>("TXT_Japanese/J_Story_9"));
-                break;
-            case 1:
-                textAssets.Add(999, Resources.Load<TextAsset>("TXT_Chinese/C_AI_Animation_Start"));
 
-                textAssets.Add(1001, Resources.Load<TextAsset>("TXT_Chinese/C_Story_1"));
-                textAssets.Add(1002, Resources.Load<TextAsset>("TXT_Chinese/C_Story_2"));
-                textAssets.Add(1003, Resources.Load<TextAsset>("TXT_Chinese/C_Story_3"));
-                textAssets.Add(1004, Resources.Load<TextAsset>("TXT_Chinese/C_Story_4"));
-                textAssets.Add(1005, Resources.Load<TextAsset>("TXT_Chinese/C_Story_5"));
-                textAssets.Add(1006, Resources.Load<TextAsset>("TXT_Chinese/C_Story_6"));
-                textAssets.Add(1007, Resources.Load<TextAsset>("TXT_Chinese/C_Story_7"));
-                textAssets.Add(1008, Resources.Load<TextAsset>("TXT_Chinese/C_Story_8"));
-                textAssets.Add(1009, Resources.Load<TextAsset>("TXT_Chinese/C_Story_9"));
-                break;
-            case 2:
-                textAssets.Add(999, Resources.Load<TextAsset>("TXT_English/E_AI_Animation_Start"));
-
-                textAssets.Add(1001, Resources.Load<TextAsset>("TXT_English/E_Story_1"));
-                textAssets.Add(1002, Resources.Load<TextAsset>("TXT_English/E_Story_2"));
-                textAssets.Add(1003, Resources.Load<TextAsset>("TXT_English/E_Story_3"));
-                textAssets.Add(1004, Resources.Load<TextAsset>("TXT_English/E_Story_4"));
-                textAssets.Add(1005, Resources.Load<TextAsset>("TXT_English/E_Story_5"));
-                textAssets.Add(1006, Resources.Load<TextAsset>("TXT_English/E_Story_6"));
-                textAssets.Add(1007, Resources.Load<TextAsset>("TXT_English/E_Story_7"));
-                textAssets.Add(1008, Resources.Load<TextAsset>("TXT_English/E_Story_8"));
-                textAssets.Add(1009, Resources.Load<TextAsset>("TXT_English/E_Story_9"));
-                break;
-        }
-
-      
-
+        textAssets.Add(1001, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_Story_01"));
 
 
 
@@ -170,12 +151,13 @@ public class DialogSystem : MonoBehaviour
         }
     }
 
-    [Header("结局动画中有没有邻过奖")]
-    public bool isTakePrize = false;
 
 
     IEnumerator SetTextUI()
     {
+
+        AudioManager.instance.AudioPlay(AudioManager.instance.Attack_pai1);
+
         if (index >= textList.Count)
         {
             Debug.LogWarning("index 超出 textList 范围");
@@ -199,530 +181,163 @@ public class DialogSystem : MonoBehaviour
 
 
 
-            //case "Girl":
-            //    text.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);//粉色
-            //    index++;
-            //    break;
+            #region [Dif]
 
-            case "MAN":
-                text.color = new Color(0.0f, 0.68f, 0.93f, 1.0f);//蓝色(市民群众)
-                index++;
-                break;
-            case "DarkRed":
-                text.color = new Color(0.8f, 0.2f, 0.2f, 1.0f); // 深红色(梦魔)（女特工）
-                index++;
-                break;
-            case "LightRed":
-                text.color = new Color(1.0f, 0.2f, 0.5f, 1.0f); //浅红色(菲西莉亚)
-                index++;
-                break;
-            case "Green":
-                text.color = new Color(0.0f, 1.0f, 0.0f, 1.0f); // 绿色（魔族女干部）
-                index++;
-                break;
-            case "LightBlue":
-                text.color = new Color(0.68f, 0.85f, 0.9f, 1.0f); // 浅蓝色（艾莉丝）
-                index++;
-                break;
-            case "Gold":
-                text.color = new Color(1.0f, 0.84f, 0.0f, 1.0f); // 金色（叛变战姬大队长）
-                index++;
-                break;
-            case "Yellow":
-                text.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); // 黄色（莱拉）
-                index++;
-                break;
-            case "Orange":
-                text.color = new Color(1.0f, 0.5f, 0.0f, 1.0f); // 橙色(播种母体)
-                index++;
-                break;
-            case "Purple":
-                text.color = new Color(0.7f, 0.3f, 0.7f, 1.0f); // 紫色 (女记者)
-                index++;
-                break;
-            case "Gray":
-                text.color = new Color(0.7f, 0.75f, 0.8f, 1.0f); // 亮灰色(牧者)（政府特工）(研究员)
+            case "Dif_Happy":
+
+                text.color = new Color(0.0f, 0.68f, 0.93f, 1.0f);//蓝色(Dif)
+                SetActiveSpeaker("Dif");
+                Dif_Image.sprite = Dif_Happy;
+
                 index++;
                 break;
 
+            case "Dif_Angry":
+
+                text.color = new Color(0.0f, 0.68f, 0.93f, 1.0f);//蓝色(Dif)
+                SetActiveSpeaker("Dif");
+                Dif_Image.sprite = Dif_Angry;
+
+                index++;
+                break;
+
+            case "Dif_Sad":
+
+                text.color = new Color(0.0f, 0.68f, 0.93f, 1.0f);//蓝色(Dif)
+                SetActiveSpeaker("Dif");
+                Dif_Image.sprite = Dif_Angry;
+
+                index++;
+                break;
+
+            case "Dif_Confusion":
+
+                text.color = new Color(0.0f, 0.68f, 0.93f, 1.0f);//蓝色(Dif)
+                SetActiveSpeaker("Dif");
+                Dif_Image.sprite = Dif_Confusion;
+
+                index++;
+                break;
+
+            case "Dif_Common":
+
+                text.color = new Color(0.0f, 0.68f, 0.93f, 1.0f);//蓝色(Dif)
+                SetActiveSpeaker("Dif");
+                Dif_Image.sprite = Dif_Common;
+
+                index++;
+                break;
+            #endregion
+
+            #region [Sin]
+
+            case "Sin_Common":
+
+                text.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); // 黄色（Sin）
+                SetActiveSpeaker("Sin");
+                Sin_Image.sprite = Sin_Common;
+
+                index++;
+                break;
+
+            case "Sin_Happy":
+
+                text.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); // 黄色（Sin）
+                SetActiveSpeaker("Sin");
+                Sin_Image.sprite = Sin_Happy;
+
+                index++;
+                break;
+
+            case "Sin_Confusion":
+
+                text.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); // 黄色（Sin）
+                SetActiveSpeaker("Sin");
+                Sin_Image.sprite = Sin_Confusion;
+
+                index++;
+                break;
+
+            case "Sin_Angry":
+
+                text.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); // 黄色（Sin）
+                SetActiveSpeaker("Sin");
+                Sin_Image.sprite = Sin_Angry;
+
+                index++;
+                break;
+
+            case "Sin_Sad":
+
+                text.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); // 黄色（Sin）
+                SetActiveSpeaker("Sin");
+                Sin_Image.sprite = Sin_Sad;
+
+                index++;
+                break;
+
+            case "Sin_Like":
+
+                text.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); // 黄色（Sin）
+                SetActiveSpeaker("Sin");
+                Sin_Image.sprite = Sin_Like;
+
+                index++;
+                break;
 
 
-            //case "Over":
-            //    ChangeStory();//通常对话结束
-            //    index++;
-            //    break;
-            //
-            //
-            //case "ReStart":
-            //    //Spine_FrameEvents.ReStart();//教程结束回主菜单
-            //    index++;
-            //    break;
+            #endregion
 
-         
+            #region [Boss]
+
+            case "Boss_Common":
+                text.color = new Color(0.8f, 0.2f, 0.2f, 1.0f); // 深红色（女Boss）
+                SetActiveSpeaker("Boss");
+                Sin_Image.sprite = Boss_Common;
+
+                index++;
+                break;
+
+            case "Boss_Angry":
+                text.color = new Color(0.8f, 0.2f, 0.2f, 1.0f); // 深红色（女Boss）
+                SetActiveSpeaker("Boss");
+                Sin_Image.sprite = Boss_Angry;
+
+                index++;
+                break;
+
+            case "Boss_Sad":
+                text.color = new Color(0.8f, 0.2f, 0.2f, 1.0f); // 深红色（女Boss）
+                SetActiveSpeaker("Boss");
+                Sin_Image.sprite = Boss_Sad;
+
+                index++;
+                break;
+
+            case "Boss_Shame":
+                text.color = new Color(0.8f, 0.2f, 0.2f, 1.0f); // 深红色（女Boss）
+                SetActiveSpeaker("Boss");
+                Sin_Image.sprite = Boss_Shame;
+
+                index++;
+                break;
+
+            #endregion
+
+            #region [Enemy]
+
+            case "Enemy_01":
+                text.color = new Color(1.0f, 0.2f, 0.5f, 1.0f); //浅红色(Enemy)
+                SetActiveSpeaker("Enemy");
+                Enemy_Image.sprite = Enemy_01;
+
+                index++;
+                break;
 
 
-            //case "CleanStage":
-            //    CleanStage();//通关重置
-            //    index++;
-            //    break;
-               
+                #endregion
 
 
-            case "Story_00":
-                BG_Image.sprite = Story_00;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_01":
-                BG_Image.sprite = Story_01;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_02":
-                BG_Image.sprite = Story_02;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_03":
-                BG_Image.sprite = Story_03;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_04":
-                BG_Image.sprite = Story_04;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_05":
-                BG_Image.sprite = Story_05;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_06":
-                BG_Image.sprite = Story_06;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_07":
-                BG_Image.sprite = Story_07;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_08":
-                BG_Image.sprite = Story_08;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_09":
-                BG_Image.sprite = Story_09;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_10":
-                BG_Image.sprite = Story_10;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_11":
-                BG_Image.sprite = Story_11;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_12":
-                BG_Image.sprite = Story_12;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_13":
-                BG_Image.sprite = Story_13;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_14":
-                BG_Image.sprite = Story_14;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_15":
-                BG_Image.sprite = Story_15;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_16":
-                BG_Image.sprite = Story_16;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_17":
-                BG_Image.sprite = Story_17;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_18":
-                BG_Image.sprite = Story_18;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_19":
-                BG_Image.sprite = Story_19;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_20":
-                BG_Image.sprite = Story_20;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_21":
-                BG_Image.sprite = Story_21;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_22":
-                BG_Image.sprite = Story_22;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_23":
-                BG_Image.sprite = Story_23;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_24":
-                BG_Image.sprite = Story_24;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_25":
-                BG_Image.sprite = Story_25;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_26":
-                BG_Image.sprite = Story_26;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_27":
-                BG_Image.sprite = Story_27;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_28":
-                BG_Image.sprite = Story_28;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_29":
-                BG_Image.sprite = Story_29;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_30":
-                BG_Image.sprite = Story_30;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_31":
-                BG_Image.sprite = Story_31;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_32":
-                BG_Image.sprite = Story_32;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_33":
-                BG_Image.sprite = Story_33;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_34":
-                BG_Image.sprite = Story_34;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_35":
-                BG_Image.sprite = Story_35;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_36":
-                BG_Image.sprite = Story_36;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_37":
-                BG_Image.sprite = Story_37;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_38":
-                BG_Image.sprite = Story_38;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_39":
-                BG_Image.sprite = Story_39;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_40":
-                BG_Image.sprite = Story_40;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_41":
-                BG_Image.sprite = Story_41;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_42":
-                BG_Image.sprite = Story_42;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_43":
-                BG_Image.sprite = Story_43;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_44":
-                BG_Image.sprite = Story_44;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_45":
-                BG_Image.sprite = Story_45;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_46":
-                BG_Image.sprite = Story_46;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_47":
-                BG_Image.sprite = Story_47;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_48":
-                BG_Image.sprite = Story_48;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_49":
-                BG_Image.sprite = Story_49;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_50":
-                BG_Image.sprite = Story_50;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_51":
-                BG_Image.sprite = Story_51;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_52":
-                BG_Image.sprite = Story_52;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_53":
-                BG_Image.sprite = Story_53;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_54":
-                BG_Image.sprite = Story_54;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_55":
-                BG_Image.sprite = Story_55;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_56":
-                BG_Image.sprite = Story_56;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_57":
-                BG_Image.sprite = Story_57;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_58":
-                BG_Image.sprite = Story_58;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_59":
-                BG_Image.sprite = Story_59;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_60":
-                BG_Image.sprite = Story_60;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_61":
-                BG_Image.sprite = Story_61;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_62":
-                BG_Image.sprite = Story_62;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_63":
-                BG_Image.sprite = Story_63;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_64":
-                BG_Image.sprite = Story_64;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_65":
-                BG_Image.sprite = Story_65;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_66":
-                BG_Image.sprite = Story_66;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_67":
-                BG_Image.sprite = Story_67;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_68":
-                BG_Image.sprite = Story_68;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_69":
-                BG_Image.sprite = Story_69;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_70":
-                BG_Image.sprite = Story_70;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_71":
-                BG_Image.sprite = Story_71;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_72":
-                BG_Image.sprite = Story_72;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_73":
-                BG_Image.sprite = Story_73;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_74":
-                BG_Image.sprite = Story_74;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_75":
-                BG_Image.sprite = Story_75;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_76":
-                BG_Image.sprite = Story_76;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_77":
-                BG_Image.sprite = Story_77;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_78":
-                BG_Image.sprite = Story_78;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_79":
-                BG_Image.sprite = Story_79;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_80":
-                BG_Image.sprite = Story_80;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_81":
-                BG_Image.sprite = Story_81;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_82":
-                BG_Image.sprite = Story_82;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_83":
-                BG_Image.sprite = Story_83;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_84":
-                BG_Image.sprite = Story_84;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_85":
-                BG_Image.sprite = Story_85;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_86":
-                BG_Image.sprite = Story_86;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_87":
-                BG_Image.sprite = Story_87;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_88":
-                BG_Image.sprite = Story_88;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_89":
-                BG_Image.sprite = Story_89;
-                text.color = Color.white;
-                index++;
-                break;
-            case "Story_90":
-                BG_Image.sprite = Story_90;
-                text.color = Color.white;
-                index++;
-                break;
         }
 
 
@@ -738,17 +353,75 @@ public class DialogSystem : MonoBehaviour
         cancelTyping = false;
         textFinished = true;
         index++;
+
+
+
+       
     }
+
+
+
+    public void SetActiveSpeaker(string speaker)
+    {
+        // 先全部半黑 + 名字隐藏
+        Color dark = new Color(0.5f, 0.5f, 0.5f, 1f);
+        Color normal = Color.white;
+
+        Dif_Image.color = dark;
+        Boss_Image.color = dark;
+        Enemy_Image.color = dark;
+        Sin_Image.color = dark;
+
+        Dif_Name.SetActive(false);
+        Boss_Name.SetActive(false);
+        Enemy_Name.SetActive(false);
+        Sin_Name.SetActive(false);
+
+        // 根据说话人激活对应角色与名字，并还原颜色
+        switch (speaker)
+        {
+            case "Dif":
+                Dif_Image.color = normal;
+                Dif_Name.SetActive(true);
+                Dif_Image.gameObject.SetActive(true);
+                break;
+
+            case "Boss":
+                Boss_Image.color = normal;
+                Boss_Name.SetActive(true);
+                Boss_Image.gameObject.SetActive(true);
+
+                //Boss出现，Sin消失
+                Sin_Image.gameObject.SetActive(false);
+                break;
+
+            case "Enemy":
+                Enemy_Image.color = normal;
+                Enemy_Name.SetActive(true);
+                Enemy_Image.gameObject.SetActive(true);
+                break;
+
+            case "Sin":
+                Sin_Image.color = normal;
+                Sin_Name.SetActive(true);
+                Sin_Image.gameObject.SetActive(true);
+
+                //Sin出现，Boss消失
+                Boss_Image.gameObject.SetActive(false);
+                break;
+        }
+    }
+
 
 
     //快进按钮触发在这里
     public void ChangeStory()
     {
-        
-       
-      
 
+        UIManager.instance.CloseAVG();
+        gameObject.SetActive(false);
 
+        AudioManager.instance.AudioPlay(AudioManager.instance.Attack_hit2);
     }
 
 

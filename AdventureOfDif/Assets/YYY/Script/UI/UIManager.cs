@@ -287,12 +287,24 @@ public class UIManager : MonoBehaviour
 
     public void OpenPhone()
     {
+        //处于AVG和商店的状况下，无法打开手机
+        if (CurrentChooseMenu == -1 || CurrentChooseMenu == -2) 
+        {
+            return;
+        }
+
+
         Anim_Phone.SetBool("Open", true);
 
         //Time.timeScale = 0;
 
         CurrentChooseMenu = 1;
         player.isInputBlocked = true;
+
+
+
+        //打开手机敌人不能动
+        //StopAllEnemy();
     }
     public void ClosePhone()
     {
@@ -302,6 +314,9 @@ public class UIManager : MonoBehaviour
 
         CurrentChooseMenu = 0;
         player.isInputBlocked = false;
+
+        //关掉手机敌人可以动
+        //AllowAllEnemy();
     }
 
 
@@ -497,7 +512,7 @@ public class UIManager : MonoBehaviour
     private InputAction pauseAction;
 
     public int PhonePage_currentIndex;// 0 Item  1 MAP   2 Photo    3 Setting   4 Gallery  5 MoveList  6 Phone  7 EMAIL
-    public int CurrentChooseMenu;//-1商店界面  0 游戏界面  1 手机界面   2物品栏界面   3地图界面   5设置界面   
+    public int CurrentChooseMenu;//-2对话AVG界面  -1商店界面  0 游戏界面  1 手机界面   2物品栏界面   3地图界面   5设置界面   
 
     private void OnEnable()
     {
@@ -707,6 +722,11 @@ public class UIManager : MonoBehaviour
     {
         if (player.isInputBlocked == false) { return; }
 
+        //对话AVG界面
+        if (CurrentChooseMenu == -2)
+        {
+            dialogSystem.ShowText();//下一句
+        }
 
         //商店界面
         if (CurrentChooseMenu == -1)
@@ -759,6 +779,11 @@ public class UIManager : MonoBehaviour
     {
         if (player.isInputBlocked == false) { return; }
 
+        //对话AVG界面
+        if (CurrentChooseMenu == -2)
+        {
+            dialogSystem.ChangeStory();//跳过
+        }
 
         if (CurrentChooseMenu == -1)
         {
@@ -1004,5 +1029,53 @@ public class UIManager : MonoBehaviour
 
 
 
+    #endregion
+
+
+    /// <summary>
+    /// 启动AVG对话
+    /// </summary>
+    #region
+    public DialogSystem dialogSystem;
+    public void OpenAVG() 
+    {
+        dialogSystem.gameObject.SetActive(true);
+
+        player.isInputBlocked = true;
+        CurrentChooseMenu = -2;
+
+        Invoke("StopAllEnemy", 0.5f);
+    }
+
+    void StopAllEnemy() 
+    {
+        // 寻找场景中所有其他敌人，设置围观
+        GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject e in allEnemies)
+        {
+            e.GetComponent<Enemy>().isRape = true; // 进入围观状态
+            player.observingEnemies.Add(e.GetComponent<Enemy>());
+        }
+    }
+
+    void AllowAllEnemy() 
+    {
+        // 清空所有围观敌人状态
+        foreach (Enemy e in player.observingEnemies)
+        {
+            if (e != null)
+            {
+                e.isRape = false;
+            }
+        }
+    }
+
+    public void CloseAVG() 
+    {
+        AllowAllEnemy();
+
+        player.isInputBlocked = false;
+        CurrentChooseMenu = 0;
+    }
     #endregion
 }

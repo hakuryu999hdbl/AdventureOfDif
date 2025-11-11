@@ -1,0 +1,2327 @@
+fileFormatVersion: 2
+guid: 4a45bbbf481643d47afc00a36ef4f2fb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6824015492349760337
+    second: Dialog_Black_0
+  - first:
+      213: -270780908850729818
+    second: Dialog_Black_1
+  - first:
+      213: 1017412235360842122
+    second: Dialog_Black_2
+  - first:
+      213: -6651970673117411696
+    second: Dialog_Black_3
+  - first:
+      213: -7201916423691456357
+    second: Dialog_Black_4
+  - first:
+      213: 8788060329109218959
+    second: Dialog_Black_5
+  - first:
+      213: -692049858121961597
+    second: Dialog_Black_6
+  - first:
+      213: -6390620882749084926
+    second: Dialog_Black_7
+  - first:
+      213: -8512376939977358842
+    second: Dialog_Black_8
+  - first:
+      213: -4603408549394957928
+    second: Dialog_Black_9
+  - first:
+      213: -1354025982439883798
+    second: Dialog_Black_10
+  - first:
+      213: -2347102266190848314
+    second: Dialog_Black_11
+  - first:
+      213: 5234138313788868249
+    second: Dialog_Black_12
+  - first:
+      213: 2513260311776436230
+    second: Dialog_Black_13
+  - first:
+      213: 2109835372719620578
+    second: Dialog_Black_14
+  - first:
+      213: 6613126982250897936
+    second: Dialog_Black_15
+  - first:
+      213: 3795238442681750415
+    second: Dialog_Black_16
+  - first:
+      213: -3295405580253147194
+    second: Dialog_Black_17
+  - first:
+      213: 6111537339457668989
+    second: Dialog_Black_18
+  - first:
+      213: -5733115016659539314
+    second: Dialog_Black_19
+  - first:
+      213: 7677046244997738101
+    second: Dialog_Black_20
+  - first:
+      213: 7600733580302134617
+    second: Dialog_Black_21
+  - first:
+      213: 4326383959996434679
+    second: Dialog_Black_22
+  - first:
+      213: -8319541274745693497
+    second: Dialog_Black_23
+  - first:
+      213: -2957647939238620467
+    second: Dialog_Black_24
+  - first:
+      213: 7689238908145098787
+    second: Dialog_Black_25
+  - first:
+      213: 6976121737550481990
+    second: Dialog_Black_26
+  - first:
+      213: -188039283143709414
+    second: Dialog_Black_27
+  - first:
+      213: -4526726679734465778
+    second: Dialog_Black_28
+  - first:
+      213: 3448333047217171685
+    second: Dialog_Black_29
+  - first:
+      213: 1941174531389457774
+    second: Dialog_Black_30
+  - first:
+      213: 5956627454462051641
+    second: Dialog_Black_31
+  - first:
+      213: -5367256421978091367
+    second: Dialog_Black_32
+  - first:
+      213: -5445936771351473028
+    second: Dialog_Black_33
+  - first:
+      213: 5683610510323939023
+    second: Dialog_Black_34
+  - first:
+      213: -5418426083451244341
+    second: Dialog_Black_35
+  - first:
+      213: 4087256776977696077
+    second: Dialog_Black_36
+  - first:
+      213: -5226469943183350354
+    second: Dialog_Black_37
+  - first:
+      213: -1666695341934170064
+    second: Dialog_Black_38
+  - first:
+      213: -6691300609028929108
+    second: Dialog_Black_39
+  - first:
+      213: -8320774381760829168
+    second: Dialog_Black_40
+  - first:
+      213: 6296358543687359474
+    second: Dialog_Black_41
+  - first:
+      213: -4610242987544497005
+    second: Dialog_Black_42
+  - first:
+      213: 1780758083809953011
+    second: Dialog_Black_43
+  - first:
+      213: -9168240950757408166
+    second: Dialog_Black_44
+  - first:
+      213: -4845067061165980200
+    second: Dialog_Black_45
+  - first:
+      213: 4264738921590371351
+    second: Dialog_Black_46
+  - first:
+      213: 1532442488236250695
+    second: Dialog_Black_47
+  - first:
+      213: -2277018807812978599
+    second: Dialog_Black_48
+  - first:
+      213: 882268683115716015
+    second: Dialog_Black_49
+  - first:
+      213: 1035507176659906185
+    second: Dialog_Black_50
+  - first:
+      213: -3101673042935624768
+    second: Dialog_Black_51
+  - first:
+      213: 7742257131082234275
+    second: Dialog_Black_52
+  - first:
+      213: 2603556765970131127
+    second: Dialog_Black_53
+  - first:
+      213: -596460831557928652
+    second: Dialog_Black_54
+  - first:
+      213: -8797959921878175213
+    second: Dialog_Black_55
+  - first:
+      213: 6688885937808476192
+    second: Dialog_Black_56
+  - first:
+      213: -7284759462831545279
+    second: Dialog_Black_57
+  - first:
+      213: 780084167050905668
+    second: Dialog_Black_58
+  - first:
+      213: -374666421759498542
+    second: Dialog_Black_59
+  - first:
+      213: 5012364157367314289
+    second: Dialog_Black_60
+  - first:
+      213: -6004819144952519992
+    second: Dialog_Black_61
+  - first:
+      213: -6057323612054346670
+    second: Dialog_Black_62
+  - first:
+      213: 35815408545902725
+    second: Dialog_Black_63
+  - first:
+      213: -4381770783555667707
+    second: Dialog_Black_64
+  - first:
+      213: -947897006091708618
+    second: Dialog_Black_65
+  - first:
+      213: -2843203581765234775
+    second: Dialog_Black_66
+  - first:
+      213: 5151383238394034026
+    second: Dialog_Black_67
+  - first:
+      213: 6346034698687196918
+    second: Dialog_Black_68
+  - first:
+      213: -7612485847509551245
+    second: Dialog_Black_69
+  - first:
+      213: 3511766391288311184
+    second: Dialog_Black_70
+  - first:
+      213: 2878804996858490411
+    second: Dialog_Black_71
+  - first:
+      213: 2426126320191913109
+    second: Dialog_Black_72
+  - first:
+      213: 6639301061253968788
+    second: Dialog_Black_73
+  - first:
+      213: -1597582116961113056
+    second: Dialog_Black_74
+  - first:
+      213: 2476850963987828526
+    second: Dialog_Black_75
+  - first:
+      213: 8850565368950960053
+    second: Dialog_Black_76
+  - first:
+      213: 556336780716304443
+    second: Dialog_Black_77
+  - first:
+      213: -1796638611230192090
+    second: Dialog_Black_78
+  - first:
+      213: 8527879628877368004
+    second: Dialog_Black_79
+  - first:
+      213: 1635279730910130835
+    second: Dialog_Black_80
+  - first:
+      213: -4584845582341776170
+    second: Dialog_Black_81
+  - first:
+      213: 8785028606570922385
+    second: Dialog_Black_82
+  - first:
+      213: -1756764445012125111
+    second: Dialog_Black_83
+  - first:
+      213: 1252144032740623398
+    second: Dialog_Black_84
+  - first:
+      213: -1529612716760736625
+    second: Dialog_Black_85
+  - first:
+      213: -8360062609281940999
+    second: Dialog_Black_86
+  - first:
+      213: 6958643576712975896
+    second: Dialog_Black_87
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Dialog_Black_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 123
+        width: 1708
+        height: 827
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: faceabc901a3c41a0800000000000000
+      internalID: -6824015492349760337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 101
+        width: 16
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6acaef3b23efd3cf0800000000000000
+      internalID: -270780908850729818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_2
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 119
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a81b1de99039e1e00800000000000000
+      internalID: 1017412235360842122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_3
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 119
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 096458c9ae37fa3a0800000000000000
+      internalID: -6651970673117411696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_4
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 108
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b90b1d78b27ad0c90800000000000000
+      internalID: -7201916423691456357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_5
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 115
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f86e145ee4675f970800000000000000
+      internalID: 8788060329109218959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_6
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 111
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38fe7c712585566f0800000000000000
+      internalID: -692049858121961597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_7
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 122
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20b2c858a24ff47a0800000000000000
+      internalID: -6390620882749084926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_8
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 107
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6024c6a0646fdd980800000000000000
+      internalID: -8512376939977358842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_9
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 121
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 899315170586d10c0800000000000000
+      internalID: -4603408549394957928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_10
+      rect:
+        serializedVersion: 2
+        x: 799
+        y: 123
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aeb750cfa88853de0800000000000000
+      internalID: -1354025982439883798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_11
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 113
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ce1e24acea6d6fd0800000000000000
+      internalID: -2347102266190848314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_12
+      rect:
+        serializedVersion: 2
+        x: 974
+        y: 112
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 996c5a2901563a840800000000000000
+      internalID: 5234138313788868249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_13
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 106
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 600a58f00f4e0e220800000000000000
+      internalID: 2513260311776436230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_14
+      rect:
+        serializedVersion: 2
+        x: 1128
+        y: 114
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e1c185d714a74d10800000000000000
+      internalID: 2109835372719620578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_15
+      rect:
+        serializedVersion: 2
+        x: 1169
+        y: 127
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 012ad97d3fb86cb50800000000000000
+      internalID: 6613126982250897936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_16
+      rect:
+        serializedVersion: 2
+        x: 1334
+        y: 121
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f83d3fd61456ba430800000000000000
+      internalID: 3795238442681750415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_17
+      rect:
+        serializedVersion: 2
+        x: 1471
+        y: 118
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cfcb26a51e5442d0800000000000000
+      internalID: -3295405580253147194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_18
+      rect:
+        serializedVersion: 2
+        x: 1516
+        y: 126
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7709e574da80d450800000000000000
+      internalID: 6111537339457668989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_19
+      rect:
+        serializedVersion: 2
+        x: 1610
+        y: 111
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8aec878442ef60b0800000000000000
+      internalID: -5733115016659539314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_20
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 97
+        width: 20
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57e265592e85a8a60800000000000000
+      internalID: 7677046244997738101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_21
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 89
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95daa4ebbea3b7960800000000000000
+      internalID: 7600733580302134617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_22
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 96
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f809891a476a0c30800000000000000
+      internalID: 4326383959996434679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_23
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 106
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ca15981a4d0b8c80800000000000000
+      internalID: -8319541274745693497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_24
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 88
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc2140b9ed254f6d0800000000000000
+      internalID: -2957647939238620467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_25
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 98
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 320e9113c0aa5ba60800000000000000
+      internalID: 7689238908145098787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_26
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 86
+        width: 17
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64ac39c52c920d060800000000000000
+      internalID: 6976121737550481990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_27
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 94
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1d666ca443f36df0800000000000000
+      internalID: -188039283143709414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_28
+      rect:
+        serializedVersion: 2
+        x: 882
+        y: 101
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0bc4238116dd21c0800000000000000
+      internalID: -4526726679734465778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_29
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 96
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ecae9ae2a0fadf20800000000000000
+      internalID: 3448333047217171685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_30
+      rect:
+        serializedVersion: 2
+        x: 1047
+        y: 85
+        width: 27
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e65018693ff60fa10800000000000000
+      internalID: 1941174531389457774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_31
+      rect:
+        serializedVersion: 2
+        x: 1253
+        y: 106
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 935cc8a3c113aa250800000000000000
+      internalID: 5956627454462051641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_32
+      rect:
+        serializedVersion: 2
+        x: 1381
+        y: 108
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 990df8d98bca385b0800000000000000
+      internalID: -5367256421978091367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_33
+      rect:
+        serializedVersion: 2
+        x: 1420
+        y: 99
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c749b5a3c552c64b0800000000000000
+      internalID: -5445936771351473028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_34
+      rect:
+        serializedVersion: 2
+        x: 1543
+        y: 87
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc6f88565ad30ee40800000000000000
+      internalID: 5683610510323939023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_35
+      rect:
+        serializedVersion: 2
+        x: 1566
+        y: 96
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc07d266f22edc4b0800000000000000
+      internalID: -5418426083451244341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_36
+      rect:
+        serializedVersion: 2
+        x: 1582
+        y: 98
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d454099226ad8b830800000000000000
+      internalID: 4087256776977696077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_37
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 78
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea5ec471749d777b0800000000000000
+      internalID: -5226469943183350354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_38
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 84
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0303733ca65bed8e0800000000000000
+      internalID: -1666695341934170064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_39
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 80
+        width: 22
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca9c9715c89b323a0800000000000000
+      internalID: -6691300609028929108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_40
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 84
+        width: 22
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 019a9fef8cba68c80800000000000000
+      internalID: -8320774381760829168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_41
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 98
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fb1bf66cb8216750800000000000000
+      internalID: 6296358543687359474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_42
+      rect:
+        serializedVersion: 2
+        x: 922
+        y: 87
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 394bc2fcd602500c0800000000000000
+      internalID: -4610242987544497005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_43
+      rect:
+        serializedVersion: 2
+        x: 1182
+        y: 83
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f4c568da0686b810800000000000000
+      internalID: 1780758083809953011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_44
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 49
+        width: 42
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a524ae24e6dd3c080800000000000000
+      internalID: -9168240950757408166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_45
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 68
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d5814a9d2dd2ccb0800000000000000
+      internalID: -4845067061165980200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_46
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 70
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7143d2124756f2b30800000000000000
+      internalID: 4264738921590371351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_47
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 85
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7469906e254544510800000000000000
+      internalID: 1532442488236250695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_48
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 78
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9588c6d55776660e0800000000000000
+      internalID: -2277018807812978599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_49
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 75
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fad509d51b27e3c00800000000000000
+      internalID: 882268683115716015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_50
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 79
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98e6e237a4cde5e00800000000000000
+      internalID: 1035507176659906185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_51
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 84
+        width: 16
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cbca620dc4a4f4d0800000000000000
+      internalID: -3101673042935624768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_52
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 85
+        width: 16
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a934e927d5027b60800000000000000
+      internalID: 7742257131082234275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_53
+      rect:
+        serializedVersion: 2
+        x: 1144
+        y: 86
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b8e63c9511b12420800000000000000
+      internalID: 2603556765970131127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_54
+      rect:
+        serializedVersion: 2
+        x: 1321
+        y: 80
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4393e8ca802f8b7f0800000000000000
+      internalID: -596460831557928652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_55
+      rect:
+        serializedVersion: 2
+        x: 1361
+        y: 79
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 312f35c801e57e580800000000000000
+      internalID: -8797959921878175213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_56
+      rect:
+        serializedVersion: 2
+        x: 1470
+        y: 78
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0280e2a3252b3dc50800000000000000
+      internalID: 6688885937808476192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_57
+      rect:
+        serializedVersion: 2
+        x: 1488
+        y: 71
+        width: 8
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 144a2c76dd557ea90800000000000000
+      internalID: -7284759462831545279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_58
+      rect:
+        serializedVersion: 2
+        x: 1508
+        y: 78
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 448c9f7ba6a63da00800000000000000
+      internalID: 780084167050905668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_59
+      rect:
+        serializedVersion: 2
+        x: 1616
+        y: 81
+        width: 20
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d622cddfdaeccaf0800000000000000
+      internalID: -374666421759498542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_60
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 55
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17767ccf4ae7f8540800000000000000
+      internalID: 5012364157367314289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_61
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 65
+        width: 21
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c2e3a47dc89aaca0800000000000000
+      internalID: -6004819144952519992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_62
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 27
+        width: 37
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2542ae5944010fba0800000000000000
+      internalID: -6057323612054346670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_63
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 53
+        width: 17
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5803ddf9ced3f7000800000000000000
+      internalID: 35815408545902725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_64
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 70
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 509bafe10b2d033c0800000000000000
+      internalID: -4381770783555667707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_65
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 72
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6375f34f1b468d2f0800000000000000
+      internalID: -947897006091708618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_66
+      rect:
+        serializedVersion: 2
+        x: 1555
+        y: 70
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9afc3c40869ea88d0800000000000000
+      internalID: -2843203581765234775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_67
+      rect:
+        serializedVersion: 2
+        x: 1590
+        y: 75
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a67b06a13c36d7740800000000000000
+      internalID: 5151383238394034026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_68
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 47
+        width: 19
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fead8b8fe4a11850800000000000000
+      internalID: 6346034698687196918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_69
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 58
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 377318154740b5690800000000000000
+      internalID: -7612485847509551245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_70
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 66
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09d25ee3dec4cb030800000000000000
+      internalID: 3511766391288311184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_71
+      rect:
+        serializedVersion: 2
+        x: 1399
+        y: 65
+        width: 23
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2eae5f54e193f720800000000000000
+      internalID: 2878804996858490411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_72
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 38
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59cb347b8055ba120800000000000000
+      internalID: 2426126320191913109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_73
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 28
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 493bae08329832c50800000000000000
+      internalID: 6639301061253968788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_74
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 42
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02c240b678f34d9e0800000000000000
+      internalID: -1597582116961113056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_75
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 30
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2f041e24da8f5220800000000000000
+      internalID: 2476850963987828526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_76
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 39
+        width: 20
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bf22bd8f4683da70800000000000000
+      internalID: 8850565368950960053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_77
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 12
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b38641eba5188b700800000000000000
+      internalID: 556336780716304443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_78
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 17
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62e8fdbb3be0117e0800000000000000
+      internalID: -1796638611230192090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_79
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 29
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ca868ef65d195670800000000000000
+      internalID: 8527879628877368004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_80
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 15
+        width: 14
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3927b4d404ea1b610800000000000000
+      internalID: 1635279730910130835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_81
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 27
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dcdf720c3b5f50c0800000000000000
+      internalID: -4584845582341776170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_82
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 24
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1910e4cf8f0bae970800000000000000
+      internalID: 8785028606570922385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_83
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 6
+        width: 26
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94a14058b08be97e0800000000000000
+      internalID: -1756764445012125111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_84
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 4
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62441271d52806110800000000000000
+      internalID: 1252144032740623398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_85
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 11
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8c5e8d9659b5cae0800000000000000
+      internalID: -1529612716760736625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_86
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 2
+        width: 15
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f189b1b9571bfb80800000000000000
+      internalID: -8360062609281940999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialog_Black_87
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 0
+        width: 18
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 816d78ce671129060800000000000000
+      internalID: 6958643576712975896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Dialog_Black_0: -6824015492349760337
+      Dialog_Black_1: -270780908850729818
+      Dialog_Black_10: -1354025982439883798
+      Dialog_Black_11: -2347102266190848314
+      Dialog_Black_12: 5234138313788868249
+      Dialog_Black_13: 2513260311776436230
+      Dialog_Black_14: 2109835372719620578
+      Dialog_Black_15: 6613126982250897936
+      Dialog_Black_16: 3795238442681750415
+      Dialog_Black_17: -3295405580253147194
+      Dialog_Black_18: 6111537339457668989
+      Dialog_Black_19: -5733115016659539314
+      Dialog_Black_2: 1017412235360842122
+      Dialog_Black_20: 7677046244997738101
+      Dialog_Black_21: 7600733580302134617
+      Dialog_Black_22: 4326383959996434679
+      Dialog_Black_23: -8319541274745693497
+      Dialog_Black_24: -2957647939238620467
+      Dialog_Black_25: 7689238908145098787
+      Dialog_Black_26: 6976121737550481990
+      Dialog_Black_27: -188039283143709414
+      Dialog_Black_28: -4526726679734465778
+      Dialog_Black_29: 3448333047217171685
+      Dialog_Black_3: -6651970673117411696
+      Dialog_Black_30: 1941174531389457774
+      Dialog_Black_31: 5956627454462051641
+      Dialog_Black_32: -5367256421978091367
+      Dialog_Black_33: -5445936771351473028
+      Dialog_Black_34: 5683610510323939023
+      Dialog_Black_35: -5418426083451244341
+      Dialog_Black_36: 4087256776977696077
+      Dialog_Black_37: -5226469943183350354
+      Dialog_Black_38: -1666695341934170064
+      Dialog_Black_39: -6691300609028929108
+      Dialog_Black_4: -7201916423691456357
+      Dialog_Black_40: -8320774381760829168
+      Dialog_Black_41: 6296358543687359474
+      Dialog_Black_42: -4610242987544497005
+      Dialog_Black_43: 1780758083809953011
+      Dialog_Black_44: -9168240950757408166
+      Dialog_Black_45: -4845067061165980200
+      Dialog_Black_46: 4264738921590371351
+      Dialog_Black_47: 1532442488236250695
+      Dialog_Black_48: -2277018807812978599
+      Dialog_Black_49: 882268683115716015
+      Dialog_Black_5: 8788060329109218959
+      Dialog_Black_50: 1035507176659906185
+      Dialog_Black_51: -3101673042935624768
+      Dialog_Black_52: 7742257131082234275
+      Dialog_Black_53: 2603556765970131127
+      Dialog_Black_54: -596460831557928652
+      Dialog_Black_55: -8797959921878175213
+      Dialog_Black_56: 6688885937808476192
+      Dialog_Black_57: -7284759462831545279
+      Dialog_Black_58: 780084167050905668
+      Dialog_Black_59: -374666421759498542
+      Dialog_Black_6: -692049858121961597
+      Dialog_Black_60: 5012364157367314289
+      Dialog_Black_61: -6004819144952519992
+      Dialog_Black_62: -6057323612054346670
+      Dialog_Black_63: 35815408545902725
+      Dialog_Black_64: -4381770783555667707
+      Dialog_Black_65: -947897006091708618
+      Dialog_Black_66: -2843203581765234775
+      Dialog_Black_67: 5151383238394034026
+      Dialog_Black_68: 6346034698687196918
+      Dialog_Black_69: -7612485847509551245
+      Dialog_Black_7: -6390620882749084926
+      Dialog_Black_70: 3511766391288311184
+      Dialog_Black_71: 2878804996858490411
+      Dialog_Black_72: 2426126320191913109
+      Dialog_Black_73: 6639301061253968788
+      Dialog_Black_74: -1597582116961113056
+      Dialog_Black_75: 2476850963987828526
+      Dialog_Black_76: 8850565368950960053
+      Dialog_Black_77: 556336780716304443
+      Dialog_Black_78: -1796638611230192090
+      Dialog_Black_79: 8527879628877368004
+      Dialog_Black_8: -8512376939977358842
+      Dialog_Black_80: 1635279730910130835
+      Dialog_Black_81: -4584845582341776170
+      Dialog_Black_82: 8785028606570922385
+      Dialog_Black_83: -1756764445012125111
+      Dialog_Black_84: 1252144032740623398
+      Dialog_Black_85: -1529612716760736625
+      Dialog_Black_86: -8360062609281940999
+      Dialog_Black_87: 6958643576712975896
+      Dialog_Black_9: -4603408549394957928
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
