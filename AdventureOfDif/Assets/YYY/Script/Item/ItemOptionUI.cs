@@ -17,7 +17,9 @@ public class ItemOptionUI : MonoBehaviour
 
     public void RefreshFromSave()
     {
-        quantity = PlayerPrefs.GetInt(itemKey, 0);
+        SaveData _data = SaveManager.LoadGame(GameFlowData.CurrentPlayer);
+        this.quantity = _data.GetItem(data.itemKey);
+
         unlocked = quantity > 0;
         gameObject.SetActive(unlocked);
         SetHighlight(false);
@@ -51,15 +53,11 @@ public class ItemOptionUI : MonoBehaviour
 
         // TODO: 实际消耗逻辑
         quantity--;
-        PlayerPrefs.SetInt(itemKey, quantity);
+        SaveData _data = SaveManager.LoadGame(GameFlowData.CurrentPlayer);
+        _data.SetItem(data.itemKey, quantity);
+        SaveManager.SaveGame(_data);
 
-        //if (quantity <= 0)
-        //    gameObject.SetActive(false);
-        //
-        //RefreshFromSave();//使用完物品刷新
-
-        Debug.Log("使用物品：" + itemKey);
-
+        Debug.Log($"使用物品：{itemKey} 剩余数量：{quantity}");
 
 
         switch(itemKey)

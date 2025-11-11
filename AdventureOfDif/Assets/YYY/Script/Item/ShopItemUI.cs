@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static Pathfinding.RaycastModifier;
 
 public class ShopItemUI : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class ShopItemUI : MonoBehaviour
     [Header("UI")]
     public Text priceText;       // 右侧价签
     public Text stockText;       // “已持有 x” 可选
-    
+
     public Text Name;
     public Text Introduce;
 
@@ -42,9 +43,12 @@ public class ShopItemUI : MonoBehaviour
         //stockText.text = stock.ToString();//显示商店库存
 
         //显示玩家持有数量
-        int owned = PlayerPrefs.GetInt(data.itemKey, 0);
-        stockText.text = owned.ToString();
+        SaveData _data = SaveManager.LoadGame(GameFlowData.CurrentPlayer);
+        int owned = _data.GetItem(data.itemKey);
 
+
+
+        stockText.text = owned.ToString();
         if (stock == 0) { gameObject.SetActive(false); }
     }
 
@@ -53,31 +57,41 @@ public class ShopItemUI : MonoBehaviour
         if (!highlightAnim || highlightAnim.runtimeAnimatorController == null) return;
         bool can = active && data != null && (stock != 0);
         highlightAnim.SetTrigger(on && can ? "Pressed" : "Normal");
-  
+
     }
 
     public void Buy()
     {
         if (!active || data == null || stock == 0) return;
 
-        int money = PlayerPrefs.GetInt("Money", 0);
-        if (money < finalPrice)
+
+        // 一次加载，贯穿整个购买流程
+        SaveData _data = SaveManager.LoadGame(GameFlowData.CurrentPlayer);
+
+        // 钱不足拦截
+        if (_data.Money < finalPrice)
         {
             AudioManager.instance.AudioPlay(AudioManager.instance.SE_Glass);
             return;
         }
 
-        // 扣钱
-        UIManager.instance.ChangeMoney(-finalPrice);
+        // ✅ 扣钱和加物品都在同一份 _data
+        _data.Money -= finalPrice;
+        _data.AddItem(data.itemKey, +1);
 
-        // 加库存
-        int have = PlayerPrefs.GetInt(data.itemKey, 0) + 1;
-        PlayerPrefs.SetInt(data.itemKey, have);
-        PlayerPrefs.Save();
+        // ✅ 一次保存
+        SaveManager.SaveGame(_data);
+
+        // ✅ UI 更新显示
+        UIManager.instance.ChangeMoney(0, false);//更新钱
+        RefreshUI();
+
+        AudioManager.instance.AudioPlay(AudioManager.instance.SE_Reji);
+
 
         // 限购处理
         if (stock > 0) stock--;
-        RefreshUI();
+
 
     }
 }

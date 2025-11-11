@@ -459,5 +459,16 @@ public class MenuManager : MonoBehaviour
     {
         Application.OpenURL(Application.persistentDataPath);
     }//打开存档位置文件夹
+
+
+    public void Delete_All() 
+    {
+        Save_1.OnDeleteClicked();
+        Save_2.OnDeleteClicked();
+        Save_3.OnDeleteClicked();
+
+        PlayerPrefs.DeleteAll();
+
+    }
     #endregion
 }

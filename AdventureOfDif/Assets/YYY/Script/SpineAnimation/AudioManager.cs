@@ -145,23 +145,23 @@ public class AudioManager : MonoBehaviour
     /// 中途退出关闭App
     /// </summary>
     #region
-    private void OnApplicationQuit()
-    {
-        PlayerPrefs.SetInt("Menu", 0);
-        Debug.Log("Application is quitting. Performing cleanup...");
-        // 在这里执行一些清理操作
-    }
-    private void OnApplicationPause(bool pauseStatus)
-    {
-        if (pauseStatus)
-        {
-            PlayerPrefs.SetInt("Menu", 0);
-            // 应用程序进入后台运行，执行相关操作
-        }
-        else
-        {
-            // 应用程序从后台切换到前台，执行相关操作
-        }
-    }
+    //private void OnApplicationQuit()
+    //{
+    //    PlayerPrefs.SetInt("Menu", 0);
+    //    Debug.Log("Application is quitting. Performing cleanup...");
+    //    // 在这里执行一些清理操作
+    //}
+    //private void OnApplicationPause(bool pauseStatus)
+    //{
+    //    if (pauseStatus)
+    //    {
+    //        PlayerPrefs.SetInt("Menu", 0);
+    //        // 应用程序进入后台运行，执行相关操作
+    //    }
+    //    else
+    //    {
+    //        // 应用程序从后台切换到前台，执行相关操作
+    //    }
+    //}
     #endregion
 }

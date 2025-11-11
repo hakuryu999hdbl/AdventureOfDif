@@ -317,6 +317,8 @@ public class UIManager : MonoBehaviour
         UpdateHighlight_Item();
 
         ItemUnclockStart();//初始化【菜单界面】高亮
+
+
     }
     public void Close_ItemMenu()
     {
@@ -843,21 +845,23 @@ public class UIManager : MonoBehaviour
     public void ChangeMoney(int amount, bool UseVoice = true)
     {
         // 取当前值
-        int currentMoney = PlayerPrefs.GetInt("Money", 0);
+        SaveData _data = SaveManager.LoadGame(GameFlowData.CurrentPlayer);
+        int currentMoney = _data.Money;
+
 
         // 修改
         currentMoney += amount;
         if (currentMoney < 0) currentMoney = 0;   // 防止出现负数
 
-        // 存回 PlayerPrefs
-        PlayerPrefs.SetInt("Money", currentMoney);
-        PlayerPrefs.Save();
+        // ✅ 把修改结果写回存档对象
+        _data.Money = currentMoney;
+        // ✅ 保存回文件
+        SaveManager.SaveGame(_data);
 
         // 更新 UI
         MoneyText.text = currentMoney.ToString();
         MoneyText_2.text = currentMoney.ToString();
 
-        //Debug.Log("目前存档里的钱币: " + currentMoney);
 
         if (UseVoice) { AudioManager.instance.AudioPlay(AudioManager.instance.SE_Reji); }
 
@@ -902,7 +906,6 @@ public class UIManager : MonoBehaviour
 
         CurrentChooseMenu = -1;
         player.isInputBlocked = true;
-
 
 
         OpenShopWithPool(chosenPool);
