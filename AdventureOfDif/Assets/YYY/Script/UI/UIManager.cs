@@ -1056,7 +1056,7 @@ public class UIManager : MonoBehaviour
         GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject e in allEnemies)
         {
-            e.GetComponent<Enemy>().isRape = true; // 进入围观状态
+            e.GetComponent<Enemy>().state = EnemyState.Frozen; // 进入围观状态
             player.observingEnemies.Add(e.GetComponent<Enemy>());
         }
     }
@@ -1068,14 +1068,14 @@ public class UIManager : MonoBehaviour
         {
             if (e != null)
             {
-                e.isRape = false;
+                e.state = EnemyState.Idle;
             }
         }
     }
 
     public void CloseAVG() 
     {
-        AllowAllEnemy();
+        Invoke("AllowAllEnemy", 1f);
 
         player.isInputBlocked = false;
         CurrentChooseMenu = 0;

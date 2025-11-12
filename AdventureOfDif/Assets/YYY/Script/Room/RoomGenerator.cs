@@ -31,7 +31,7 @@ public class RoomGenerator : MonoBehaviour
                 break;
 
 
-         
+        
             //仓库
             case "Area03_1":
                 SetArea(2);
@@ -52,14 +52,14 @@ public class RoomGenerator : MonoBehaviour
                 SetArea(4);
                 break;
 
-         
+            default:
             //健身房大厅
             case "Area06_1":
             case "Area06_2":
                 SetArea(5);
                 break;
 
-            default:
+          
             //健身房室内
             case "Area07_1":
                 SetArea(6);

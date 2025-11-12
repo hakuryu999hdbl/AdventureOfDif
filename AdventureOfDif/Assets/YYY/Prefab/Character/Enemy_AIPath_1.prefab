@@ -854,6 +854,7 @@ MonoBehaviour:
   Critial: {fileID: 8023075011901219364}
   AllOfThis: {fileID: 6987948351437209287}
   HealthBar: {fileID: 6686174159483745123}
+  state: 0
 --- !u!50 &2929557566085313533
 Rigidbody2D:
   serializedVersion: 4

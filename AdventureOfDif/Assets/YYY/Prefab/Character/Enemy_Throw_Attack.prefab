@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1847114472873477177}
   - component: {fileID: 8794933245317386098}
-  - component: {fileID: 7882948274562953385}
   - component: {fileID: 4398610541495982391}
   m_Layer: 0
   m_Name: Obstacle
@@ -88,18 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7882948274562953385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1449663953011200537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6a04997ed027aa41870f4dd47544853, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &4398610541495982391
 Animator:
   serializedVersion: 7

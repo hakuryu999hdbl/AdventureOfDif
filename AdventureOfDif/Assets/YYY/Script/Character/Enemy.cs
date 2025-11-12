@@ -6,6 +6,24 @@ using Pathfinding;
 using UnityEngine.InputSystem.Utilities;
 using static GrabbableObject;
 
+
+
+public enum EnemyState
+{
+    Idle,
+    Moving,
+    Attacking,
+    Charging,    // 蓄力/冲锋
+    Throwing,
+    Grabbing,    // ✅ 抓住玩家（硬锁）
+    Observing,   // ✅ 围观冻结
+    Frozen,      // AVG 冻结
+    Downed,
+    Dead
+}
+
+
+
 public class Enemy : MonoBehaviour
 {
     [Header("主动触发声音")]
@@ -40,62 +58,170 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isAVGFreeze) 
+        // if (isAVGFreeze) 
+        // {
+        //     //处于AVG中不能移动
+        //     moveSpeed = 0;
+        //     aiPath.maxSpeed = 0f;
+        //     CleanupStatus();
+        // }
+        // else if (isRape)
+        // {
+        //
+        //     //防止被更改状态的强制间断动画触发
+        //     //RapeTimer += Time.deltaTime;
+        //     //if (RapeTimer > 1f) { anim.Play("lewd"); RapeTimer = 0; }
+        //
+        //     //处于强奸中不能移动
+        //     moveSpeed = 0;
+        //     aiPath.maxSpeed = 0f;
+        //
+        //
+        //     //非强奸中的其他敌人强制站立/清除冲锋状态
+        //     if (_Player.GetComponent<Player>().enemyRaper != gameObject) 
+        //     {
+        //         CleanupStatus();
+        //     }
+        // }
+        // else if (!isDie)
+        // {
+        //     BaseMove();//站走跑攻
+        //
+        //     //aiPath.canMove = true;
+        //
+        //
+        // }
+        // else
+        // {
+        //     //倒下后不能移动
+        //     moveSpeed = 0;
+        //     aiPath.maxSpeed = 0f;
+        //
+        //     //只要倒地就不显示
+        //     attack_Collider.SetActive(false);
+        //
+        //
+        //     // 只要到底，立即贴地
+        //     Vector3 pos = transform.position;
+        //     pos.y = groundY;
+        //     transform.position = pos;
+        //
+        //     zHeight = 0f;
+        //     zVelocity = 0f;
+        //
+        //     //aiPath.canMove = false;
+        //
+        //
+        // }
+
+
+
+        // 取动画机状态，避免与字段重名
+        //AnimatorStateInfo animState = anim.GetCurrentAnimatorStateInfo(0);
+        //
+        //// 这些阶段一律禁走
+        //bool blockByPhase = isDie || isRape || isAVGFreeze
+        //                    || state == EnemyState.Grabbing
+        //                    || state == EnemyState.Dead
+        //                    // 技能‘准备’阶段禁走，冲锋阶段允许移动
+        //                    || (state == EnemyState.Charging && isChargeAttack == 1)
+        //                    // 投掷准备和出手一般也禁走（如果你想出手时可走就去掉这条）
+        //                    || (state == EnemyState.Throwing);
+        //
+        //// 最终开关
+        //aiPath.canMove = !blockByPhase;
+
+
+
+
+        //当这些动画在播放的时候玩家不能移动
+        AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
+        
+        if (state.IsName("attack_1") ||
+            state.IsName("attack_2") ||
+            state.IsName("attack_3") ||
+            state.IsName("attack_4") ||
+            state.IsName("rage") ||
+            state.IsName("hurt_1") ||
+            state.IsName("hurt_2") ||
+            state.IsName("block") ||
+            state.IsName("fly") ||
+        
+        
+        
+            state.IsName("charge_hit") ||
+            state.IsName("charge_ready") ||
+        
+            state.IsName("throw_ready") ||
+            state.IsName("throw_out") ||
+            state.IsName("stand_laugh") ||
+        
+            state.IsName("Down") ||
+            state.IsName("down") ||
+            state.IsName("down_getup") ||
+            state.IsName("dead")
+            )
         {
-            //处于AVG中不能移动
-            moveSpeed = 0;
-            aiPath.maxSpeed = 0f;
-            CleanupStatus();
-        }
-        else if (isRape)
-        {
-
-            //防止被更改状态的强制间断动画触发
-            //RapeTimer += Time.deltaTime;
-            //if (RapeTimer > 1f) { anim.Play("lewd"); RapeTimer = 0; }
-
-            //处于强奸中不能移动
-            moveSpeed = 0;
-            aiPath.maxSpeed = 0f;
-
-
-            //非强奸中的其他敌人强制站立/清除冲锋状态
-            if (_Player.GetComponent<Player>().enemyRaper != gameObject) 
-            {
-                CleanupStatus();
-            }
-        }
-        else if (!isDie)
-        {
-            BaseMove();//站走跑攻
-
-            //aiPath.canMove = true;
-
-
+            aiPath.canMove = false;
+        
         }
         else
         {
-            //倒下后不能移动
-            moveSpeed = 0;
-            aiPath.maxSpeed = 0f;
-
-            //只要倒地就不显示
-            attack_Collider.SetActive(false);
-
-
-            // 只要到底，立即贴地
-            Vector3 pos = transform.position;
-            pos.y = groundY;
-            transform.position = pos;
-
-            zHeight = 0f;
-            zVelocity = 0f;
-
-            //aiPath.canMove = false;
-
-
+            aiPath.canMove = true;
         }
 
+
+
+
+
+
+
+
+
+        // 取动画机状态，避免与字段重名
+        //AnimatorStateInfo animState = anim.GetCurrentAnimatorStateInfo(0);
+
+        // 最高优先：冻结/抓取/围观/死亡
+        //if (this.state == EnemyState.Frozen || this.state == EnemyState.Grabbing || this.state == EnemyState.Observing)
+        //{
+        //    if (aiPath) { aiPath.canMove = false; aiPath.maxSpeed = 0f; }
+        //    moveSpeed = 0;
+        //    return;
+        //}
+        //if (this.state == EnemyState.Dead) return;
+
+
+        // 最高优先级：冻结/抓取/死亡
+        if (this.state == EnemyState.Frozen)
+        {
+            moveSpeed = 0;
+            if (aiPath) { aiPath.maxSpeed = 0f; aiPath.canMove = false; }
+            CleanupStatus();
+            return;
+        }
+
+        if (this.state == EnemyState.Grabbing)
+        {
+            moveSpeed = 0;
+            if (aiPath) { aiPath.maxSpeed = 0f; aiPath.canMove = false; }
+
+
+            //非强奸中的其他敌人强制站立/清除冲锋状态
+            if (_Player.GetComponent<Player>().enemyRaper != gameObject)
+            {
+                CleanupStatus();
+            }
+
+            return;
+        }
+
+        if (isDie || this.state == EnemyState.Dead)
+        {
+            return;
+        }
+
+        // 其余按原先分支
+        BaseMove();
 
 
         UpdateShadow();//控制影子大小
@@ -117,40 +243,7 @@ public class Enemy : MonoBehaviour
 
 
 
-        //当这些动画在播放的时候玩家不能移动
-        AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
-
-        if (state.IsName("attack_1") ||
-            state.IsName("attack_2") ||
-            state.IsName("attack_3") ||
-            state.IsName("attack_4") ||
-            state.IsName("rage") ||
-            state.IsName("hurt_1") ||
-            state.IsName("hurt_2") ||
-            state.IsName("block") ||
-            state.IsName("fly") ||
-
-
-           
-            state.IsName("charge_hit") ||
-
-            state.IsName("throw_ready") ||
-            state.IsName("throw_out") ||
-            state.IsName("stand_laugh") ||
-
-            state.IsName("Down") ||
-            state.IsName("down") ||
-            state.IsName("down_getup") ||
-            state.IsName("dead")
-            )
-        {
-            aiPath.canMove = false;
-
-        }
-        else
-        {
-            aiPath.canMove = true;
-        }
+        
     }
 
     public bool isAVGFreeze = false;//处于AVG内部所有敌人停止
@@ -167,32 +260,32 @@ public class Enemy : MonoBehaviour
     public float RapeTimer;
 
 
-    public void CatchPlayer() 
-    {
-        isRape = true;
-        anim.Play("lewd");
-
-        gameObject.transform.position = _Player.transform.position;
-        //shadow.transform.position = _Player.GetComponent<Player>().shadow.transform.position;
-        shadow.gameObject.SetActive(false);//始终控制不好影子的位置
-
-
-        _Player.GetComponent<Player>().shadow.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-
-        _Player.GetComponent<Player>().characterSkin.HideSkeleton();
-
-
-        _Player.GetComponent<Player>().isRape = true;
-
-        _Player.GetComponent<Player>().enemyRaper = this.gameObject;
-    }
-    public void ReleasePlayer()
-    {
-        isRape = false;
-        AnimBack(); // 或者回到待机动作
-
-        shadow.gameObject.SetActive(true);//始终控制不好影子的位置
-    }
+   // public void CatchPlayer() 
+   // {
+   //     isRape = true;
+   //     anim.Play("lewd");
+   //
+   //     gameObject.transform.position = _Player.transform.position;
+   //     //shadow.transform.position = _Player.GetComponent<Player>().shadow.transform.position;
+   //     shadow.gameObject.SetActive(false);//始终控制不好影子的位置
+   //
+   //
+   //     _Player.GetComponent<Player>().shadow.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+   //
+   //     _Player.GetComponent<Player>().characterSkin.HideSkeleton();
+   //
+   //
+   //     _Player.GetComponent<Player>().isRape = true;
+   //
+   //     _Player.GetComponent<Player>().enemyRaper = this.gameObject;
+   // }
+   // public void ReleasePlayer()
+   // {
+   //     isRape = false;
+   //     AnimBack(); // 或者回到待机动作
+   //
+   //     shadow.gameObject.SetActive(true);//始终控制不好影子的位置
+   // }
 
     #endregion
 
@@ -393,70 +486,70 @@ public class Enemy : MonoBehaviour
     private float attackCooldown = 1f; // 原本 Invoke 的 1f
     public bool isInAttackDelay = false;
 
-    void BaseAttack()
-    {
-
-        //隔一会触发一下攻击
-        if (!isInAttackDelay)
-        {
-            attackTimer += Time.deltaTime;
-
-            if (attackTimer >= attackCooldown)
-            {
-                Attack_Start(); // 攻击警告开始闪
-
-                attackTimer = 0f;
-
-                isInAttackDelay = true;
-            }
-
-
-        }
-
-
-    }
-
-
+    //void BaseAttack()
+    //{
+    //
+    //    //隔一会触发一下攻击
+    //    if (!isInAttackDelay)
+    //    {
+    //        attackTimer += Time.deltaTime;
+    //
+    //        if (attackTimer >= attackCooldown)
+    //        {
+    //            Attack_Start(); // 攻击警告开始闪
+    //
+    //            attackTimer = 0f;
+    //
+    //            isInAttackDelay = true;
+    //        }
+    //
+    //
+    //    }
+    //
+    //
+    //}
 
 
 
 
-    void Attack_Start()
-    {
 
 
-        switch (Random.Range(0, 4))
-        {
-            case 0:
-                anim.Play("attack_1", 0, 0);
-                break;
-            case 1:
-                anim.Play("attack_2", 0, 0);
-                break;
-            case 2:
-                anim.Play("attack_3", 0, 0);
-                break;
-            case 3:
-                anim.Play("attack_4", 0, 0);
-                break;
-        }
-
-
-        switch (Random.Range(0, 3))
-        {
-            case 0:
-                frameEvents._Attack_sword_chop1();
-                break;
-            case 1:
-                frameEvents._Attack_sword_chop2();
-                break;
-            case 2:
-                frameEvents._Attack_sword_chop3();
-                break;
-        }
-
-        Invoke("Attack_Cancel", 1f);//一旦动画帧事件被跳过就会站着不动不攻击，所以这个还是Invoke触发
-    }
+    //void Attack_Start()
+    //{
+    //
+    //
+    //    switch (Random.Range(0, 4))
+    //    {
+    //        case 0:
+    //            anim.Play("attack_1", 0, 0);
+    //            break;
+    //        case 1:
+    //            anim.Play("attack_2", 0, 0);
+    //            break;
+    //        case 2:
+    //            anim.Play("attack_3", 0, 0);
+    //            break;
+    //        case 3:
+    //            anim.Play("attack_4", 0, 0);
+    //            break;
+    //    }
+    //
+    //
+    //    switch (Random.Range(0, 3))
+    //    {
+    //        case 0:
+    //            frameEvents._Attack_sword_chop1();
+    //            break;
+    //        case 1:
+    //            frameEvents._Attack_sword_chop2();
+    //            break;
+    //        case 2:
+    //            frameEvents._Attack_sword_chop3();
+    //            break;
+    //    }
+    //
+    //    Invoke("Attack_Cancel", 1f);//一旦动画帧事件被跳过就会站着不动不攻击，所以这个还是Invoke触发
+    //}
 
 
     public void Attack_Cancel()
@@ -525,9 +618,11 @@ public class Enemy : MonoBehaviour
             script.Launch(GrabbableType.Tanker);
         }
 
-        enemyVision_2.isTrigger = false;
+        enemyVision_2.isTrigger = false;//这里重置
 
     }
+
+  
 
     #endregion
 
@@ -1009,7 +1104,250 @@ public class Enemy : MonoBehaviour
 
 
 
+    public EnemyState state = EnemyState.Idle;
+
+    // 进入“硬锁”抓取：谁都不能打断
+    public bool IsHardLocked => state == EnemyState.Grabbing || state == EnemyState.Dead || state == EnemyState.Frozen;
+
+    // 统一判断接口：某个动作能不能开始
+    public bool CanStart(ActionType act)
+    {
+        if (IsHardLocked) return false;           // 抓取 / 冻结 / 死亡直接不允许
+        if (state == EnemyState.Downed) return false;
+
+        switch (act)
+        {
+            case ActionType.Attack: return state == EnemyState.Idle || state == EnemyState.Moving;
+            case ActionType.Charge: return state == EnemyState.Idle || state == EnemyState.Moving;
+            case ActionType.Throw: return state == EnemyState.Idle || state == EnemyState.Moving;
+            default: return false;
+        }
+    }
+
+    public enum ActionType { Attack, Charge, Throw }
+
+    // 统一中断一切非抓取行为
+    void InterruptAllActions(string reason = "")
+    {
+        // 停移动
+        moveSpeed = 0;
+        if (aiPath) { aiPath.maxSpeed = 0f; aiPath.canMove = false; }
+
+        // 清即时状态
+        isAttack = false;
+        isChargeAttack = 0;
+        attackTimer = 0f;
+        isInAttackDelay = false;
+
+        // 取消所有计划中的回调/协程
+        CancelInvoke();
+        StopAllCoroutines();
+
+        // 回到站立（避免残留动画层）
+        if (currentHealth > 0) anim.Play("stand", 0, 0f);
+    }
+
+    public void CatchPlayer()
+    {
+        if (IsHardLocked) return;
+
+        // 先中断自己
+        InterruptAllActions("CatchPlayer");
+        state = EnemyState.Grabbing;   // 抓取硬锁
+        isRape = true;
+
+        // 位置/显示省略…
+
+        // 标记抓捕者
+        player.isRape = true;
+        player.enemyRaper = this.gameObject;
+
+        // ✅ 现在再让其他敌人围观（避免第一帧状态抖动）
+        //foreach (var e in GameObject.FindGameObjectsWithTag("Enemy"))
+        //{
+        //    var other = e.GetComponent<Enemy>();
+        //    if (other && other != this) other.SetObserving(true);
+        //}
+
+        anim.Play("lewd", 0, 0);
 
 
+
+        _Player.GetComponent<Player>().characterSkin.HideSkeleton();
+        shadow.gameObject.SetActive(false);//始终控制不好影子的位置
+        _Player.GetComponent<Player>().shadow.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+    }
+
+    public void ReleasePlayer()
+    {
+        if (state != EnemyState.Grabbing) return;
+
+        isRape = false;
+        state = EnemyState.Idle;
+
+        // 解除所有围观
+        //foreach (var e in GameObject.FindGameObjectsWithTag("Enemy"))
+        //{
+        //    var other = e.GetComponent<Enemy>();
+        //    if (other && other != this) other.SetObserving(false);
+        //}
+
+        // 恢复自己显示/移动…
+        if (aiPath) aiPath.canMove = true;
+        anim.Play("stand", 0, 0);
+
+
+
+        shadow.gameObject.SetActive(true);//始终控制不好影子的位置
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    void BaseAttack()
+    {
+        if (!CanStart(ActionType.Attack)) return;
+
+        // 攻击 CD
+        if (!isInAttackDelay)
+        {
+            attackTimer += Time.deltaTime;
+            if (attackTimer >= attackCooldown)
+            {
+                Attack_Start();
+                attackTimer = 0f;
+                isInAttackDelay = true;
+            }
+        }
+    }
+
+    void Attack_Start()
+    {
+        if (!CanStart(ActionType.Attack)) return;
+
+        state = EnemyState.Attacking;
+
+        anim.Play($"attack_{Random.Range(1, 5)}", 0, 0);
+
+        // 声音
+        switch (Random.Range(0, 3))
+        {
+            case 0: frameEvents._Attack_sword_chop1(); break;
+            case 1: frameEvents._Attack_sword_chop2(); break;
+            case 2: frameEvents._Attack_sword_chop3(); break;
+        }
+
+        // ❗ 用协程替代 Invoke，且回调前再次校验（防止抓取期间旧回调乱入）
+        StartCoroutine(EndAttackDelay(1f));
+    }
+
+    IEnumerator EndAttackDelay(float t)
+    {
+        yield return new WaitForSeconds(t);
+        if (IsHardLocked || state == EnemyState.Grabbing || state == EnemyState.Dead) yield break;
+
+        isInAttackDelay = false;
+        if (state == EnemyState.Attacking) state = EnemyState.Idle;
+    }
+
+
+
+
+
+
+
+
+
+
+
+    public void StartCharge()
+    {
+        if (!CanStart(ActionType.Charge)) return;
+
+        state = EnemyState.Charging;
+        anim.Play("charge_ready", 0, 0);
+        StartCoroutine(DoChargeAfter(1f)); // 替代 Invoke
+    }
+    IEnumerator DoChargeAfter(float delay)
+    {
+        float t = 0f;
+        while (t < delay) { if (IsHardLocked) yield break; t += Time.deltaTime; yield return null; }
+
+        if (!CanStart(ActionType.Charge)) yield break;
+
+        isChargeAttack = 2;
+        if (aiPath) aiPath.maxSpeed = 7f;
+        anim.SetInteger("Speed", 2);
+
+        // 锁定目标点
+        var lockPoint = new GameObject("ChargeTarget");
+        lockPoint.transform.position = player.transform.position;
+        LockTarget = lockPoint.transform;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    public void StartThrow()
+    {
+        if (!CanStart(ActionType.Throw)) return;
+
+        state = EnemyState.Throwing;
+        anim.Play("throw_ready", 0, 0);
+        StartCoroutine(DoThrowAfter(1f));
+    }
+
+    IEnumerator DoThrowAfter(float delay)
+    {
+        float t = 0f;
+        while (t < delay) { if (IsHardLocked) yield break; t += Time.deltaTime; yield return null; }
+
+        if (!CanStart(ActionType.Throw)) yield break;
+
+        anim.Play("throw_out", 0, 0);
+    }
+
+
+
+
+    public void SetObserving(bool on)
+    {
+        if (on)
+        {
+            state = EnemyState.Observing;
+            isAttack = false;
+            isChargeAttack = 0;
+            CancelInvoke();
+            StopAllCoroutines();
+            if (aiPath) { aiPath.canMove = false; aiPath.maxSpeed = 0f; }
+            anim.Play("stand", 0, 0);
+        }
+        else if (state == EnemyState.Observing)
+        {
+            state = EnemyState.Idle;
+            if (aiPath) aiPath.canMove = true;
+        }
+    }
 }
 
