@@ -20,9 +20,7 @@ public class CharacterSkin : MonoBehaviour
     {
         //换皮肤
         skeletonAnimation = GetComponent<SkeletonMecanim>();
-    
-        //初始皮肤
-        //ShowCurrentAll();
+
     
     }
 
@@ -63,6 +61,25 @@ public class CharacterSkin : MonoBehaviour
     }
 
 
+
+    void Update()
+    {
+
+        if (player != null)
+        {
+            // 根据玩家是否在地面上调整层级
+            int targetOrder = player.IsGrounded() ? 0 : 1;
+
+            skeletonAnimation.GetComponent<MeshRenderer>().sortingOrder = targetOrder;
+        }
+        if (enemy != null)
+        {
+            // 根据玩家是否在地面上调整层级
+            int targetOrder = enemy.IsGrounded() ? 0 : 1;
+
+            skeletonAnimation.GetComponent<MeshRenderer>().sortingOrder = targetOrder;
+        }
+    }
 
 
     #endregion

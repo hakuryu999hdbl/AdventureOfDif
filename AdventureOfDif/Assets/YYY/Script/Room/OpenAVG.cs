@@ -14,7 +14,7 @@ public class OpenAVG : MonoBehaviour
 
             UIManager.instance.OpenAVG();
 
-           
+            Destroy(gameObject);
         }
     }
 }

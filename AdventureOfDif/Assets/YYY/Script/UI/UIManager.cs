@@ -5,6 +5,7 @@ using System.Globalization;
 using NUnit.Framework.Interfaces;
 using TMPro;
 using Unity.Android.Gradle.Manifest;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
@@ -287,6 +288,8 @@ public class UIManager : MonoBehaviour
 
     public void OpenPhone()
     {
+
+
         //处于AVG和商店的状况下，无法打开手机
         if (CurrentChooseMenu == -1 || CurrentChooseMenu == -2) 
         {
@@ -1044,7 +1047,7 @@ public class UIManager : MonoBehaviour
         player.isInputBlocked = true;
         CurrentChooseMenu = -2;
 
-        Invoke("StopAllEnemy", 0.5f);
+        Invoke("StopAllEnemy", 1f);
     }
 
     void StopAllEnemy() 
@@ -1078,4 +1081,32 @@ public class UIManager : MonoBehaviour
         CurrentChooseMenu = 0;
     }
     #endregion
+
+
+
+
+
+
+
+    #region   【寻找场景内残留脚本】
+    [MenuItem("Tools/Cleanup/Remove All FaceToCamera Scripts")]
+    static void RemoveAllFaceToCamera()
+    {
+        int count = 0;
+
+        // 查找场景里所有 FaceToCamera 脚本
+        FaceToCamera[] allFaces = GameObject.FindObjectsOfType<FaceToCamera>(true);
+
+        foreach (var face in allFaces)
+        {
+            // 记录并销毁
+            GameObject obj = face.gameObject;
+           
+            Debug.Log($"✅ Removed FaceToCamera from: {obj.name}");
+            count++;
+        }
+
+        Debug.Log($"--- 共清理 {count} 个 FaceToCamera 组件 ---");
+    }
+#endregion
 }

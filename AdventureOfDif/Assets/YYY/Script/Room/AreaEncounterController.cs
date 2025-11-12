@@ -79,7 +79,7 @@ public class AreaEncounterController : MonoBehaviour
                 if (blockade != null)
                     blockade.SetActive(false);
 
-                RoomGenerator.SetNewBounds(cameraBoundsCollider_All);
+                //RoomGenerator.SetNewBounds(cameraBoundsCollider_All);
 
                 RoomGenerator.GoGo.SetActive(true);//提示清理完毕
 

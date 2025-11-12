@@ -419,9 +419,11 @@ public class DialogSystem : MonoBehaviour
     {
 
         UIManager.instance.CloseAVG();
-        gameObject.SetActive(false);
+        
 
         AudioManager.instance.AudioPlay(AudioManager.instance.Attack_hit2);
+
+        gameObject.SetActive(false);
     }
 
 

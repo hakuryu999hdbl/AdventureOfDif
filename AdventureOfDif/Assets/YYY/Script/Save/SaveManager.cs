@@ -18,7 +18,7 @@ public static class SaveManager
         data.saveTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); // 更新时间
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(GetPath(data.slotName), json);
-        Debug.Log("保存到：" + GetPath(data.slotName));
+        //Debug.Log("保存到：" + GetPath(data.slotName));
     }//储存存档
 
     public static SaveData LoadGame(string saveName)
