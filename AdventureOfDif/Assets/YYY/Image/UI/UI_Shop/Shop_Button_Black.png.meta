@@ -143,7 +143,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Shop_Button_Black_0: 8856771815001014358
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

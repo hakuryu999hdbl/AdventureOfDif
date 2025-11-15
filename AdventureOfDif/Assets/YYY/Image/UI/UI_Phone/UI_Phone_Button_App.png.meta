@@ -311,7 +311,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_Phone_Button_App_0: 559011039332286236
+      UI_Phone_Button_App_1: -304915458598419605
+      UI_Phone_Button_App_2: 1307721638551021686
+      UI_Phone_Button_App_3: 2930267234300194783
+      UI_Phone_Button_App_4: 7842217509888661914
+      UI_Phone_Button_App_5: 1305585166239597848
+      UI_Phone_Button_App_6: -4824941269389467763
+      UI_Phone_Button_App_7: -4377617355961124153
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
