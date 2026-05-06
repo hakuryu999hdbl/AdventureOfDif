@@ -71,7 +71,7 @@ public class ShopItemUI : MonoBehaviour
         // 钱不足拦截
         if (_data.Money < finalPrice)
         {
-            AudioManager.instance.AudioPlay(AudioManager.instance.SE_Glass);
+            AudioManager.Instance.PlayFX(AudioManager.Instance.UI_Select);
             return;
         }
 
@@ -86,7 +86,7 @@ public class ShopItemUI : MonoBehaviour
         UIManager.instance.ChangeMoney(0, false);//更新钱
         RefreshUI();
 
-        AudioManager.instance.AudioPlay(AudioManager.instance.SE_Reji);
+        AudioManager.Instance.PlayFX(AudioManager.Instance.UI_Select);
 
 
         // 限购处理

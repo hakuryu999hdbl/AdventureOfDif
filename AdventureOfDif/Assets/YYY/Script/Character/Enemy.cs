@@ -667,7 +667,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log("跳跃");
             zVelocity = jumpForce;
-            frameEvents._SE_Clothes();
+            //frameEvents._SE_Clothes();
         }
 
 
@@ -690,7 +690,7 @@ public class Enemy : MonoBehaviour
         {
             if (wasInAir) // 刚刚落地的那一帧
             {
-                frameEvents._Effect_falldown();// 播放落地音效等逻辑
+                //frameEvents._Effect_falldown();// 播放落地音效等逻辑
                 Knockdown();
             }
 

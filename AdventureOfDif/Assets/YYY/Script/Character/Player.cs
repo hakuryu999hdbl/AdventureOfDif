@@ -565,7 +565,7 @@ public class Player : MonoBehaviour
             //Debug.Log("跳跃");
             zVelocity = jumpForce;
             airborneState = AirborneType.Jump;////////////////////////////////////////////////////////////////(跳起和飞踢落地都需要这个)
-            frameEvents._SE_Clothes();
+            //frameEvents._SE_Clothes();
         }
 
 
@@ -601,7 +601,7 @@ public class Player : MonoBehaviour
 
             if (wasInAir)
             {
-                frameEvents._Effect_falldown(); // 公共落地音效
+                //frameEvents._Effect_falldown(); // 公共落地音效
 
                 if (airborneState == AirborneType.Jump)
                 {
@@ -880,7 +880,7 @@ public class Player : MonoBehaviour
 
 
         // 音效、体力扣除
-        frameEvents._SE_Clothes();
+        //frameEvents._SE_Clothes();
 
 
 

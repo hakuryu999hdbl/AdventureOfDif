@@ -716,7 +716,7 @@ public class UIManager : MonoBehaviour
 
         }//设置界面
 
-        AudioManager.instance.AudioPlay(AudioManager.instance.Attack_pai1);
+        //AudioManager.instance.AudioPlay(AudioManager.instance.Attack_pai1);
 
 
     }
@@ -760,7 +760,7 @@ public class UIManager : MonoBehaviour
                     break;
             }
 
-            AudioManager.instance.AudioPlay(AudioManager.instance.Attack_hit2);
+            //AudioManager.instance.AudioPlay(AudioManager.instance.Attack_hit2);
         }
 
         //物品栏界面
@@ -768,7 +768,7 @@ public class UIManager : MonoBehaviour
         {
             itemButtons[ItemCurrentIndex].UseItem();
 
-            AudioManager.instance.AudioPlay(AudioManager.instance.Attack_hit2);
+           //AudioManager.instance.AudioPlay(AudioManager.instance.Attack_hit2);
         }
 
 
@@ -820,7 +820,7 @@ public class UIManager : MonoBehaviour
             Invoke(nameof(Close_SettingMenu), 0.2f);
         }
 
-        AudioManager.instance.AudioPlay(AudioManager.instance.Attack_whip_1);
+        //AudioManager.instance.AudioPlay(AudioManager.instance.Attack_whip_1);
 
     }
 
@@ -837,7 +837,7 @@ public class UIManager : MonoBehaviour
             OpenPhone();
         }
 
-        AudioManager.instance.AudioPlay(AudioManager.instance.SE_Clothes);
+        //AudioManager.instance.AudioPlay(AudioManager.instance.SE_Clothes);
     }
 
 
@@ -891,7 +891,7 @@ public class UIManager : MonoBehaviour
         MoneyText_2.text = currentMoney.ToString();
 
 
-        if (UseVoice) { AudioManager.instance.AudioPlay(AudioManager.instance.SE_Reji); }
+        //if (UseVoice) { AudioManager.instance.AudioPlay(AudioManager.instance.SE_Reji); }
 
     }
 

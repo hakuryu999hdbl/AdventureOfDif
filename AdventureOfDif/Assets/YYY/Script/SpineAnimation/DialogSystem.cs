@@ -156,7 +156,7 @@ public class DialogSystem : MonoBehaviour
     IEnumerator SetTextUI()
     {
 
-        AudioManager.instance.AudioPlay(AudioManager.instance.Attack_pai1);
+        //AudioManager.instance.AudioPlay(AudioManager.instance.Attack_pai1);
 
         if (index >= textList.Count)
         {
@@ -421,7 +421,7 @@ public class DialogSystem : MonoBehaviour
         UIManager.instance.CloseAVG();
         
 
-        AudioManager.instance.AudioPlay(AudioManager.instance.Attack_hit2);
+        //AudioManager.instance.AudioPlay(AudioManager.instance.Attack_hit2);
 
         gameObject.SetActive(false);
     }
