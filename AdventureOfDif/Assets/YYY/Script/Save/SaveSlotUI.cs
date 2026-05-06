@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SaveSlotUI : MonoBehaviour
+public class SaveSlotUI : MonoBehaviour, ISelectHandler
 {
     public MenuManager menuManager;//刷场景需要
 
     public string slotName; // "CurrentPlayer1", "CurrentPlayer2", "CurrentPlayer3"
 
     public Text nameText, timeText;
-    //public Text nextAreaIdText;
+    //public Text nextAreaIdText;//位于区域？
     public Image thumbnail;
 
 
@@ -18,7 +19,13 @@ public class SaveSlotUI : MonoBehaviour
 
 
     public GameObject X_Button;
-    // Start is called before the first frame update
+
+    public void OnSelect(BaseEventData eventData)
+    {
+        menuManager.CurrentSaveSlotUI = this;
+    }//监听自己是当前选中按钮
+
+
     void Start()
     {
         Refresh();

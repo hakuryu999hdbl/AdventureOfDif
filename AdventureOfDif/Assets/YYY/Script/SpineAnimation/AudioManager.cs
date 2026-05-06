@@ -110,58 +110,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip Orangutan_Summon_1, Orangutan_Attack_1, Orangutan_Die_1;
     #endregion
 
-    /// <summary>
-    /// 转到外部网站
-    /// </summary>
-    #region
-    public void OpenTwitter()
-    {
-        Application.OpenURL("https://x.com/Detective_ye");
-    }
-    public void OpenCi_en()
-    {
-        Application.OpenURL("https://ci-en.dlsite.com/creator/16247");
-    }
-    public void OpenPixiv()
-    {
-        Application.OpenURL("https://www.pixiv.net/users/38416908");
-    }
-    public void OpenDLsite()
-    {
-        Application.OpenURL("https://www.dlsite.com/maniax/work/=/product_id/RJ01296940.html");
-    }
-    public void OpenFanza()
-    {
-        Application.OpenURL("https://www.dmm.co.jp/dc/doujin/-/detail/=/cid=d_480255/?utm_source=twitter&utm_medium=social_tpost&utm_campaign=start&utm_term=d_480255&utm_content=doujin");
-    }
-    public void OpenSteam()
-    {
-        Application.OpenURL("https://store.steampowered.com/app/3297870/_/?beta=0");
-    }
-    #endregion
+   
 
 
-    /// <summary>
-    /// 中途退出关闭App
-    /// </summary>
-    #region
-    //private void OnApplicationQuit()
-    //{
-    //    PlayerPrefs.SetInt("Menu", 0);
-    //    Debug.Log("Application is quitting. Performing cleanup...");
-    //    // 在这里执行一些清理操作
-    //}
-    //private void OnApplicationPause(bool pauseStatus)
-    //{
-    //    if (pauseStatus)
-    //    {
-    //        PlayerPrefs.SetInt("Menu", 0);
-    //        // 应用程序进入后台运行，执行相关操作
-    //    }
-    //    else
-    //    {
-    //        // 应用程序从后台切换到前台，执行相关操作
-    //    }
-    //}
-    #endregion
+    
 }

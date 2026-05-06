@@ -1,163 +1,121 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.InputSystem;
-using static GrabbableObject;
-using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class MenuManager : MonoBehaviour
 {
+
     /// <summary>
-    /// 主菜单
+    /// 菜单层面多端输入
     /// </summary>
     #region
-    [Header("主菜单列表")]
-    public int CurrentChooseList = 0;//0 PlayerList  1Setting  2ExitList
-    public int currentIndex = 0;//0 Play  1 GAME    2 CONTROL     3 VOICE     4 LANGUACE   5 Exit_Yes  6 Exit_No
+    [Header("多端输入")]
+    public GameObject newGameButton;//开头默认选中
+    public GameObject saveFirstSelected;//打开存档界面首个选中
+    private PlayerInputControl inputControl;
 
-    public GameObject PlayerList, SettingList, ExitList, SaveList;//各项列表
-    public Button Play_Button, Setting_Button, Exit_Button;//按钮切换列表
+    private void Awake()
+    {
+        inputControl = new PlayerInputControl();
 
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(newGameButton);//开头设置默认按钮
+
+        inputControl.UI.Cancel.started += OnCancel;
+        inputControl.UI.Delete.started += OnDeleteSave;
+
+        //InitLanguageOnce();//根据系统设置语言
+
+
+        //Debug.Log("目前是否根据系统语言进行设置" + PlayerPrefs.GetInt("language_initialized"));//0无设置  1已经设置好
+        Debug.Log("目前储存的语言" + PlayerPrefs.GetInt("language"));//0日语 1简体中文 2繁体中文 3英语 4韩语
+
+
+    }
     private void Start()
     {
-        //默认选择PlayList
-        Invoke("DelayPlayButon", 1f);
+        //AudioManager.Instance.PlayBGM(AudioManager.Instance.BGM_Theme, true);
+    }
+    private void OnEnable()
+    {
 
-        BGM.instance.AudioPlayMenuMusic(-1);//播放主菜单背景音乐
+        inputControl.Enable();
+
     }
 
-    public Button PlayButton;
-
-    public void DelayPlayButon()
+    private void OnDisable()
     {
-        ChangeShowList(0);
-
-    }//开始默认选中Play
-
-
-    //冷却时间
-    private float inputCooldown = 0.2f;
-    private float lastInputTime = -999f;
+        inputControl.Disable();
+    }
+   
 
 
-    public void ChangeShowList(int ShowList)
+    public GameObject PlayList, SettingList, ExitList,SaveList;
+    public void ChangeShowList(int Number) 
     {
-
-        #region 冷却时间
-        if (Time.time - lastInputTime < inputCooldown)
-            return;
-
-        lastInputTime = Time.time;
-        #endregion
-
-        //Settting版面内上下按钮在四个按钮中上下切换选中状态，
-
-        // 更新当前选择索引
-        CurrentChooseList = ShowList;
-
-        // 控制三个 List 的显示和隐藏
-        PlayerList.SetActive(ShowList == 0);
-        SettingList.SetActive(ShowList == 1);
-        ExitList.SetActive(ShowList == 2);
-
-        // 延迟一帧选中，避免在 SetActive 后 UI 还未准备好
-        StartCoroutine(DelayedSelect(ShowList));
-
-        // 切换按钮的选中状态
-        //switch (ShowList)
-        //{
-        //    case 0:
-        //        EventSystem.current.SetSelectedGameObject(Play_Button.gameObject); // 或 anim.SetTrigger("Selected")
-        //        break;
-        //    case 1:
-        //        EventSystem.current.SetSelectedGameObject(Setting_Button.gameObject);
-        //        break;
-        //    case 2:
-        //        EventSystem.current.SetSelectedGameObject(Exit_Button.gameObject);
-        //        break;
-        //}
-    } //默认显示0 PlayerList，显示一个List，另外两个List隐藏，左右方向键能够来回切换List//List状态显示为，对应Button动画器显示Selected
-
-    private IEnumerator DelayedSelect(int ShowList)
-    {
-        yield return null;
-
-        switch (ShowList)
+        switch (Number) 
         {
             case 0:
-                EventSystem.current.SetSelectedGameObject(Play_Button.gameObject);
+                PlayList.SetActive(true);
+                SettingList.SetActive(false);
+                ExitList.SetActive(false);
                 break;
             case 1:
-                EventSystem.current.SetSelectedGameObject(Setting_Button.gameObject);
+                PlayList.SetActive(false);
+                SettingList.SetActive(true);
+                ExitList.SetActive(false);
                 break;
             case 2:
-                EventSystem.current.SetSelectedGameObject(Exit_Button.gameObject);
+                PlayList.SetActive(false);
+                SettingList.SetActive(false);
+                ExitList.SetActive(true);
                 break;
         }
     }
 
-
-    public int PlayerList_Index = 0;//0开始游戏的图标  1存档界面图标
-
-    [Header("存档列表")]
-    public List<Button> SaveButtons = new List<Button>();
-    public List<GameObject> SaveButtons_Hightlight = new List<GameObject>();
-    private int saveIndex = 0;
-    void ChangeSaveIndex(int delta)
+    bool isSaveListOpen = false;
+ 
+    public void OpenSave()
     {
-        saveIndex = (saveIndex + delta + SaveButtons.Count) % SaveButtons.Count;
-        SaveButtons[saveIndex].Select();
+        SaveList.SetActive(true);
 
-        foreach (var obj in SaveButtons_Hightlight)
-        {
-            if (obj != null)
-                obj.SetActive(false);
-        }
+        newGameButton.SetActive(false);
 
-        SaveButtons_Hightlight[saveIndex].SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(saveFirstSelected);
+
+        CurrentSaveSlotUI = saveFirstSelected.GetComponent<SaveSlotUI>();
+
+        isSaveListOpen = true;
     }
 
-
-    [Header("设置列表")]
-    public List<Button> SettingButtons = new List<Button>();
-    public List<GameObject> SettingButtons_Hightlight = new List<GameObject>();
-    private int settingIndex = 0;
-    void ChangeSettingIndex(int delta)
+    private void OnCancel(InputAction.CallbackContext ctx)
     {
-        settingIndex = (settingIndex + delta + SettingButtons.Count) % SettingButtons.Count;
-        SettingButtons[settingIndex].Select();
-
-        foreach (var obj in SettingButtons_Hightlight)
+        if (isSaveListOpen)
         {
-            if (obj != null)
-                obj.SetActive(false);
+            SaveList.SetActive(false);
+            newGameButton.SetActive(true);
+            
+
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(newGameButton);
+
+            isSaveListOpen = false;
         }
 
-        SettingButtons_Hightlight[settingIndex].SetActive(true);
-    }
-
-
-    [Header("退出列表")]
-    public List<Button> ExitButtons = new List<Button>();
-    public List<GameObject> ExitButtons_Hightlight = new List<GameObject>();
-    private int exitIndex = 0;
-    void ChangeExitIndex(int delta)
+    }//退出到开始菜单
+    private void OnDeleteSave(InputAction.CallbackContext ctx)
     {
-        exitIndex = (exitIndex + delta + ExitButtons.Count) % ExitButtons.Count;
-        ExitButtons[exitIndex].Select();
+        if (!isSaveListOpen) return;
 
+        if (CurrentSaveSlotUI == null) return;
 
-        foreach (var obj in ExitButtons_Hightlight)
-        {
-            if (obj != null)
-                obj.SetActive(false);
-        }
-
-        ExitButtons_Hightlight[exitIndex].SetActive(true);
-    }
-
+        CurrentSaveSlotUI.OnDeleteClicked();
+    }//删除当前存档
 
     [System.Obsolete]
     public void StartGame()
@@ -168,263 +126,16 @@ public class MenuManager : MonoBehaviour
 
     }//开始游戏
 
-    public void OpenSave() 
-    {
-        PlayButton.Select();
 
-        PlayerList_Index = 1;
-        PlayButton.gameObject.SetActive(false);
-        SaveList.SetActive(true);
-    }//打开存档界面
-
-    public void Exit_Yes() 
+    public void Exit_Yes()
     {
         Application.Quit();
     }//退出游戏
-    public void Exit_No() 
+    public void Exit_No()
     {
-        ChangeShowList(0);
+
     }//返回进入游戏状态
 
-    #endregion
-
-    /// <summary>
-    /// 菜单层面多端输入
-    /// </summary>
-    #region
-    [SerializeField] private InputActionAsset inputActions;
-    private InputAction moveAction;
-    private InputAction confirmAction;
-    private InputAction cancelAction;
-    private InputAction deleteAction;
-
-    private void OnEnable()
-    {
-        moveAction = inputActions.FindAction("Move");
-        confirmAction = inputActions.FindAction("Attack");  // 或者用名为 "Submit"
-        cancelAction = inputActions.FindAction("Dodge");    // 或者用名为 "Cancel"
-        deleteAction = inputActions.FindAction("Run");    // 或者用名为 "Delete"
-
-        moveAction.performed += OnMove;
-        confirmAction.started += OnConfirm;
-        cancelAction.started += OnCancel;
-        deleteAction.started += OnDelete;
-
-        moveAction.Enable();
-        confirmAction.Enable();
-        cancelAction.Enable();
-        deleteAction.Enable();
-    }
-
-    private void OnDisable()
-    {
-        moveAction.performed -= OnMove;
-        confirmAction.started -= OnConfirm;
-        cancelAction.started -= OnCancel;
-        deleteAction.started -= OnDelete;
-
-        moveAction.Disable();
-        confirmAction.Disable();
-        cancelAction.Disable();
-        deleteAction.Disable();
-    }
-
-    //冷却时间
-    private float inputCooldown2 = 0.2f;
-    private float lastInputTime2 = -999f;
-
-    private void OnMove(InputAction.CallbackContext ctx)
-    {
-
-        #region 冷却时间
-        if (Time.time - lastInputTime2 < inputCooldown2)
-            return;
-
-        lastInputTime2 = Time.time;
-        #endregion
-
-        Vector2 dir = ctx.ReadValue<Vector2>();
-        if (dir.x != 0)
-        {
-            if (dir.x > 0.5f)
-            {
-                ChangeShowList((CurrentChooseList + 1) % 3);
-            }
-            else if (dir.x < -0.5f)
-            {
-                ChangeShowList((CurrentChooseList + 2) % 3); // 相当于 -1
-            }
-            // 若之后你有上下功能，可以加 dir.y 判断
-        }
-        else
-        {
-            // 当前菜单项内的上下切换
-            switch (CurrentChooseList)
-            {
-                case 0://PlayerList
-                    if (PlayerList_Index == 0)
-                    {
-                        PlayButton.Select();
-                    }
-                    else
-                    {
-                        if (dir.y > 0.5f)
-                            ChangeSaveIndex(-1);
-                        else if (dir.y < -0.5f)
-                            ChangeSaveIndex(1);
-                    }
-
-                    break;
-                case 1: // SettingList
-                    if (dir.y > 0.5f)
-                        ChangeSettingIndex(-1);
-                    else if (dir.y < -0.5f)
-                        ChangeSettingIndex(1);
-                    break;
-
-                case 2: // ExitList
-                    if (dir.y > 0.5f)
-                        ChangeExitIndex(-1);
-                    else if (dir.y < -0.5f)
-                        ChangeExitIndex(1);
-                    break;
-            }
-
-           
-        }
-
-        AudioManager.instance.AudioPlay(AudioManager.instance.Attack_pai1);
-
-        ChangeShowList(CurrentChooseList);//保持目前显示List
-    }
-
-    private void OnConfirm(InputAction.CallbackContext ctx)
-    {
-        // 执行当前选中按钮的点击逻辑
-        switch (CurrentChooseList)
-        {
-            case 0:
-
-                if (PlayerList_Index==0) 
-                {
-                    OpenSave();
-                }
-                else
-                {
-                    switch (saveIndex)
-                    {
-                        case 0://存档1
-                            CurrentSaveSlotUI = Save_1;                         
-                            break;
-                        case 1://存档2
-                            CurrentSaveSlotUI = Save_2;
-                            break;
-                        case 2://存档3
-                            CurrentSaveSlotUI = Save_3;
-                            break;
-                    }
-
-                    CurrentSaveSlotUI.OnLoadClicked();
-                }   
-                break;
-            case 1:
-
-                switch (settingIndex) 
-                {
-                    case 0://game
-                        break;
-                    case 1://control
-                        break;
-                    case 2://voice
-                        break;
-                    case 3://language
-                        break;
-                }
-
-
-
-                break;
-            case 2:
-                switch (exitIndex)
-                {
-                    case 0://yes
-                        Exit_Yes();
-                        break;
-                    case 1://no
-                        Exit_No();
-                        break;
-                }
-                break;
-        }
-
-        ChangeShowList(CurrentChooseList);//保持目前显示List
-        AudioManager.instance.AudioPlay(AudioManager.instance.Attack_hit2);
-    }
-
-    private void OnCancel(InputAction.CallbackContext ctx)
-    {
-        // 可选：退出菜单、返回上一级等
-        //Debug.Log("取消");
-
-        // 执行当前选中按钮的点击逻辑
-        switch (CurrentChooseList)
-        {
-            case 0:
-
-                PlayerList_Index = 0;
-                PlayButton.gameObject.SetActive(true);
-                SaveList.SetActive(false);
-                break;
-            case 1:
-
-                break;
-            case 2:
-
-                break;
-        }
-
-        AudioManager.instance.AudioPlay(AudioManager.instance.SE_Glass);
-    }
-
-    private void OnDelete(InputAction.CallbackContext ctx)
-    {
-        // 可选：退出菜单、返回上一级等
-        //Debug.Log("取消");
-
-        // 执行当前选中按钮的点击逻辑
-        switch (CurrentChooseList)
-        {
-            case 0:
-
-                if (PlayerList_Index == 1)
-                {
-                    switch (saveIndex)
-                    {
-                        case 0://删除存档1
-                            CurrentSaveSlotUI = Save_1;
-                            break;
-                        case 1://删除存档2
-                            CurrentSaveSlotUI = Save_2;
-                            break;
-                        case 2://删除存档3
-                            CurrentSaveSlotUI = Save_3;
-                            break;
-                    }
-
-                    CurrentSaveSlotUI.OnDeleteClicked();
-                }
-
-                break;
-            case 1:
-
-                break;
-            case 2:
-
-                break;
-        }
-
-        //AudioManager.instance.AudioPlay(AudioManager.instance.SE_Glass);
-    }
     #endregion
 
     /// <summary>
@@ -469,6 +180,37 @@ public class MenuManager : MonoBehaviour
 
         PlayerPrefs.DeleteAll();
 
+    }
+    #endregion
+
+
+    /// <summary>
+    /// 转到外部网站
+    /// </summary>
+    #region
+    public void OpenTwitter()
+    {
+        Application.OpenURL("https://x.com/Detective_ye");
+    }
+    public void OpenCi_en()
+    {
+        Application.OpenURL("https://ci-en.dlsite.com/creator/16247");
+    }
+    public void OpenPixiv()
+    {
+        Application.OpenURL("https://www.pixiv.net/users/38416908");
+    }
+    public void OpenDLsite()
+    {
+        Application.OpenURL("https://www.dlsite.com/maniax/work/=/product_id/RJ01296940.html");
+    }
+    public void OpenFanza()
+    {
+        Application.OpenURL("https://www.dmm.co.jp/dc/doujin/-/detail/=/cid=d_480255/?utm_source=twitter&utm_medium=social_tpost&utm_campaign=start&utm_term=d_480255&utm_content=doujin");
+    }
+    public void OpenSteam()
+    {
+        Application.OpenURL("https://store.steampowered.com/app/3297870/_/?beta=0");
     }
     #endregion
 }
