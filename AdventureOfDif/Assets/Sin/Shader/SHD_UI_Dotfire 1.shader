@@ -1,6 +1,6 @@
-// Made with Amplify Shader Editor v1.9.8.1
+// Made with Amplify Shader Editor v1.9.8.1  123
 // Available at the Unity Asset Store - http://u3d.as/y3X 
-Shader "DifShader/SHD_UI_DotFire"
+Shader "DifShader/SHD_UI_DotFire1"
 {
     Properties
     {

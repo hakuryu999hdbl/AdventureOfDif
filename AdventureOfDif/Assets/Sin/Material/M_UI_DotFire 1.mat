@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_UI_DotFire
+  m_Name: M_UI_DotFire 1
   m_Shader: {fileID: 4800000, guid: 6778361057d83304b8fd624d21caf60c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -61,7 +61,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture0:
-        m_Texture: {fileID: 2800000, guid: d642e791fe7bcd748be4bae5d7d7e7c2, type: 3}
+        m_Texture: {fileID: 2800000, guid: 12f4c36770a11d54e9c3a515ca2a81bc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
