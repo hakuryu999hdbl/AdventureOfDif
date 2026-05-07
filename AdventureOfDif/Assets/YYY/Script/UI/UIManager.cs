@@ -1,13 +1,14 @@
-﻿using System;
+﻿using NUnit.Framework.Interfaces;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
-using NUnit.Framework.Interfaces;
 using TMPro;
-using Unity.Android.Gradle.Manifest;
+//using Unity.Android.Gradle.Manifest;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using static Pathfinding.RaycastModifier;
@@ -159,9 +160,9 @@ public class UIManager : MonoBehaviour
 
     public void Start()
     {
-        PlayRegionBGM(1);
+        OnStart();//多端输入
 
-        UpdatePhonePage_Highlight(); // 初始化【手机主界面】高亮
+       
 
         ItemUnclockStart();//初始化【菜单界面】高亮
 
@@ -178,105 +179,16 @@ public class UIManager : MonoBehaviour
 
         ChangeMoney(0, false);//更新钱
 
-    }
-    public void PlayRegionBGM(int ChangeBGM)
-    {
-        if (ChangeBGM == 0)
-        {
-            BGM.instance.AudioPlayMenuMusic(-1);//播放主菜单背景音乐
-        }
-        else
-        {
-            BGM.instance.AudioPlayBackgroundMusic(-1);//播放场景内背景音乐
-        }
+
+
+
+        AudioManager.Instance.PlayBGM(AudioManager.Instance.BGM_Level_1 , true);
 
 
     }
 
     #endregion
 
-
-    /// <summary>
-    /// BGM/SE设置
-    /// </summary>
-    #region  
-
-    [SerializeField] private GameObject[] SettingPage_highlightObjs; // 设置高亮显示
-    public int SettingPagecurrentIndex = 0;//0 BGM  1 SE
-    private void UpdateSettingPage_Highlight()
-    {
-        for (int i = 0; i < SettingPage_highlightObjs.Length; i++)
-        {
-            SettingPage_highlightObjs[i].SetActive(i == SettingPagecurrentIndex);
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-    [Header("BGM/SE设置")]
-    public AudioMixer audioMixer;
-    public AudioMixer BGM_Mixer;
-
-
-
-    public Image BGM_Bar;
-    public Image SE_Bar;
-
-    public float BGMVolume = 0f;
-    public float SEVolume = 0f;
-
-    private const float MinVolume = -80f;
-    private const float MaxVolume = 0f;
-
-
-    //-------- SE --------
-    public void SetSEVolune(float value)
-    {
-        SEVolume = Mathf.Clamp(value, MinVolume, MaxVolume);
-        audioMixer.SetFloat("MainVolume", SEVolume);
-        SE_Bar.fillAmount = Mathf.InverseLerp(MinVolume, MaxVolume, SEVolume);
-    }
-
-    public void SE_Up()
-    {
-        SetSEVolune(SEVolume + 10f);
-        Debug.Log("拉高 SE 音量：" + SEVolume);
-    }
-
-    public void SE_Down()
-    {
-        SetSEVolune(SEVolume - 10f);
-        Debug.Log("降低 SE 音量：" + SEVolume);
-    }
-
-    //-------- BGM --------
-    public void SetBGMVolune(float value)
-    {
-        BGMVolume = Mathf.Clamp(value, MinVolume, MaxVolume);
-        BGM_Mixer.SetFloat("BGMVolume", BGMVolume);
-        BGM_Bar.fillAmount = Mathf.InverseLerp(MinVolume, MaxVolume, BGMVolume);
-    }
-
-    public void BGM_Up()
-    {
-        SetBGMVolune(BGMVolume + 10f);
-        Debug.Log("拉高 BGM 音量：" + BGMVolume);
-    }
-
-    public void BGM_Down()
-    {
-        SetBGMVolune(BGMVolume - 10f);
-        Debug.Log("降低 BGM 音量：" + BGMVolume);
-    }
-
-    #endregion
 
     /// <summary>
     /// 手机菜单系统
@@ -332,9 +244,18 @@ public class UIManager : MonoBehaviour
         ItemPage.SetActive(true);
         CurrentChooseMenu = 2;
 
-        UpdateHighlight_Item();
 
-        ItemUnclockStart();//初始化【菜单界面】高亮
+        firstSelected = EventSystem.current.currentSelectedGameObject;//记录上一次你选中的位置
+        GameFlowData.suppressNextSelectSound = true;//吞掉当前选中音
+        EventSystem.current.SetSelectedGameObject(Back_Item);
+
+
+        App.SetActive(false);
+
+        //TODO
+        //UpdateHighlight_Item();
+        //
+        //ItemUnclockStart();//初始化【菜单界面】高亮
 
 
     }
@@ -342,6 +263,12 @@ public class UIManager : MonoBehaviour
     {
         ItemPage.SetActive(false);
         CurrentChooseMenu = 1;
+
+        EventSystem.current.SetSelectedGameObject(null);
+        GameFlowData.suppressNextSelectSound = true;//吞掉当前选中音
+        EventSystem.current.SetSelectedGameObject(firstSelected);
+
+        App.SetActive(true);
     }
 
 
@@ -352,11 +279,19 @@ public class UIManager : MonoBehaviour
         MapPage.SetActive(true);
         CurrentChooseMenu = 3;
 
+        firstSelected = EventSystem.current.currentSelectedGameObject;//记录上一次你选中的位置
+        GameFlowData.suppressNextSelectSound = true;//吞掉当前选中音
+        EventSystem.current.SetSelectedGameObject(Back_Map);
     }
     public void Close_MapMenu()
     {
         MapPage.SetActive(false);
         CurrentChooseMenu = 1;
+
+        EventSystem.current.SetSelectedGameObject(null);
+        GameFlowData.suppressNextSelectSound = true;//吞掉当前选中音
+        EventSystem.current.SetSelectedGameObject(firstSelected);
+
     }
 
 
@@ -366,11 +301,19 @@ public class UIManager : MonoBehaviour
     {
         SettingPage.SetActive(true);
         CurrentChooseMenu = 5;
+
+        firstSelected = EventSystem.current.currentSelectedGameObject;//记录上一次你选中的位置
+        GameFlowData.suppressNextSelectSound = true;//吞掉当前选中音
+        EventSystem.current.SetSelectedGameObject(Back_Setting);
     }
     public void Close_SettingMenu()
     {
         SettingPage.SetActive(false);
         CurrentChooseMenu = 1;
+
+        EventSystem.current.SetSelectedGameObject(null);
+        GameFlowData.suppressNextSelectSound = true;//吞掉当前选中音
+        EventSystem.current.SetSelectedGameObject(firstSelected);
     }
 
 
@@ -514,29 +457,49 @@ public class UIManager : MonoBehaviour
 
     private InputAction pauseAction;
 
-    public int PhonePage_currentIndex;// 0 Item  1 MAP   2 Photo    3 Setting   4 Gallery  5 MoveList  6 Phone  7 EMAIL
+    //public int PhonePage_currentIndex;// 0 Item  1 MAP   2 Photo    3 Setting   4 Gallery  5 MoveList  6 Phone  7 EMAIL
     public int CurrentChooseMenu;//-2对话AVG界面  -1商店界面  0 游戏界面  1 手机界面   2物品栏界面   3地图界面   5设置界面   
+
+
+
+
+
+
+    private PlayerInputControl inputControl;
+    public GameObject firstSelected;//打开手机第一个选中
+    public GameObject Back_Map,Back_Setting,Back_Item;//打开对应界面的时候，当前选中变成了各自的退回按钮
+    public GameObject App;//主菜单所有按钮合集，防止移动物品的当前选中过去
+
+    void OnStart() 
+    {
+        inputControl = new PlayerInputControl();
+        inputControl.UI.Cancel.started += OnCancel;
+
+
+        //Invoke(nameof(DisableUIInput), 0.2f);
+        //DisableUIInput();
+    }
 
     private void OnEnable()
     {
 
-        pauseAction = inputActions.FindAction("Pause");
-        pauseAction.performed += OnPause;
-        pauseAction.Enable();
-
-        moveAction = inputActions.FindAction("Move");
-        moveAction.performed += OnMove;
-        moveAction.Enable();
-
-
-        confirmAction = inputActions.FindAction("Attack");  // 或者用名为 "Submit"
-        confirmAction.started += OnConfirm;
-        confirmAction.Enable();
-
-
-        cancelAction = inputActions.FindAction("Dodge");    // 或者用名为 "Cancel"
-        cancelAction.started += OnCancel;
-        cancelAction.Enable();
+        //pauseAction = inputActions.FindAction("Pause");
+        //pauseAction.performed += OnPause;
+        //pauseAction.Enable();
+        //
+        //moveAction = inputActions.FindAction("Move");
+        //moveAction.performed += OnMove;
+        //moveAction.Enable();
+        //
+        //
+        //confirmAction = inputActions.FindAction("Attack");  // 或者用名为 "Submit"
+        //confirmAction.started += OnConfirm;
+        //confirmAction.Enable();
+        //
+        //
+        //cancelAction = inputActions.FindAction("Dodge");    // 或者用名为 "Cancel"
+        //cancelAction.started += OnCancel;
+        //cancelAction.Enable();
 
 
 
@@ -547,18 +510,21 @@ public class UIManager : MonoBehaviour
 
     private void OnDisable()
     {
-        pauseAction.started -= OnPause;
-        pauseAction.Disable();
-
-        moveAction.performed -= OnMove;
-        moveAction.Disable();
 
 
-        confirmAction.started -= OnConfirm;
-        confirmAction.Disable();
 
-        cancelAction.started -= OnCancel;
-        cancelAction.Disable();
+       // pauseAction.started -= OnPause;
+       // pauseAction.Disable();
+       //
+       // moveAction.performed -= OnMove;
+       // moveAction.Disable();
+       //
+       //
+       // confirmAction.started -= OnConfirm;
+       // confirmAction.Disable();
+       //
+       // cancelAction.started -= OnCancel;
+       // cancelAction.Disable();
 
 
 
@@ -566,6 +532,18 @@ public class UIManager : MonoBehaviour
         //关闭时钟
         StopAllCoroutines();
     }
+
+    public void EnableUIInput()
+    {
+        inputControl.UI.Enable();
+    }//UIManager暂停菜单打开调用
+    public void DisableUIInput()
+    {
+        inputControl.UI.Disable();
+    }//Player初始/暂停菜单关闭调用
+
+
+
 
     //冷却时间
     private float inputCooldown2 = 0.2f;
@@ -610,33 +588,7 @@ public class UIManager : MonoBehaviour
 
 
 
-        if (CurrentChooseMenu == 1)
-        {
-            // 当前菜单项内的左右切换
-            if (dir.x > 0.5f)
-            {
-                PhonePage_currentIndex = Mathf.Clamp(PhonePage_currentIndex + 1, 0, 7);
-                UpdatePhonePage_Highlight();
-            }
-            else if (dir.x < -0.5f)
-            {
-                PhonePage_currentIndex = Mathf.Clamp(PhonePage_currentIndex - 1, 0, 7);
-                UpdatePhonePage_Highlight();
-            }
 
-            // 当前菜单项内的上下切换
-            if (dir.y > 0.5f)
-            {
-                PhonePage_currentIndex = Mathf.Clamp(PhonePage_currentIndex - 3, 0, 7);
-                UpdatePhonePage_Highlight();
-
-            }
-            else if (dir.y < -0.5f)
-            {
-                PhonePage_currentIndex = Mathf.Clamp(PhonePage_currentIndex + 3, 0, 7);
-                UpdatePhonePage_Highlight();
-            }
-        }//手机菜单主界面
 
         if (CurrentChooseMenu == 2)
         {
@@ -663,58 +615,7 @@ public class UIManager : MonoBehaviour
         }//物品栏界面
 
 
-        if (CurrentChooseMenu == 5)
-        {
-            // 当前菜单项内的左右切换
-            if (dir.x > 0.5f)
-            {
-                switch (SettingPagecurrentIndex)
-                {
-                    case 0:
-                        BGM_Up();
-                        break;
-                    case 1:
-                        SE_Up();
-                        break;
-
-                }
-
-            }
-            else if (dir.x < -0.5f)
-            {
-
-                switch (SettingPagecurrentIndex)
-                {
-
-
-                    case 0:
-                        BGM_Down();
-                        break;
-                    case 1:
-                        SE_Down();
-                        break;
-
-                }
-            }
-
-
-            // 当前菜单项内的上下切换
-            if (dir.y > 0.5f)
-            {
-                SettingPagecurrentIndex = Mathf.Clamp(SettingPagecurrentIndex - 1, 0, 2);
-                UpdateSettingPage_Highlight();
-
-
-            }
-            else if (dir.y < -0.5f)
-            {
-                SettingPagecurrentIndex = Mathf.Clamp(SettingPagecurrentIndex + 1, 0, 2);
-                UpdateSettingPage_Highlight();
-
-
-            }
-
-        }//设置界面
+      
 
         //AudioManager.instance.AudioPlay(AudioManager.instance.Attack_pai1);
 
@@ -738,30 +639,7 @@ public class UIManager : MonoBehaviour
         }
 
 
-        //手机主界面
-        if (CurrentChooseMenu == 1)
-        {
-            switch (PhonePage_currentIndex)
-            {
-                case 0:
-                    //进入物品栏菜单
-                    Invoke(nameof(Open_ItemMenu), 0.2f);
-                    break;
-                case 1:
-                    //进入地图菜单
-                    Invoke(nameof(Open_MapMenu), 0.2f);
-                    break;
-                case 2:
-
-                    break;
-                case 3:
-                    //进入设置界面
-                    Invoke(nameof(Open_SettingMenu), 0.2f);
-                    break;
-            }
-
-            //AudioManager.instance.AudioPlay(AudioManager.instance.Attack_hit2);
-        }
+     
 
         //物品栏界面
         if (CurrentChooseMenu == 2)
@@ -780,47 +658,53 @@ public class UIManager : MonoBehaviour
 
     private void OnCancel(InputAction.CallbackContext ctx)
     {
-        if (player.isInputBlocked == false) { return; }
+       
+
+
+        //if (player.isInputBlocked == false) { return; }
 
         //对话AVG界面
-        if (CurrentChooseMenu == -2)
-        {
-            dialogSystem.ChangeStory();//跳过
-        }
-
-        if (CurrentChooseMenu == -1)
-        {
-            //退出商店
-            Invoke(nameof(CloseShop), 0.2f);
-        }
-
-
+        //if (CurrentChooseMenu == -2)
+        //{
+        //    dialogSystem.ChangeStory();//跳过
+        //}
+        //
+        //if (CurrentChooseMenu == -1)
+        //{
+        //    //退出商店
+        //    Invoke(nameof(CloseShop), 0.2f);
+        //}
+        //
+        //
         if (CurrentChooseMenu == 1)
         {
             //退出手机
-            Invoke(nameof(ClosePhone), 0.2f);
+            //Invoke(nameof(ClosePhone), 0.2f);
 
+            TogglePause();
         }
-
+        
         if (CurrentChooseMenu == 2)
         {
             //退出物品栏
             Invoke(nameof(Close_ItemMenu), 0.2f);
-        }
 
+
+        }
+        
         if (CurrentChooseMenu == 3)
         {
             //退出地图界面
             Invoke(nameof(Close_MapMenu), 0.2f);
         }
-
+        
         if (CurrentChooseMenu == 5)
         {
             //退出地图界面
             Invoke(nameof(Close_SettingMenu), 0.2f);
         }
 
-        //AudioManager.instance.AudioPlay(AudioManager.instance.Attack_whip_1);
+        AudioManager.Instance.PlayFX(AudioManager.Instance.UI_Select);
 
     }
 
@@ -828,34 +712,37 @@ public class UIManager : MonoBehaviour
     {
 
 
+        TogglePause();
+
+        
+    }
+
+    public void TogglePause() 
+    {
         if (Anim_Phone.GetBool("Open") == true)
         {
             ClosePhone();
+            player.EnableGameplayInput();
+            inputControl.Disable();
+            
+            firstSelected = EventSystem.current.currentSelectedGameObject;//记录上一次你选中的位置
+            EventSystem.current.SetSelectedGameObject(null);
         }
         else
         {
             OpenPhone();
+            player.DisableGameplayInput();
+            inputControl.Enable();
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(firstSelected);
         }
 
         //AudioManager.instance.AudioPlay(AudioManager.instance.SE_Clothes);
     }
 
 
-
-
     [SerializeField] private Animator[] PhonePage_Animators; // 手机页面动画器数组
-    private void UpdatePhonePage_Highlight()
-    {
-        for (int i = 0; i < PhonePage_Animators.Length; i++)
-        {
-            if (PhonePage_Animators[i] == null) continue;
-
-            if (i == PhonePage_currentIndex)
-                PhonePage_Animators[i].SetTrigger("Pressed");
-            else
-                PhonePage_Animators[i].SetTrigger("Normal");
-        }
-    }
+  
 
 
 

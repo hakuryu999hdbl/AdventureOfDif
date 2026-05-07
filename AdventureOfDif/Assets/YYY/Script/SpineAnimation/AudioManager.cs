@@ -78,18 +78,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip BGM_Theme;
     public AudioClip BGM_Level_1;
 
-    public AudioClip Attack_sword_chop1, Attack_sword_chop2, Attack_sword_chop3, Attack_katana, Attack_katana_in, Attack_katana_draw,
-                     Attack_sword_clash2, Attack_sword_clash3, Attack_sword_clash4,
-                     Attack_blood1, Attack_blood2, Attack_blood3;
-
-
-    public AudioClip YYY_attack1, YYY_attack2, YYY_attack3, YYY_attack4;
-
-
-    public AudioClip SE_WalkClip_1, SE_WalkClip_2, SE_RunClip_1, SE_RunClip_2;
-    public AudioClip SE_falldown;
-    public AudioClip SE_Door_Open, SE_Door_Close;
-
+   
 
     public AudioClip UI_Click, UI_Select;
     #endregion

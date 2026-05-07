@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Purchasing;
 using UnityEngine.UI;
 
-public class ItemOptionUI : MonoBehaviour
+public class ItemOptionUI : MonoBehaviour,
+    ISelectHandler,
+    IDeselectHandler
 {
     public string itemKey;           // 例如 "ITEM_Potion"
     public Animator highlightAnim;   // 或 GameObject highlightObj
@@ -124,5 +127,16 @@ public class ItemOptionUI : MonoBehaviour
     }
 
 
-
+    public void OnSelect(BaseEventData eventData)
+    {
+        SetHighlight(true);
+    }
+    public void OnDeselect(BaseEventData eventData)
+    {
+        SetHighlight(false);
+    }
+    //public void OnSubmit(BaseEventData eventData)
+    //{
+    //    UseItem();
+    //}
 }

@@ -38,6 +38,16 @@ public class ButtonSound : MonoBehaviour,
         if (!CanPlay()) return;
         if (!playHoverOnSelect) return;
 
+
+
+        if (GameFlowData.suppressNextSelectSound)
+        {
+            GameFlowData.suppressNextSelectSound = false;
+            return;
+        }
+        //打开二级菜单的时候把当前选中音吞掉
+
+
         AudioManager.Instance.PlayFX(AudioManager.Instance.UI_Select);
     }
 

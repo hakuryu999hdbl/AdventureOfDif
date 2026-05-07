@@ -18,8 +18,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        RegisterHandle();//登录手柄控制
-
+        
         UpdateAllBar();//更新UI
 
 
@@ -431,18 +430,18 @@ public class Player : MonoBehaviour
 
     public void AttackVoice()
     {
-        switch (Random.Range(0, 3))
-        {
-            case 0:
-                frameEvents._Attack_sword_chop1();
-                break;
-            case 1:
-                frameEvents._Attack_sword_chop2();
-                break;
-            case 2:
-                frameEvents._Attack_sword_chop3();
-                break;
-        }
+       // switch (Random.Range(0, 3))
+       // {
+       //     case 0:
+       //         frameEvents._Attack_sword_chop1();
+       //         break;
+       //     case 1:
+       //         frameEvents._Attack_sword_chop2();
+       //         break;
+       //     case 2:
+       //         frameEvents._Attack_sword_chop3();
+       //         break;
+       // }
     }//攻击声音
 
 
@@ -1009,24 +1008,36 @@ public class Player : MonoBehaviour
     private InputAction DodgeAction;
 
 
-    private void RegisterHandle()
+
+
+    private PlayerInputControl inputControl;
+
+
+    private void Awake()
     {
+        inputControl = new PlayerInputControl();
+
+        inputControl.Gameplay.Pause.started += OnPause;
+
+
+      
+
         // 获取动作（根据你的Action Map结构可能需要调整路径）
-        runAction = inputActions.FindAction("Run");
-        AttackAction = inputActions.FindAction("Attack");
-        DodgeAction = inputActions.FindAction("Dodge");
-
-        // 订阅输入事件
-        runAction.started += OnRunStarted;
-        runAction.canceled += OnRunCanceled;
-
-        // 订阅输入事件
-        AttackAction.started += OnAttackStarted;
-        AttackAction.canceled += OnAttackCanceled;
-
-        // 订阅输入事件
-        DodgeAction.started += OnDodgeStarted;
-        DodgeAction.canceled += OnDodgeCanceled;
+        //runAction = inputActions.FindAction("Run");
+        //AttackAction = inputActions.FindAction("Attack");
+        //DodgeAction = inputActions.FindAction("Dodge");
+        //
+        //// 订阅输入事件
+        //runAction.started += OnRunStarted;
+        //runAction.canceled += OnRunCanceled;
+        //
+        //// 订阅输入事件
+        //AttackAction.started += OnAttackStarted;
+        //AttackAction.canceled += OnAttackCanceled;
+        //
+        //// 订阅输入事件
+        //DodgeAction.started += OnDodgeStarted;
+        //DodgeAction.canceled += OnDodgeCanceled;
 
 
     }
@@ -1034,29 +1045,55 @@ public class Player : MonoBehaviour
     
     private void OnDisable()
     {
-        if (runAction != null)
-        {
-            runAction.started -= OnRunStarted;
-            runAction.canceled -= OnRunCanceled;
-        }
+        //if (runAction != null)
+        //{
+        //    runAction.started -= OnRunStarted;
+        //    runAction.canceled -= OnRunCanceled;
+        //}
+        //
+        //if (AttackAction != null)
+        //{
+        //    AttackAction.started -= OnAttackStarted;
+        //    AttackAction.canceled -= OnAttackCanceled;
+        //}
+        //
+        //if (DodgeAction != null)
+        //{
+        //    DodgeAction.started -= OnDodgeStarted;
+        //    DodgeAction.canceled -= OnDodgeCanceled;
+        //}
 
-        if (AttackAction != null)
-        {
-            AttackAction.started -= OnAttackStarted;
-            AttackAction.canceled -= OnAttackCanceled;
-        }
+        inputControl.Disable();
 
-        if (DodgeAction != null)
-        {
-            DodgeAction.started -= OnDodgeStarted;
-            DodgeAction.canceled -= OnDodgeCanceled;
-        }
+
     }//重刷场景时自动解绑
 
     private void OnEnable()
     {
-        RegisterHandle();
+        //RegisterHandle();
+
+        inputControl.Enable();
+
     }//重刷场景时自动解绑
+
+    public void EnableGameplayInput()
+    {
+        inputControl.Gameplay.Enable();
+    }//UIManager暂停菜单关闭调用
+    public void DisableGameplayInput()
+    {
+        inputControl.Gameplay.Disable();
+    }//UIManager暂停菜单打开调用
+
+
+
+
+    private void OnPause(InputAction.CallbackContext ctx)
+    {
+        UIManager.instance.TogglePause();
+    }
+
+
 
 
 
@@ -1244,18 +1281,18 @@ public class Player : MonoBehaviour
                 {
                     anim.Play("block");
 
-                    switch (Random.Range(0, 3))
-                    {
-                        case 0:
-                            frameEvents._Attack_sword_clash2();
-                            break;
-                        case 1:
-                            frameEvents._Attack_sword_clash3();
-                            break;
-                        case 2:
-                            frameEvents._Attack_sword_clash4();
-                            break;
-                    }
+                   // switch (Random.Range(0, 3))
+                   // {
+                   //     case 0:
+                   //         frameEvents._Attack_sword_clash2();
+                   //         break;
+                   //     case 1:
+                   //         frameEvents._Attack_sword_clash3();
+                   //         break;
+                   //     case 2:
+                   //         frameEvents._Attack_sword_clash4();
+                   //         break;
+                   // }
 
 
                     //显示伤害
@@ -1346,18 +1383,18 @@ public class Player : MonoBehaviour
 
 
 
-            switch (Random.Range(0, 3))
-            {
-                case 0:
-                    frameEvents._Attack_blood1();
-                    break;
-                case 1:
-                    frameEvents._Attack_blood2();
-                    break;
-                case 2:
-                    frameEvents._Attack_blood3();
-                    break;
-            }
+            //switch (Random.Range(0, 3))
+            //{
+            //    case 0:
+            //        frameEvents._Attack_blood1();
+            //        break;
+            //    case 1:
+            //        frameEvents._Attack_blood2();
+            //        break;
+            //    case 2:
+            //        frameEvents._Attack_blood3();
+            //        break;
+            //}
 
           
 

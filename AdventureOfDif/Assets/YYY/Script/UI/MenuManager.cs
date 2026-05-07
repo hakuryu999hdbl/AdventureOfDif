@@ -37,7 +37,7 @@ public class MenuManager : MonoBehaviour
     }
     private void Start()
     {
-        AudioManager.Instance.PlayBGM(AudioManager.Instance.BGM_Theme, true);
+       // AudioManager.Instance.PlayBGM(AudioManager.Instance.BGM_Theme, true);
     }
     private void OnEnable()
     {
@@ -86,6 +86,7 @@ public class MenuManager : MonoBehaviour
 
 
         EventSystem.current.SetSelectedGameObject(null);
+        GameFlowData.suppressNextSelectSound = true;//吞掉当前选中音
         EventSystem.current.SetSelectedGameObject(saveFirstSelected);
 
         CurrentSaveSlotUI = saveFirstSelected.GetComponent<SaveSlotUI>();
@@ -101,7 +102,7 @@ public class MenuManager : MonoBehaviour
             newGameButton.SetActive(true);
             
 
-            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(null);        
             EventSystem.current.SetSelectedGameObject(newGameButton);
 
             isSaveListOpen = false;
@@ -114,13 +115,16 @@ public class MenuManager : MonoBehaviour
 
         if (CurrentSaveSlotUI == null) return;
 
+        AudioManager.Instance.PlayFX(AudioManager.Instance.UI_Click);
+
+
         CurrentSaveSlotUI.OnDeleteClicked();
     }//删除当前存档
 
-    [System.Obsolete]
+
     public void StartGame()
     {
-        FindObjectOfType<SceneTransitionController>().StartGame("YYY");
+        FindFirstObjectByType<SceneTransitionController>().StartGame("YYY");
 
         //SceneManager.LoadScene("YYY", LoadSceneMode.Single);
 

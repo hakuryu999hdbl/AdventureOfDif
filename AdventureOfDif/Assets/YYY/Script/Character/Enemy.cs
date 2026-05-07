@@ -839,18 +839,18 @@ public class Enemy : MonoBehaviour
                 {
                     anim.Play("block");
 
-                    switch (Random.Range(0, 3))
-                    {
-                        case 0:
-                            frameEvents._Attack_sword_clash2();
-                            break;
-                        case 1:
-                            frameEvents._Attack_sword_clash3();
-                            break;
-                        case 2:
-                            frameEvents._Attack_sword_clash4();
-                            break;
-                    }
+                   // switch (Random.Range(0, 3))
+                   // {
+                   //     case 0:
+                   //         frameEvents._Attack_sword_clash2();
+                   //         break;
+                   //     case 1:
+                   //         frameEvents._Attack_sword_clash3();
+                   //         break;
+                   //     case 2:
+                   //         frameEvents._Attack_sword_clash4();
+                   //         break;
+                   // }
 
 
                     //显示伤害
@@ -949,18 +949,18 @@ public class Enemy : MonoBehaviour
 
             isScreaming = true;
 
-            switch (Random.Range(0, 3))
-            {
-                case 0:
-                    frameEvents._Attack_blood1();
-                    break;
-                case 1:
-                    frameEvents._Attack_blood2();
-                    break;
-                case 2:
-                    frameEvents._Attack_blood3();
-                    break;
-            }
+            //switch (Random.Range(0, 3))
+            //{
+            //    case 0:
+            //        frameEvents._Attack_blood1();
+            //        break;
+            //    case 1:
+            //        frameEvents._Attack_blood2();
+            //        break;
+            //    case 2:
+            //        frameEvents._Attack_blood3();
+            //        break;
+            //}
 
             //血特效
             GameObject effectPrefabs = Instantiate(BloodEffect, transform.position, transform.rotation);
@@ -1243,12 +1243,12 @@ public class Enemy : MonoBehaviour
         anim.Play($"attack_{Random.Range(1, 5)}", 0, 0);
 
         // 声音
-        switch (Random.Range(0, 3))
-        {
-            case 0: frameEvents._Attack_sword_chop1(); break;
-            case 1: frameEvents._Attack_sword_chop2(); break;
-            case 2: frameEvents._Attack_sword_chop3(); break;
-        }
+        //switch (Random.Range(0, 3))
+        //{
+        //    case 0: frameEvents._Attack_sword_chop1(); break;
+        //    case 1: frameEvents._Attack_sword_chop2(); break;
+        //    case 2: frameEvents._Attack_sword_chop3(); break;
+        //}
 
         // ❗ 用协程替代 Invoke，且回调前再次校验（防止抓取期间旧回调乱入）
         StartCoroutine(EndAttackDelay(1f));
