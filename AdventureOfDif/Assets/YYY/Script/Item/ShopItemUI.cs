@@ -36,8 +36,8 @@ public class ShopItemUI : MonoBehaviour
         if (!gameObject.activeInHierarchy || data == null) return;
 
         priceText.text = finalPrice.ToString();
-        Name.text = data.displayName.Get(UIManager.instance.currentLocale).ToString();
-        Introduce.text = data.description.Get(UIManager.instance.currentLocale).ToString();
+        Name.text = data.displayName.Get(ShopManager.instance.currentLocale).ToString();
+        Introduce.text = data.description.Get(ShopManager.instance.currentLocale).ToString();
         Item_Image.sprite = data.icon;
 
         //stockText.text = stock.ToString();//显示商店库存
@@ -71,7 +71,8 @@ public class ShopItemUI : MonoBehaviour
         // 钱不足拦截
         if (_data.Money < finalPrice)
         {
-            AudioManager.Instance.PlayFX(AudioManager.Instance.UI_Select);
+            GameFlowData.suppressNextClickSound = true;
+            AudioManager.Instance.PlayFX(AudioManager.Instance.SE_falldown);
             return;
         }
 
@@ -83,7 +84,7 @@ public class ShopItemUI : MonoBehaviour
         SaveManager.SaveGame(_data);
 
         // ✅ UI 更新显示
-        UIManager.instance.ChangeMoney(0, false);//更新钱
+        BalanceManager.instance.ChangeMoney(0, false);//更新钱
         RefreshUI();
 
         AudioManager.Instance.PlayFX(AudioManager.Instance.UI_Select);

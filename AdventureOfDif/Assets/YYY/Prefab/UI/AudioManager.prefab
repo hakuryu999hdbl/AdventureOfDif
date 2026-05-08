@@ -56,6 +56,7 @@ MonoBehaviour:
   BGM_Level_1: {fileID: 8300000, guid: 5a26af15581a2d746bed808957ff7784, type: 3}
   UI_Click: {fileID: 8300000, guid: e593f642bff174749a24f7b0e530bbfd, type: 3}
   UI_Select: {fileID: 8300000, guid: 782703e41dd64334197c3649b6273c2a, type: 3}
+  SE_falldown: {fileID: 8300000, guid: 8b0cc1145b5005942a62901641234d17, type: 3}
 --- !u!82 &566170427959765040
 AudioSource:
   m_ObjectHideFlags: 0

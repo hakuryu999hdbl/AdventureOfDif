@@ -17,10 +17,12 @@ public class RoomGenerator : MonoBehaviour
         //根据当前临时存档读取位置
         switch (GameFlowData.nextAreaId) 
         {
-          
+            default:
             //大路
             case "Area01_1":
             case "Area01_2":
+            case "Area01_3":
+            case "Area01_4":
                 SetArea(0);
                 break;
 
@@ -52,7 +54,7 @@ public class RoomGenerator : MonoBehaviour
                 SetArea(4);
                 break;
 
-            default:
+          
             //健身房大厅
             case "Area06_1":
             case "Area06_2":
@@ -142,8 +144,13 @@ public class RoomGenerator : MonoBehaviour
 
 
             case "Area05_3":
+            case "Area01_3":
                 Transform PlayerPoint_3 = NewArea.transform.Find("PointForPlayer_3");
                 Player.transform.position = PlayerPoint_3.position;
+                break;
+            case "Area01_4":
+                Transform PlayerPoint_4 = NewArea.transform.Find("PointForPlayer_4");
+                Player.transform.position = PlayerPoint_4.position;
                 break;
         }
 
@@ -157,10 +164,10 @@ public class RoomGenerator : MonoBehaviour
         confiner.InvalidatePathCache(); // 强制刷新路径缓存，防止摄像机卡住
     }//放置相机边界
 
-    [System.Obsolete]
+
     public void LoadNextArea() 
     {
-        SceneTransitionController transition = FindObjectOfType<SceneTransitionController>();
+        SceneTransitionController transition = FindFirstObjectByType<SceneTransitionController>();
 
         if (transition != null)
         {
@@ -173,6 +180,12 @@ public class RoomGenerator : MonoBehaviour
             SceneManager.LoadScene("YYY", LoadSceneMode.Single);
         }
 
+    }
+
+    public void LoadShop() 
+    {
+        SceneTransitionController transition = FindFirstObjectByType<SceneTransitionController>();
+        transition.StartGame("Shop");
     }
 
     #endregion

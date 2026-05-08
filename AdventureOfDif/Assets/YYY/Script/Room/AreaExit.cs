@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AreaExit : MonoBehaviour
 {
-    private bool triggered = false;
+
 
     RoomGenerator RoomGenerator;//寻找RoomGenerator
 
@@ -19,13 +19,12 @@ public class AreaExit : MonoBehaviour
         RoomGenerator = GameObject.FindGameObjectWithTag("RoomGenerator").GetComponent<RoomGenerator>();
     }
 
-    [System.Obsolete]
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (triggered) return;
         if (other.CompareTag("Player"))
         {
-            triggered = true;
+ 
 
 
             switch (ShopNumber) 
@@ -36,18 +35,21 @@ public class AreaExit : MonoBehaviour
                     break;
 
                 case 1:
-                    UIManager.instance.OpenShop(1);
-                    triggered = false;
+                    GameFlowData.ShopType = 1;
+                    GameFlowData.nextAreaId = ExitName;//记录下一个前往区域
+                    RoomGenerator.LoadShop();
                     break;
 
                 case 2:
-                    UIManager.instance.OpenShop(2);
-                    triggered = false;
+                    GameFlowData.ShopType = 2;
+                    GameFlowData.nextAreaId = ExitName;//记录下一个前往区域
+                    RoomGenerator.LoadShop();
                     break;
 
                 case 3:
-                    UIManager.instance.OpenShop(3);
-                    triggered = false;
+                    GameFlowData.ShopType = 3;
+                    GameFlowData.nextAreaId = ExitName;//记录下一个前往区域
+                    RoomGenerator.LoadShop();
                     break;
             }
 

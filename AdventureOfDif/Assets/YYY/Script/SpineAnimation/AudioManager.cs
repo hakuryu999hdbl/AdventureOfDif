@@ -81,6 +81,8 @@ public class AudioManager : MonoBehaviour
    
 
     public AudioClip UI_Click, UI_Select;
+
+    public AudioClip SE_falldown;
     #endregion
 
 

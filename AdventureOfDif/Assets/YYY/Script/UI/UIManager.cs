@@ -12,6 +12,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using static Pathfinding.RaycastModifier;
+using static UnityEngine.Analytics.IAnalytic;
 
 
 public class UIManager : MonoBehaviour
@@ -244,20 +245,23 @@ public class UIManager : MonoBehaviour
         ItemPage.SetActive(true);
         CurrentChooseMenu = 2;
 
-
+        App.SetActive(false);
         firstSelected = EventSystem.current.currentSelectedGameObject;//记录上一次你选中的位置
         GameFlowData.suppressNextSelectSound = true;//吞掉当前选中音
         EventSystem.current.SetSelectedGameObject(Back_Item);
 
 
-        App.SetActive(false);
+      
 
         //TODO
         //UpdateHighlight_Item();
         //
         //ItemUnclockStart();//初始化【菜单界面】高亮
 
-
+        //清空物品选中显示
+        if (itemIcon) itemIcon.sprite = None;
+        if (itemNameText) itemNameText.text = null;
+        if (itemDescText) itemDescText.text = null;
     }
     public void Close_ItemMenu()
     {
@@ -411,7 +415,7 @@ public class UIManager : MonoBehaviour
     public Image itemIcon;
     public Text itemNameText;
     public Text itemDescText;
-
+    public Sprite None;//透明图片
 
     public void ShowItemInfo(ItemData data, int quantity)
     {
@@ -457,7 +461,6 @@ public class UIManager : MonoBehaviour
 
     private InputAction pauseAction;
 
-    //public int PhonePage_currentIndex;// 0 Item  1 MAP   2 Photo    3 Setting   4 Gallery  5 MoveList  6 Phone  7 EMAIL
     public int CurrentChooseMenu;//-2对话AVG界面  -1商店界面  0 游戏界面  1 手机界面   2物品栏界面   3地图界面   5设置界面   
 
 
