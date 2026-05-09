@@ -1009,7 +1009,7 @@ public class Player : MonoBehaviour
 
 
 
-
+    //新多端输入
     private PlayerInputControl inputControl;
 
 
@@ -1017,27 +1017,34 @@ public class Player : MonoBehaviour
     {
         inputControl = new PlayerInputControl();
 
+      
+
+        inputControl.Gameplay.Attack.started += OnAttackStarted;
+        inputControl.Gameplay.Attack.canceled += OnAttackCanceled;
+
+        inputControl.Gameplay.Run.started += OnRunStarted;
+        inputControl.Gameplay.Run.canceled += OnRunCanceled;
+
         inputControl.Gameplay.Pause.started += OnPause;
 
 
-      
 
-        // 获取动作（根据你的Action Map结构可能需要调整路径）
-        runAction = inputActions.FindAction("Run");
-        AttackAction = inputActions.FindAction("Attack");
-        DodgeAction = inputActions.FindAction("Dodge");
-        
-        // 订阅输入事件
-        runAction.started += OnRunStarted;
-        runAction.canceled += OnRunCanceled;
-        
-        // 订阅输入事件
-        AttackAction.started += OnAttackStarted;
-        AttackAction.canceled += OnAttackCanceled;
-        
-        // 订阅输入事件
-        DodgeAction.started += OnDodgeStarted;
-        DodgeAction.canceled += OnDodgeCanceled;
+        //// 获取动作（根据你的Action Map结构可能需要调整路径）
+        //runAction = inputActions.FindAction("Run");
+        //AttackAction = inputActions.FindAction("Attack");
+        //DodgeAction = inputActions.FindAction("Dodge");
+        //
+        //// 订阅输入事件
+        //runAction.started += OnRunStarted;
+        //runAction.canceled += OnRunCanceled;
+        //
+        //// 订阅输入事件
+        //AttackAction.started += OnAttackStarted;
+        //AttackAction.canceled += OnAttackCanceled;
+        //
+        //// 订阅输入事件
+        //DodgeAction.started += OnDodgeStarted;
+        //DodgeAction.canceled += OnDodgeCanceled;
 
 
     }
@@ -1045,23 +1052,23 @@ public class Player : MonoBehaviour
     
     private void OnDisable()
     {
-        if (runAction != null)
-        {
-            runAction.started -= OnRunStarted;
-            runAction.canceled -= OnRunCanceled;
-        }
-        
-        if (AttackAction != null)
-        {
-            AttackAction.started -= OnAttackStarted;
-            AttackAction.canceled -= OnAttackCanceled;
-        }
-        
-        if (DodgeAction != null)
-        {
-            DodgeAction.started -= OnDodgeStarted;
-            DodgeAction.canceled -= OnDodgeCanceled;
-        }
+        //if (runAction != null)
+        //{
+        //    runAction.started -= OnRunStarted;
+        //    runAction.canceled -= OnRunCanceled;
+        //}
+        //
+        //if (AttackAction != null)
+        //{
+        //    AttackAction.started -= OnAttackStarted;
+        //    AttackAction.canceled -= OnAttackCanceled;
+        //}
+        //
+        //if (DodgeAction != null)
+        //{
+        //    DodgeAction.started -= OnDodgeStarted;
+        //    DodgeAction.canceled -= OnDodgeCanceled;
+        //}
 
         inputControl.Disable();
 
@@ -1091,7 +1098,7 @@ public class Player : MonoBehaviour
     private void OnPause(InputAction.CallbackContext ctx)
     {
         UIManager.instance.TogglePause();
-    }
+    }//打开手机菜单
 
 
 
