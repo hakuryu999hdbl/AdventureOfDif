@@ -1063,7 +1063,7 @@ public class Enemy : MonoBehaviour
       
         if (!DieBonue)
         {
-            UIManager.instance.ChangeMoney(Random.Range(1, 10), true);
+            BalanceManager.instance.ChangeMoney(Random.Range(1, 10), true);
 
             DieBonue = true;
         }

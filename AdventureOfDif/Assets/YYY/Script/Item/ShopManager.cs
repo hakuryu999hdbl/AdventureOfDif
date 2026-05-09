@@ -198,31 +198,34 @@ public class ShopManager : MonoBehaviour
     void OnStart()
     {
         inputControl = new PlayerInputControl();
+        inputControl.UI.Enable();
         inputControl.UI.Cancel.started += OnCancel;
 
 
     }
 
-    private void OnEnable()
-    {
+   // private void OnEnable()
+   // {
+   //
+   //     inputControl.Enable();
+   //
+   // }
+   //
+   // private void OnDisable()
+   // {
+   //     inputControl.Disable();
+   // }
 
 
-    }
-
-    private void OnDisable()
-    {
-
-    }
 
 
 
 
 
-  
-  
     private void OnCancel(InputAction.CallbackContext ctx)
     {
- 
+        Debug.Log("离开商店");
+        CloseShop();
         AudioManager.Instance.PlayFX(AudioManager.Instance.UI_Select);
 
     }
