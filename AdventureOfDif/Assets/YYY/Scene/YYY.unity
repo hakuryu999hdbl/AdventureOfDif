@@ -554,10 +554,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 65564742}
+  - component: {fileID: 65564746}
   - component: {fileID: 65564741}
   - component: {fileID: 65564745}
   - component: {fileID: 65564744}
-  - component: {fileID: 65564743}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -572,7 +572,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 65564740}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 892562769b2aad947992967309a8f771, type: 3}
   m_Name: 
@@ -664,69 +664,6 @@ Transform:
   - {fileID: 937022450}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &65564743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 65564740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: deaf91781ed4539448d73a93eae4fb40,
-    type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 2b161811-6bcb-4379-9f87-8b2364df732b
-    m_ActionName: GamePlayer/Move
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 65564741}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: Run
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 05ddde75-b940-4562-ae38-893703f9607e
-    m_ActionName: 'GamePlayer/Run[/Keyboard/space,/XInputControllerWindows/leftShoulder]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7919613a-088f-4b01-b561-484cd7ec4b50
-    m_ActionName: GamePlayer/Attack
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4200a61c-9024-4f21-9772-b7ae64aa1f27
-    m_ActionName: Player/Dodge
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 392a89ae-4d54-43fa-9417-22fa55aad415
-    m_ActionName: 'Player/Pause[/Keyboard/escape]'
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!58 &65564744
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -790,6 +727,34 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &65564746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65564740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b41f4034df2e184fad5a1705afdadb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 65564745}
+  speed: 5
+  playerAnimation: {fileID: 534242817}
+  dashAttackSpeed: 8
+  dashAttackMoveTime: 1
+  mapLayer:
+    serializedVersion: 2
+    m_Bits: 8192
+  isAttack: 0
+  isDashAttack: 0
+  isWalk: 0
+  isHurt: 0
+  isDead: 0
+  inputDirection: {x: 0, y: 0}
+  nextAttack: 0
+  attackRate: 0.7
 --- !u!1 &73125799
 GameObject:
   m_ObjectHideFlags: 0
@@ -5774,9 +5739,10 @@ GameObject:
   - component: {fileID: 534242810}
   - component: {fileID: 534242809}
   - component: {fileID: 534242808}
+  - component: {fileID: 534242817}
+  - component: {fileID: 534242812}
   - component: {fileID: 534242814}
   - component: {fileID: 534242813}
-  - component: {fileID: 534242812}
   - component: {fileID: 534242816}
   m_Layer: 0
   m_Name: Spine(Player)
@@ -5841,8 +5807,8 @@ MonoBehaviour:
   translator:
     autoReset: 1
     useCustomMixMode: 1
-    layerMixModes: 01000000
-    layerBlendModes: 01000000
+    layerMixModes: 0100000001000000010000000100000001000000
+    layerBlendModes: 0100000002000000020000000200000002000000
   updateTiming: 1
 --- !u!95 &534242809
 Animator:
@@ -6062,6 +6028,20 @@ MonoBehaviour:
   runSpawnDistance: 0.5
   GenerateOffsetWalk: 0.5
   GenerateOffsetRun: 0.8
+--- !u!114 &534242817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534242806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fdf810e185f8e042b68a38d52b27773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 534242809}
+  playerController: {fileID: 65564746}
 --- !u!1 &535546862
 GameObject:
   m_ObjectHideFlags: 0
@@ -9212,8 +9192,8 @@ Transform:
   m_GameObject: {fileID: 904417485}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0.82, y: 0.84, z: 0}
+  m_LocalScale: {x: 0.29892486, y: 0.3294, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 885366860}
@@ -9256,7 +9236,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 3}
+    oldSize: {x: 5.12, y: 5.12}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -9307,7 +9287,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 470ebca19707e1a468c288f4650c7cb1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 523137e382f39de4f93dbfb1619c29dd, type: 3}
   m_Color: {r: 0, g: 0.9137255, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -13698,7 +13678,7 @@ MonoBehaviour:
   StruggleBar: {fileID: 558114221}
   Struggle: {fileID: 1800859607}
   Anim_Phone: {fileID: 370272578}
-  player: {fileID: 65564741}
+  playerController: {fileID: 65564746}
   ItemPage: {fileID: 256109987}
   MapPage: {fileID: 1786657983}
   SettingPage: {fileID: 1066830961}
@@ -13738,34 +13718,6 @@ MonoBehaviour:
   - {fileID: 1319674370}
   - {fileID: 890673579}
   - {fileID: 1925356454}
-  MoneyText: {fileID: 1220703784}
-  MoneyText_2: {fileID: 287224115}
-  ShopImage: {fileID: 359080639}
-  Shop_Line: {fileID: 810373991}
-  Shop_Sex: {fileID: 21300000, guid: 9f0da512162c61a48bb0ff06ac18efec, type: 3}
-  Shop_Common_1: {fileID: 21300000, guid: 41863de9d7f16c14b84cee46f4266146, type: 3}
-  Shop_Common_2: {fileID: 21300000, guid: 7697d095dfb80c040a73bff1d188ddd0, type: 3}
-  Shop_Line_1: {fileID: 21300000, guid: e0fca2b2df0fa1640b3b16db4304d1b5, type: 3}
-  Shop_Line_2: {fileID: 21300000, guid: d75d9cdc65fa203488c4f8d59914b510, type: 3}
-  ShopCavans: {fileID: 299256795}
-  shopRows:
-  - {fileID: 990775591}
-  - {fileID: 1542268137}
-  - {fileID: 2030806813}
-  - {fileID: 747661227}
-  shopPool:
-  - {fileID: 11400000, guid: a299fd71edc40ab448c7361dbb2dcd27, type: 2}
-  - {fileID: 11400000, guid: 2007e629be465d348bc4bbba5808c33a, type: 2}
-  - {fileID: 11400000, guid: 7e62ffed757c7a6469f38cd312f9301c, type: 2}
-  - {fileID: 11400000, guid: 4a90f5ff3e449de46a4284dd92d0e827, type: 2}
-  - {fileID: 11400000, guid: c59ea22cfefa3ad4197621ce0dd3687d, type: 2}
-  - {fileID: 11400000, guid: fd7d1ba20e5fd9043b85610b837dd3f0, type: 2}
-  shopPool_Sex:
-  - {fileID: 11400000, guid: 74025985f2c9ead47896b18f479fadfd, type: 2}
-  - {fileID: 11400000, guid: eb5dc52ba05dd0d4b8a2ed5170748120, type: 2}
-  - {fileID: 11400000, guid: 00146c65fd16dac48be9732a023baea2, type: 2}
-  - {fileID: 11400000, guid: daa4286b4a3076b47a7dd419585931f7, type: 2}
-  priceCoefRange: {x: 1, y: 1.5}
   dialogSystem: {fileID: 780106488}
 --- !u!1 &1489750643
 GameObject:

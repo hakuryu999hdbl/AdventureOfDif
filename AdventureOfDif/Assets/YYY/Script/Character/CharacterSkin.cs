@@ -141,32 +141,32 @@ public class CharacterSkin : MonoBehaviour
 
 
     //  attack_1 的结尾帧事件
-    public void OnAttackAnimationEnd()
-    {
-        if (player != null)
-        {
-            player.canCombo = false;
-
-
-            if (player.comboQueued && player.currentCombo < 4)
-            {
-                player.currentCombo++;
-                player.anim.Play("attack_" + player.currentCombo, 0, 0);
-                player.comboQueued = false;
-            }
-            else
-            {
-                player.ResetCombo();
-            }
-
-        }
-
-        if (enemy != null)
-        {
-            enemy.anim.Play("stand");
-
-        }
-    }
+    //public void OnAttackAnimationEnd()
+    //{
+    //    if (player != null)
+    //    {
+    //        player.canCombo = false;
+    //
+    //
+    //        if (player.comboQueued && player.currentCombo < 4)
+    //        {
+    //            player.currentCombo++;
+    //            player.anim.Play("attack_" + player.currentCombo, 0, 0);
+    //            player.comboQueued = false;
+    //        }
+    //        else
+    //        {
+    //            player.ResetCombo();
+    //        }
+    //
+    //    }
+    //
+    //    if (enemy != null)
+    //    {
+    //        enemy.anim.Play("stand");
+    //
+    //    }
+    //}
 
 
 

@@ -1022,8 +1022,8 @@ public class Player : MonoBehaviour
         inputControl.Gameplay.Attack.started += OnAttackStarted;
         inputControl.Gameplay.Attack.canceled += OnAttackCanceled;
 
-        inputControl.Gameplay.Run.started += OnRunStarted;
-        inputControl.Gameplay.Run.canceled += OnRunCanceled;
+        //inputControl.Gameplay.Run.started += OnRunStarted;
+        //inputControl.Gameplay.Run.canceled += OnRunCanceled;
 
         inputControl.Gameplay.Pause.started += OnPause;
 

@@ -730,17 +730,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.6861759}
+  m_Offset: {x: 0, y: 0.51835406}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 2.94, y: 2.14}
     newSize: {x: 3.62, y: 4.82}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.5535734, y: 1.4588913}
+  m_Size: {x: 3.5535734, y: 1.2521813}
   m_EdgeRadius: 0
 --- !u!1 &532447123547133380
 GameObject:
@@ -2334,7 +2334,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -0.8430562}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 2.94, y: 2.49}
     newSize: {x: 3.62, y: 4.82}
     adaptiveTilingThreshold: 0.5
@@ -8610,6 +8610,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle_Tanker
       objectReference: {fileID: 0}
+    - target: {fileID: 2053813118689278148, guid: 594e0583be7ba0646af012ffd888a69f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7238442787060647853, guid: 594e0583be7ba0646af012ffd888a69f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8683,6 +8688,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Obstacle_Tanker (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053813118689278148, guid: 594e0583be7ba0646af012ffd888a69f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7238442787060647853, guid: 594e0583be7ba0646af012ffd888a69f,
         type: 3}
@@ -8758,6 +8768,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle_Tanker (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2053813118689278148, guid: 594e0583be7ba0646af012ffd888a69f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7238442787060647853, guid: 594e0583be7ba0646af012ffd888a69f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8831,6 +8846,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Obstacle_Inbox (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685861951576414793, guid: 22197b137975b9a4b9f5f4a807162037,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5463515686622520608, guid: 22197b137975b9a4b9f5f4a807162037,
         type: 3}
@@ -9096,6 +9116,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle_Inbox (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3685861951576414793, guid: 22197b137975b9a4b9f5f4a807162037,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5463515686622520608, guid: 22197b137975b9a4b9f5f4a807162037,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9350,6 +9375,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle_Tanker (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2053813118689278148, guid: 594e0583be7ba0646af012ffd888a69f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7238442787060647853, guid: 594e0583be7ba0646af012ffd888a69f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9423,6 +9453,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Obstacle_Tanker (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053813118689278148, guid: 594e0583be7ba0646af012ffd888a69f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7238442787060647853, guid: 594e0583be7ba0646af012ffd888a69f,
         type: 3}
@@ -9498,6 +9533,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle_Inbox
       objectReference: {fileID: 0}
+    - target: {fileID: 3685861951576414793, guid: 22197b137975b9a4b9f5f4a807162037,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5463515686622520608, guid: 22197b137975b9a4b9f5f4a807162037,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9571,6 +9611,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Obstacle_Tanker (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053813118689278148, guid: 594e0583be7ba0646af012ffd888a69f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7238442787060647853, guid: 594e0583be7ba0646af012ffd888a69f,
         type: 3}

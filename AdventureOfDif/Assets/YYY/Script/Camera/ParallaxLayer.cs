@@ -5,26 +5,35 @@ using UnityEngine;
 public class ParallaxLayer : MonoBehaviour
 {
     Transform cameraTransform;
-    public float parallaxFactor = 0.5f;  // 0 = 不动（远处），1 = 跟随摄像机完全同步（前景）
-    private Vector3 previousCameraPosition;
+    public float parallaxFactor = 0.5f;
 
-   
+    private Vector3 startCameraPos;
+    private Vector3 startLayerPos;
+
     void Start()
     {
-       //GameObject Player = GameObject.FindGameObjectWithTag("Player");
-       // Vector3 pos = transform.position;
-       // pos.x = Player.transform.position.x;
-       // transform.position = pos;
+        if (cameraTransform == null)
+            cameraTransform = Camera.main.transform;
 
-        cameraTransform = Camera.main.transform;
+        startCameraPos = cameraTransform.position;
+        startLayerPos = transform.position;
 
-        previousCameraPosition = cameraTransform.position;
+        StartCoroutine(UpdateParallaxAfterCamera());
     }
 
-    void LateUpdate()
+    IEnumerator UpdateParallaxAfterCamera()
     {
-        Vector3 delta = cameraTransform.position - previousCameraPosition;
-        transform.position += new Vector3(delta.x * parallaxFactor, 0, 0); // 只左右移动
-        previousCameraPosition = cameraTransform.position;
+        while (true)
+        {
+            yield return new WaitForEndOfFrame();
+
+            float cameraDeltaX = cameraTransform.position.x - startCameraPos.x;
+
+            transform.position = new Vector3(
+                startLayerPos.x + cameraDeltaX * parallaxFactor,
+                startLayerPos.y,
+                startLayerPos.z
+            );
+        }
     }
 }

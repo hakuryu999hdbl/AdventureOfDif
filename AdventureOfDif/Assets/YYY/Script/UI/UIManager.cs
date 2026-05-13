@@ -195,7 +195,7 @@ public class UIManager : MonoBehaviour
     #region
     [Header("手机菜单系统")]
     public Animator Anim_Phone;
-    public Player player;
+    public PlayerController playerController;
 
     public void OpenPhone()
     {
@@ -213,7 +213,7 @@ public class UIManager : MonoBehaviour
         //Time.timeScale = 0;
 
         CurrentChooseMenu = 1;
-        player.isInputBlocked = true;
+
 
 
 
@@ -227,7 +227,7 @@ public class UIManager : MonoBehaviour
         //Time.timeScale = 1;
 
         CurrentChooseMenu = 0;
-        player.isInputBlocked = false;
+
 
         //关掉手机敌人可以动
         //AllowAllEnemy();
@@ -553,8 +553,7 @@ public class UIManager : MonoBehaviour
     private void OnMove(InputAction.CallbackContext ctx)
     {
 
-        if (player.isInputBlocked == false) { return; }
-
+      
 
         #region 冷却时间
         if (Time.time - lastInputTime2 < inputCooldown2)
@@ -609,8 +608,7 @@ public class UIManager : MonoBehaviour
 
     private void OnConfirm(InputAction.CallbackContext ctx)
     {
-        if (player.isInputBlocked == false) { return; }
-
+     
         //对话AVG界面
         if (CurrentChooseMenu == -2)
         {
@@ -703,7 +701,7 @@ public class UIManager : MonoBehaviour
         if (Anim_Phone.GetBool("Open") == true)
         {
             ClosePhone();
-            player.EnableGameplayInput();
+            playerController.EnableGameplayInput();
             inputControl.Disable();
             
             firstSelected = EventSystem.current.currentSelectedGameObject;//记录上一次你选中的位置
@@ -712,7 +710,7 @@ public class UIManager : MonoBehaviour
         else
         {
             OpenPhone();
-            player.DisableGameplayInput();
+            playerController.DisableGameplayInput();
             inputControl.Enable();
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(firstSelected);
@@ -742,7 +740,7 @@ public class UIManager : MonoBehaviour
     {
         dialogSystem.gameObject.SetActive(true);
 
-        player.isInputBlocked = true;
+
         CurrentChooseMenu = -2;
 
         Invoke("StopAllEnemy", 1f);
@@ -755,27 +753,27 @@ public class UIManager : MonoBehaviour
         foreach (GameObject e in allEnemies)
         {
             e.GetComponent<Enemy>().state = EnemyState.Frozen; // 进入围观状态
-            player.observingEnemies.Add(e.GetComponent<Enemy>());
+            //player.observingEnemies.Add(e.GetComponent<Enemy>());
         }
     }
 
     void AllowAllEnemy() 
     {
         // 清空所有围观敌人状态
-        foreach (Enemy e in player.observingEnemies)
-        {
-            if (e != null)
-            {
-                e.state = EnemyState.Idle;
-            }
-        }
+        //foreach (Enemy e in player.observingEnemies)
+        //{
+        //    if (e != null)
+        //    {
+        //        e.state = EnemyState.Idle;
+        //    }
+        //}
     }
 
     public void CloseAVG() 
     {
         Invoke("AllowAllEnemy", 1f);
 
-        player.isInputBlocked = false;
+      
         CurrentChooseMenu = 0;
     }
     #endregion

@@ -66,34 +66,34 @@ public class ItemOptionUI : MonoBehaviour,
         switch(itemKey)
         {
             case "Pudding":
-                UIManager.instance.player.ChangeHealth(100,0);
+               // UIManager.instance.player.ChangeHealth(100,0);
                 break;
             case "Cola":
-                UIManager.instance.player.ChangeHealth(200, 0);
+               // UIManager.instance.player.ChangeHealth(200, 0);
                 break;
             case "ChocoBanana":
-                UIManager.instance.player.ChangeHealth(300, 0);
+               // UIManager.instance.player.ChangeHealth(300, 0);
                 break;
             case "Cone":
-                UIManager.instance.player.ChangeHealth(500, 0);
+               // UIManager.instance.player.ChangeHealth(500, 0);
                 break;
             case "CreamRoll":
-                UIManager.instance.player.ChangeHealth(700, 0);
+               // UIManager.instance.player.ChangeHealth(700, 0);
                 break;
             case "FriedCutlet":
-                UIManager.instance.player.ChangeHealth(1000, 0);
+               // UIManager.instance.player.ChangeHealth(1000, 0);
                 break;
             case "Potion":
-                UIManager.instance.player.ChangeSex(100);
+               // UIManager.instance.player.ChangeSex(100);
                 break;
             case "Incense":
-                UIManager.instance.player.ChangeSex(200);
+               // UIManager.instance.player.ChangeSex(200);
                 break;
             case "ButtPlug":
-                UIManager.instance.player.ChangeSex(500);
+               // UIManager.instance.player.ChangeSex(500);
                 break;
             case "Vibrator":
-                UIManager.instance.player.ChangeSex(1000);
+               // UIManager.instance.player.ChangeSex(1000);
                 break;
         }
 
