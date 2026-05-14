@@ -65,20 +65,20 @@ public class CharacterSkin : MonoBehaviour
     void Update()
     {
 
-        if (player != null)
-        {
-            // 根据玩家是否在地面上调整层级
-            int targetOrder = player.IsGrounded() ? 0 : 1;
-
-            skeletonAnimation.GetComponent<MeshRenderer>().sortingOrder = targetOrder;
-        }
-        if (enemy != null)
-        {
-            // 根据玩家是否在地面上调整层级
-            int targetOrder = enemy.IsGrounded() ? 0 : 1;
-
-            skeletonAnimation.GetComponent<MeshRenderer>().sortingOrder = targetOrder;
-        }
+       // if (player != null)
+       // {
+       //     // 根据玩家是否在地面上调整层级
+       //     int targetOrder = player.IsGrounded() ? 0 : 1;
+       //
+       //     skeletonAnimation.GetComponent<MeshRenderer>().sortingOrder = targetOrder;
+       // }
+       // if (enemy != null)
+       // {
+       //     // 根据玩家是否在地面上调整层级
+       //     int targetOrder = enemy.IsGrounded() ? 0 : 1;
+       //
+       //     skeletonAnimation.GetComponent<MeshRenderer>().sortingOrder = targetOrder;
+       // }
     }
 
 
@@ -89,19 +89,19 @@ public class CharacterSkin : MonoBehaviour
     /// </summary>
     #region
     [Header("帧事件触发")]
-    public Player player;
-    public Enemy enemy;
+    public PlayerController playerController;
+    public EnemyController enemyController;
 
     void Attack()
     {
-        if (player != null)
+        if (playerController != null)
         {
-            if (player.isDie==false) { player.attack_Collider.SetActive(true); }//我方和敌方被击倒期间无法发出攻击碰撞体
+            if (playerController.isDead == false) { playerController.attack_Collider.SetActive(true); }//我方和敌方被击倒期间无法发出攻击碰撞体
 
         }
-        if (enemy != null)
+        if (enemyController != null)
         {
-            if (enemy.isDie == false) { enemy.attack_Collider.SetActive(true); }//我方和敌方被击倒期间无法发出攻击碰撞体
+            if (enemyController.isDead == false) { enemyController.attack_Collider.SetActive(true); }//我方和敌方被击倒期间无法发出攻击碰撞体
 
         }
 
@@ -111,13 +111,13 @@ public class CharacterSkin : MonoBehaviour
     void HideAttack()
     {
 
-        if (player != null)
+        if (playerController != null)
         {
-            player.attack_Collider.SetActive(false);
+            playerController.attack_Collider.SetActive(false);
         }
-        if (enemy != null)
+        if (enemyController != null)
         {
-            enemy.attack_Collider.SetActive(false);
+            enemyController.attack_Collider.SetActive(false);
         }
 
     }//攻击碰撞体消失
@@ -128,9 +128,9 @@ public class CharacterSkin : MonoBehaviour
     // attack_1 的中段帧事件
     public void EnableComboWindow()
     {
-        if (player != null)
+        if (playerController != null)
         {
-            player.canCombo = true;
+            //playerController.canCombo = true;
 
         }
        
@@ -140,53 +140,26 @@ public class CharacterSkin : MonoBehaviour
 
 
 
-    //  attack_1 的结尾帧事件
-    //public void OnAttackAnimationEnd()
-    //{
-    //    if (player != null)
-    //    {
-    //        player.canCombo = false;
-    //
-    //
-    //        if (player.comboQueued && player.currentCombo < 4)
-    //        {
-    //            player.currentCombo++;
-    //            player.anim.Play("attack_" + player.currentCombo, 0, 0);
-    //            player.comboQueued = false;
-    //        }
-    //        else
-    //        {
-    //            player.ResetCombo();
-    //        }
-    //
-    //    }
-    //
-    //    if (enemy != null)
-    //    {
-    //        enemy.anim.Play("stand");
-    //
-    //    }
-    //}
 
 
 
     // grab_throw 投掷事件
     public void ThrowHeldObject() 
     {
-
-        if (player != null)
+    
+        if (playerController != null)
         {
-            player.ThrowHeldObject();
-
+            //playerController.ThrowHeldObject();
+    
         }
-
-        if (enemy != null)
+    
+        if (enemyController != null)
         {
-            enemy.ThrowHeldObject();
-
+            //enemyController.ThrowHeldObject();
+    
         }
-
-
+    
+    
     }
 
 

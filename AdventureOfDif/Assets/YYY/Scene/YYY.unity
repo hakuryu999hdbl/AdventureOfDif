@@ -587,7 +587,7 @@ MonoBehaviour:
   canMove: 1
   attack: {fileID: 885366859}
   attack_Collider: {fileID: 904417485}
-  strike: {fileID: 904417489}
+  strike: {fileID: 0}
   currentCombo: 0
   isAttacking2: 0
   canCombo: 0
@@ -755,6 +755,7 @@ MonoBehaviour:
   inputDirection: {x: 0, y: 0}
   nextAttack: 0
   attackRate: 0.7
+  attack_Collider: {fileID: 904417485}
 --- !u!1 &73125799
 GameObject:
   m_ObjectHideFlags: 0
@@ -2346,7 +2347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAABIIew+BPaCcQIAACwFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1z2jAQ/SuMziVjm+/eWkJID0mYkE4uvghpjTXIkkeSAyTDf+9KtrFLTixvv96+XfmLCGVLYE6btRH8SXMgPwfE2+THoHM+wonutdqKT2hj3gV3uQ+iIeaVOqERj32a1QU4I9gvtZc+OEKwUiLTpljxPSy1dRbhjEoL6DLa+WyF0NeAnPBnuPApZ7SSmbc+0VpEgwuaDJQD04W2gdO7eDGfz0erYTRtMuZ3s1EyHiceCrmVYpIWJXA/SFdiGrVFJlHdROGQTYwfiGkphW0YEncugwLbMgcDXgIuKA4cWEV3EwRyEPvcefr97Jcss+Aazoae74VB5eqy5Leu5SyoPdTUPqisfKN5vEgCq7rq07eAYRzcmdHFY9s4DjO5XLDDKz0zal1P8D5833GPg0RHKg90J+E9B/Ws10ZXiqPTmcqnVhaS++7vdbZlDuzQ4TXVG7Aqv6+t3a6f4RLGPy2lKHZBynENbKUOioejAIO7+YOEw8nYpgSinsVfC29037+txvEgjHXoaqZUnt5OV8aHklXQzE9TuaU2CgLckC5BUenOGyzjbnd44+u1vfE8UP+KmuaNr30cNykB7uKj6Ma10cfrsmyuj09g85fKSaGgI+0dz6jTUitVn1hfkzZtW5mMsl7avhL8/9MibMYmFKLpZJRBnIyy4SSeTXeMTRM+i6d8TEm4PaFwTio3NdFGHtya6oorvLP24zJYG1qGc+eGHtfis9A9yYXK9JYZAPVSV7gSB4NN8F3yFRco0BacEyrsm3ylRGp2AJ5eC6Vh0tXJGZp2VVJSig/tPJKSZfiapMTD11veGPgQcPTN22IXcvkHUEsDBBQAAAgIAABIIezrHwpHbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrRSsnmyaWKqgZmpcVqqoZFxmq6poblZUnKymVGKuaFZikmiUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAABIIew+BPaCcQIAACwFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAABIIezrHwpHbQAAAHgAAAAJACQAAAAAAAAAAAAAAL4CAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAdgMAAAAA
+    dataString: UEsDBBQAAAgIAABIIezxdifaagIAACMFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1z2jAQ/SuMziVjQ2KS3lpCSA9JmNBOLr4IaY01yJJHHwGS4b9XK9vYISeWt293337In0QoWwNz2iyN4E+aA/k5ImiTH6Pe+QgHutVqLT6g47wJ7kok0ch5pU7ogKcYZnUFzgj2S20lkpMAeiUKbaoF38JcW2cDXFBpIbiMdhitAvQ5IofwM77DkGOwJjO0PoJ1l4xOwWSgHJie2hE7WsPyikla1cBRck+eZh19mjREFdppOclVhvm1lMK2aog71rHbdV2CAWyXCxqaiwqw1xLEtnQodBj7UhQWXKvK0OO9MGFGTVLyWzeDq6jdNdLeqfRY5ja9m0RVTdanb4RxGt2F0dVjVzhNsIgrBdu90iOj1g1GO4Tvvyr3ak/ljm4kvJWgnvXSaK94cDrjMdRbmNz3f8+9zUtgux5vpF6Avv6+oMnV9PY6vc2m2WKczNptYUOnOIvDXIpqE9dw3QBrqePw4y2ACYv6E9THS7Ft3oCipH8W/tLt8KRax4Mw1gVX27JCrRvtDVLJIg4QW/Nuro2CCLcd1KCodMdVSOMuF3rhG5S98DxQfDxt8dbXvYmLkAj3/CS5cK30/rw5W+r9E9jyxTspFPSi0fEc5jTXSjX3NpxJF7b2pqBsELb1gn+9M8Jm7IZCkt1MC0gn02J8k86yDWPZhM/SjF9TEg9RqNAnlatGaDuesDXVJ1fh6LpvymhpaB1vnxu6X4qPSg9GLlSh18wAqJcmw1k4mFAkPFK+4CIMaA3OCRX3TT5zIjXbAc/PifLY6eLgDM37LDmpxbt2iORkHj8iOUH4fNgrA+8C9li8S3Yip/9QSwMEFAAACAgAAEgh7OsfCkdtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tFKyebJpYqqBmalxWqqhkXGarqmhuVlScrKZUYq5oVmKSaJSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAEgh7PF2J9pqAgAAIwUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAEgh7OsfCkdtAAAAeAAAAAkAJAAAAAAAAAAAAAAAtwIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAABvAwAAAAA=
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -5896,8 +5897,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d0493537db6694cb141526adf09a56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 65564741}
-  enemy: {fileID: 0}
+  playerController: {fileID: 65564746}
+  enemyController: {fileID: 0}
 --- !u!82 &534242813
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6007,7 +6008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1f4974e1b0f6e4fb434e87703edbdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AudioManager: {fileID: 0}
+  AudioManager: {fileID: 1919392171}
   audioS: {fileID: 534242813}
 --- !u!114 &534242816
 MonoBehaviour:
@@ -9175,7 +9176,6 @@ GameObject:
   - component: {fileID: 904417486}
   - component: {fileID: 904417488}
   - component: {fileID: 904417487}
-  - component: {fileID: 904417489}
   m_Layer: 0
   m_Name: Attack_Collider
   m_TagString: Untagged
@@ -9193,8 +9193,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.82, y: 0.84, z: 0}
-  m_LocalScale: {x: 0.29892486, y: 0.3294, z: 0.5}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.29999998, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 885366860}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9232,7 +9232,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.008799195, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -9242,7 +9242,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 5, y: 3}
+  m_Size: {x: 5.123187, y: 5.1489697}
   m_EdgeRadius: 0
 --- !u!212 &904417488
 SpriteRenderer:
@@ -9251,7 +9251,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 904417485}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -9298,24 +9298,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &904417489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 904417485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3549fedb943cbd439f4b2a328c180ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: -400
-  DamageToPlayer: 0
-  DamageToEnemy: 1
-  TypeOfAttack: 0
-  isCritial: 0
-  chargeTime: 0
 --- !u!1 &906258175
 GameObject:
   m_ObjectHideFlags: 0
@@ -20653,7 +20635,7 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 65564742}
-  - {fileID: 1827786571}
-  - {fileID: 1782697182}
   - {fileID: 947455370}
+  - {fileID: 1827786571}
+  - {fileID: 65564742}
+  - {fileID: 1782697182}

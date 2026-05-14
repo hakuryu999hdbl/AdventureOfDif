@@ -168,6 +168,9 @@ public class PlayerController : MonoBehaviour
     public float attackRate;//攻击频率
     private float attackPressTime;
     private float chargeThreshold = 0.35f;
+    public GameObject attack_Collider;
+
+
     private void OnAttackStarted(InputAction.CallbackContext ctx)
     {
         attackPressTime = Time.time;

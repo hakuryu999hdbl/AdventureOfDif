@@ -12,10 +12,6 @@ public class AreaEncounterController : MonoBehaviour
     public Transform[] spawnPoints;   // 生成点数组
     private List<GameObject> aliveEnemies = new List<GameObject>();
 
-    [Header("区域控制")]
-    public GameObject blockade; // 用于封锁视野/通路的墙
-    public PolygonCollider2D cameraBoundsCollider; // 此区域的边界，用于替换 confiner 的 bounds
-    public PolygonCollider2D cameraBoundsCollider_All;
 
     [Header("摄像机控制")]
     private bool areaActivated = false;//是否被触发一遍
@@ -41,14 +37,7 @@ public class AreaEncounterController : MonoBehaviour
     {
         areaActivated = true;
 
-        // 1. 设置相机边界
-        //RoomGenerator.SetNewBounds(cameraBoundsCollider);
-
-        // 2. 封锁通路
-        //if (blockade != null)
-        //    blockade.SetActive(true);
-
-        // 3. 生成敌人
+        // 生成敌人
         foreach (GameObject enemyPrefab in enemyPrefabs)
         {
             int randomIndex = Random.Range(0, spawnPoints.Length);
@@ -75,12 +64,7 @@ public class AreaEncounterController : MonoBehaviour
 
             if (aliveEnemies.Count == 0)
             {
-                // 所有敌人已死亡，解除限制
-                if (blockade != null)
-                    blockade.SetActive(false);
-
-                //RoomGenerator.SetNewBounds(cameraBoundsCollider_All);
-
+             
                 RoomGenerator.GoGo.SetActive(true);//提示清理完毕
 
                 if (Go != null)
