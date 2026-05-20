@@ -65,20 +65,7 @@ public class CharacterSkin : MonoBehaviour
     void Update()
     {
 
-       // if (player != null)
-       // {
-       //     // 根据玩家是否在地面上调整层级
-       //     int targetOrder = player.IsGrounded() ? 0 : 1;
-       //
-       //     skeletonAnimation.GetComponent<MeshRenderer>().sortingOrder = targetOrder;
-       // }
-       // if (enemy != null)
-       // {
-       //     // 根据玩家是否在地面上调整层级
-       //     int targetOrder = enemy.IsGrounded() ? 0 : 1;
-       //
-       //     skeletonAnimation.GetComponent<MeshRenderer>().sortingOrder = targetOrder;
-       // }
+  
     }
 
 
@@ -162,8 +149,24 @@ public class CharacterSkin : MonoBehaviour
     
     }
 
+    //敌人死亡事件
+    public void OnDie() 
+    {
+        if (enemyController != null)
+        {
+            Destroy(enemyController.gameObject);
 
+        }
+    }
 
+    public void OnHurtOver()
+    {
+        if (enemyController != null)
+        {
+            enemyController.OnDamageOver();
+
+        }
+    }
 
     #endregion
 

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +15,8 @@ public class PatrolState : EnemyBaseState
 
     public override void OnUpdate(EnemyController enemy)
     {
+
+
         if (enemy.attackList.Count > 0)
         {
             enemy.TransitionToState(enemy.attackState);

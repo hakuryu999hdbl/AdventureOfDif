@@ -78,7 +78,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip BGM_Theme;
     public AudioClip BGM_Level_1;
 
-   
+    public AudioClip Attack_blood1, Attack_blood2, Attack_blood3;
 
     public AudioClip UI_Click, UI_Select;
 

@@ -54,6 +54,9 @@ MonoBehaviour:
   fxSource: {fileID: 6687678900355501994}
   BGM_Theme: {fileID: 8300000, guid: 21c8361d0d0961540a736e360b783c7c, type: 3}
   BGM_Level_1: {fileID: 8300000, guid: 5a26af15581a2d746bed808957ff7784, type: 3}
+  Attack_blood1: {fileID: 8300000, guid: 5978f55849951974793584239df805bd, type: 3}
+  Attack_blood2: {fileID: 8300000, guid: d10af6067f58ec044bb8ff375b4f68b6, type: 3}
+  Attack_blood3: {fileID: 8300000, guid: 8e1ad4bf65e71be47964e227d4ccf8aa, type: 3}
   UI_Click: {fileID: 8300000, guid: e593f642bff174749a24f7b0e530bbfd, type: 3}
   UI_Select: {fileID: 8300000, guid: 782703e41dd64334197c3649b6273c2a, type: 3}
   SE_falldown: {fileID: 8300000, guid: 8b0cc1145b5005942a62901641234d17, type: 3}

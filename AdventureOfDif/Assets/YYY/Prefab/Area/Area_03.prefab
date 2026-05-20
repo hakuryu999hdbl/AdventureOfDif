@@ -691,7 +691,7 @@ GameObject:
   - component: {fileID: 3773832472239905066}
   - component: {fileID: 683544478936608464}
   - component: {fileID: 3559791856350878746}
-  m_Layer: 13
+  m_Layer: 11
   m_Name: Block_Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -940,7 +940,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4152459180030003976}
   - component: {fileID: 8909467480106151606}
-  m_Layer: 13
+  m_Layer: 11
   m_Name: Block_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1141,7 +1141,7 @@ GameObject:
   - component: {fileID: 3081881228437599748}
   - component: {fileID: 383052984959855582}
   - component: {fileID: 629870728477606034}
-  m_Layer: 13
+  m_Layer: 11
   m_Name: Block_Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1382,7 +1382,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8305950471807819799}
   - component: {fileID: 1978084753037529595}
-  m_Layer: 13
+  m_Layer: 11
   m_Name: Block_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}

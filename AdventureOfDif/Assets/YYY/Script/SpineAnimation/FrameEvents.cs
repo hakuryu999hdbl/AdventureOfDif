@@ -18,10 +18,31 @@ public class FrameEvents : MonoBehaviour
     public AudioManager AudioManager;
     public AudioSource audioS;
 
- 
+
 
     //------------效果音
     //public void _BGM_Theme() { audioS.PlayOneShot(AudioManager.BGM_Theme); }//Spine帧事件没有，由敌人或玩家或者其他挂着FrameEvent脚本直接使用
+
+
+
+
+    public void _Attack_blood()
+    {
+
+        switch (Random.Range(0, 3))
+        {
+            case 0:
+                audioS.PlayOneShot(AudioManager.Attack_blood1);
+                break;
+            case 1:
+                audioS.PlayOneShot(AudioManager.Attack_blood2);
+                break;
+            case 2:
+                audioS.PlayOneShot(AudioManager.Attack_blood3);
+                break;
+        }
+    }//这个由Player和Enemy中代码各自调用
+
 
     #endregion
 }

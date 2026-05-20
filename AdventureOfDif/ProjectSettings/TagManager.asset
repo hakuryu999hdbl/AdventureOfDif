@@ -4,31 +4,27 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
-  - AStar
-  - obstacle
   - RoomGenerator
-  - Environment
-  - Mission
-  - Plant
-  - Attack
+  - DieZone
+  - obstacle
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - 
   - 
-  - obstacle
-  - player
-  - bullet
+  - 
   - NPC
-  - Room
+  - 
   - Map
-  - Platform
-  - Enemy
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

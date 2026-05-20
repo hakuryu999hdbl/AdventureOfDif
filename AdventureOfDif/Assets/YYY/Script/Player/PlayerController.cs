@@ -103,7 +103,70 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 受伤死亡
+    /// </summary>
+    #region
+    [Header("受伤死亡")]
+    public float hurtForce;
+    public GameObject Effect_Blood;
 
+    [Header("主动触发声音")]
+    public FrameEvents frameEvents;
+
+    public void OnTakeDamage(Attack attack)
+    {
+
+        if (attack == null)
+            return;
+
+        //isHurt = true;//主要用于屏蔽输入
+
+        playerAnimation.PlayHurt();
+
+
+        if (attack.clearVelocity)
+        {
+            rb.velocity = Vector2.zero;
+        }
+
+        float dir = transform.position.x >= attack.transform.position.x ? 1f : -1f;
+
+        rb.AddForce(
+            new Vector2(dir * attack.knockbackX, attack.knockbackY),
+            ForceMode2D.Impulse
+        );
+
+        PlayBloodEffect();
+    }
+
+    void PlayBloodEffect()
+    {
+        GameObject blood = Instantiate(
+            Effect_Blood,
+            transform.position,
+            Quaternion.identity
+        );
+
+        frameEvents._Attack_blood();
+
+
+        Destroy(blood, 1f); // 1秒后销毁
+    }
+
+
+
+    public void PlayerDead()
+    {
+
+        PlayBloodEffect();
+
+        isDead = true;
+        inputControl.Gameplay.Disable();//通过直接禁用来做（但是防止4层多端输入，在上方也禁止）
+    }
+
+
+    #endregion
     /// <summary>
     /// 多端输入
     /// </summary>

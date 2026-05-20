@@ -554,11 +554,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 65564742}
-  - component: {fileID: 65564746}
   - component: {fileID: 65564741}
   - component: {fileID: 65564745}
   - component: {fileID: 65564744}
-  m_Layer: 9
+  - component: {fileID: 65564747}
+  - component: {fileID: 65564746}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -677,10 +678,10 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 32770
+    m_Bits: 33280
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -746,16 +747,105 @@ MonoBehaviour:
   dashAttackMoveTime: 1
   mapLayer:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 0
   isAttack: 0
   isDashAttack: 0
   isWalk: 0
   isHurt: 0
   isDead: 0
+  hurtForce: 0
+  Effect_Blood: {fileID: 1622069723160390679, guid: 3cbb102f876966040a9c79278e3e6a63,
+    type: 3}
+  frameEvents: {fileID: 534242814}
   inputDirection: {x: 0, y: 0}
   nextAttack: 0
   attackRate: 0.7
   attack_Collider: {fileID: 904417485}
+--- !u!114 &65564747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65564740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bff6a42723ca7f743af47e969c7830dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 50
+  currentHealth: 0
+  invulnerableDuration: 0.5
+  invulnerable: 0
+  OnHealthChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: fdfa8fd070ebdf54ea4879d5a2e4870a, type: 2}
+        m_TargetAssemblyTypeName: CharacterEventSO, Assembly-CSharp
+        m_MethodName: RaiseEvent
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 65564747}
+          m_ObjectArgumentAssemblyTypeName: Character, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTakeDamge:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 534242817}
+        m_TargetAssemblyTypeName: PlayerAnimation, Assembly-CSharp
+        m_MethodName: PlayHurt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: ddad1101168797447b513b5c3ebf087d, type: 2}
+        m_TargetAssemblyTypeName: VoidEventSO, Assembly-CSharp
+        m_MethodName: RaiseEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDie:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 65564746}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: PlayerDead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: ddad1101168797447b513b5c3ebf087d, type: 2}
+        m_TargetAssemblyTypeName: VoidEventSO, Assembly-CSharp
+        m_MethodName: RaiseEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &73125799
 GameObject:
   m_ObjectHideFlags: 0
@@ -2347,7 +2437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAABIIezxdifaagIAACMFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1z2jAQ/SuMziVjQ2KS3lpCSA9JmNBOLr4IaY01yJJHHwGS4b9XK9vYISeWt293337In0QoWwNz2iyN4E+aA/k5ImiTH6Pe+QgHutVqLT6g47wJ7kok0ch5pU7ogKcYZnUFzgj2S20lkpMAeiUKbaoF38JcW2cDXFBpIbiMdhitAvQ5IofwM77DkGOwJjO0PoJ1l4xOwWSgHJie2hE7WsPyikla1cBRck+eZh19mjREFdppOclVhvm1lMK2aog71rHbdV2CAWyXCxqaiwqw1xLEtnQodBj7UhQWXKvK0OO9MGFGTVLyWzeDq6jdNdLeqfRY5ja9m0RVTdanb4RxGt2F0dVjVzhNsIgrBdu90iOj1g1GO4Tvvyr3ak/ljm4kvJWgnvXSaK94cDrjMdRbmNz3f8+9zUtgux5vpF6Avv6+oMnV9PY6vc2m2WKczNptYUOnOIvDXIpqE9dw3QBrqePw4y2ACYv6E9THS7Ft3oCipH8W/tLt8KRax4Mw1gVX27JCrRvtDVLJIg4QW/Nuro2CCLcd1KCodMdVSOMuF3rhG5S98DxQfDxt8dbXvYmLkAj3/CS5cK30/rw5W+r9E9jyxTspFPSi0fEc5jTXSjX3NpxJF7b2pqBsELb1gn+9M8Jm7IZCkt1MC0gn02J8k86yDWPZhM/SjF9TEg9RqNAnlatGaDuesDXVJ1fh6LpvymhpaB1vnxu6X4qPSg9GLlSh18wAqJcmw1k4mFAkPFK+4CIMaA3OCRX3TT5zIjXbAc/PifLY6eLgDM37LDmpxbt2iORkHj8iOUH4fNgrA+8C9li8S3Yip/9QSwMEFAAACAgAAEgh7OsfCkdtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tFKyebJpYqqBmalxWqqhkXGarqmhuVlScrKZUYq5oVmKSaJSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAEgh7PF2J9pqAgAAIwUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAEgh7OsfCkdtAAAAeAAAAAkAJAAAAAAAAAAAAAAAtwIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAABvAwAAAAA=
+    dataString: UEsDBBQAAAgIAABIIeyBMYGdaQIAACMFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMly4jAQ/RVK5yFlsxgytxkgZA4EKsxULr4IqY1VyJJLC1uKfx9JtrFDTjSvX3e/XuRPxIQugRiplorRlaSAfvaQt9GPXut8hTPeS7FlV2g4H4ya3JNw4Lxjw6TDYx+mZQFGMfJL7LknRw60gmVSFQu6h5nURjs4w1yDcylpfLRw0GcPnd1P/9mHXJw1mHjr6qznqHdzJgFhQLXUhtjQKpYVhOOiBOolt+Rh0tCHUUUUrp2aEz0lPr/knOlaDTKXMnS7LXNQ4NulDLvmggLfaw5snxsvtBu7zjINplal8GXOlJtRlRT9ltXgCqwPlbQj5taXGUSjaVBVZV19I/Tj4M6ULF6bwnHki5ickcM7vhCsTWe0XXj+VbkVJ8wPeMfhIwfxJpdKWkGd0yjrQ62Gwbz9e+9tlgM5tHgl9QG05fcFDZ6G01E8TYbJoh9N6m35hm5hFucZZ8UurGFUAVsuw/DDLYByi/rj1IdL0XVeh3pJ/zT8xfvuSdWOF6a0ca66ZeG17qRVnooWYYC+NWtmUgkIcN1BCQJzc9m4NOZxoQ++TtkHzwv2j6cuXvuaN/EQEuCWH0UPro083Tenc3lagc7X1nAmoBXtHW9uTjMpRHVv3Zk0YVurMkw6YXvL6Nc7Q2RCxhiiZDzMIB4Ms/44niQ7QpIBncQJHWEUDpEJ1yfmm0poPR63NdEmF+7omm9Kb6lwGW6fKnxasmshOyNnIpNbogDEuspwFw7KFXGPlC4ocwPagjFMhH2jzxRxSQ5A03uiNHS6OBuF0zZLikp2lMYjKZqFj0iKPHw/7I2CI4OTL94ku6Hbf1BLAwQUAAAICAAASCHs6x8KR20AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0UrJ5smliqoGZqXFaqqGRcZquqaG5WVJysplRirmhWYpJolIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAASCHsgTGBnWkCAAAjBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAASCHs6x8KR20AAAB4AAAACQAkAAAAAAAAAAAAAAC2AgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAG4DAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -9176,6 +9266,7 @@ GameObject:
   - component: {fileID: 904417486}
   - component: {fileID: 904417488}
   - component: {fileID: 904417487}
+  - component: {fileID: 904417489}
   m_Layer: 0
   m_Name: Attack_Collider
   m_TagString: Untagged
@@ -9224,7 +9315,7 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 512
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -9298,6 +9389,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &904417489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904417485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9579e9de0ea08a0478960c68b3022f50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  attackRange: 0
+  attackRate: 0
+  knockbackX: 0
+  knockbackY: 0
+  hurtTime: 0.2
+  clearVelocity: 1
 --- !u!1 &906258175
 GameObject:
   m_ObjectHideFlags: 0
@@ -11281,6 +11391,91 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109703223}
   m_CullTransparentMesh: 1
+--- !u!1 &1119546817
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1119546819}
+  - component: {fileID: 1119546818}
+  m_Layer: 0
+  m_Name: Camera Shake
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1119546818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119546817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 3
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0.1, y: 0.1, z: 0}
+--- !u!4 &1119546819
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119546817}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1827786571}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1131981160
 GameObject:
   m_ObjectHideFlags: 0
@@ -11572,7 +11767,6 @@ GameObject:
   - component: {fileID: 1162173331}
   - component: {fileID: 1162173330}
   - component: {fileID: 1162173333}
-  - component: {fileID: 1162173334}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -11627,7 +11821,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 44855
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -11688,20 +11882,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1162173334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1162173329}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1afe593b3d4399e47b696c7d6bace141, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CameraPoint: {fileID: 65564742}
-  followSpeed: 5
 --- !u!1 &1163105028
 GameObject:
   m_ObjectHideFlags: 0
@@ -17605,6 +17785,7 @@ Transform:
   - {fileID: 128082602}
   - {fileID: 770763576}
   - {fileID: 249096738}
+  - {fileID: 1119546819}
   - {fileID: 1973605814}
   - {fileID: 2135697468}
   m_Father: {fileID: 0}
@@ -19022,6 +19203,7 @@ GameObject:
   - component: {fileID: 1973605814}
   - component: {fileID: 1973605813}
   - component: {fileID: 1973605812}
+  - component: {fileID: 1973605815}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -19101,6 +19283,20 @@ Transform:
   - {fileID: 1207019417}
   m_Father: {fileID: 1827786571}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1973605815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973605811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46799fa8a6996204fa32dcf9f18de4a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impulseSource: {fileID: 1119546818}
+  cameraShakeEvent: {fileID: 11400000, guid: ddad1101168797447b513b5c3ebf087d, type: 2}
 --- !u!1 &1975176579
 GameObject:
   m_ObjectHideFlags: 0
