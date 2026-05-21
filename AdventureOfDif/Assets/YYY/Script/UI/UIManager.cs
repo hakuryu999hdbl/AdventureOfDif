@@ -502,7 +502,7 @@ public class UIManager : MonoBehaviour
         //cancelAction.started += OnCancel;
         //cancelAction.Enable();
 
-
+        healthEventOn();
 
         //打开时钟
         wait = new WaitForSecondsRealtime(30f);   // 每秒更新一次；也可改成 30f/60f 省一点
@@ -514,21 +514,21 @@ public class UIManager : MonoBehaviour
 
 
 
-       // pauseAction.started -= OnPause;
-       // pauseAction.Disable();
-       //
-       // moveAction.performed -= OnMove;
-       // moveAction.Disable();
-       //
-       //
-       // confirmAction.started -= OnConfirm;
-       // confirmAction.Disable();
-       //
-       // cancelAction.started -= OnCancel;
-       // cancelAction.Disable();
+        // pauseAction.started -= OnPause;
+        // pauseAction.Disable();
+        //
+        // moveAction.performed -= OnMove;
+        // moveAction.Disable();
+        //
+        //
+        // confirmAction.started -= OnConfirm;
+        // confirmAction.Disable();
+        //
+        // cancelAction.started -= OnCancel;
+        // cancelAction.Disable();
 
 
-
+        healthEventOff();
 
         //关闭时钟
         StopAllCoroutines();
@@ -781,7 +781,59 @@ public class UIManager : MonoBehaviour
 
 
 
+    /// <summary>
+    /// 生命值，体力值等UI
+    /// </summary>
+    #region
 
+    [Header("事件监听")]
+    public CharacterEventSO healthEvent;
+
+    private void healthEventOn()
+    {
+        healthEvent.OnEventRaised += OnHealthEvent;
+
+    }
+    private void healthEventOff()
+    {
+        healthEvent.OnEventRaised -= OnHealthEvent;
+
+    }
+
+    void OnHealthEvent(Character character)
+    {
+        var persentage = character.currentHealth / character.maxHealth;//将百分比传输
+        OnHealthChange(persentage);
+
+    }
+
+
+
+
+
+
+    public Image healthImage;
+    public Image healthDelayImage;
+ 
+
+    public void OnHealthChange(float persentage)
+    {
+        healthImage.fillAmount = persentage;
+    }
+
+   
+    Character currentCharacter;
+
+    private void Update()
+    {
+        if (healthDelayImage.fillAmount > healthImage.fillAmount)
+        {
+            healthDelayImage.fillAmount -= Time.deltaTime * 1.2f;//可以调整速度
+        }
+
+
+    }
+    #endregion
 
 
     #region   【寻找场景内残留脚本】

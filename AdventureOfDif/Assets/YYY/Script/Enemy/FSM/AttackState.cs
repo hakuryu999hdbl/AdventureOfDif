@@ -41,12 +41,12 @@ public class AttackState : EnemyBaseState
 
         if (distance > enemy.attackRange)
         {
-        
+            enemy.animState = 2;
             enemy.MoveToTarget();
         }
         else
         {
-        
+            enemy.animState = 3;
             enemy.AttackAction();
         }
     }
