@@ -7,7 +7,7 @@ public class AreaExit : MonoBehaviour
 {
 
 
-    RoomGenerator RoomGenerator;//寻找RoomGenerator
+    //RoomGenerator RoomGenerator;//寻找RoomGenerator
 
     public String ExitName;
 
@@ -16,7 +16,7 @@ public class AreaExit : MonoBehaviour
     void Start() 
     {
         //寻找RoomGenerator
-        RoomGenerator = GameObject.FindGameObjectWithTag("RoomGenerator").GetComponent<RoomGenerator>();
+        //RoomGenerator = GameObject.FindGameObjectWithTag("RoomGenerator").GetComponent<RoomGenerator>();
     }
 
 
@@ -31,25 +31,25 @@ public class AreaExit : MonoBehaviour
             {
                 case 0:
                     GameFlowData.nextAreaId = ExitName;//记录下一个前往区域
-                    RoomGenerator.LoadNextArea();
+                    RoomGenerator.instance.LoadNextArea();
                     break;
 
                 case 1:
                     GameFlowData.ShopType = 1;
                     GameFlowData.nextAreaId = ExitName;//记录下一个前往区域
-                    RoomGenerator.LoadShop();
+                    RoomGenerator.instance.LoadShop();
                     break;
 
                 case 2:
                     GameFlowData.ShopType = 2;
                     GameFlowData.nextAreaId = ExitName;//记录下一个前往区域
-                    RoomGenerator.LoadShop();
+                    RoomGenerator.instance.LoadShop();
                     break;
 
                 case 3:
                     GameFlowData.ShopType = 3;
                     GameFlowData.nextAreaId = ExitName;//记录下一个前往区域
-                    RoomGenerator.LoadShop();
+                    RoomGenerator.instance.LoadShop();
                     break;
             }
 

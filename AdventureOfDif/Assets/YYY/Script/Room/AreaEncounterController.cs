@@ -5,7 +5,7 @@ using Cinemachine;
 public class AreaEncounterController : MonoBehaviour
 {
     public GameObject[] Go;//清理区域解锁下一个场景入口
-    public RoomGenerator RoomGenerator;//寻找RoomGenerator
+    //public RoomGenerator RoomGenerator;//寻找RoomGenerator
 
     [Header("敌人生成")]
     public GameObject[] enemyPrefabs; // 敌人预制体数组
@@ -20,7 +20,7 @@ public class AreaEncounterController : MonoBehaviour
     private void Start()
     {
         //寻找RoomGenerator
-        RoomGenerator = GameObject.FindGameObjectWithTag("RoomGenerator").GetComponent<RoomGenerator>();
+        //RoomGenerator = GameObject.FindGameObjectWithTag("RoomGenerator").GetComponent<RoomGenerator>();
 
     }
 
@@ -65,7 +65,7 @@ public class AreaEncounterController : MonoBehaviour
             if (aliveEnemies.Count == 0)
             {
              
-                RoomGenerator.GoGo.SetActive(true);//提示清理完毕
+                RoomGenerator.instance.GoGo.SetActive(true);//提示清理完毕
 
                 if (Go != null)
                 {

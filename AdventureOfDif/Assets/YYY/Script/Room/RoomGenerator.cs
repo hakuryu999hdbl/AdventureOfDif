@@ -8,7 +8,11 @@ using UnityEngine.SceneManagement;
 
 public class RoomGenerator : MonoBehaviour
 {
-  
+    public static RoomGenerator instance { get; private set; }
+    void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -96,7 +100,7 @@ public class RoomGenerator : MonoBehaviour
     [Header("关卡")]
 
     public List<GameObject> areaList; // 在Inspector中添加Area_1~3
-    private int currentAreaIndex = 0;
+    //private int currentAreaIndex = 0;
 
 
 
@@ -187,6 +191,16 @@ public class RoomGenerator : MonoBehaviour
         SceneTransitionController transition = FindFirstObjectByType<SceneTransitionController>();
         transition.StartGame("Shop");
     }
+
+    #endregion
+
+
+    /// <summary>
+    /// 游戏结束
+    /// </summary>
+    #region
+    [Header("其他设置")]
+    public bool gameOver = false;//玩家死亡游戏结束
 
     #endregion
 

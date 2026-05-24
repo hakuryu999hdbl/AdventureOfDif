@@ -4,7 +4,10 @@ public class HitState : EnemyBaseState
 {
     public override void EnterState(EnemyController enemy)
     {
-        enemy.StopMove();
+        enemy.SetStateColor(enemy.hitColor);
+
+
+        enemy.StopMove();//受伤停
       
     }
 

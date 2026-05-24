@@ -24,7 +24,7 @@ public class EnemyController : MonoBehaviour
     [Header("基础属性")]
     public Rigidbody2D rb;
     public bool isDead = false;
-    public bool isHit = false;
+    public bool isHurt = false;//为了受伤的时候屏蔽Update
 
     [Header("敌人攻击")]
     public GameObject attack_Collider;
@@ -77,7 +77,16 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-
+        if (RoomGenerator.instance != null && RoomGenerator.instance.gameOver)
+        {
+            attackList.Clear();
+            targetPoint = null;
+            anim.ResetTrigger("attack");
+            anim.ResetTrigger("skill");
+            animState = 0;
+            anim.SetInteger("state", animState);
+            return;
+        }//玩家死后强制停战
 
         currentState.OnUpdate(this);//每帧执行状态
         anim.SetInteger("state", animState);
@@ -90,7 +99,8 @@ public class EnemyController : MonoBehaviour
         //    state.IsName("hurt_2")          
         //    )
         //{
-        //    StopAI();
+        //    StopMove();
+        //
         //
         //}
         //else
@@ -149,7 +159,7 @@ public class EnemyController : MonoBehaviour
 
         if (distance <= attackRange)
         {
-            StopMove();
+            StopMove();//攻击近敌停
             FilpDirection();
 
             if (Time.time > nextAttack)
@@ -218,7 +228,7 @@ public class EnemyController : MonoBehaviour
 
     public void MovePatrol()
     {
-        if (aiPath == null || enemyTarget == null|| isHit || isDead)
+        if (aiPath == null || enemyTarget == null|| isHurt || isDead)
             return;
 
         aiPath.canMove = true;
@@ -238,30 +248,35 @@ public class EnemyController : MonoBehaviour
 
     public void OnDamageOver() 
     {
+        isHurt = false;
+
         aiPath.canMove = true;
         aiPath.maxSpeed = 1.5f;
 
-        TransitionToState(patrolState);
+        if (attackList.Count > 0)
+            TransitionToState(attackState);
+        else
+            TransitionToState(patrolState);
     }//受伤后恢复
 
     public void ResumeAI()
     {
         aiPath.canMove = true;
         aiPath.maxSpeed = 1.5f;
-    }
+    }//巡逻走
     public void StopMove()
     {
         if (aiPath == null) return;
 
         aiPath.canMove = false;
         aiPath.maxSpeed = 0.01f;
-    }
+    }////巡逻停，死亡停，受伤停，攻击近敌停
 
     private void SetNewPatrolTarget()
     {
         if (AreaManager.Instance == null)
         {
-            StopMove();
+            StopMove();//无巡逻目标控制器停
             return;
         }
 
@@ -269,7 +284,7 @@ public class EnemyController : MonoBehaviour
 
         if (currentPatrolPoint == null)
         {
-            StopMove();
+            StopMove();//无巡逻目标停
             return;
         }
 
@@ -292,16 +307,20 @@ public class EnemyController : MonoBehaviour
     [Header("主动触发声音")]
     public FrameEvents frameEvents;
 
-
+  
 
     public void OnTakeDamage(Attack attack)
     {
 
+        if (isDead)
+        {
+            return;
+        }
         if (attack == null)
             return;
 
 
-        TransitionToState(hitState);//进入受击状态
+      
 
 
         //一旦受伤立刻把Attack的根物体的character所在物体立为目标
@@ -317,8 +336,8 @@ public class EnemyController : MonoBehaviour
             {
                 attackList.Add(attacker);
             }
-        
-            TransitionToState(attackState);
+
+            //TransitionToState(attackState);//受击时只记录攻击者，不切 AttackState
         }
 
 
@@ -340,6 +359,8 @@ public class EnemyController : MonoBehaviour
 
         PlayBloodEffect();
 
+        isHurt = true;
+        TransitionToState(hitState);//进入受击状态
     }
 
 
@@ -367,7 +388,10 @@ public class EnemyController : MonoBehaviour
         PlayBloodEffect();
 
         isDead = true;
-        StopMove();
+        StopMove();//死亡停
+
+
+        SetStateColor(deadColor);
     }
 
 
@@ -375,5 +399,17 @@ public class EnemyController : MonoBehaviour
 
 
 
+    [Header("状态显示器")]
+    public SpriteRenderer stateViewer;
 
+    public Color patrolColor = Color.green;
+    public Color attackColor = Color.red;
+    public Color hitColor = Color.yellow;
+    public Color deadColor = Color.gray;
+
+    public void SetStateColor(Color color)
+    {
+        if (stateViewer != null)
+            stateViewer.color = color;
+    }
 }

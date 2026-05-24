@@ -8,6 +8,7 @@ public class PatrolState : EnemyBaseState
     private bool isWalking;
     public override void EnterState(EnemyController enemy)
     {
+        enemy.SetStateColor(enemy.patrolColor);
         enemy.animState = 0;
 
         StartIdle(enemy);
@@ -16,6 +17,10 @@ public class PatrolState : EnemyBaseState
     public override void OnUpdate(EnemyController enemy)
     {
 
+        if (enemy.isDead || enemy.isHurt)
+        {
+            return;
+        }
 
         if (enemy.attackList.Count > 0)
         {
@@ -57,7 +62,7 @@ public class PatrolState : EnemyBaseState
     {
         isWalking = false;
         enemy.animState = 0;
-        enemy.StopMove();
+        enemy.StopMove();//巡逻停
         timer = Random.Range(enemy.minIdleTime, enemy.maxIdleTime);
     }
 

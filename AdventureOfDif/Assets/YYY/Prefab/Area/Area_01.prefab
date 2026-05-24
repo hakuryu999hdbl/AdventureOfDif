@@ -370,7 +370,7 @@ Transform:
   m_GameObject: {fileID: 212093544688824234}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.78, y: -1.45, z: 0}
+  m_LocalPosition: {x: -16.78, y: -2.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2686,7 +2686,6 @@ MonoBehaviour:
   - {fileID: 7719950554057704908}
   - {fileID: 3863794955302688279}
   - {fileID: 1085053134224224037}
-  RoomGenerator: {fileID: 0}
   enemyPrefabs:
   - {fileID: 6724541046560202250, guid: 69b2f238488e7f64fa4ad1c03c84f06e, type: 3}
   - {fileID: 6724541046560202250, guid: 69b2f238488e7f64fa4ad1c03c84f06e, type: 3}
@@ -5059,7 +5058,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Go:
   - {fileID: 8064982603720689349}
-  RoomGenerator: {fileID: 0}
   enemyPrefabs:
   - {fileID: 6724541046560202250, guid: 69b2f238488e7f64fa4ad1c03c84f06e, type: 3}
   - {fileID: 6724541046560202250, guid: 69b2f238488e7f64fa4ad1c03c84f06e, type: 3}

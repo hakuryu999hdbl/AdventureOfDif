@@ -4,6 +4,8 @@ public class AttackState : EnemyBaseState
 {
     public override void EnterState(EnemyController enemy)
     {
+        enemy.SetStateColor(enemy.attackColor);
+
         //Debug.Log("发现敌人！！！！");
 
         enemy.animState = 2;
@@ -15,11 +17,25 @@ public class AttackState : EnemyBaseState
             return;
         }
 
+      
+
         enemy.targetPoint = enemy.attackList[0];
     }
 
     public override void OnUpdate(EnemyController enemy)
     {
+
+        if (enemy.isDead)
+        {
+            return;
+        }
+        if (enemy.isHurt)
+        {
+            enemy.StopMove();
+            enemy.TransitionToState(enemy.hitState);//进入受击状态
+            return;
+        }//特殊增加进入受击状态入口
+
         enemy.attackList.RemoveAll(t => t == null || !t.CompareTag("Player"));
 
         if (enemy.attackList.Count <= 0)

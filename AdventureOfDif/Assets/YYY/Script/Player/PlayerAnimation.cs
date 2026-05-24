@@ -22,6 +22,7 @@ public class PlayerAnimation : MonoBehaviour
         moveSpeedValue = velocity.magnitude;
 
         anim.SetFloat("Speed", moveSpeedValue);
+        anim.SetBool("isDead", playerController.isDead);
         anim.SetBool("isAttack", playerController.isAttack);
         anim.SetBool("isDashAttack", playerController.isDashAttack);
     }
