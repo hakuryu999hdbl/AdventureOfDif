@@ -6,8 +6,6 @@ public class Attack : MonoBehaviour
 {
     [Header("伤害数值")]
     public int damage;
-    public float attackRange;
-    public float attackRate;
 
     [Header("击飞参数")]
     public float knockbackX = 5f;

@@ -20,6 +20,7 @@ public class EnemyController : MonoBehaviour
     EnemyBaseState currentState;//当前状态
     public Animator anim;
     public int animState;
+    public CharacterSkin characterSkin;
 
     [Header("基础属性")]
     public Rigidbody2D rb;
@@ -27,7 +28,8 @@ public class EnemyController : MonoBehaviour
     public bool isHurt = false;//为了受伤的时候屏蔽Update
 
     [Header("敌人攻击")]
-    public GameObject attack_Collider;
+    public GameObject attack_Collider_1;
+    public GameObject attack_Collider_2;
     public float attackRate;//攻击冷却
     public float attackRange;//攻击范围
     float nextAttack = 0;
@@ -85,6 +87,7 @@ public class EnemyController : MonoBehaviour
             anim.ResetTrigger("skill");
             animState = 0;
             anim.SetInteger("state", animState);
+            StopMove();
             return;
         }//玩家死后强制停战
 
@@ -108,7 +111,7 @@ public class EnemyController : MonoBehaviour
         //    ResumeAI();
         //}
 
-
+       
 
     }
 
@@ -249,14 +252,21 @@ public class EnemyController : MonoBehaviour
     public void OnDamageOver() 
     {
         isHurt = false;
+        anim.SetBool("hit", false);
 
-        aiPath.canMove = true;
-        aiPath.maxSpeed = 1.5f;
+        ResetFakeHeight();
+        if (isDead) return;
+
+        //aiPath.canMove = true;
+        //aiPath.maxSpeed = 1.5f;
 
         if (attackList.Count > 0)
             TransitionToState(attackState);
         else
             TransitionToState(patrolState);
+
+        ResetShadow();//重置影子
+
     }//受伤后恢复
 
     public void ResumeAI()
@@ -296,6 +306,217 @@ public class EnemyController : MonoBehaviour
     #endregion
 
 
+    /// <summary>
+    /// 2.5D受击假物理
+    /// </summary>
+    #region
+    [Header("2.5D受击假物理")]
+    [Tooltip("Spine或显示用身体根节点。假高度只移动它，不移动Enemy本体。")]
+    public Transform bodyRoot;
+    [Tooltip("地面水平击退速度衰减。越大越快停。")]
+    public float hurtGroundFriction = 8f;
+    [Tooltip("假重力。越大落地越快。")]
+    public float fakeGravity = 20f;
+    [Tooltip("落地后倒地/硬直追加时间。")]
+    public float knockDownTime = 0.35f;
+    [Tooltip("是否检测墙壁反弹。")]
+    public bool useWallBounce = true;
+    [Tooltip("墙壁/障碍层。建议填Map/Obstacle。")]
+    public LayerMask hurtWallMask;
+    [Tooltip("墙壁检测距离。")]
+    public float wallCheckDistance = 0.25f;
+    [Tooltip("撞墙反弹保留速度比例。")]
+    public float wallBounceDamping = 0.45f;
+
+    private Vector3 bodyRootStartLocalPos;
+    private Vector2 hurtGroundVelocity;
+    private float fakeHeight;
+    private float fakeVerticalVelocity;
+    private float hurtTimer;
+    private float downTimer;
+    private bool hasLanded;
+
+    public void StartHurtMotion(Attack attack)
+    {
+        if (attack == null) return;
+
+        StopMove();
+        isHurt = true;
+        hasLanded = false;
+        downTimer = 0f;
+
+        float dir = transform.position.x >= attack.transform.position.x ? 1f : -1f;
+
+        hurtGroundVelocity = new Vector2(dir * attack.knockbackX, 0f);
+        fakeVerticalVelocity = attack.knockbackY;
+        fakeHeight = 0.01f;
+        hurtTimer = Mathf.Max(attack.hurtTime, 0.05f);
+
+        if (attack.clearVelocity && rb != null)
+            rb.velocity = Vector2.zero;
+
+        if (bodyRoot != null)
+            bodyRootStartLocalPos = bodyRoot.localPosition;
+    }
+
+    public bool UpdateHurtMotion()
+    {
+        StopMove();
+
+        UpdateHurtGroundMove();
+        UpdateFakeHeight();
+
+        hurtTimer -= Time.deltaTime;
+
+        bool noAirMotion = Mathf.Abs(fakeVerticalVelocity) <= 0.01f && fakeHeight <= 0.01f;
+
+        if (hasLanded)
+        {
+            downTimer -= Time.deltaTime;
+            return downTimer <= 0f && hurtTimer <= 0f;
+        }
+
+        return hurtTimer <= 0f && noAirMotion;
+
+    }//这个是持续检测，目前好像只有受伤状态下会这样
+
+    private void UpdateHurtGroundMove()
+    {
+        if (hurtGroundVelocity.sqrMagnitude <= 0.0001f) return;
+
+        Vector2 move = hurtGroundVelocity * Time.deltaTime;
+
+        if (useWallBounce && hurtWallMask.value != 0)
+        {
+            Vector2 dir = hurtGroundVelocity.normalized;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, wallCheckDistance, hurtWallMask);
+
+            if (hit.collider != null)
+            {
+                hurtGroundVelocity.x = -hurtGroundVelocity.x * wallBounceDamping;
+                move = hurtGroundVelocity * Time.deltaTime;
+            }
+        }
+
+        transform.position += (Vector3)move;
+
+        hurtGroundVelocity = Vector2.MoveTowards(
+            hurtGroundVelocity,
+            Vector2.zero,
+            hurtGroundFriction * Time.deltaTime
+        );
+    }
+
+    private void UpdateFakeHeight()
+    {
+        if (bodyRoot == null)
+        {
+            fakeHeight = 0f;
+            fakeVerticalVelocity = 0f;
+            hasLanded = true;
+            return;
+        }
+
+        fakeVerticalVelocity -= fakeGravity * Time.deltaTime;
+        fakeHeight += fakeVerticalVelocity * Time.deltaTime;
+
+        if (fakeHeight <= 0f)
+        {
+            if (!hasLanded && fakeVerticalVelocity < -0.1f)
+            {
+                hasLanded = true;
+                downTimer = knockDownTime;
+            }
+
+            fakeHeight = 0f;
+            fakeVerticalVelocity = 0f;
+        }
+
+        Vector3 localPos = bodyRootStartLocalPos;
+        localPos.y += fakeHeight;
+        bodyRoot.localPosition = localPos;
+
+        UpdateShadow();//控制影子大小
+    }
+
+    private void ResetFakeHeight()
+    {
+        hurtGroundVelocity = Vector2.zero;
+        fakeHeight = 0f;
+        fakeVerticalVelocity = 0f;
+        hurtTimer = 0f;
+        downTimer = 0f;
+        hasLanded = false;
+
+        if (bodyRoot != null)
+            bodyRoot.localPosition = bodyRootStartLocalPos;
+    }
+
+
+    [Header("影子控制")]
+    public Transform shadow;
+    public Vector2 shadowBaseScale = Vector2.one;
+    public float shadowMinScale = 0.3f;
+    public float maxJumpHeight = 3f;
+
+    void UpdateShadow()
+    {
+        if (shadow == null)
+            return;
+
+        // 跟随敌人地面位置
+        shadow.position = new Vector3(
+            transform.position.x,
+            shadow.position.y,
+            transform.position.z
+        );
+
+        // 根据高度缩放
+        float t = Mathf.Clamp01(fakeHeight / maxJumpHeight);
+
+        float scale = Mathf.Lerp(
+            1f,
+            shadowMinScale,
+            t
+        );
+
+        shadow.localScale = shadowBaseScale * scale;
+
+        SpriteRenderer sr = shadow.GetComponent<SpriteRenderer>();
+
+        if (sr != null)
+        {
+            Color c = sr.color;
+
+            c.a = Mathf.Lerp(
+                1f,
+                0.5f,
+                t
+            );
+
+            sr.color = c;
+        }
+    }
+
+    private void ResetShadow()
+    {
+        if (shadow != null)
+        {
+            shadow.localScale = shadowBaseScale;
+
+            SpriteRenderer sr = shadow.GetComponent<SpriteRenderer>();
+
+            if (sr != null)
+            {
+                Color c = sr.color;
+                c.a = 1f;
+                sr.color = c;
+            }
+        }
+    }
+
+    #endregion
+
 
     /// <summary>
     /// 受伤死亡
@@ -311,16 +532,11 @@ public class EnemyController : MonoBehaviour
 
     public void OnTakeDamage(Attack attack)
     {
-
-        if (isDead)
-        {
-            return;
-        }
-        if (attack == null)
-            return;
+        if (isDead) return;
+        if (attack == null) return;
 
 
-      
+
 
 
         //一旦受伤立刻把Attack的根物体的character所在物体立为目标
@@ -341,25 +557,28 @@ public class EnemyController : MonoBehaviour
         }
 
 
-        anim.SetTrigger("hit");
+        anim.SetBool("hit",true);
         anim.SetInteger("HitType",Random.Range(1,3));
 
-        if (attack.clearVelocity)
+
+
+
+        if(attack.knockbackY > 0)
         {
-            rb.velocity = Vector2.zero;
+            characterSkin.canAnimEndHurt = false;//如果是击飞，由落地控制离开受伤状态
+        }
+        else
+        {
+            characterSkin.canAnimEndHurt = true;//如果是击退，由动画结束控制离开受伤状态
         }
 
-        float dir = transform.position.x >= attack.transform.position.x ? 1f : -1f;
 
-        rb.AddForce(
-            new Vector2(dir * attack.knockbackX, attack.knockbackY),
-            ForceMode2D.Impulse
-        );
 
 
         PlayBloodEffect();
 
-        isHurt = true;
+        //isHurt = true;
+        StartHurtMotion(attack);
         TransitionToState(hitState);//进入受击状态
     }
 

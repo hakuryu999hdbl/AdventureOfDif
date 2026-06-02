@@ -29,6 +29,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public void PlayHurt()
     {
+        anim.SetInteger("hurtType", Random.Range(1, 3));
         anim.SetTrigger("hurt");
     }
 

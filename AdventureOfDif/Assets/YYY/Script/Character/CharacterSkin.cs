@@ -79,32 +79,52 @@ public class CharacterSkin : MonoBehaviour
     public PlayerController playerController;
     public EnemyController enemyController;
 
-    void Attack()
+    void Attack_1()
     {
         if (playerController != null)
         {
-            if (playerController.isDead == false) { playerController.attack_Collider.SetActive(true); }//我方和敌方被击倒期间无法发出攻击碰撞体
+            if (playerController.isDead == false) { playerController.attack_Collider_1.SetActive(true); }//我方和敌方被击倒期间无法发出攻击碰撞体
 
         }
         if (enemyController != null)
         {
-            if (enemyController.isDead == false) { enemyController.attack_Collider.SetActive(true); }//我方和敌方被击倒期间无法发出攻击碰撞体
+            if (enemyController.isDead == false) { enemyController.attack_Collider_1.SetActive(true); }//我方和敌方被击倒期间无法发出攻击碰撞体
 
         }
 
         Invoke("HideAttack", 0.2f);
     }//攻击碰撞体闪出来一下就消失
 
+    void Attack_2()
+    {
+        if (playerController != null)
+        {
+            if (playerController.isDead == false) { playerController.attack_Collider_2.SetActive(true); }//我方和敌方被击倒期间无法发出攻击碰撞体
+
+        }
+        if (enemyController != null)
+        {
+            if (enemyController.isDead == false) { enemyController.attack_Collider_2.SetActive(true); }//我方和敌方被击倒期间无法发出攻击碰撞体
+
+        }
+
+        Invoke("HideAttack", 0.2f);
+    }//攻击碰撞体闪出来一下就消失
+
+
+
     void HideAttack()
     {
 
         if (playerController != null)
         {
-            playerController.attack_Collider.SetActive(false);
+            playerController.attack_Collider_1.SetActive(false);
+            playerController.attack_Collider_2.SetActive(false);
         }
         if (enemyController != null)
         {
-            enemyController.attack_Collider.SetActive(false);
+            enemyController.attack_Collider_1.SetActive(false);
+            enemyController.attack_Collider_2.SetActive(false);
         }
 
     }//攻击碰撞体消失
@@ -159,9 +179,22 @@ public class CharacterSkin : MonoBehaviour
         }
     }
 
+
+    [Header("受伤结束控制")]
+    public bool canAnimEndHurt = false;   // 动画帧事件是否允许结束受伤
+
+
     public void OnHurtOver()
     {
-        if (enemyController != null)
+        if (playerController != null && canAnimEndHurt)
+        {
+            playerController.OnDamageOver();
+
+        }
+
+
+
+        if (enemyController != null&& canAnimEndHurt)
         {
             enemyController.OnDamageOver();
 

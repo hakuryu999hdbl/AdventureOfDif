@@ -281,6 +281,158 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
   enemyController: {fileID: 3956407712294897561}
+  canAnimEndHurt: 0
+--- !u!1 &2246464455248045784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2619018634488310361}
+  - component: {fileID: 2255096039472377841}
+  - component: {fileID: 4602836634398373135}
+  - component: {fileID: 8817576807327576190}
+  m_Layer: 0
+  m_Name: Attack_Collider_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2619018634488310361
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2246464455248045784}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.82, y: 0.84, z: 0}
+  m_LocalScale: {x: 0.29999998, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8333388052366015721}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &2255096039472377841
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2246464455248045784}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 341337295
+  m_SortingLayer: 2
+  m_SortingOrder: 10
+  m_Sprite: {fileID: 21300000, guid: 523137e382f39de4f93dbfb1619c29dd, type: 3}
+  m_Color: {r: 1, g: 0.15976928, b: 0, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5.12, y: 5.12}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!61 &4602836634398373135
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2246464455248045784}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.12, y: 5.12}
+    newSize: {x: 5.12, y: 5.12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 5, y: 5.2358837}
+  m_EdgeRadius: 0
+--- !u!114 &8817576807327576190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2246464455248045784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9579e9de0ea08a0478960c68b3022f50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  knockbackX: 10
+  knockbackY: 10
+  hurtTime: 0.2
+  clearVelocity: 1
 --- !u!1 &2786576750533101650
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,10 +808,12 @@ MonoBehaviour:
   - {fileID: 0}
   anim: {fileID: 8788717237131998748}
   animState: 0
+  characterSkin: {fileID: 3671104497007021400}
   rb: {fileID: 772796359424678096}
   isDead: 0
   isHurt: 0
-  attack_Collider: {fileID: 6997240919580881142}
+  attack_Collider_1: {fileID: 6997240919580881142}
+  attack_Collider_2: {fileID: 2246464455248045784}
   attackRate: 1
   attackRange: 1
   attackList: []
@@ -669,6 +823,20 @@ MonoBehaviour:
   minIdleTime: 1
   maxIdleTime: 3
   patrolDir: 1
+  bodyRoot: {fileID: 1509649629526813213}
+  hurtGroundFriction: 8
+  fakeGravity: 20
+  knockDownTime: 0.35
+  useWallBounce: 1
+  hurtWallMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  wallCheckDistance: 0.25
+  wallBounceDamping: 0.45
+  shadow: {fileID: 535479168076618314}
+  shadowBaseScale: {x: 1, y: 1}
+  shadowMinScale: 0.3
+  maxJumpHeight: 3
   Effect_Blood: {fileID: 1622069723160390679, guid: 3cbb102f876966040a9c79278e3e6a63,
     type: 3}
   frameEvents: {fileID: 6531541226132309373}
@@ -689,7 +857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff6a42723ca7f743af47e969c7830dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 100
   currentHealth: 0
   invulnerableDuration: 0
   invulnerable: 0
@@ -927,6 +1095,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6464024136313735583}
+  - {fileID: 2619018634488310361}
   m_Father: {fileID: 4390132317803352134}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6724541046560202250
@@ -975,7 +1144,7 @@ GameObject:
   - component: {fileID: 976931002218378573}
   - component: {fileID: 8694566397063204062}
   m_Layer: 0
-  m_Name: Attack_Collider
+  m_Name: Attack_Collider_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1109,9 +1278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  attackRange: 0
-  attackRate: 0
-  knockbackX: 0
-  knockbackY: 0
+  knockbackX: 5
+  knockbackY: 5
   hurtTime: 0.2
   clearVelocity: 1

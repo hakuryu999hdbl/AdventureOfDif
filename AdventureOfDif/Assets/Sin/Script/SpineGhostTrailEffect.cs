@@ -138,7 +138,7 @@ public class SpineGhostTrail : MonoBehaviour
         ghost.go.transform.rotation = transform.rotation;
 
         ghost.mr.sortingLayerID = mainMeshRenderer.sortingLayerID;
-        ghost.mr.sortingOrder = mainMeshRenderer.sortingOrder - 1;
+        ghost.mr.sortingOrder = mainMeshRenderer.sortingOrder ;//这里暂时一致
 
         ghost.spawnTime = Time.time;
         ghost.SetActive(true);
