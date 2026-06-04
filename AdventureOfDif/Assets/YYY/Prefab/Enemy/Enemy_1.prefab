@@ -429,7 +429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  knockbackX: 10
+  knockbackX: 5
   knockbackY: 10
   hurtTime: 0.2
   clearVelocity: 1
@@ -1278,7 +1278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  knockbackX: 5
-  knockbackY: 5
+  knockbackX: 10
+  knockbackY: 0
   hurtTime: 0.2
   clearVelocity: 1

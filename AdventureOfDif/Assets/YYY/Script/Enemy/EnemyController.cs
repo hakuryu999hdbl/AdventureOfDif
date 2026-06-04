@@ -167,6 +167,7 @@ public class EnemyController : MonoBehaviour
 
             if (Time.time > nextAttack)
             {
+                anim.SetInteger("attackType", Random.Range(1, 3));
                 anim.SetTrigger("attack");
                 Debug.Log("普通攻击");
                 nextAttack = Time.time + attackRate;
