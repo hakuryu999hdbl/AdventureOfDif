@@ -121,17 +121,12 @@ public class PlayerController : MonoBehaviour
     public void OnDamageOver()
     {
         isHurt = false;
-        //anim.SetBool("hit", false);
+        hurtPhase = HurtPhase.None;
+
+        playerAnimation.EndHurt();
 
         ResetFakeHeight();
-        if (isDead) return;
-
-        //aiPath.canMove = true;
-        //aiPath.maxSpeed = 1.5f;
-
-     
-
-        ResetShadow();//重置影子
+        ResetShadow();
 
     }//受伤后恢复
 
@@ -188,27 +183,40 @@ public class PlayerController : MonoBehaviour
 
         if (bodyRoot != null)
             bodyRootStartLocalPos = bodyRoot.localPosition;
-    }
+    }//受击飞起
 
     public bool UpdateHurtMotion()
     {
-        //StopMove();
-
+        UpdateAirSorting();
         UpdateHurtGroundMove();
-        UpdateFakeHeight();
-
         hurtTimer -= Time.deltaTime;
 
-        bool noAirMotion = Mathf.Abs(fakeVerticalVelocity) <= 0.01f && fakeHeight <= 0.01f;
+        if (hurtPhase == HurtPhase.Hurt)
+            return hurtTimer <= 0f;
 
-        if (hasLanded)
+        if (hurtPhase == HurtPhase.Fly)
         {
-            downTimer -= Time.deltaTime;
-            return downTimer <= 0f && hurtTimer <= 0f;
+            UpdateFakeHeight();
+            return false;
         }
 
-        return hurtTimer <= 0f && noAirMotion;
+        if (hurtPhase == HurtPhase.Down)
+        {
+            downTimer -= Time.deltaTime;
 
+            if (downTimer <= 0f)
+            {
+                hurtPhase = HurtPhase.GetUp;
+                characterSkin.canAnimEndHurt = true;
+
+                playerAnimation.anim.SetInteger("hurtType", 0);
+                playerAnimation.anim.SetBool("down", false);
+            }
+
+            return false;
+        }
+
+        return false;
     }//这个是持续检测，目前好像只有受伤状态下会这样
 
     private void UpdateHurtGroundMove()
@@ -220,7 +228,7 @@ public class PlayerController : MonoBehaviour
         if (useWallBounce && hurtWallMask.value != 0)
         {
             Vector2 dir = hurtGroundVelocity.normalized;
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, wallCheckDistance, hurtWallMask);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, wallCheckDistance, hurtWallMask);//打到墙上反弹一点
 
             if (hit.collider != null)
             {
@@ -236,7 +244,22 @@ public class PlayerController : MonoBehaviour
             Vector2.zero,
             hurtGroundFriction * Time.deltaTime
         );
-    }
+    }//横向击退
+
+    [Header("空中排序")]
+    public Renderer spineRenderer;
+    public int groundOrder = 0;
+    public int airOrder = 1;
+
+    private void UpdateAirSorting()
+    {
+        if (spineRenderer == null) return;
+
+        if (fakeHeight > 0.01f)
+            spineRenderer.sortingOrder = airOrder;
+        else
+            spineRenderer.sortingOrder = groundOrder;
+    }//空中排序
 
     private void UpdateFakeHeight()
     {
@@ -244,7 +267,6 @@ public class PlayerController : MonoBehaviour
         {
             fakeHeight = 0f;
             fakeVerticalVelocity = 0f;
-            hasLanded = true;
             return;
         }
 
@@ -253,22 +275,24 @@ public class PlayerController : MonoBehaviour
 
         if (fakeHeight <= 0f)
         {
-            if (!hasLanded && fakeVerticalVelocity < -0.1f)
-            {
-                hasLanded = true;
-                downTimer = knockDownTime;
-            }
-
             fakeHeight = 0f;
             fakeVerticalVelocity = 0f;
+
+            if (hurtPhase == HurtPhase.Fly)
+            {
+                hurtPhase = HurtPhase.Down;
+                downTimer = knockDownTime;
+
+                playerAnimation.anim.SetBool("down", true);
+            }
         }
 
         Vector3 localPos = bodyRootStartLocalPos;
         localPos.y += fakeHeight;
         bodyRoot.localPosition = localPos;
 
-        UpdateShadow();//控制影子大小
-    }
+        UpdateShadow();
+    }//模拟高度
 
     private void ResetFakeHeight()
     {
@@ -281,7 +305,7 @@ public class PlayerController : MonoBehaviour
 
         if (bodyRoot != null)
             bodyRoot.localPosition = bodyRootStartLocalPos;
-    }
+    }//重置模拟高度
 
 
     [Header("影子控制")]
@@ -359,10 +383,24 @@ public class PlayerController : MonoBehaviour
     [Header("主动触发声音")]
     public FrameEvents frameEvents;
 
+
+    public enum HurtPhase
+    {
+        None,
+        Hurt,
+        Fly,
+        Down,
+        GetUp
+    }
+
+    public HurtPhase hurtPhase;
+
+
     public void OnTakeDamage(Attack attack)
     {
 
         if (isDead) return;
+        if (isHurt) return;
         if (attack == null) return;
 
 
@@ -372,17 +410,21 @@ public class PlayerController : MonoBehaviour
 
 
 
-        playerAnimation.PlayHurt();
+      
 
 
 
         if (attack.knockbackY > 0)
         {
             characterSkin.canAnimEndHurt = false;//如果是击飞，由落地控制离开受伤状态
+            hurtPhase = HurtPhase.Fly;
+            playerAnimation.PlayFly();
         }
         else
         {
             characterSkin.canAnimEndHurt = true;//如果是击退，由动画结束控制离开受伤状态
+            hurtPhase = HurtPhase.Hurt;
+            playerAnimation.PlayHurt();
         }
 
 

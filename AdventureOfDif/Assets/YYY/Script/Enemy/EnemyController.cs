@@ -250,23 +250,26 @@ public class EnemyController : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1);
     }
 
-    public void OnDamageOver() 
+    public void OnDamageOver()
     {
+        Debug.Log("重置");
+
         isHurt = false;
+        hurtPhase = HurtPhase.None;
+
         anim.SetBool("hit", false);
+        anim.SetBool("down", false);
+        anim.SetInteger("HitType", 0);
 
         ResetFakeHeight();
-        if (isDead) return;
+        ResetShadow();
 
-        //aiPath.canMove = true;
-        //aiPath.maxSpeed = 1.5f;
+        if (isDead) return;
 
         if (attackList.Count > 0)
             TransitionToState(attackState);
         else
             TransitionToState(patrolState);
-
-        ResetShadow();//重置影子
 
     }//受伤后恢复
 
@@ -358,27 +361,54 @@ public class EnemyController : MonoBehaviour
 
         if (bodyRoot != null)
             bodyRootStartLocalPos = bodyRoot.localPosition;
-    }
+
+    }//受击飞起
 
     public bool UpdateHurtMotion()
     {
         StopMove();
 
         UpdateHurtGroundMove();
-        UpdateFakeHeight();
+
+        UpdateAirSorting();
 
         hurtTimer -= Time.deltaTime;
 
-        bool noAirMotion = Mathf.Abs(fakeVerticalVelocity) <= 0.01f && fakeHeight <= 0.01f;
-
-        if (hasLanded)
+        if (hurtPhase == HurtPhase.Hurt)
         {
-            downTimer -= Time.deltaTime;
-            return downTimer <= 0f && hurtTimer <= 0f;
+            return hurtTimer <= 0f;
         }
 
-        return hurtTimer <= 0f && noAirMotion;
+        if (hurtPhase == HurtPhase.Fly)
+        {
+            UpdateFakeHeight();
+            return false;
+        }
 
+        if (hurtPhase == HurtPhase.Down)
+        {
+            downTimer -= Time.deltaTime;
+
+            if (downTimer <= 0f)
+            {
+                hurtPhase = HurtPhase.GetUp;
+
+                if (characterSkin != null)
+                    characterSkin.canAnimEndHurt = true;
+
+                anim.SetInteger("HitType", 0);
+                anim.SetBool("down", false);
+            }
+
+            return false;
+        }
+
+        if (hurtPhase == HurtPhase.GetUp)
+        {
+            return false;
+        }
+
+        return false;
     }//这个是持续检测，目前好像只有受伤状态下会这样
 
     private void UpdateHurtGroundMove()
@@ -390,7 +420,7 @@ public class EnemyController : MonoBehaviour
         if (useWallBounce && hurtWallMask.value != 0)
         {
             Vector2 dir = hurtGroundVelocity.normalized;
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, wallCheckDistance, hurtWallMask);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, wallCheckDistance, hurtWallMask);//打到墙上反弹一点
 
             if (hit.collider != null)
             {
@@ -406,7 +436,22 @@ public class EnemyController : MonoBehaviour
             Vector2.zero,
             hurtGroundFriction * Time.deltaTime
         );
-    }
+    }//横向击退
+
+    [Header("空中排序")]
+    public Renderer spineRenderer;
+    public int groundOrder = 0;
+    public int airOrder = 1;
+
+    private void UpdateAirSorting()
+    {
+        if (spineRenderer == null) return;
+
+        if (fakeHeight > 0.01f)
+            spineRenderer.sortingOrder = airOrder;
+        else
+            spineRenderer.sortingOrder = groundOrder;
+    }//空中排序
 
     private void UpdateFakeHeight()
     {
@@ -414,7 +459,6 @@ public class EnemyController : MonoBehaviour
         {
             fakeHeight = 0f;
             fakeVerticalVelocity = 0f;
-            hasLanded = true;
             return;
         }
 
@@ -423,22 +467,26 @@ public class EnemyController : MonoBehaviour
 
         if (fakeHeight <= 0f)
         {
-            if (!hasLanded && fakeVerticalVelocity < -0.1f)
-            {
-                hasLanded = true;
-                downTimer = knockDownTime;
-            }
-
             fakeHeight = 0f;
             fakeVerticalVelocity = 0f;
+
+            if (hurtPhase == HurtPhase.Fly)
+            {
+                hurtPhase = HurtPhase.Down;
+                downTimer = knockDownTime;
+
+                anim.SetBool("down", true);
+
+                Debug.Log("落地，进入倒地状态");
+            }
         }
 
         Vector3 localPos = bodyRootStartLocalPos;
         localPos.y += fakeHeight;
         bodyRoot.localPosition = localPos;
 
-        UpdateShadow();//控制影子大小
-    }
+        UpdateShadow();
+    }//模拟高度
 
     private void ResetFakeHeight()
     {
@@ -451,7 +499,10 @@ public class EnemyController : MonoBehaviour
 
         if (bodyRoot != null)
             bodyRoot.localPosition = bodyRootStartLocalPos;
-    }
+
+        if (spineRenderer != null)
+            spineRenderer.sortingOrder = groundOrder;
+    }//重置模拟高度
 
 
     [Header("影子控制")]
@@ -529,11 +580,23 @@ public class EnemyController : MonoBehaviour
     [Header("主动触发声音")]
     public FrameEvents frameEvents;
 
-  
+    //受伤枚举
+    public enum HurtPhase
+    {
+        None,
+        Hurt,
+        Fly,
+        Down,
+        GetUp
+    }
+
+    public HurtPhase hurtPhase;
+
 
     public void OnTakeDamage(Attack attack)
     {
         if (isDead) return;
+        if (isHurt) return; // 受击流程中不再吃新攻击
         if (attack == null) return;
 
 
@@ -559,7 +622,7 @@ public class EnemyController : MonoBehaviour
 
 
         anim.SetBool("hit",true);
-        anim.SetInteger("HitType",Random.Range(1,3));
+       
 
 
 
@@ -567,10 +630,18 @@ public class EnemyController : MonoBehaviour
         if(attack.knockbackY > 0)
         {
             characterSkin.canAnimEndHurt = false;//如果是击飞，由落地控制离开受伤状态
+            anim.SetInteger("HitType", 3);
+
+            hurtPhase = HurtPhase.Fly;
+
         }
         else
         {
             characterSkin.canAnimEndHurt = true;//如果是击退，由动画结束控制离开受伤状态
+            anim.SetInteger("HitType", Random.Range(1, 3));
+
+            hurtPhase = HurtPhase.Hurt;
+
         }
 
 

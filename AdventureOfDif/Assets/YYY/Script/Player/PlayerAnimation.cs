@@ -29,9 +29,21 @@ public class PlayerAnimation : MonoBehaviour
 
     public void PlayHurt()
     {
+        anim.SetBool("hurt", true);
         anim.SetInteger("hurtType", Random.Range(1, 3));
-        anim.SetTrigger("hurt");
     }
+    public void PlayFly()
+    {
+        anim.SetBool("hurt", true);
+        anim.SetInteger("hurtType", 3);
+    }
+    public void EndHurt()
+    {
+        anim.SetBool("hurt", false);
+        anim.SetBool("down", false);
+        anim.SetInteger("hurtType", 0);
+    }
+
 
     public void PlayAttack()
     {

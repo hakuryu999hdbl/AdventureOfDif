@@ -429,7 +429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  knockbackX: 5
+  knockbackX: 10
   knockbackY: 10
   hurtTime: 0.2
   clearVelocity: 1
@@ -833,6 +833,9 @@ MonoBehaviour:
     m_Bits: 2048
   wallCheckDistance: 0.25
   wallBounceDamping: 0.45
+  spineRenderer: {fileID: 7875211566583131783}
+  groundOrder: 0
+  airOrder: 1
   shadow: {fileID: 535479168076618314}
   shadowBaseScale: {x: 1, y: 1}
   shadowMinScale: 0.3
@@ -840,6 +843,7 @@ MonoBehaviour:
   Effect_Blood: {fileID: 1622069723160390679, guid: 3cbb102f876966040a9c79278e3e6a63,
     type: 3}
   frameEvents: {fileID: 6531541226132309373}
+  hurtPhase: 0
   stateViewer: {fileID: 8228350763653504672}
   patrolColor: {r: 0, g: 1, b: 0, a: 1}
   attackColor: {r: 1, g: 0, b: 0, a: 1}

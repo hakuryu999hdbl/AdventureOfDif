@@ -737,6 +737,7 @@ MonoBehaviour:
   Effect_Blood: {fileID: 1622069723160390679, guid: 3cbb102f876966040a9c79278e3e6a63,
     type: 3}
   frameEvents: {fileID: 534242814}
+  hurtPhase: 0
   inputDirection: {x: 0, y: 0}
   nextAttack: 0
   attackRate: 0.7
