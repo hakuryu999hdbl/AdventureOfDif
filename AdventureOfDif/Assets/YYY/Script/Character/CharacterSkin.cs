@@ -21,7 +21,9 @@ public class CharacterSkin : MonoBehaviour
         //换皮肤
         skeletonAnimation = GetComponent<SkeletonMecanim>();
 
-    
+        //淡入
+        //Invoke(nameof(_FadeIn), 0.1f);
+        FadeIn(0.4f);
     }
 
     GrabbableObject.GrabbableType heldItemType;
@@ -50,7 +52,73 @@ public class CharacterSkin : MonoBehaviour
 
 
 
-    public void HideSkeleton() 
+    #region  渐变进入 渐变消失
+
+
+    void _FadeIn() 
+    {
+        FadeIn(0.4f);
+    }
+    public void FadeIn(float duration = 0.5f)
+    {
+        StopAllCoroutines();
+        StartCoroutine(FadeInCoroutine(duration));
+    }
+
+    private IEnumerator FadeInCoroutine(float duration)
+    {
+        float timer = 0f;
+
+        skeletonAnimation.Skeleton.A = 0f;
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+
+            float alpha = Mathf.Lerp(
+                0f,
+                1f,
+                timer / duration
+            );
+
+            skeletonAnimation.Skeleton.A = alpha;
+
+            yield return null;
+        }
+
+        skeletonAnimation.Skeleton.A = 1f;
+    }
+
+    public void FadeOut(float duration = 0.5f)
+    {
+        StopAllCoroutines();
+        StartCoroutine(FadeOutCoroutine(duration));
+    }
+
+    private IEnumerator FadeOutCoroutine(float duration)
+    {
+        float timer = 0f;
+
+        skeletonAnimation.Skeleton.A = 1f;
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+
+            float alpha = Mathf.Lerp(
+                1f,
+                0f,
+                timer / duration
+            );
+
+            skeletonAnimation.Skeleton.A = alpha;
+
+            yield return null;
+        }
+
+        skeletonAnimation.Skeleton.A = 0f;
+    }
+    public void HideSkeleton()
     {
         skeletonAnimation.Skeleton.A = 0f; // 完全透明
     }
@@ -59,6 +127,12 @@ public class CharacterSkin : MonoBehaviour
     {
         skeletonAnimation.Skeleton.A = 1f; // 完全不透明
     }
+
+
+    #endregion
+
+
+
 
 
 

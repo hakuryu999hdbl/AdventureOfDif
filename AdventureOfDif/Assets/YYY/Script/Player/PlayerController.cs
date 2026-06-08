@@ -284,6 +284,8 @@ public class PlayerController : MonoBehaviour
                 downTimer = knockDownTime;
 
                 playerAnimation.anim.SetBool("down", true);
+
+
             }
         }
 

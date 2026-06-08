@@ -90,8 +90,9 @@ public class CameraControl : MonoBehaviour
        cameraShakeEvent.OnEventRaised -= OnCameraShakeEvent;
    }
 
-    private void OnCameraShakeEvent()
+
+    private void OnCameraShakeEvent(float force)
     {
-        impulseSource.GenerateImpulse();
-    }
+        impulseSource.GenerateImpulse(force);
+    }//接受力度
 }
