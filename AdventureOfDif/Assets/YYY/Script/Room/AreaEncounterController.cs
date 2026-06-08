@@ -12,8 +12,6 @@ public class AreaEncounterController : MonoBehaviour
     public Transform[] spawnPoints;   // 生成点数组
     private List<GameObject> aliveEnemies = new List<GameObject>();
 
-
-    [Header("摄像机控制")]
     private bool areaActivated = false;//是否被触发一遍
 
 

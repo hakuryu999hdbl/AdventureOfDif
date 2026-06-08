@@ -22,7 +22,6 @@ public class CharacterSkin : MonoBehaviour
         skeletonAnimation = GetComponent<SkeletonMecanim>();
 
         //淡入
-        //Invoke(nameof(_FadeIn), 0.1f);
         FadeIn(0.4f);
     }
 
@@ -54,11 +53,6 @@ public class CharacterSkin : MonoBehaviour
 
     #region  渐变进入 渐变消失
 
-
-    void _FadeIn() 
-    {
-        FadeIn(0.4f);
-    }
     public void FadeIn(float duration = 0.5f)
     {
         StopAllCoroutines();
