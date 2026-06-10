@@ -26,8 +26,8 @@ public class AreaEncounterController : MonoBehaviour
     {
         if (!areaActivated && collision.CompareTag("Player"))
         {
-            Invoke("ActivateArea", 0.5f);//有些场景直接出来会碰到来不及触发
-            //ActivateArea();
+            //Invoke("ActivateArea", 0.5f);//有些场景直接出来会碰到来不及触发
+            ActivateArea();
         }
     }
 

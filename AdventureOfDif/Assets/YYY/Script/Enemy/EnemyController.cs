@@ -142,7 +142,7 @@ public class EnemyController : MonoBehaviour
         ResumeAI();
         
         FilpDirection();
-        Debug.Log("冲向目标！");
+        //Debug.Log("冲向目标！");
 
     }//锁定目标
 
@@ -154,7 +154,7 @@ public class EnemyController : MonoBehaviour
 
     public void AttackAction()
     {
-        Debug.Log("攻击！");
+        //Debug.Log("攻击！");
 
         if (targetPoint == null) return;
 
@@ -169,7 +169,7 @@ public class EnemyController : MonoBehaviour
             {
                 anim.SetInteger("attackType", Random.Range(1, 3));
                 anim.SetTrigger("attack");
-                Debug.Log("普通攻击");
+                //Debug.Log("普通攻击");
                 nextAttack = Time.time + attackRate;
             }
         }
@@ -211,6 +211,50 @@ public class EnemyController : MonoBehaviour
         }
 
         return nearest;
+    }
+
+
+    [Header("远程攻击")]
+    public GameObject Obstacle_Attack;
+    public Transform throwPoint;
+    public float throwSpeedX = 4f;
+    public float throwSpeedY = 2f;
+
+    public void ThrowHeldObject()
+    {
+        if (Obstacle_Attack == null) return;
+
+        Vector3 spawnPos = throwPoint != null ? throwPoint.position : transform.position;
+
+        GameObject obj = Instantiate(
+            Obstacle_Attack,
+            spawnPos,
+            Quaternion.identity
+        );
+
+        float dir;
+
+        if (targetPoint != null)
+            dir = targetPoint.position.x > transform.position.x ? 1f : -1f;
+        else
+            dir = transform.localScale.x >= 0 ? 1f : -1f;
+
+        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+
+        if (rb != null)
+        {
+            rb.simulated = true;
+            rb.velocity = new Vector2(throwSpeedX * dir, throwSpeedY);
+        }
+
+        ThrowHeldObject throwObj = obj.GetComponent<ThrowHeldObject>();
+
+        if (throwObj != null)
+        {
+            throwObj.Launch(GrabbableObject.GrabbableType.Tanker);
+        }
+
+        Debug.Log("投掷攻击");
     }
 
     #endregion

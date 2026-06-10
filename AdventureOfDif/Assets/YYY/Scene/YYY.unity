@@ -739,6 +739,7 @@ MonoBehaviour:
   hurtForce: 0
   Effect_Blood: {fileID: 1622069723160390679, guid: 3cbb102f876966040a9c79278e3e6a63,
     type: 3}
+  RedScreen: {fileID: 1626240549}
   frameEvents: {fileID: 534242814}
   hurtPhase: 0
   inputDirection: {x: 0, y: 0}
@@ -15802,6 +15803,7 @@ GameObject:
   - component: {fileID: 1626240553}
   - component: {fileID: 1626240552}
   - component: {fileID: 1626240551}
+  - component: {fileID: 1626240554}
   m_Layer: 5
   m_Name: Screen_Red
   m_TagString: Untagged
@@ -15888,6 +15890,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1626240549}
   m_CullTransparentMesh: 1
+--- !u!114 &1626240554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626240549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 774f4a687fe28eb4e9aef86896a196df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCritial: 0
 --- !u!1 &1627774552
 GameObject:
   m_ObjectHideFlags: 0

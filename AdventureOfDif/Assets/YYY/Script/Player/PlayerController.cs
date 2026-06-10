@@ -128,6 +128,8 @@ public class PlayerController : MonoBehaviour
         ResetFakeHeight();
         ResetShadow();
 
+        RedScreen.SetActive(false);
+
     }//受伤后恢复
 
 
@@ -381,6 +383,7 @@ public class PlayerController : MonoBehaviour
     [Header("受伤死亡")]
     public float hurtForce;
     public GameObject Effect_Blood;
+    public GameObject RedScreen;
 
     [Header("主动触发声音")]
     public FrameEvents frameEvents;
@@ -431,7 +434,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-
+        RedScreen.SetActive(true);
         PlayBloodEffect();
 
         StartHurtMotion(attack);

@@ -87,9 +87,6 @@ public class ThrowHeldObject : MonoBehaviour
         pos.y = groundY + zHeight;
         transform.position = pos;
     }
-    //[Header("路径：Resources/VFX/Prefab/VFX_Explosion_normal")]
-    //public string Explosion_normal_Path = "VFX/Prefab/VFX_Explosion_normal";
-    //private GameObject Explosion_normal_Prefab;
 
     void Explode()
     {

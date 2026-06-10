@@ -179,7 +179,8 @@ AudioSource:
   m_GameObject: {fileID: 2097130433139111407}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 6552739958775068349, guid: 726cef9543c29cc4eaeea675479e5b40,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -818,6 +819,11 @@ MonoBehaviour:
   attackRange: 1
   attackList: []
   targetPoint: {fileID: 0}
+  Obstacle_Attack: {fileID: 4068797132111943887, guid: 7f590ac600da84d409a29714e876394d,
+    type: 3}
+  throwPoint: {fileID: 4390132317803352134}
+  throwSpeedX: 4
+  throwSpeedY: 2
   minWalkTime: 1.5
   maxWalkTime: 4
   minIdleTime: 1

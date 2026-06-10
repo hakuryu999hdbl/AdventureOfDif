@@ -230,7 +230,7 @@ public class CharacterSkin : MonoBehaviour
     
         if (enemyController != null)
         {
-            //enemyController.ThrowHeldObject();
+            enemyController.ThrowHeldObject();
     
         }
     

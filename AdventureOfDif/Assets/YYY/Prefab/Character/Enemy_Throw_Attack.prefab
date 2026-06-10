@@ -121,7 +121,6 @@ GameObject:
   - component: {fileID: 2374537696522077893}
   - component: {fileID: 2977681326499059018}
   - component: {fileID: 6365130652749174395}
-  - component: {fileID: 7869711164943121522}
   m_Layer: 0
   m_Name: Enemy_Throw_Attack
   m_TagString: obstacle
@@ -227,21 +226,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7869711164943121522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4068797132111943887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3549fedb943cbd439f4b2a328c180ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: -100
-  DamageToPlayer: 1
-  DamageToEnemy: 0
-  TypeOfAttack: 1
-  isCritial: 0
-  chargeTime: 0
