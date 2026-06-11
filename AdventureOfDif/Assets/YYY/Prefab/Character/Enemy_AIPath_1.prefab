@@ -185,8 +185,8 @@ MonoBehaviour:
   translator:
     autoReset: 1
     useCustomMixMode: 1
-    layerMixModes: 01000000
-    layerBlendModes: 01000000
+    layerMixModes: 010000000100000001000000
+    layerBlendModes: 010000000200000002000000
   updateTiming: 1
 --- !u!114 &5165537446477622313
 MonoBehaviour:
@@ -311,8 +311,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d0493537db6694cb141526adf09a56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  enemy: {fileID: 2231485002929699995}
+  playerController: {fileID: 0}
+  enemyController: {fileID: 0}
+  canAnimEndHurt: 0
 --- !u!1 &2149168335351240060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1817,7 +1818,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1c0690b1cb25d45a4a5615f76ffb81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1438223334048370997}
 --- !u!1 &8421534149418186700
 GameObject:
   m_ObjectHideFlags: 0

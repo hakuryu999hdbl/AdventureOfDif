@@ -619,8 +619,9 @@ public class EnemyController : MonoBehaviour
     /// </summary>
     #region
     [Header("受伤死亡")] 
-    public GameObject Effect_Blood;
-
+    public GameObject Effect_Blood;//受伤特效
+    public GameObject Strike_Effect;//剑光特效
+    public GameObject Hit_Effect;//打击特效
     [Header("主动触发声音")]
     public FrameEvents frameEvents;
 
@@ -696,6 +697,9 @@ public class EnemyController : MonoBehaviour
         //isHurt = true;
         StartHurtMotion(attack);
         TransitionToState(hitState);//进入受击状态
+
+
+        RoomGenerator.instance.AddCombo();//连击显示
     }
 
 

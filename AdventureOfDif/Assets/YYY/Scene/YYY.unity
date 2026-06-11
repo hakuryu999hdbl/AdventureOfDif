@@ -737,9 +737,11 @@ MonoBehaviour:
   shadowMinScale: 0.3
   maxJumpHeight: 3
   hurtForce: 0
+  RedScreen: {fileID: 1626240549}
   Effect_Blood: {fileID: 1622069723160390679, guid: 3cbb102f876966040a9c79278e3e6a63,
     type: 3}
-  RedScreen: {fileID: 1626240549}
+  Strike_Effect: {fileID: 1405070530}
+  Hit_Effect: {fileID: 1924186320}
   frameEvents: {fileID: 534242814}
   hurtPhase: 0
   inputDirection: {x: 0, y: 0}

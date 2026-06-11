@@ -74,7 +74,7 @@ public class AreaEncounterController : MonoBehaviour
                     }
                 }//离开场景入口展示
 
-                Destroy(gameObject); // 删除这个触发器（可选）
+                //Destroy(gameObject); // 删除这个触发器（可选）
                 yield break;
             }
         }

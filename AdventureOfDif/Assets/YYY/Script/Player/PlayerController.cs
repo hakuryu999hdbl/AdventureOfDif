@@ -382,8 +382,11 @@ public class PlayerController : MonoBehaviour
     #region
     [Header("受伤死亡")]
     public float hurtForce;
-    public GameObject Effect_Blood;
     public GameObject RedScreen;
+    public GameObject Effect_Blood;//受伤特效
+    public GameObject Strike_Effect;//剑光特效
+    public GameObject Hit_Effect;//打击特效
+
 
     [Header("主动触发声音")]
     public FrameEvents frameEvents;
