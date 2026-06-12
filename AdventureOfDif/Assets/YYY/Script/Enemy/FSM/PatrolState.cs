@@ -9,9 +9,15 @@ public class PatrolState : EnemyBaseState
     public override void EnterState(EnemyController enemy)
     {
         enemy.SetStateColor(enemy.patrolColor);
-        enemy.animState = 0;
+
+        //每次进入巡逻状态时重新投放巡逻目标（通过删除目前的）
+        enemy.targetPoint = null;
+        enemy.ForceResetPatrolTarget();
+
+        enemy.CleanState();
 
         StartIdle(enemy);
+
     }
 
     public override void OnUpdate(EnemyController enemy)
@@ -33,7 +39,6 @@ public class PatrolState : EnemyBaseState
 
         if (isWalking)
         {
-            enemy.animState = 1;
 
 
             enemy.MovePatrol();
@@ -46,7 +51,7 @@ public class PatrolState : EnemyBaseState
         }
         else
         {
-            enemy.animState = 0;
+
 
             if (timer <= 0)
             {
@@ -61,7 +66,7 @@ public class PatrolState : EnemyBaseState
     private void StartIdle(EnemyController enemy)
     {
         isWalking = false;
-        enemy.animState = 0;
+        enemy.SetAnimState(0);
         enemy.StopMove();//巡逻停
         timer = Random.Range(enemy.minIdleTime, enemy.maxIdleTime);
     }
@@ -69,7 +74,7 @@ public class PatrolState : EnemyBaseState
     private void StartWalk(EnemyController enemy)
     {
         isWalking = true;
-        enemy.animState = 1;
+        enemy.SetAnimState(1);
         timer = Random.Range(enemy.minWalkTime, enemy.maxWalkTime);
 
     }

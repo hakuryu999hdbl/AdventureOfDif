@@ -418,7 +418,9 @@ public class PlayerController : MonoBehaviour
 
 
 
-      
+
+        Hit_Effect.SetActive(true);//TODO  之后伤害类型分开
+
 
 
 
@@ -470,6 +472,7 @@ public class PlayerController : MonoBehaviour
 
 
     #endregion
+
     /// <summary>
     /// 多端输入
     /// </summary>
@@ -557,6 +560,11 @@ public class PlayerController : MonoBehaviour
     }
     public void ChargeAttack()
     {
+        if (isDead) return;
+        if (isHurt) return;
+        if (isAttack) return;
+        if (isDashAttack) return;
+
         if (Time.time > nextAttack)
         {
 
@@ -567,9 +575,10 @@ public class PlayerController : MonoBehaviour
     void PlayerAttack(InputAction.CallbackContext obj)
     {
 
-
-
-
+        if (isDead) return;
+        if (isHurt) return;
+        if (isAttack) return;
+        if (isDashAttack) return;
 
         if (inputDirection.sqrMagnitude > 0.01f)
         {

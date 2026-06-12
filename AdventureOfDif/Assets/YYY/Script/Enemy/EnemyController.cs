@@ -83,11 +83,7 @@ public class EnemyController : MonoBehaviour
         {
             attackList.Clear();
             targetPoint = null;
-            anim.ResetTrigger("attack");
-            anim.ResetTrigger("skill");
-            animState = 0;
-            anim.SetInteger("state", animState);
-            StopMove();
+            CleanState();
             return;
         }//玩家死后强制停战
 
@@ -122,8 +118,18 @@ public class EnemyController : MonoBehaviour
 
     }//切换状态
 
-
-
+    public void SetAnimState(int state)
+    {
+        animState = state;
+        anim.SetInteger("state", state);
+    }//动画器层的切换统一入口
+    public void CleanState() 
+    {
+        SetAnimState(0);
+        anim.SetInteger("state", 0);
+        anim.ResetTrigger("attack");
+        StopMove();
+    }//清理状态的统一入口
 
 
     /// <summary>
@@ -349,7 +355,10 @@ public class EnemyController : MonoBehaviour
         enemyTarget.position = currentPatrolPoint.position;
     }//设置下一个巡逻目的地
 
-
+    public void ForceResetPatrolTarget()
+    {
+        currentPatrolPoint = null;
+    }//清空巡逻目标到达重置目的
 
     #endregion
 
@@ -647,6 +656,18 @@ public class EnemyController : MonoBehaviour
 
 
 
+        // 受击瞬间强制退出攻击动画层
+        CleanState();
+
+
+
+
+
+        Hit_Effect.SetActive(true);//TODO  之后伤害类型分开
+
+
+
+
 
         //一旦受伤立刻把Attack的根物体的character所在物体立为目标
         Character attackerCharacter = attack.GetComponentInParent<Character>();
@@ -732,6 +753,12 @@ public class EnemyController : MonoBehaviour
 
         SetStateColor(deadColor);
     }
+    public GameObject Enemy_All;
+    public void DestroyEnemy() 
+    {
+        Destroy(Enemy_All);
+    }
+
 
 
     #endregion

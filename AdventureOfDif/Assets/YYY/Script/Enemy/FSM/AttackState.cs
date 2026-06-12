@@ -8,7 +8,8 @@ public class AttackState : EnemyBaseState
 
         //Debug.Log("发现敌人！！！！");
 
-        enemy.animState = 2;
+        enemy.SetAnimState(2); // 进入攻击状态，先恢复追逐动画状态
+
 
         if (enemy.attackList == null || enemy.attackList.Count <= 0)
         {
@@ -57,12 +58,12 @@ public class AttackState : EnemyBaseState
 
         if (distance > enemy.attackRange)
         {
-            enemy.animState = 2;
+            enemy.SetAnimState(2);
             enemy.MoveToTarget();
         }
         else
         {
-            enemy.animState = 3;
+            enemy.SetAnimState(3);
             enemy.AttackAction();
         }
     }

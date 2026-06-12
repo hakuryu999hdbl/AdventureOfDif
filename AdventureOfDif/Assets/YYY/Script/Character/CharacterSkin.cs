@@ -242,7 +242,7 @@ public class CharacterSkin : MonoBehaviour
     {
         if (enemyController != null)
         {
-            Destroy(enemyController.gameObject);
+            enemyController.DestroyEnemy();
 
         }
     }

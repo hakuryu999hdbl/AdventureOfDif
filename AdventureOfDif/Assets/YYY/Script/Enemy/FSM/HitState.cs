@@ -5,7 +5,15 @@ public class HitState : EnemyBaseState
     public override void EnterState(EnemyController enemy)
     {
         enemy.SetStateColor(enemy.hitColor);
-        //enemy.animState = 4; // 受击/倒地用。没有4号动画就改回你的受击编号。
+
+
+        //清理状态
+        enemy.animState = 0;
+        enemy.anim.SetInteger("state", 0);
+        enemy.anim.ResetTrigger("attack");
+
+
+
         enemy.StopMove();
     }
 
