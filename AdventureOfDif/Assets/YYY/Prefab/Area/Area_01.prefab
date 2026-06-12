@@ -5060,8 +5060,7 @@ MonoBehaviour:
   Go:
   - {fileID: 8064982603720689349}
   enemyPrefabs:
-  - {fileID: 1772945055527555024, guid: 775355ec764fe1b4ca0da48454abb954, type: 3}
-  - {fileID: 1772945055527555024, guid: 775355ec764fe1b4ca0da48454abb954, type: 3}
+  - {fileID: 6724541046560202250, guid: 69b2f238488e7f64fa4ad1c03c84f06e, type: 3}
   - {fileID: 6724541046560202250, guid: 69b2f238488e7f64fa4ad1c03c84f06e, type: 3}
   - {fileID: 6724541046560202250, guid: 69b2f238488e7f64fa4ad1c03c84f06e, type: 3}
   spawnPoints:

@@ -40,7 +40,7 @@ public class EnemyController : MonoBehaviour
     public PatrolState patrolState = new PatrolState();//巡逻状态
     public AttackState attackState = new AttackState();//攻击状态
     public HitState hitState = new HitState();//受击状态
-
+    public ChargeSkillState chargeSkillState = new ChargeSkillState();//冲刺攻击状态
     public virtual void Init()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -55,6 +55,11 @@ public class EnemyController : MonoBehaviour
         }
 
     }//敌人子类会各自在开始的时候收进父级不需要的东西（虚类）
+
+    public virtual void EnterBattleState()
+    {
+        TransitionToState(attackState);
+    }//敌人子类进入战斗状态
 
     private void Awake()
     {
@@ -111,11 +116,16 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    public void TransitionToState(EnemyBaseState state)
-    {
-        currentState = state;
-        currentState.EnterState(this);
 
+
+
+    public void TransitionToState(EnemyBaseState nextState)
+    {
+        currentState?.ExitState(this);
+
+        currentState = nextState;
+
+        currentState.EnterState(this);
     }//切换状态
 
     public void SetAnimState(int state)
@@ -266,6 +276,53 @@ public class EnemyController : MonoBehaviour
     #endregion
 
 
+    /// <summary>
+    /// 冲刺技能
+    /// </summary>
+    #region
+    [Header("冲刺技能")]
+    public bool canUseChargeSkill = true;
+    public float chargeReadyTime = 1f;
+    public float chargeSpeed = 8f;
+    public float chargeStopDistance = 0.15f;
+    public float chargeCooldown = 5f;
+
+    [HideInInspector] public float lastChargeTime;
+    [HideInInspector] public Vector2 chargeTargetPos;
+
+    public Animator aimUI;
+
+    public void MoveToChargeTarget(Vector2 pos, float speed)
+    {
+        if (aiPath == null || enemyTarget == null) return;
+
+        enemyTarget.position = pos;
+
+        aiPath.canMove = true;
+        aiPath.maxSpeed = speed;
+
+        if (aiPath.desiredVelocity.x > 0.05f)
+            transform.localScale = new Vector3(1, 1, 1);
+        else if (aiPath.desiredVelocity.x < -0.05f)
+            transform.localScale = new Vector3(-1, 1, 1);
+    }
+    public void ChargeSkillOver()
+    {
+        lastChargeTime = Time.time;
+
+        StopMove();
+
+        anim.SetInteger("skillState", 0);
+       
+        targetPoint = null;
+        //attackList.Clear();//万一玩家还在附近就又需要进入了
+
+        TransitionToState(patrolState);
+
+        Debug.Log("出拳结束");
+    }
+
+    #endregion
 
 
     /// <summary>
@@ -771,6 +828,7 @@ public class EnemyController : MonoBehaviour
     public Color patrolColor = Color.green;
     public Color attackColor = Color.red;
     public Color hitColor = Color.yellow;
+    public Color ChargeSkillColor = new Color(1f, 0.6f, 0.7f);//粉色
     public Color deadColor = Color.gray;
 
     public void SetStateColor(Color color)

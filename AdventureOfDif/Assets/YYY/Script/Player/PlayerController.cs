@@ -562,8 +562,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isDead) return;
         if (isHurt) return;
-        if (isAttack) return;
-        if (isDashAttack) return;
+
 
         if (Time.time > nextAttack)
         {
@@ -577,8 +576,7 @@ public class PlayerController : MonoBehaviour
 
         if (isDead) return;
         if (isHurt) return;
-        if (isAttack) return;
-        if (isDashAttack) return;
+
 
         if (inputDirection.sqrMagnitude > 0.01f)
         {

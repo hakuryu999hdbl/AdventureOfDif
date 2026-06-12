@@ -18,7 +18,7 @@ public class AttackState : EnemyBaseState
             return;
         }
 
-      
+
 
         enemy.targetPoint = enemy.attackList[0];
     }
@@ -66,6 +66,8 @@ public class AttackState : EnemyBaseState
             enemy.SetAnimState(3);
             enemy.AttackAction();
         }
+
+        
     }
 
 

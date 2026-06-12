@@ -9,6 +9,7 @@ public abstract class EnemyBaseState
 
     public abstract void OnUpdate(EnemyController enemy);//每帧执行什么
 
-
-
+    public virtual void ExitState(EnemyController enemy)
+    {
+    }//离开状态执行什么
 }

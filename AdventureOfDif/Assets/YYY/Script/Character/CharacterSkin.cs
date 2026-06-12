@@ -269,6 +269,19 @@ public class CharacterSkin : MonoBehaviour
         }
     }
 
+
+
+
+    public void OnChargeOver() 
+    {
+        if (enemyController != null)
+        {
+            enemyController.ChargeSkillOver();
+
+        }
+       
+    }
+
     #endregion
 
 
