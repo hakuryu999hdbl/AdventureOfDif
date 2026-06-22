@@ -197,6 +197,7 @@ MonoBehaviour:
   chargeCooldown: 5
   lastChargeTime: 0
   chargeTargetPos: {x: 0, y: 0}
+  aimUI: {fileID: 0}
   minWalkTime: 1.5
   maxWalkTime: 4
   minIdleTime: 1
@@ -1326,7 +1327,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1930509706387180107
 Transform:
   m_ObjectHideFlags: 0
