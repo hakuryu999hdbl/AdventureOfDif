@@ -37,8 +37,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4695778207987169769}
   - {fileID: 5048236210716450380}
+  - {fileID: 4695778207987169769}
   - {fileID: 7791474146341816692}
   - {fileID: 413937931544439860}
   - {fileID: 8492058877999880490}
@@ -633,6 +633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+  hitEffectType: 0
   knockbackX: 10
   knockbackY: 0
   hurtTime: 0.2
@@ -713,7 +714,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -653975203, guid: 2a2d3fb2fb5db74458d4b4bf1cea1ff7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1022,6 +1023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+  hitEffectType: 0
   knockbackX: 10
   knockbackY: 10
   hurtTime: 0.2

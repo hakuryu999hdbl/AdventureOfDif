@@ -720,7 +720,20 @@ public class EnemyController : MonoBehaviour
 
 
 
-        Hit_Effect.SetActive(true);//TODO  之后伤害类型分开
+        switch (attack.hitEffectType)
+        {
+            case 0:
+                // 打击特效
+                Hit_Effect.SetActive(true);
+                break;
+
+            case 1:
+                // 斩击特效
+                Strike_Effect.transform.localRotation = Quaternion.Euler(0, 0, UnityEngine.Random.Range(-45f, 45f));
+                Strike_Effect.SetActive(true);
+                break;
+        }
+
 
 
 

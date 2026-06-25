@@ -6,6 +6,7 @@ public class Attack : MonoBehaviour
 {
     [Header("伤害数值")]
     public int damage;
+    public int hitEffectType;//0打击 1斩击
 
     [Header("击飞参数")]
     public float knockbackX = 5f;
