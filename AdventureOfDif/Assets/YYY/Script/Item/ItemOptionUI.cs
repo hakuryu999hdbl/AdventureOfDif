@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Purchasing;
 using UnityEngine.UI;
 
 public class ItemOptionUI : MonoBehaviour,

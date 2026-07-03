@@ -271,7 +271,7 @@ public class CharacterSkin : MonoBehaviour
 
 
 
-
+    //敌人冲刺技能结束
     public void OnChargeOver() 
     {
         if (enemyController != null)
@@ -282,6 +282,40 @@ public class CharacterSkin : MonoBehaviour
        
     }
 
+
+    //敌人瞄准投掷
+    public void AimThrowHeldObject()
+    {
+
+
+        if (enemyController != null)
+        {
+            enemyController.AimThrowSpawnExplosion();
+
+        }
+
+
+    }
+
+    //敌人瞄准投掷技能结束
+    public void OnThrowOver()
+    {
+        if (enemyController != null)
+        {
+            enemyController.AimThrowStartLaugh();
+
+        }
+    }
+
+    //敌人嘲笑结束
+    public void OnLaughOver() 
+    {
+        if (enemyController != null)
+        {
+            enemyController.AimThrowOver();
+
+        }
+    }
     #endregion
 
 

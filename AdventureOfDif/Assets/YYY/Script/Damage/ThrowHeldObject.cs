@@ -93,7 +93,7 @@ public class ThrowHeldObject : MonoBehaviour
         if (impactEffect != null)
         {
             GameObject effect = Instantiate(impactEffect, transform.position, Quaternion.identity);
-            Destroy(effect, 1f);
+            Destroy(effect, 1.2f);
 
             //Explosion_normal_Prefab = Resources.Load<GameObject>(Explosion_normal_Path);
         }
@@ -101,33 +101,6 @@ public class ThrowHeldObject : MonoBehaviour
         Destroy(gameObject);
     }
 
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (!hasBeenThrown) return;
-    //
-    //
-    //    //玩家伤害
-    //    if (collision.gameObject.tag == "Enemy")
-    //    {
-    //
-    //        if (collision.gameObject.GetComponent<Enemy>() != null)
-    //        {
-    //
-    //            collision.gameObject.GetComponent<Enemy>().ChangeHealth(-100, -1);//击飞伤害
-    //
-    //            GameObject effectPrefabs = Instantiate(impactEffect, transform.position, Quaternion.identity);
-    //            Destroy(effectPrefabs, 1f);
-    //
-    //            Destroy(gameObject);
-    //        }
-    //
-    //
-    //    }
-    //
-    //
-    //
-    //
-    //}
+ 
 
 }

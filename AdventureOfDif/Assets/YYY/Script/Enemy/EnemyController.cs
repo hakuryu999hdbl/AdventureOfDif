@@ -41,6 +41,8 @@ public class EnemyController : MonoBehaviour
     public AttackState attackState = new AttackState();//攻击状态
     public HitState hitState = new HitState();//受击状态
     public ChargeSkillState chargeSkillState = new ChargeSkillState();//冲刺攻击状态
+    public AimThrowSkillState aimThrowSkillState = new AimThrowSkillState();
+
     public virtual void Init()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -324,6 +326,68 @@ public class EnemyController : MonoBehaviour
 
     #endregion
 
+
+    /// <summary>
+    /// 投掷技能
+    /// </summary>
+    #region
+    [Header("瞄准投掷技能")]
+    public Transform throwAimTarget;// 瞄准物体
+    public GameObject throwExplosionPrefab;//爆炸
+
+    public float throwAimTime = 1f;
+    public Vector2 throwTargetPos;
+
+    public EnemyThrowObject throwObject;//投掷物
+
+    public void AimThrowSpawnExplosion()
+    {
+        if (throwExplosionPrefab != null)
+        {
+            //GameObject effect = Instantiate(
+            //    throwExplosionPrefab,
+            //    throwTargetPos,
+            //    Quaternion.identity
+            //);
+            //
+            //Destroy(effect, 1.2f);
+
+
+            throwObject.Launch(throwPoint.position,throwTargetPos);
+        }
+    }
+
+    public void AimThrowStartLaugh()
+    {
+        anim.SetInteger("skillState", 3);
+    }
+
+    public void AimThrowOver()
+    {
+        StopMove();
+
+        anim.SetInteger("skillState", 0);
+
+        if (throwAimTarget != null)
+            throwAimTarget.gameObject.SetActive(false);//瞄准消失
+
+        targetPoint = null;
+
+        TransitionToState(patrolState);
+    }
+
+
+    public void FaceToPosition(Vector3 targetPos)
+    {
+        float dir = targetPos.x - transform.position.x;
+
+        if (dir > 0)
+            transform.localScale = Vector3.one;
+        else if (dir < 0)
+            transform.localScale = new Vector3(-1, 1, 1);
+    }//因该是有一样方法的，可以把写重复的地方引导到这里
+
+    #endregion
 
     /// <summary>
     /// 巡逻状态
@@ -842,6 +906,7 @@ public class EnemyController : MonoBehaviour
     public Color attackColor = Color.red;
     public Color hitColor = Color.yellow;
     public Color ChargeSkillColor = new Color(1f, 0.6f, 0.7f);//粉色
+    public Color AimThrowSkillColor = Color.cyan;
     public Color deadColor = Color.gray;
 
     public void SetStateColor(Color color)
