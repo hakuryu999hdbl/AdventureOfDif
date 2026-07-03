@@ -708,6 +708,8 @@ MonoBehaviour:
   characterSkin: {fileID: 534242812}
   rb: {fileID: 65564745}
   speed: 5
+  runSpeed: 5
+  grabSpeed: 2.4
   playerAnimation: {fileID: 534242817}
   dashAttackSpeed: 8
   dashAttackMoveTime: 1
@@ -719,6 +721,9 @@ MonoBehaviour:
   isWalk: 0
   isHurt: 0
   isDead: 0
+  isGrabbing: 0
+  Obstacle_Attack: {fileID: 6657398186620034209, guid: 52f4eb19e9ca652438e182e6224de833,
+    type: 3}
   bodyRoot: {fileID: 534242807}
   hurtGroundFriction: 8
   fakeGravity: 20
@@ -729,7 +734,7 @@ MonoBehaviour:
     m_Bits: 2048
   wallCheckDistance: 0.25
   wallBounceDamping: 0.45
-  spineRenderer: {fileID: 0}
+  spineRenderer: {fileID: 534242810}
   groundOrder: 0
   airOrder: 1
   shadow: {fileID: 937022450}

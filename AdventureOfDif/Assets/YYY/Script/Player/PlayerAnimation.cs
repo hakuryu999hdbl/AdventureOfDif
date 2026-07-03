@@ -25,6 +25,7 @@ public class PlayerAnimation : MonoBehaviour
         anim.SetBool("isDead", playerController.isDead);
         anim.SetBool("isAttack", playerController.isAttack);
         anim.SetBool("isDashAttack", playerController.isDashAttack);
+        anim.SetBool("IsGrabbing", playerController.isGrabbing);
     }
 
     public void PlayHurt()
@@ -47,7 +48,16 @@ public class PlayerAnimation : MonoBehaviour
 
     public void PlayAttack()
     {
-        anim.SetTrigger("attack");
+        if (playerController.isGrabbing)
+        {
+            anim.SetTrigger("throw");
+        }
+        else 
+        {
+            anim.SetTrigger("attack");
+        }
+
+        
     }
 
 }

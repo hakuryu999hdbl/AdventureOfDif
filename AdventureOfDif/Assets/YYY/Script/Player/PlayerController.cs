@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     public float speed;
 
+    public float runSpeed = 5f;
+    public float grabSpeed = 2.4f;
+
 
     [Header("死亡判定")]
     public PlayerAnimation playerAnimation;
@@ -31,7 +34,7 @@ public class PlayerController : MonoBehaviour
     public bool isWalk = false;
     public bool isHurt = false;
     public bool isDead = false;
-
+    public bool isGrabbing = false;
 
     void Start()
     {
@@ -81,6 +84,8 @@ public class PlayerController : MonoBehaviour
         }
 
 
+      
+
         CheckState();
 
     }//每帧执行动作用FixedUpdate（做）
@@ -92,7 +97,9 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
 
-        rb.velocity = inputDirection.normalized * speed;
+        float currentSpeed = isGrabbing ? grabSpeed : runSpeed;
+
+        rb.velocity = inputDirection.normalized * currentSpeed;
 
 
         if (inputDirection.sqrMagnitude > 0.01f)
@@ -131,6 +138,76 @@ public class PlayerController : MonoBehaviour
         RedScreen.SetActive(false);
 
     }//受伤后恢复
+
+
+
+    /// <summary>
+    /// 投掷系统
+    /// </summary>
+    #region
+    [Header("投掷物品")]
+    public GameObject Obstacle_Attack;
+
+    GrabbableObject.GrabbableType heldItemType;
+
+    public void OnGrabCollision(GrabbableObject.GrabbableType item)
+    {
+        if (!isGrabbing)
+        {
+            isGrabbing = true;//当玩家举起物品的时候无法跑步/冲刺攻击
+
+
+            //对应投掷品皮肤代入
+            heldItemType = item;
+            characterSkin.ShowCurrentAll(heldItemType);
+        }
+    }
+
+
+    // grab_throw 动画事件
+    public void ThrowHeldObject()
+    {
+        if (!isGrabbing) return;
+        if (isHurt || isDead) return;
+
+        SpawnHeldObject(4f, 2f);
+    }
+
+    // 受伤掉落
+    public void ForceDropHeldObject()
+    {
+        if (!isGrabbing) return;
+
+        SpawnHeldObject(2.5f, 1.5f);
+    }
+
+    private void SpawnHeldObject(float xSpeed, float ySpeed)
+    {
+        GameObject obj = Instantiate(Obstacle_Attack, transform.position, Quaternion.identity);
+
+        float dir = transform.localScale.x > 0 ? 1f : -1f;
+
+        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.simulated = true;
+            rb.velocity = new Vector2(xSpeed * dir, ySpeed);
+        }
+
+        ThrowHeldObject script = obj.GetComponent<ThrowHeldObject>();
+        if (script != null)
+        {
+            script.Launch(heldItemType);
+        }
+
+        isGrabbing = false;
+
+        // 如果以后有隐藏手持物
+        // characterSkin.HideGrabObject();
+    }
+
+
+    #endregion
 
 
     /// <summary>
@@ -407,9 +484,17 @@ public class PlayerController : MonoBehaviour
     public void OnTakeDamage(Attack attack)
     {
 
+       
+
         if (isDead) return;
         if (isHurt) return;
         if (attack == null) return;
+
+        if (isGrabbing)
+        {
+            ForceDropHeldObject();
+        }//受伤把手上东西丢出去
+
 
 
         isAttack = false;
@@ -591,8 +676,19 @@ public class PlayerController : MonoBehaviour
         if (isHurt) return;
 
 
+        if (isGrabbing)
+        {
+            playerAnimation.PlayAttack(); // 内部会触发 throw
+            isAttack = true;
+
+            return;
+        }//抓住物品投掷攻击
+
+
         if (inputDirection.sqrMagnitude > 0.01f)
         {
+
+
             if (Time.time <= nextAttack || isAttack) return;//目前冲刺攻击给与attackRate的冷却
 
 

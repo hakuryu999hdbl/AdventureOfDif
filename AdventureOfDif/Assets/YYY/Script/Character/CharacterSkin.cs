@@ -200,17 +200,7 @@ public class CharacterSkin : MonoBehaviour
 
 
 
-    // attack_1 的中段帧事件
-    public void EnableComboWindow()
-    {
-        if (playerController != null)
-        {
-            //playerController.canCombo = true;
 
-        }
-       
-
-    }
 
 
 
@@ -224,7 +214,7 @@ public class CharacterSkin : MonoBehaviour
     
         if (playerController != null)
         {
-            //playerController.ThrowHeldObject();
+            playerController.ThrowHeldObject();
     
         }
     

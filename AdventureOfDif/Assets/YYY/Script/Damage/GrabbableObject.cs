@@ -64,15 +64,21 @@ public class GrabbableObject : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (collision.gameObject.GetComponent<Player>() != null)
+            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+
+            if (player == null) return;
+
+            if (player.isGrabbing ||
+                player.isDashAttack ||
+                player.isAttack ||
+                player.isHurt ||
+                player.isDead)
             {
-                if (collision.gameObject.GetComponent<Player>().isRunning || collision.gameObject.GetComponent<Player>().zHeight > 0.01f || collision.gameObject.GetComponent<Player>().isHoldingObject)//玩家跑步，在空中,已经有物品的时候，无法举起物品
-                { return; }
-
-                collision.gameObject.GetComponent<Player>().OnGrabCollision(heldItemType);//玩家举起油罐
-
-                Destroy(gameObject);
+                return;
             }
+
+            player.OnGrabCollision(heldItemType);
+            Destroy(gameObject);
         }
     }
 }
