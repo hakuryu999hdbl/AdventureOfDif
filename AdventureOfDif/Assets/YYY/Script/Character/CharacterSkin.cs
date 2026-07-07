@@ -306,6 +306,34 @@ public class CharacterSkin : MonoBehaviour
 
         }
     }
+
+
+    //敌人将玩家投出去
+    public void OnCatchPlayer() 
+    {
+        if (enemyController != null)
+        {
+            enemyController.Catch_Collider.SetActive(true);
+        }
+        Invoke("HideCatch", 0.2f);
+    }
+    void HideCatch()
+    {
+        if (enemyController != null)
+        {
+            enemyController.Catch_Collider.SetActive(false);
+        }
+    }//抓取碰撞体消失
+
+    public void OnThrowCapturedPlayer() 
+    {
+        if (enemyController != null)
+        {
+            enemyController.ThrowCapturedPlayer();
+
+        }
+    }
+
     #endregion
 
 

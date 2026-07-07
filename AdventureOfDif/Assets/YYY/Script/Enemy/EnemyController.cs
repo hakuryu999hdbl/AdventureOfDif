@@ -86,6 +86,16 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
+
+        if (isCatching)
+        {
+            StopMove();
+
+            return;
+        }//抓住玩家期间禁止移动
+
+
+
         if (RoomGenerator.instance != null && RoomGenerator.instance.gameOver)
         {
             attackList.Clear();
@@ -141,6 +151,8 @@ public class EnemyController : MonoBehaviour
         anim.SetInteger("state", 0);
         anim.ResetTrigger("attack");
         StopMove();
+
+
     }//清理状态的统一入口
 
 
@@ -185,10 +197,23 @@ public class EnemyController : MonoBehaviour
 
             if (Time.time > nextAttack)
             {
-                anim.SetInteger("attackType", Random.Range(1, 3));
-                anim.SetTrigger("attack");
                 //Debug.Log("普通攻击");
                 nextAttack = Time.time + attackRate;
+
+
+                // 全体敌人在玩家受伤倒地死亡期间立刻停手
+                if (RoomGenerator.instance.player.isDead || RoomGenerator.instance.player.isHurt)
+                {
+                    Debug.Log("阻止攻击");
+                    SetAnimState(0);
+                    TransitionToState(patrolState);
+                }
+                else
+                {
+                    anim.SetInteger("attackType", Random.Range(1, 3));
+                    anim.SetTrigger("attack");
+                }
+
             }
         }
 
@@ -389,6 +414,76 @@ public class EnemyController : MonoBehaviour
 
     #endregion
 
+
+
+    /// <summary>
+    /// 抓取技能
+    /// </summary>
+    #region
+    [Header("抓取技能")]
+    public bool isCatching;//在整个抓取过程中挡住FSM
+    public PlayerController capturedPlayer;
+    public Catch catchCollider;
+
+    [Header("抓取冷却")]
+    public float catchCooldown = 1.0f;
+    public float nextCatchTime;
+
+    public GameObject Catch_Collider;//让动画产生，防止bug
+
+    public void StartCatchPlayer(PlayerController player)
+    {
+
+        if (isHurt) return;
+        if (isDead) return;
+        if (isCatching) return;
+        if (capturedPlayer != null) return;
+        if (Time.time < nextCatchTime) return;
+        if (player == null || player.isDead) return;
+
+        if (player == null) return;
+        if (capturedPlayer != null) return;
+
+        isCatching = true;
+        capturedPlayer = player;
+
+ 
+
+        StopMove();
+
+        player.EnterCapturedState();//玩家进入透明
+
+
+
+        Debug.Log("抓住玩家：" + capturedPlayer.name);
+    }
+
+    public void ThrowCapturedPlayer()
+    {
+
+        Debug.Log("投出");
+
+        if (capturedPlayer != null)
+        {
+            float dir = transform.localScale.x > 0 ? 1f : -1f;
+            capturedPlayer.ExitCapturedState(new Vector2(6f * dir, 4f));//玩家恢复
+            capturedPlayer = null;
+        }
+
+        isCatching = false;
+        nextCatchTime = Time.time + catchCooldown;
+
+        catchCollider.ResetCatch();
+
+        SetAnimState(0);
+        TransitionToState(patrolState);
+    }
+
+
+
+    #endregion
+
+
     /// <summary>
     /// 巡逻状态
     /// </summary>
@@ -441,6 +536,10 @@ public class EnemyController : MonoBehaviour
             TransitionToState(attackState);
         else
             TransitionToState(patrolState);
+
+
+
+
 
     }//受伤后恢复
 
@@ -773,6 +872,15 @@ public class EnemyController : MonoBehaviour
         if (isDead) return;
         if (isHurt) return; // 受击流程中不再吃新攻击
         if (attack == null) return;
+
+
+
+
+
+        isCatching = false;
+        capturedPlayer = null;
+        nextCatchTime = Time.time + catchCooldown;
+
 
 
 

@@ -741,6 +741,8 @@ MonoBehaviour:
   shadowBaseScale: {x: 1, y: 1}
   shadowMinScale: 0.3
   maxJumpHeight: 3
+  isCaptured: 0
+  playerCollider: {fileID: 0}
   hurtForce: 0
   RedScreen: {fileID: 1626240549}
   Effect_Blood: {fileID: 1622069723160390679, guid: 3cbb102f876966040a9c79278e3e6a63,

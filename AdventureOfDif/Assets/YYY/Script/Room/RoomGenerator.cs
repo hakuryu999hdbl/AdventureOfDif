@@ -93,6 +93,8 @@ public class RoomGenerator : MonoBehaviour
     }
 
 
+    public PlayerController player;
+
     /// <summary>
     /// 关卡
     /// </summary>
@@ -277,43 +279,7 @@ public class RoomGenerator : MonoBehaviour
 
 
 
-    /// <summary>
-    /// 设置敌人
-    /// </summary>
-    #region
-    [Header("设置敌人")]
-    public Transform player;
-    public GameObject Enemy;
-    public List<GameObject> enemyList = new List<GameObject>();
 
-    public float spawnOffsetX = 2f; // 超出屏幕多少单位生成
-    public float spawnY = 0f;       // 敌人固定高度
-    public bool spawnFromRight = true; // 控制是否右边刷出
-
-
-    public void SetEnemy()
-    {
-        // 随机决定从左侧还是右侧刷出
-        bool spawnFromRight = Random.value > 0.5f;
-
-        // 获取摄像机边缘位置（Viewport：x=0是左边，x=1是右边，y=0.5是屏幕中间高度）
-        Vector3 screenEdge = Camera.main.ViewportToWorldPoint(
-            new Vector3(spawnFromRight ? 1.1f : -0.1f, 0.5f, Camera.main.nearClipPlane + 5f));
-
-        // 关键！把 Y 替换为玩家的 Y（或你希望的高度）
-        float y = player.position.y;
-
-        // 生成位置
-        Vector3 spawnPos = new Vector3(screenEdge.x, y, 0);
-
-        // 生成敌人
-        GameObject NewEnemy = Instantiate(Enemy, spawnPos, Quaternion.identity);
-        enemyList.Add(NewEnemy);
-
-    }
- 
-
-    #endregion
 
 
 }

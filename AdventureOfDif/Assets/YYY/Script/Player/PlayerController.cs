@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
         //character = GetComponent<Character>();
         rb = GetComponent<Rigidbody2D>();
 
+        RoomGenerator.instance.player = this;
     }
 
 
@@ -54,11 +55,11 @@ public class PlayerController : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (isDead)
+        if (isDead|| isCaptured)
         {
             rb.velocity = Vector2.zero;
             return;
-        }//死亡后不能滑行
+        }//被抓住/死亡后不能滑行
 
 
         if (isHurt)
@@ -96,6 +97,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
+        if (isCaptured) return;//抓取封锁
 
         float currentSpeed = isGrabbing ? grabSpeed : runSpeed;
 
@@ -453,6 +455,54 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
+
+
+
+    /// <summary>
+    /// 被抓住状态
+    /// </summary>
+    #region
+
+    [Header("被敌人抓取")]
+    public bool isCaptured;
+    public Collider2D playerCollider;
+
+    public void EnterCapturedState()
+    {
+
+        isCaptured = true;
+
+        inputDirection = Vector2.zero;
+        rb.velocity = Vector2.zero;
+
+
+        //玩家透明
+        characterSkin.HideSkeleton();
+
+        // 如果还有攻击/投掷状态，全部清掉
+        isAttack = false;
+        isDashAttack = false;
+        isGrabbing = false;
+
+    }
+
+    public void ExitCapturedState(Vector2 throwForce)
+    {
+        isCaptured = false;
+
+        //玩家变回不透明
+        characterSkin.ShowSkeleton();
+
+
+        //rb.simulated = true;
+        rb.velocity = Vector2.zero;
+        rb.AddForce(throwForce, ForceMode2D.Impulse);
+    }
+
+
+
+    #endregion
+
     /// <summary>
     /// 受伤死亡
     /// </summary>
@@ -495,7 +545,7 @@ public class PlayerController : MonoBehaviour
             ForceDropHeldObject();
         }//受伤把手上东西丢出去
 
-
+        if (isCaptured) return;//抓取封锁
 
         isAttack = false;
         isDashAttack = false;
@@ -566,6 +616,9 @@ public class PlayerController : MonoBehaviour
 
         isDead = true;
         inputControl.Gameplay.Disable();//通过直接禁用来做（但是防止4层多端输入，在上方也禁止）
+
+
+        RoomGenerator.instance.gameOver = true;
     }
 
 
@@ -660,7 +713,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isDead) return;
         if (isHurt) return;
-
+        if (isCaptured) return;//抓取封锁
 
         if (Time.time > nextAttack)
         {
@@ -674,7 +727,7 @@ public class PlayerController : MonoBehaviour
 
         if (isDead) return;
         if (isHurt) return;
-
+        if (isCaptured) return;//抓取封锁
 
         if (isGrabbing)
         {
