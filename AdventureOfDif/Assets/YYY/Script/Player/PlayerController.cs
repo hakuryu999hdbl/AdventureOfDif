@@ -469,6 +469,13 @@ public class PlayerController : MonoBehaviour
 
     public void EnterCapturedState()
     {
+        if (dashAttackCoroutine != null)
+        {
+            StopCoroutine(dashAttackCoroutine);
+            dashAttackCoroutine = null;
+        }//抓取状态会直接打断冲刺协程
+
+
 
         isCaptured = true;
 
@@ -755,7 +762,7 @@ public class PlayerController : MonoBehaviour
 
 
             //冲刺攻击
-            StartCoroutine(DashAttack());
+            dashAttackCoroutine = StartCoroutine(DashAttack());
             nextAttack = Time.time + attackRate;
         }
         else
@@ -771,7 +778,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
+    private Coroutine dashAttackCoroutine;//保存冲刺协程引用
     private IEnumerator DashAttack()
     {
        
@@ -798,12 +805,16 @@ public class PlayerController : MonoBehaviour
 
         while (timer < dashAttackMoveTime)
         {
+            // 被抓、受伤、死亡后立即结束冲刺
+            if (isCaptured || isHurt || isDead)
+                break;
+
             if (CheckDashHitMap())
             {
                 break;
             }
 
-            if (isHurt || isDead) break;//滑行期间挂掉不移动
+            if (isHurt || isDead || isCaptured) break;//滑行期间挂掉不移动
 
             rb.velocity = dashDir * dashAttackSpeed;
 
@@ -813,8 +824,17 @@ public class PlayerController : MonoBehaviour
 
         rb.velocity = Vector2.zero;
         isDashAttack = false;
-        //isAttack = false;
-        // isAttack 继续交给动画结尾帧事件关闭
+        dashAttackCoroutine = null;//协程结尾也清空引用
+
+        // 被抓状态下，攻击状态已经由 EnterCapturedState 清理
+        if (!isCaptured && !isHurt && !isDead)
+        {
+            // isAttack 仍然交给攻击动画结尾关闭
+        }
+
+
+
+
     }//冲刺攻击
 
     private bool CheckDashHitMap()

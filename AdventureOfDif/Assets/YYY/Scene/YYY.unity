@@ -1303,6 +1303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58f6b2ccbd5ef6f49980683a8654390f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 65564742}
   areaList:
   - {fileID: 1646150128747128934, guid: d13aae03ddc59ef4b932560fcc8ac37e, type: 3}
   - {fileID: 1967909261539020752, guid: 7948c008e0e065e4090d50d44d3aaacf, type: 3}
@@ -1319,12 +1320,6 @@ MonoBehaviour:
   comboTextUI: {fileID: 988358813}
   comboText: {fileID: 988358815}
   GoGo: {fileID: 504212075}
-  player: {fileID: 65564742}
-  Enemy: {fileID: 6987948351437209287, guid: 91df628e27ab1ae488b2f947d3d59f07, type: 3}
-  enemyList: []
-  spawnOffsetX: 2
-  spawnY: 0
-  spawnFromRight: 1
 --- !u!4 &128082602
 Transform:
   m_ObjectHideFlags: 0
@@ -6568,7 +6563,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0027d6f71c3f42c4e8c57a8e5aae768e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: debeda06fbec1604996bf39592d8cb22, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9677,7 +9672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   hitEffectType: 0
-  knockbackX: 2
+  knockbackX: 4
   knockbackY: 0
   hurtTime: 0.2
   clearVelocity: 1

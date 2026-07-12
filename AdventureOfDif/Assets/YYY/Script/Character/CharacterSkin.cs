@@ -156,7 +156,7 @@ public class CharacterSkin : MonoBehaviour
         }
         if (enemyController != null)
         {
-            if (enemyController.isDead == false) { enemyController.attack_Collider_1.SetActive(true); }//我方和敌方被击倒期间无法发出攻击碰撞体
+            if (enemyController.isDead == false &&!enemyController.isHurt &&!enemyController.isCatching) { enemyController.attack_Collider_1.SetActive(true); }//我方和敌方被击倒期间无法发出攻击碰撞体
 
         }
 
@@ -172,7 +172,7 @@ public class CharacterSkin : MonoBehaviour
         }
         if (enemyController != null)
         {
-            if (enemyController.isDead == false) { enemyController.attack_Collider_2.SetActive(true); }//我方和敌方被击倒期间无法发出攻击碰撞体
+            if (enemyController.isDead == false && !enemyController.isHurt && !enemyController.isCatching) { enemyController.attack_Collider_2.SetActive(true); }//我方和敌方被击倒期间无法发出攻击碰撞体
 
         }
 
@@ -313,8 +313,23 @@ public class CharacterSkin : MonoBehaviour
     {
         if (enemyController != null)
         {
+
+            // 旧攻击动画的帧事件可能仍会执行，所以这里必须再次拦截
+            if (enemyController.isDead ||
+                enemyController.isHurt ||
+                enemyController.isCatching)
+            {
+                enemyController.Catch_Collider.SetActive(false);
+                return;
+            }
+
+
+
             enemyController.Catch_Collider.SetActive(true);
         }
+
+        CancelInvoke(nameof(HideCatch));//以防万一？
+
         Invoke("HideCatch", 0.2f);
     }
     void HideCatch()

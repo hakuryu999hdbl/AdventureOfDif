@@ -65,6 +65,19 @@ public class Character : MonoBehaviour, IDamageable
         if (invulnerable) { return; }//处于无敌
 
 
+        //已经成功抓住玩家后，直到投出前暂时无敌
+        EnemyController enemy = GetComponent<EnemyController>();
+
+        if (enemy != null && enemy.isCatching)
+        {
+            return;
+        }
+
+
+
+
+
+
         if (currentHealth - attacker.damage > 0)
         {
             currentHealth -= attacker.damage;

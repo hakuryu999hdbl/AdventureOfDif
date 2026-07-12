@@ -439,10 +439,14 @@ public class EnemyController : MonoBehaviour
         if (isCatching) return;
         if (capturedPlayer != null) return;
         if (Time.time < nextCatchTime) return;
-        if (player == null || player.isDead) return;
-
-        if (player == null) return;
-        if (capturedPlayer != null) return;
+        if (player == null ||
+            player.isDead ||
+            player.isHurt ||
+            player.isCaptured ||
+            player.isDashAttack)
+        {
+            return;
+        }
 
         isCatching = true;
         capturedPlayer = player;
@@ -450,6 +454,18 @@ public class EnemyController : MonoBehaviour
  
 
         StopMove();
+
+
+        // 确保其他攻击碰撞体不会残留
+        if (attack_Collider_1 != null)
+            attack_Collider_1.SetActive(false);
+
+        if (attack_Collider_2 != null)
+            attack_Collider_2.SetActive(false);
+
+        if (Catch_Collider != null)
+            Catch_Collider.SetActive(false);
+
 
         player.EnterCapturedState();//玩家进入透明
 
@@ -460,24 +476,62 @@ public class EnemyController : MonoBehaviour
 
     public void ThrowCapturedPlayer()
     {
+        // 不是有效抓取状态时，旧动画事件直接无视
+        if (!isCatching || capturedPlayer == null)
+        {
+            CancelCatch(false);
+            return;
+        }
 
         Debug.Log("投出");
 
+        PlayerController player = capturedPlayer;
+        capturedPlayer = null;
+
+        float dir = transform.localScale.x > 0 ? 1f : -1f;
+
+        // 先结束敌人抓取状态，再恢复玩家
+        isCatching = false;
+        nextCatchTime = Time.time + catchCooldown;
+
+        if (catchCollider != null)
+            catchCollider.ResetCatch();
+
+        if (Catch_Collider != null)
+            Catch_Collider.SetActive(false);
+
+        player.ExitCapturedState(new Vector2(6f * dir, 4f));
+
+        SetAnimState(0);
+        TransitionToState(patrolState);
+    }
+
+
+    public void CancelCatch(bool releasePlayer)
+    {
+        // 先关闭抓取碰撞体，防止本帧继续触发
+        if (Catch_Collider != null)
+            Catch_Collider.SetActive(false);
+
+        if (catchCollider != null)
+            catchCollider.ResetCatch();
+
         if (capturedPlayer != null)
         {
-            float dir = transform.localScale.x > 0 ? 1f : -1f;
-            capturedPlayer.ExitCapturedState(new Vector2(6f * dir, 4f));//玩家恢复
+            if (releasePlayer && capturedPlayer.isCaptured)
+            {
+                // 中断抓取时只恢复玩家，不给予摔出力量
+                capturedPlayer.ExitCapturedState(Vector2.zero);
+            }
+
             capturedPlayer = null;
         }
 
         isCatching = false;
         nextCatchTime = Time.time + catchCooldown;
+    }// 强制取消当前抓取，并保证玩家恢复显示。
 
-        catchCollider.ResetCatch();
 
-        SetAnimState(0);
-        TransitionToState(patrolState);
-    }
 
 
 
@@ -875,11 +929,13 @@ public class EnemyController : MonoBehaviour
 
 
 
+        // 抓取成功之后暂时不允许受伤
+        if (isCatching || capturedPlayer != null)
+            return;
 
-
-        isCatching = false;
-        capturedPlayer = null;
-        nextCatchTime = Time.time + catchCooldown;
+        //isCatching = false;
+        //capturedPlayer = null;
+        //nextCatchTime = Time.time + catchCooldown;
 
 
 
