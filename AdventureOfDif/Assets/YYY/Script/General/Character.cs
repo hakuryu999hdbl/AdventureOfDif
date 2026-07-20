@@ -74,7 +74,12 @@ public class Character : MonoBehaviour, IDamageable
         }
 
 
-
+        // 摩托哥防御反击
+        if (enemy != null && enemy.TryHandleIncomingAttack(attacker))
+        {
+            Debug.Log("攻击已被特殊状态处理");
+            return;
+        }
 
 
 

@@ -349,6 +349,28 @@ public class CharacterSkin : MonoBehaviour
         }
     }
 
+
+
+
+    //敌人防御反击
+    public void StartBlockCounter()
+    {
+        if (enemyController is Enemy_4 biker)
+        {
+            biker.StartCounterAttack();
+        }
+    }
+
+    //敌人防御反击后
+    public void EndBlockCounter()
+    {
+        if (enemyController is Enemy_4 biker)
+        {
+            biker.EndCounterAttack();
+        }
+    }
+
+
     #endregion
 
 

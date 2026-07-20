@@ -41,7 +41,9 @@ public class EnemyController : MonoBehaviour
     public AttackState attackState = new AttackState();//攻击状态
     public HitState hitState = new HitState();//受击状态
     public ChargeSkillState chargeSkillState = new ChargeSkillState();//冲刺攻击状态
-    public AimThrowSkillState aimThrowSkillState = new AimThrowSkillState();
+    public AimThrowSkillState aimThrowSkillState = new AimThrowSkillState();//瞄准攻击状态
+    public BlockState blockState = new BlockState();//防御状态
+
 
     public virtual void Init()
     {
@@ -533,6 +535,19 @@ public class EnemyController : MonoBehaviour
 
 
 
+
+
+    #endregion
+
+
+    /// <summary>
+    /// 防御技能
+    /// </summary>
+    #region
+    public virtual bool TryHandleIncomingAttack(Attack attack)
+    {
+        return false;
+    }
 
 
     #endregion
@@ -1071,6 +1086,7 @@ public class EnemyController : MonoBehaviour
     public Color hitColor = Color.yellow;
     public Color ChargeSkillColor = new Color(1f, 0.6f, 0.7f);//粉色
     public Color AimThrowSkillColor = Color.cyan;
+    public Color blockColor = Color.blue;
     public Color deadColor = Color.gray;
 
     public void SetStateColor(Color color)

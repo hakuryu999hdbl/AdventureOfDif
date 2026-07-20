@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "LapDV6J6l9A",
+	"hash": "Lh4YC7SdT1A",
 	"spine": "4.2.42",
 	"x": -62.91,
 	"y": -3.39,
@@ -294,7 +294,8 @@
 			"bone14": {
 				"translate": [
 					{ "curve": "stepped" },
-					{ "time": 0.1667 }
+					{ "time": 0.1667, "curve": "stepped" },
+					{ "time": 0.3333 }
 				]
 			},
 			"bone": {
@@ -302,7 +303,110 @@
 					{ "time": 0.0333, "x": -1.17 },
 					{ "time": 0.0667, "x": 1.17 },
 					{ "time": 0.1, "x": -2.35 },
-					{ "time": 0.1333 }
+					{ "time": 0.1333 },
+					{ "time": 0.2, "x": -1.17 },
+					{ "time": 0.2333, "x": 1.17 },
+					{ "time": 0.2667, "x": -2.35 },
+					{ "time": 0.3 }
+				]
+			}
+		}
+	},
+	"counter": {
+		"slots": {
+			"enemy_4_body": {
+				"attachment": [
+					{ "name": "enemy_4_attacka" },
+					{ "time": 0.1, "name": "enemy_4_attackb" },
+					{ "time": 0.1667, "name": "enemy_4_attackc" },
+					{ "time": 0.2333, "name": "enemy_4_attackd" },
+					{ "time": 0.3333, "name": "enemy_4_attackd" }
+				]
+			},
+			"enemy_4_head": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_4_leftarm": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_4_leftarmup": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_4_leftfeet": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_4_lefthand": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_4_leftleg": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_4_leftthigh": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_4_rightarma": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_4_rightarmup": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_4_rightfeet": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_4_righthanda": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_4_righthandb": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_4_rightleg": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_4_rightthigh": {
+				"attachment": [
+					{}
+				]
+			}
+		},
+		"bones": {
+			"bone": {
+				"translate": [
+					{},
+					{ "time": 0.1, "y": 0.97 },
+					{ "time": 0.2, "y": -1.45 },
+					{ "time": 0.3333 }
+				],
+				"scale": [
+					{},
+					{ "time": 0.1, "x": 1.034 },
+					{ "time": 0.2, "x": 0.994, "y": 1.012 },
+					{ "time": 0.3333 }
 				]
 			}
 		}
