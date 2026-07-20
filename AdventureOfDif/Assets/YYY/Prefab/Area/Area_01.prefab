@@ -5063,7 +5063,7 @@ MonoBehaviour:
   Go:
   - {fileID: 8064982603720689349}
   enemyPrefabs:
-  - {fileID: 1745234303257194375, guid: c6c03b58ab37e854e97fcdda26d40737, type: 3}
+  - {fileID: 171920470387995713, guid: 7eaec87a5aa8e604a83304a0cf696318, type: 3}
   spawnPoints:
   - {fileID: 7219935016556181114}
   - {fileID: 8204932246582899151}

@@ -44,5 +44,22 @@ public class FrameEvents : MonoBehaviour
     }//这个由Player和Enemy中代码各自调用
 
 
+    public void _Attack_sword_clash()
+    {
+
+        switch (Random.Range(0, 3))
+        {
+            case 0:
+                audioS.PlayOneShot(AudioManager.Attack_sword_clash1);
+                break;
+            case 1:
+                audioS.PlayOneShot(AudioManager.Attack_sword_clash2);
+                break;
+            case 2:
+                audioS.PlayOneShot(AudioManager.Attack_sword_clash3);
+                break;
+        }
+    }//这个由Player和Enemy中代码各自调用
+
     #endregion
 }
