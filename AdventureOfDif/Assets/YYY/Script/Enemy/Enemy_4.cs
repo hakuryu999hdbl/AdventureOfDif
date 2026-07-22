@@ -17,6 +17,8 @@ public class Enemy_4 : EnemyController
     [Header("格挡UI")]
     public GameObject blockBarRoot;
     public Image blockBarFill;
+    public GameObject Text_Block;//弹出防御提示
+
 
     [Header("格挡状态")]
     public bool isBlocking;
@@ -66,8 +68,6 @@ public class Enemy_4 : EnemyController
             //Debug.Log("格挡失败：敌人已经受击");
             return false;
         }
-
-
 
         currentBlockValue -= attack.damage;
         currentBlockValue = Mathf.Max(0f, currentBlockValue);

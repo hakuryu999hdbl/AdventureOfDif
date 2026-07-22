@@ -1226,13 +1226,11 @@ MonoBehaviour:
   maxBlockValue: 50
   currentBlockValue: 50
   blockCostMultiplier: 35
-  blockRecoverDelay: 4
-  blockRecoverSpeed: 5
   blockBarRoot: {fileID: 2868377908383184220}
   blockBarFill: {fileID: 8844499508830001110}
+  Text_Block: {fileID: 0}
   isBlocking: 0
   isCountering: 0
-  isBlockBroken: 0
 --- !u!114 &489423793905564578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1985,7 +1983,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 341337295
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &5784873445744416816
@@ -2041,7 +2039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hudText: {fileID: 4407327141790781514, guid: 646ea7a5b78e36746b73073e2ac8a8d0, type: 3}
-  isEnemy: 0
+  isEnemy: 1
   numberSprites:
   - {fileID: 21300000, guid: 9843d925123f8b742bc4f815424d9e63, type: 3}
   - {fileID: 21300000, guid: 4e70e518e7359504e96a12041cb88174, type: 3}

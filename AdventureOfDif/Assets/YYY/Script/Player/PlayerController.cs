@@ -162,6 +162,8 @@ public class PlayerController : MonoBehaviour
             //对应投掷品皮肤代入
             heldItemType = item;
             characterSkin.ShowCurrentAll(heldItemType);
+
+            frameEvents._Attack_pick();//抓取声音
         }
     }
 
@@ -241,6 +243,8 @@ public class PlayerController : MonoBehaviour
     private float hurtTimer;
     private float downTimer;
     private bool hasLanded;
+    private bool hasHitWall;//撞墙触发声音
+
 
     public void StartHurtMotion(Attack attack)
     {
@@ -250,6 +254,7 @@ public class PlayerController : MonoBehaviour
 
         isHurt = true;
         hasLanded = false;
+        hasHitWall = false; // 新的一次受击允许播放一次撞墙声
         downTimer = 0f;
 
         float dir = transform.position.x >= attack.transform.position.x ? 1f : -1f;
@@ -313,6 +318,15 @@ public class PlayerController : MonoBehaviour
 
             if (hit.collider != null)
             {
+                // 每次受击最多播放一次撞墙声音
+                if (!hasHitWall)
+                {
+                    hasHitWall = true;
+
+                    frameEvents._Attack_hit();
+
+                }
+
                 hurtGroundVelocity.x = -hurtGroundVelocity.x * wallBounceDamping;
                 move = hurtGroundVelocity * Time.deltaTime;
             }
@@ -566,6 +580,7 @@ public class PlayerController : MonoBehaviour
             case 0:
                 // 打击特效
                 Hit_Effect.SetActive(true);
+                frameEvents._Attack_hit();//击打声音
                 break;
 
             case 1:
@@ -575,7 +590,7 @@ public class PlayerController : MonoBehaviour
                 break;
         }
 
-
+        characterSkin.FlashRed();//受伤闪红
 
 
 

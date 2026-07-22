@@ -73,7 +73,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
 
-    
+
         TransitionToState(patrolState);//一开始进入巡逻状态
 
     }
@@ -126,7 +126,6 @@ public class EnemyController : MonoBehaviour
         //    ResumeAI();
         //}
 
-       
 
     }
 
@@ -147,7 +146,7 @@ public class EnemyController : MonoBehaviour
         animState = state;
         anim.SetInteger("state", state);
     }//动画器层的切换统一入口
-    public void CleanState() 
+    public void CleanState()
     {
         SetAnimState(0);
         anim.SetInteger("state", 0);
@@ -172,7 +171,7 @@ public class EnemyController : MonoBehaviour
         enemyTarget.position = targetPoint.position;
 
         ResumeAI();
-        
+
         FilpDirection();
         //Debug.Log("冲向目标！");
 
@@ -342,7 +341,7 @@ public class EnemyController : MonoBehaviour
         StopMove();
 
         anim.SetInteger("skillState", 0);
-       
+
         targetPoint = null;
         //attackList.Clear();//万一玩家还在附近就又需要进入了
 
@@ -380,7 +379,7 @@ public class EnemyController : MonoBehaviour
             //Destroy(effect, 1.2f);
 
 
-            throwObject.Launch(throwPoint.position,throwTargetPos);
+            throwObject.Launch(throwPoint.position, throwTargetPos);
         }
     }
 
@@ -453,7 +452,7 @@ public class EnemyController : MonoBehaviour
         isCatching = true;
         capturedPlayer = player;
 
- 
+
 
         StopMove();
 
@@ -471,7 +470,7 @@ public class EnemyController : MonoBehaviour
 
         player.EnterCapturedState();//玩家进入透明
 
-
+        frameEvents._Attack_pick();//抓取声音
 
         Debug.Log("抓住玩家：" + capturedPlayer.name);
     }
@@ -567,7 +566,7 @@ public class EnemyController : MonoBehaviour
 
     public void MovePatrol()
     {
-        if (aiPath == null || enemyTarget == null|| isHurt || isDead)
+        if (aiPath == null || enemyTarget == null || isHurt || isDead)
             return;
 
         aiPath.canMove = true;
@@ -681,6 +680,7 @@ public class EnemyController : MonoBehaviour
     private float hurtTimer;
     private float downTimer;
     private bool hasLanded;
+    private bool hasHitWall;//撞墙触发声音
 
     public void StartHurtMotion(Attack attack)
     {
@@ -689,6 +689,7 @@ public class EnemyController : MonoBehaviour
         StopMove();
         isHurt = true;
         hasLanded = false;
+        hasHitWall = false; // 新的一次受击允许播放一次撞墙声
         downTimer = 0f;
 
         float dir = transform.position.x >= attack.transform.position.x ? 1f : -1f;
@@ -766,6 +767,17 @@ public class EnemyController : MonoBehaviour
 
             if (hit.collider != null)
             {
+                // 每次受击最多播放一次撞墙声音
+                if (!hasHitWall)
+                {
+                    hasHitWall = true;
+
+                    frameEvents._Attack_hit();
+
+                }
+
+
+
                 hurtGroundVelocity.x = -hurtGroundVelocity.x * wallBounceDamping;
                 move = hurtGroundVelocity * Time.deltaTime;
             }
@@ -916,12 +928,13 @@ public class EnemyController : MonoBehaviour
     /// 受伤死亡
     /// </summary>
     #region
-    [Header("受伤死亡")] 
+    [Header("受伤死亡")]
     public GameObject Effect_Blood;//受伤特效
     public GameObject Strike_Effect;//剑光特效
     public GameObject Hit_Effect;//打击特效
     [Header("主动触发声音")]
     public FrameEvents frameEvents;
+
 
     //受伤枚举
     public enum HurtPhase
@@ -968,6 +981,7 @@ public class EnemyController : MonoBehaviour
             case 0:
                 // 打击特效
                 Hit_Effect.SetActive(true);
+                frameEvents._Attack_hit();//击打声音
                 break;
 
             case 1:
@@ -978,19 +992,19 @@ public class EnemyController : MonoBehaviour
         }
 
 
-
+        characterSkin.FlashRed();//受伤闪红
 
 
 
         //一旦受伤立刻把Attack的根物体的character所在物体立为目标
         Character attackerCharacter = attack.GetComponentInParent<Character>();
-        
+
         if (attackerCharacter != null)
         {
             Transform attacker = attackerCharacter.transform;
-        
+
             targetPoint = attacker;
-        
+
             if (!attackList.Contains(attacker))
             {
                 attackList.Add(attacker);
@@ -1000,13 +1014,13 @@ public class EnemyController : MonoBehaviour
         }
 
 
-        anim.SetBool("hit",true);
-       
+        anim.SetBool("hit", true);
 
 
 
 
-        if(attack.knockbackY > 0)
+
+        if (attack.knockbackY > 0)
         {
             characterSkin.canAnimEndHurt = false;//如果是击飞，由落地控制离开受伤状态
             anim.SetInteger("HitType", 3);
@@ -1067,7 +1081,7 @@ public class EnemyController : MonoBehaviour
         SetStateColor(deadColor);
     }
     public GameObject Enemy_All;
-    public void DestroyEnemy() 
+    public void DestroyEnemy()
     {
         Destroy(Enemy_All);
     }

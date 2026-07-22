@@ -60,6 +60,9 @@ MonoBehaviour:
   Attack_sword_clash1: {fileID: 8300000, guid: 10af4e3e7305c7b419b52f864778f725, type: 3}
   Attack_sword_clash2: {fileID: 8300000, guid: b8049edaf7cddca46b7dc1453adf6f8f, type: 3}
   Attack_sword_clash3: {fileID: 8300000, guid: 1fb4a8a201683014c92e7acbb4fb1ad0, type: 3}
+  Attack_hit1: {fileID: 8300000, guid: a63cad09ac3adaa40bfdfb52329f97f3, type: 3}
+  Attack_hit2: {fileID: 8300000, guid: 91c423cd6560ca04bbd32c0fd3694ef1, type: 3}
+  Attack_hit3: {fileID: 8300000, guid: 5daa24a310337ce428741d97b6a50495, type: 3}
   UI_Click: {fileID: 8300000, guid: e593f642bff174749a24f7b0e530bbfd, type: 3}
   UI_Select: {fileID: 8300000, guid: 782703e41dd64334197c3649b6273c2a, type: 3}
   SE_falldown: {fileID: 8300000, guid: 8b0cc1145b5005942a62901641234d17, type: 3}

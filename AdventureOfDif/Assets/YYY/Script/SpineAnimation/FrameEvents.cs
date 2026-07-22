@@ -61,5 +61,26 @@ public class FrameEvents : MonoBehaviour
         }
     }//这个由Player和Enemy中代码各自调用
 
+
+
+    public void _Attack_hit() 
+    {
+        switch (Random.Range(0, 2))
+        {
+            case 0:
+                audioS.PlayOneShot(AudioManager.Attack_hit1);
+                break;
+            case 1:
+                audioS.PlayOneShot(AudioManager.Attack_hit2);
+                break;
+        }
+    }
+
+
+    public void _Attack_pick() 
+    {
+        audioS.PlayOneShot(AudioManager.Attack_hit3);
+    }//这个因为非常像抓取的声音
+
     #endregion
 }

@@ -80,6 +80,7 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip Attack_blood1, Attack_blood2, Attack_blood3;
     public AudioClip Attack_sword_clash1, Attack_sword_clash2, Attack_sword_clash3;
+    public AudioClip Attack_hit1, Attack_hit2, Attack_hit3;
 
     public AudioClip UI_Click, UI_Select;
 

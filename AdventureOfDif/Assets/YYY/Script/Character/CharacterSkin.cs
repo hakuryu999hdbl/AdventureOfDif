@@ -122,12 +122,36 @@ public class CharacterSkin : MonoBehaviour
         skeletonAnimation.Skeleton.A = 1f; // 完全不透明
     }
 
-
     #endregion
 
 
+    #region  闪红
 
+    Coroutine flashCoroutine;
+    public void FlashRed(float time = 0.28f)
+    {
 
+        Debug.Log("受伤特效");
+
+        if (flashCoroutine != null)
+            StopCoroutine(flashCoroutine);
+
+        flashCoroutine = StartCoroutine(FlashColor(
+            new Color(1f, 0.25f, 0.25f, 1f),
+            time));
+    }
+  
+    IEnumerator FlashColor(Color color, float time)
+    {
+        skeletonAnimation.Skeleton.SetColor(color);
+
+        yield return new WaitForSeconds(time);
+
+        skeletonAnimation.Skeleton.SetColor(Color.white);
+
+        flashCoroutine = null;
+    }
+    #endregion
 
 
     void Update()
