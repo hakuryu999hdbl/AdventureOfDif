@@ -1,0 +1,2093 @@
+{
+"skeleton": {
+	"hash": "XyM1Ia5PLHc",
+	"spine": "4.2.42",
+	"x": -53.45,
+	"y": -3.64,
+	"width": 136,
+	"height": 157,
+	"images": "./images/",
+	"audio": "./audio"
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "bone", "parent": "root", "length": 40.55, "rotation": 88.85, "x": -9.74, "y": 4.81 },
+	{ "name": "bone2", "parent": "bone", "length": 17.07, "rotation": -67.6, "x": 39.37, "y": 10.55 },
+	{ "name": "bone3", "parent": "bone2", "length": 24.63, "rotation": 36.66, "x": 17.92, "y": 0.24 },
+	{ "name": "bone4", "parent": "bone3", "length": 31.14, "rotation": 119.82, "x": 13.9, "y": 16.44 },
+	{ "name": "bone5", "parent": "bone4", "length": 28.23, "rotation": 171.81, "x": 27.89, "y": 1.64 },
+	{ "name": "bone6", "parent": "bone3", "length": 26.38, "rotation": -102.09, "x": 29.15, "y": -15.53 },
+	{ "name": "bone7", "parent": "bone6", "length": 40.5, "rotation": 3.61, "x": 15.41, "y": -6.72 },
+	{ "name": "bone8", "parent": "bone2", "length": 30.94, "rotation": -110.6, "x": -0.88, "y": 12.86 },
+	{ "name": "bone9", "parent": "bone8", "length": 22.85, "rotation": -33.98, "x": 31.63, "y": -1.78 },
+	{ "name": "bone10", "parent": "bone9", "length": 8.71, "rotation": 94.15, "x": 22.75, "y": 0.15 },
+	{ "name": "bone11", "parent": "bone8", "length": 6.62, "rotation": 55.23, "x": 32.19, "y": 1.22 },
+	{ "name": "bone12", "parent": "bone2", "length": 31.87, "rotation": -40.69, "x": 10.42, "y": -7.85 },
+	{ "name": "bone13", "parent": "bone12", "length": 22.75, "rotation": -64.76, "x": 29.76, "y": -3.56 },
+	{ "name": "bone14", "parent": "bone13", "length": 11.91, "rotation": 78.24, "x": 24.4, "y": 0.54 },
+	{ "name": "bone15", "parent": "bone12", "length": 8.36, "rotation": 25.51, "x": 33.31, "y": -1.93 },
+	{ "name": "bone16", "parent": "bone", "length": 9.73, "rotation": 2.2, "x": -4.66, "y": 45.21 },
+	{ "name": "bone17", "parent": "bone", "length": 7.96, "rotation": -0.12, "x": -4.38, "y": -21.1 },
+	{ "name": "bone18", "parent": "bone3", "length": 50.85, "rotation": 21.08, "x": 29.17, "y": 0.82 },
+	{ "name": "bone19a", "parent": "bone18", "length": 30.41, "rotation": -168.35, "x": 46.5, "y": 17.03 },
+	{ "name": "bone20a", "parent": "bone18", "length": 27.17, "rotation": -169.35, "x": 50.4, "y": -35.15 },
+	{ "name": "bone21", "parent": "bone18", "length": 35.63, "rotation": -166.8, "x": 19.55, "y": 26.19 },
+	{ "name": "bone19b", "parent": "bone19a", "length": 30.41, "x": 30.41 },
+	{ "name": "bone20b", "parent": "bone20a", "length": 27.17, "x": 27.17 }
+],
+"slots": [
+	{ "name": "enemy_5_rightsmorka", "bone": "bone16" },
+	{ "name": "enemy_5_leftsmork", "bone": "bone17" },
+	{ "name": "enemy_5_righthand", "bone": "bone5", "attachment": "enemy_5_righthand" },
+	{ "name": "enemy_5_leftleg", "bone": "bone13", "attachment": "enemy_5_leftleg" },
+	{ "name": "enemy_5_leftthigh", "bone": "bone12", "attachment": "enemy_5_leftthigh" },
+	{ "name": "enemy_5_leftfeet", "bone": "bone14", "attachment": "enemy_5_leftfeet" },
+	{ "name": "enemy_5_leftarm", "bone": "bone6", "attachment": "enemy_5_leftarm" },
+	{ "name": "enemy_5_leftknee", "bone": "bone15", "attachment": "enemy_5_leftknee" },
+	{ "name": "enemy_5_downbody", "bone": "bone2", "attachment": "enemy_5_downbody" },
+	{ "name": "enemy_5_upbody", "bone": "bone3", "attachment": "enemy_5_upbody" },
+	{ "name": "enemy_5_rightleg", "bone": "bone9", "attachment": "enemy_5_rightleg" },
+	{ "name": "enemy_5_rightfeet", "bone": "bone10", "attachment": "enemy_5_rightfeet" },
+	{ "name": "enemy_5_rightthigh", "bone": "bone8", "attachment": "enemy_5_rightthigh" },
+	{ "name": "enemy_5_rightknee", "bone": "bone11", "attachment": "enemy_5_rightknee" },
+	{ "name": "enemy_5_rightarm", "bone": "bone4", "attachment": "enemy_5_rightarm" },
+	{ "name": "enemy_5_hairc", "bone": "bone21", "attachment": "enemy_5_hairc" },
+	{ "name": "enemy_5_hairb", "bone": "bone20a", "attachment": "enemy_5_hairb" },
+	{ "name": "enemy_5_head", "bone": "bone18", "attachment": "enemy_5_head" },
+	{ "name": "enemy_5_haira3", "bone": "bone19a", "attachment": "enemy_5_haira" },
+	{ "name": "enemy_5_haira2", "bone": "bone19a" },
+	{ "name": "enemy_5_haira", "bone": "bone19a" },
+	{ "name": "enemy_5_lefthand", "bone": "bone7", "attachment": "enemy_5_lefthand" },
+	{ "name": "enemy_5_attacka", "bone": "bone" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"enemy_5_attacka": {
+				"enemy_5_attacka": { "x": 81.86, "y": 10.36, "rotation": -88.85, "width": 246, "height": 187 },
+				"enemy_5_attackb": { "x": 81.52, "y": 2.35, "rotation": -88.85, "width": 262, "height": 188 },
+				"enemy_5_attackc": { "x": 73.15, "y": -4.32, "rotation": -88.85, "width": 263, "height": 173 },
+				"enemy_5_attackd": { "x": 75.82, "y": -37.27, "rotation": -88.85, "width": 197, "height": 173 },
+				"enemy_5_attacke": { "x": 72.64, "y": -28.33, "rotation": -88.85, "width": 179, "height": 167 },
+				"enemy_5_attackf": { "x": 62.46, "y": -19.54, "rotation": -88.85, "width": 161, "height": 147 },
+				"enemy_5_down": { "x": 23.73, "y": -8.81, "rotation": -88.85, "width": 150, "height": 68 },
+				"enemy_5_fly": { "x": 97.71, "y": -31.83, "rotation": -88.85, "width": 183, "height": 129 },
+				"enemy_5_getup": { "x": 53.28, "y": -10.72, "rotation": -88.85, "width": 123, "height": 127 },
+				"enemy_5_hita": { "x": 68.93, "y": -17.9, "rotation": -88.85, "width": 126, "height": 156 },
+				"enemy_5_hitb": { "x": 70.43, "y": -17.87, "rotation": -88.85, "width": 130, "height": 157 },
+				"enemy_5_jdowna": { "x": 85.96, "y": -19.56, "rotation": -88.85, "width": 110, "height": 170 },
+				"enemy_5_jdownb": { "x": 85.96, "y": -19.56, "rotation": -88.85, "width": 98, "height": 170 },
+				"enemy_5_jdownc": { "x": 82.96, "y": -19.62, "rotation": -88.85, "width": 100, "height": 176 },
+				"enemy_5_jumpa": { "x": 86.85, "y": -14.04, "rotation": -88.85, "width": 153, "height": 188 },
+				"enemy_5_jumpb": { "x": 99.99, "y": -20.78, "rotation": -88.85, "width": 161, "height": 210 },
+				"enemy_5_jumpc": { "x": 106.5, "y": -21.15, "rotation": -88.85, "width": 148, "height": 187 },
+				"enemy_5_jumpd": { "x": 154.21, "y": -31.19, "rotation": -88.85, "width": 80, "height": 102 },
+				"enemy_5_sex1": { "x": 80.89, "y": -40.67, "rotation": -88.85, "width": 192, "height": 181 },
+				"enemy_5_sex2": { "x": 80.89, "y": -40.67, "rotation": -88.85, "width": 192, "height": 181 },
+				"enemy_5_sex3": { "x": 80.89, "y": -40.67, "rotation": -88.85, "width": 192, "height": 181 },
+				"enemy_5_sex4": { "x": 80.89, "y": -40.67, "rotation": -88.85, "width": 192, "height": 181 },
+				"enemy_5_sex5": { "x": 80.86, "y": -39.17, "rotation": -88.85, "width": 189, "height": 181 },
+				"enemy_5_sex6": { "x": 80.88, "y": -40.17, "rotation": -88.85, "width": 191, "height": 181 },
+				"enemy_5_sex7": { "x": 80.89, "y": -40.67, "rotation": -88.85, "width": 192, "height": 181 }
+			},
+			"enemy_5_downbody": {
+				"enemy_5_downbody": { "x": 11.06, "y": 2.11, "rotation": -21.25, "width": 49, "height": 38 }
+			},
+			"enemy_5_haira3": {
+				"enemy_5_haira": {
+					"type": "mesh",
+					"uvs": [ 0.23719, 0.01223, 0.78569, 0.01222, 0.9044, 0.10574, 0.84069, 0.2607, 0.8176, 0.40135, 0.80081, 0.47579, 0.80093, 0.70169, 0.80108, 1, 0.7749, 1, 0.35039, 0.90521, 0.23865, 0.7958, 0.18334, 0.71133, 0.08903, 0.56733, 0.05729, 0.38617, 0.02555, 0.20501, 0.16073, 0.03579, 0.50545, 0.7086, 0.43476, 0.4725, 0.44359, 0.23226 ],
+					"triangles": [ 2, 18, 0, 2, 0, 1, 15, 0, 18, 14, 15, 18, 3, 18, 2, 13, 14, 18, 4, 18, 3, 17, 13, 18, 4, 17, 18, 5, 17, 4, 12, 13, 17, 16, 17, 5, 16, 5, 6, 12, 17, 16, 11, 12, 16, 10, 11, 16, 9, 10, 16, 6, 9, 16, 7, 8, 9, 7, 9, 6 ],
+					"vertices": [ 1, 19, -5.32, -6.56, 1, 1, 19, -5.17, 7.15, 1, 1, 19, 2.35, 10.04, 1, 1, 19, 14.73, 8.31, 1, 2, 22, -4.44, 7.6, 0.0356, 19, 25.97, 7.6, 0.9644, 2, 22, 1.51, 7.12, 0.53725, 19, 31.92, 7.12, 0.46275, 1, 22, 19.58, 6.92, 1, 1, 22, 43.44, 6.65, 1, 1, 22, 43.44, 6, 1, 1, 22, 35.73, -4.53, 1, 1, 22, 26.95, -7.22, 1, 1, 22, 20.18, -8.53, 1, 2, 22, 8.63, -10.76, 0.89339, 19, 39.04, -10.76, 0.10661, 2, 22, -5.87, -11.39, 0.06288, 19, 24.54, -11.39, 0.93712, 1, 19, 10.04, -12.02, 1, 1, 19, -3.46, -8.49, 1, 1, 22, 20.05, -0.48, 1, 2, 22, 1.14, -2.03, 0.65807, 19, 31.56, -2.03, 0.34193, 1, 19, 12.34, -1.59, 1 ],
+					"hull": 16,
+					"edges": [ 0, 30, 0, 2, 2, 4, 4, 6, 6, 8, 8, 10, 14, 16, 16, 18, 18, 20, 28, 30, 24, 26, 26, 28, 10, 12, 12, 14, 20, 22, 22, 24 ],
+					"width": 25,
+					"height": 80
+				}
+			},
+			"enemy_5_hairb": {
+				"enemy_5_hairb": {
+					"type": "mesh",
+					"uvs": [ 0.31826, 0.01353, 0.72553, 0.0137, 0.85301, 0.04945, 0.90966, 0.14924, 0.91003, 0.28079, 0.91039, 0.41235, 0.91095, 0.61178, 0.91129, 0.73537, 0.74146, 0.94174, 0.5636, 0.99576, 0.14915, 0.78658, 0.08218, 0.60648, 0.0477, 0.4312, 0.01322, 0.25591, 0.12149, 0.07231, 0.47032, 0.2482, 0.47534, 0.45991, 0.48538, 0.65014, 0.52554, 0.80201 ],
+					"triangles": [ 0, 3, 15, 1, 3, 0, 2, 3, 1, 14, 0, 15, 13, 14, 15, 15, 3, 4, 12, 13, 15, 5, 16, 15, 5, 15, 4, 12, 15, 16, 11, 12, 16, 16, 5, 6, 17, 11, 16, 6, 17, 16, 17, 6, 7, 10, 11, 17, 18, 17, 7, 10, 17, 18, 8, 18, 7, 9, 18, 8, 10, 18, 9 ],
+					"vertices": [ 1, 20, -3.34, -6.53, 1, 1, 20, -3.39, 2.43, 1, 1, 20, -0.83, 5.25, 1, 1, 20, 6.35, 6.54, 1, 1, 20, 15.82, 6.61, 1, 2, 23, -1.88, 6.68, 0.32432, 20, 25.29, 6.68, 0.67568, 1, 23, 12.48, 6.78, 1, 1, 23, 21.37, 6.85, 1, 1, 23, 36.26, 3.2, 1, 1, 23, 40.17, -0.69, 1, 1, 23, 25.17, -9.9, 1, 2, 23, 12.21, -11.45, 0.98573, 20, 39.38, -11.45, 0.01427, 2, 23, -0.41, -12.29, 0.39638, 20, 26.77, -12.29, 0.60362, 2, 23, -13.02, -13.13, 9.0E-4, 20, 14.15, -13.13, 0.9991, 1, 20, 0.92, -10.83, 1, 1, 20, 13.53, -3.08, 1, 2, 23, 1.6, -2.87, 0.81697, 20, 28.78, -2.87, 0.18303, 1, 23, 15.3, -2.56, 1, 1, 23, 26.23, -1.61, 1 ],
+					"hull": 15,
+					"edges": [ 0, 28, 0, 2, 2, 4, 4, 6, 14, 16, 16, 18, 18, 20, 20, 22, 26, 28, 12, 14, 10, 12, 22, 24, 24, 26, 6, 8, 8, 10 ],
+					"width": 22,
+					"height": 72
+				}
+			},
+			"enemy_5_hairc": {
+				"enemy_5_hairc": { "x": 17.1, "y": 0.44, "rotation": 87.81, "width": 25, "height": 66 }
+			},
+			"enemy_5_head": {
+				"enemy_5_head": { "x": 35.72, "y": -2.34, "rotation": -78.99, "width": 93, "height": 85 }
+			},
+			"enemy_5_leftarm": {
+				"enemy_5_leftarm": { "x": 11.29, "y": 0.26, "rotation": 44.19, "width": 39, "height": 35 }
+			},
+			"enemy_5_leftfeet": {
+				"enemy_5_leftfeet": { "x": 8.41, "y": 2.38, "rotation": 5.96, "width": 32, "height": 15 }
+			},
+			"enemy_5_lefthand": {
+				"enemy_5_lefthand": { "x": 18.08, "y": 4.13, "rotation": 40.57, "width": 68, "height": 54 }
+			},
+			"enemy_5_leftknee": {
+				"enemy_5_leftknee": { "x": 1.76, "y": 0.24, "rotation": -6.07, "width": 24, "height": 26 }
+			},
+			"enemy_5_leftleg": {
+				"enemy_5_leftleg": { "x": 13.13, "y": 3.3, "rotation": 84.2, "width": 34, "height": 33 }
+			},
+			"enemy_5_leftsmork": {
+				"enemy_5_leftsmork": { "x": 4.21, "y": 6.82, "rotation": -88.73, "width": 30, "height": 12 }
+			},
+			"enemy_5_leftthigh": {
+				"enemy_5_leftthigh": { "x": 11.19, "y": 1.31, "rotation": 19.44, "width": 49, "height": 34 }
+			},
+			"enemy_5_rightarm": {
+				"enemy_5_rightarm": { "x": 13.56, "y": -0.21, "rotation": -177.72, "width": 47, "height": 24 }
+			},
+			"enemy_5_rightfeet": {
+				"enemy_5_rightfeet": { "x": 3.84, "y": -0.09, "rotation": 29.17, "width": 30, "height": 14 }
+			},
+			"enemy_5_righthand": {
+				"enemy_5_righthand": { "x": 15.14, "y": 0.03, "rotation": 10.47, "width": 42, "height": 32 }
+			},
+			"enemy_5_rightknee": {
+				"enemy_5_rightknee": { "x": -0.6, "y": -1.02, "rotation": 34.11, "width": 28, "height": 24 }
+			},
+			"enemy_5_rightleg": {
+				"enemy_5_rightleg": { "x": 12.26, "y": -2.19, "rotation": 123.32, "width": 37, "height": 32 }
+			},
+			"enemy_5_rightsmorka": {
+				"enemy_5_rightsmorka": { "x": 10.46, "y": 8.73, "rotation": -91.04, "width": 41, "height": 26 },
+				"enemy_5_rightsmorkb": { "x": 6.43, "y": 7.31, "rotation": -91.04, "width": 34, "height": 18 }
+			},
+			"enemy_5_rightthigh": {
+				"enemy_5_rightthigh": { "x": 15.17, "y": -2.15, "rotation": 89.35, "width": 31, "height": 43 }
+			},
+			"enemy_5_upbody": {
+				"enemy_5_upbody": { "x": 15.6, "y": 1.02, "rotation": -57.91, "width": 50, "height": 43 }
+			}
+		}
+	}
+],
+"animations": {
+	"attack_1": {
+		"slots": {
+			"enemy_5_attacka": {
+				"attachment": [
+					{ "name": "enemy_5_attacka" },
+					{ "time": 0.1, "name": "enemy_5_attackb" },
+					{ "time": 0.2, "name": "enemy_5_attackc" },
+					{ "time": 0.2667, "name": "enemy_5_attackd" },
+					{ "time": 0.3333, "name": "enemy_5_attacke" },
+					{ "time": 0.4, "name": "enemy_5_attackf" },
+					{ "time": 0.5, "name": "enemy_5_attackf" }
+				]
+			},
+			"enemy_5_downbody": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_haira3": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_hairb": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_hairc": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_head": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftarm": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftfeet": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_lefthand": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftknee": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftleg": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftthigh": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightarm": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightfeet": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_righthand": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightknee": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightleg": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightthigh": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_upbody": {
+				"attachment": [
+					{}
+				]
+			}
+		},
+		"bones": {
+			"bone": {
+				"scale": [
+					{ "x": 0.961, "y": 1.103 },
+					{ "time": 0.1667, "x": 1.069, "y": 0.95 },
+					{ "time": 0.3333 }
+				]
+			}
+		}
+	},
+	"attack_2": {
+		"slots": {
+			"enemy_5_attacka": {
+				"attachment": [
+					{ "name": "enemy_5_attacka" },
+					{ "time": 0.1, "name": "enemy_5_attackb" },
+					{ "time": 0.2, "name": "enemy_5_attackc" },
+					{ "time": 0.2667, "name": "enemy_5_attackd" },
+					{ "time": 0.3333, "name": "enemy_5_attacke" },
+					{ "time": 0.4, "name": "enemy_5_attackf" },
+					{ "time": 0.5, "name": "enemy_5_attackf" }
+				]
+			},
+			"enemy_5_downbody": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_haira3": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_hairb": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_hairc": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_head": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftarm": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftfeet": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_lefthand": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftknee": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftleg": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftthigh": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightarm": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightfeet": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_righthand": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightknee": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightleg": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightthigh": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_upbody": {
+				"attachment": [
+					{}
+				]
+			}
+		},
+		"bones": {
+			"bone": {
+				"scale": [
+					{ "x": 0.961, "y": 1.103 },
+					{ "time": 0.1667, "x": 1.069, "y": 0.95 },
+					{ "time": 0.3333 }
+				]
+			}
+		}
+	},
+	"dead": {
+		"slots": {
+			"enemy_5_attacka": {
+				"attachment": [
+					{ "name": "enemy_5_down" },
+					{ "time": 0.1667 },
+					{ "time": 0.2667, "name": "enemy_5_down" },
+					{ "time": 0.3333 },
+					{ "time": 0.4, "name": "enemy_5_down" },
+					{ "time": 0.4667 },
+					{ "time": 0.5333, "name": "enemy_5_down" },
+					{ "time": 0.5667 },
+					{ "time": 0.6, "name": "enemy_5_down" },
+					{ "time": 0.6333 },
+					{ "time": 0.6667, "name": "enemy_5_down" },
+					{ "time": 0.7 }
+				]
+			},
+			"enemy_5_downbody": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_haira3": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_hairb": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_hairc": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_head": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftarm": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftfeet": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_lefthand": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftknee": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftleg": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftthigh": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightarm": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightfeet": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_righthand": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightknee": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightleg": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightthigh": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_upbody": {
+				"attachment": [
+					{}
+				]
+			}
+		}
+	},
+	"disappear": {
+		"slots": {
+			"enemy_5_downbody": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_haira3": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_hairb": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_hairc": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_head": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftarm": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftfeet": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_lefthand": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftknee": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftleg": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftthigh": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightarm": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightfeet": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_righthand": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightknee": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightleg": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightthigh": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_upbody": {
+				"attachment": [
+					{}
+				]
+			}
+		},
+		"bones": {
+			"bone": {
+				"scale": [
+					{
+						"curve": [ 0.269, 0.985, 0.439, 1.013, 0.233, 0.99, 0.444, 1.01 ]
+					},
+					{ "time": 0.6667 }
+				]
+			}
+		}
+	},
+	"down": {
+		"slots": {
+			"enemy_5_attacka": {
+				"attachment": [
+					{ "name": "enemy_5_down" }
+				]
+			},
+			"enemy_5_downbody": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_haira3": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_hairb": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_hairc": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_head": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftarm": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftfeet": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_lefthand": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftknee": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftleg": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftthigh": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightarm": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_righthand": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightknee": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightleg": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightthigh": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_upbody": {
+				"attachment": [
+					{}
+				]
+			}
+		},
+		"bones": {
+			"bone": {
+				"scale": [
+					{
+						"curve": [ 0.269, 0.985, 0.439, 1.013, 0.233, 0.99, 0.444, 1.01 ]
+					},
+					{ "time": 0.6667 }
+				]
+			}
+		}
+	},
+	"fly": {
+		"slots": {
+			"enemy_5_attacka": {
+				"attachment": [
+					{ "name": "enemy_5_fly" }
+				]
+			},
+			"enemy_5_downbody": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_haira3": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_hairb": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_hairc": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_head": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftarm": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftfeet": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_lefthand": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftknee": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftleg": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftthigh": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightarm": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightfeet": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_righthand": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightknee": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightleg": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightthigh": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_upbody": {
+				"attachment": [
+					{}
+				]
+			}
+		}
+	},
+	"getup": {
+		"slots": {
+			"enemy_5_attacka": {
+				"attachment": [
+					{ "name": "enemy_5_down" },
+					{ "time": 0.2333, "name": "enemy_5_getup" },
+					{ "time": 0.5333 }
+				]
+			},
+			"enemy_5_downbody": {
+				"attachment": [
+					{},
+					{ "time": 0.5333, "name": "enemy_5_downbody" }
+				]
+			},
+			"enemy_5_haira3": {
+				"attachment": [
+					{},
+					{ "time": 0.5333, "name": "enemy_5_haira" }
+				]
+			},
+			"enemy_5_hairb": {
+				"attachment": [
+					{},
+					{ "time": 0.5333, "name": "enemy_5_hairb" }
+				]
+			},
+			"enemy_5_hairc": {
+				"attachment": [
+					{},
+					{ "time": 0.5333, "name": "enemy_5_hairc" }
+				]
+			},
+			"enemy_5_head": {
+				"attachment": [
+					{},
+					{ "time": 0.5333, "name": "enemy_5_head" }
+				]
+			},
+			"enemy_5_leftarm": {
+				"attachment": [
+					{},
+					{ "time": 0.5333, "name": "enemy_5_leftarm" }
+				]
+			},
+			"enemy_5_leftfeet": {
+				"attachment": [
+					{},
+					{ "time": 0.5333, "name": "enemy_5_leftfeet" }
+				]
+			},
+			"enemy_5_lefthand": {
+				"attachment": [
+					{},
+					{ "time": 0.5333, "name": "enemy_5_lefthand" }
+				]
+			},
+			"enemy_5_leftknee": {
+				"attachment": [
+					{},
+					{ "time": 0.5333, "name": "enemy_5_leftknee" }
+				]
+			},
+			"enemy_5_leftleg": {
+				"attachment": [
+					{},
+					{ "time": 0.5333, "name": "enemy_5_leftleg" }
+				]
+			},
+			"enemy_5_leftthigh": {
+				"attachment": [
+					{},
+					{ "time": 0.5333, "name": "enemy_5_leftthigh" }
+				]
+			},
+			"enemy_5_rightarm": {
+				"attachment": [
+					{},
+					{ "time": 0.5333, "name": "enemy_5_rightarm" }
+				]
+			},
+			"enemy_5_rightfeet": {
+				"attachment": [
+					{},
+					{ "time": 0.5333, "name": "enemy_5_rightfeet" }
+				]
+			},
+			"enemy_5_righthand": {
+				"attachment": [
+					{},
+					{ "time": 0.5333, "name": "enemy_5_righthand" }
+				]
+			},
+			"enemy_5_rightknee": {
+				"attachment": [
+					{},
+					{ "time": 0.5333, "name": "enemy_5_rightknee" }
+				]
+			},
+			"enemy_5_rightleg": {
+				"attachment": [
+					{},
+					{ "time": 0.5333, "name": "enemy_5_rightleg" }
+				]
+			},
+			"enemy_5_rightthigh": {
+				"attachment": [
+					{},
+					{ "time": 0.5333, "name": "enemy_5_rightthigh" }
+				]
+			},
+			"enemy_5_upbody": {
+				"attachment": [
+					{},
+					{ "time": 0.5333, "name": "enemy_5_upbody" }
+				]
+			}
+		},
+		"bones": {
+			"bone": {
+				"scale": [
+					{},
+					{ "time": 0.1667, "x": 1.041 },
+					{ "time": 0.2333, "x": 1.025 },
+					{ "time": 0.3667, "x": 0.978, "y": 1.013 },
+					{ "time": 0.5, "x": 1.057, "y": 0.969 },
+					{ "time": 0.6 }
+				]
+			}
+		}
+	},
+	"hit_a": {
+		"slots": {
+			"enemy_5_attacka": {
+				"attachment": [
+					{ "name": "enemy_5_hita" }
+				]
+			},
+			"enemy_5_downbody": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_haira3": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_hairb": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_hairc": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_head": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftarm": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftfeet": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_lefthand": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftknee": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftleg": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftthigh": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightarm": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightfeet": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_righthand": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightknee": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightleg": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightthigh": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_upbody": {
+				"attachment": [
+					{}
+				]
+			}
+		},
+		"bones": {
+			"bone": {
+				"translate": [
+					{},
+					{ "time": 0.0333, "x": -3.75, "y": -0.67 },
+					{ "time": 0.0667, "x": 1.17, "y": 0.58 },
+					{ "time": 0.1, "x": -0.68, "y": 1.55 },
+					{ "time": 0.1333, "x": 1.62, "y": -1.76 },
+					{ "time": 0.1667, "x": 1.55, "y": -0.31 },
+					{ "time": 0.2, "x": -0.31, "y": -0.42 },
+					{ "time": 0.2333 }
+				]
+			}
+		}
+	},
+	"hit_b": {
+		"slots": {
+			"enemy_5_attacka": {
+				"attachment": [
+					{ "name": "enemy_5_hitb" }
+				]
+			},
+			"enemy_5_downbody": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_haira3": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_hairb": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_hairc": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_head": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftarm": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftfeet": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_lefthand": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftknee": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftleg": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftthigh": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightarm": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightfeet": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_righthand": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightknee": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightleg": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightthigh": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_upbody": {
+				"attachment": [
+					{}
+				]
+			}
+		},
+		"bones": {
+			"bone": {
+				"translate": [
+					{},
+					{ "time": 0.0333, "x": -3.62, "y": 1.65 },
+					{ "time": 0.0667, "x": 1.92, "y": -0.6 },
+					{ "time": 0.1, "x": -1.76, "y": -0.81 },
+					{ "time": 0.1333, "x": 3.62, "y": 1.69 },
+					{ "time": 0.1667, "x": -2.19, "y": 0.14 },
+					{ "time": 0.2, "x": 3.51, "y": -2.23 },
+					{ "time": 0.2333 }
+				]
+			}
+		}
+	},
+	"jump": {
+		"slots": {
+			"enemy_5_attacka": {
+				"rgba": [
+					{ "time": 0.5, "color": "ffffffff" },
+					{ "time": 0.6667, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "time": 0.2333, "name": "enemy_5_jumpa" },
+					{ "time": 0.3333, "name": "enemy_5_jumpb" },
+					{ "time": 0.4, "name": "enemy_5_jumpc" },
+					{ "time": 0.5, "name": "enemy_5_jumpd" }
+				]
+			},
+			"enemy_5_downbody": {
+				"attachment": [
+					{ "time": 0.2333 }
+				]
+			},
+			"enemy_5_haira3": {
+				"attachment": [
+					{ "time": 0.2333 }
+				]
+			},
+			"enemy_5_hairb": {
+				"attachment": [
+					{ "time": 0.2333 }
+				]
+			},
+			"enemy_5_hairc": {
+				"attachment": [
+					{ "time": 0.2333 }
+				]
+			},
+			"enemy_5_head": {
+				"attachment": [
+					{ "time": 0.2333 }
+				]
+			},
+			"enemy_5_leftarm": {
+				"attachment": [
+					{ "time": 0.2333 }
+				]
+			},
+			"enemy_5_leftfeet": {
+				"attachment": [
+					{ "time": 0.2333 }
+				]
+			},
+			"enemy_5_lefthand": {
+				"attachment": [
+					{ "time": 0.2333 }
+				]
+			},
+			"enemy_5_leftknee": {
+				"attachment": [
+					{ "time": 0.2333 }
+				]
+			},
+			"enemy_5_leftleg": {
+				"attachment": [
+					{ "time": 0.2333 }
+				]
+			},
+			"enemy_5_leftthigh": {
+				"attachment": [
+					{ "time": 0.2333 }
+				]
+			},
+			"enemy_5_rightarm": {
+				"attachment": [
+					{ "time": 0.2333 }
+				]
+			},
+			"enemy_5_rightfeet": {
+				"attachment": [
+					{ "time": 0.2333 }
+				]
+			},
+			"enemy_5_righthand": {
+				"attachment": [
+					{ "time": 0.2333 }
+				]
+			},
+			"enemy_5_rightknee": {
+				"attachment": [
+					{ "time": 0.2333 }
+				]
+			},
+			"enemy_5_rightleg": {
+				"attachment": [
+					{ "time": 0.2333 }
+				]
+			},
+			"enemy_5_rightthigh": {
+				"attachment": [
+					{ "time": 0.2333 }
+				]
+			},
+			"enemy_5_upbody": {
+				"attachment": [
+					{ "time": 0.2333 }
+				]
+			}
+		},
+		"bones": {
+			"bone": {
+				"scale": [
+					{},
+					{ "time": 0.2333, "x": 0.976, "y": 1.028 },
+					{ "time": 0.3667, "x": 1.159, "y": 0.921 }
+				]
+			},
+			"bone2": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": -5.69 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.1667, "x": -1.7, "y": -1.78 }
+				]
+			},
+			"bone3": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": 5.85 }
+				]
+			},
+			"bone4": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": -4.64 }
+				]
+			},
+			"bone5": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": 3.44 }
+				]
+			},
+			"bone6": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": 12.88 }
+				]
+			},
+			"bone7": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": -20.85 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.1667, "x": 0.65, "y": 6.47 }
+				]
+			},
+			"bone8": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": -5.51 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.1667, "x": -1.31, "y": -1.95 }
+				]
+			},
+			"bone9": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": -5.18 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.1667, "x": -1.31, "y": -0.06 }
+				]
+			},
+			"bone10": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": 9.76 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.1667, "x": 2.01, "y": 1.22 }
+				]
+			},
+			"bone12": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": 8.59 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.1667, "x": 0.48, "y": 1.02 }
+				]
+			},
+			"bone13": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": 6.88 }
+				]
+			},
+			"bone14": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": -11.35 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.1667, "x": 0.33, "y": 0.49 }
+				]
+			},
+			"bone18": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": -3.19 }
+				]
+			},
+			"bone19a": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": 1.43 }
+				]
+			},
+			"bone20a": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": 3.73 }
+				]
+			},
+			"bone19b": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": 6.46 }
+				]
+			},
+			"bone20b": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": 9.39 }
+				]
+			}
+		}
+	},
+	"landing": {
+		"slots": {
+			"enemy_5_attacka": {
+				"attachment": [
+					{ "name": "enemy_5_jdowna" },
+					{ "time": 0.0667, "name": "enemy_5_jdownb" },
+					{ "time": 0.1333, "name": "enemy_5_jdownc" },
+					{ "time": 0.1667, "name": "enemy_5_jdowna" },
+					{ "time": 0.2, "name": "enemy_5_jdownb" },
+					{ "time": 0.2333, "name": "enemy_5_jdownc" },
+					{ "time": 0.3, "name": "enemy_5_jdowna" },
+					{ "time": 0.3667, "name": "enemy_5_jdownb" },
+					{ "time": 0.4333, "name": "enemy_5_jdownc" },
+					{ "time": 0.5, "name": "enemy_5_jdowna" },
+					{ "time": 0.5667, "name": "enemy_5_jdownb" },
+					{ "time": 0.6333, "name": "enemy_5_jdownc" },
+					{ "time": 0.7, "name": "enemy_5_jdowna" },
+					{ "time": 0.7333, "name": "enemy_5_jdownb" }
+				]
+			},
+			"enemy_5_downbody": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_haira3": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_hairb": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_hairc": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_head": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftarm": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftfeet": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_lefthand": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftknee": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftleg": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftthigh": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightarm": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightfeet": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_righthand": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightknee": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightleg": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightthigh": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_upbody": {
+				"attachment": [
+					{}
+				]
+			}
+		},
+		"bones": {
+			"bone": {
+				"translate": [
+					{ "x": -13.29, "y": 1588.16 },
+					{ "time": 0.6667, "x": -13.55 },
+					{ "time": 0.7333, "x": -27.51, "y": -1.62 }
+				],
+				"scale": [
+					{
+						"curve": [ 0.112, 0.948, 0.207, 1.093, 0.119, 1.13, 0.224, 0.907 ]
+					},
+					{
+						"time": 0.3333,
+						"curve": [ 0.442, 0.92, 0.55, 1.128, 0.441, 1.091, 0.552, 0.942 ]
+					},
+					{ "time": 0.6667 },
+					{ "time": 0.7333, "x": 1.09, "y": 1.76 }
+				]
+			}
+		}
+	},
+	"lewd": {
+		"slots": {
+			"enemy_5_attacka": {
+				"attachment": [
+					{ "name": "enemy_5_sex1" },
+					{ "time": 0.0667, "name": "enemy_5_sex2" },
+					{ "time": 0.1333, "name": "enemy_5_sex3" },
+					{ "time": 0.4333, "name": "enemy_5_sex4" },
+					{ "time": 0.5, "name": "enemy_5_sex5" },
+					{ "time": 0.5667, "name": "enemy_5_sex6" },
+					{ "time": 0.6333, "name": "enemy_5_sex1" }
+				]
+			},
+			"enemy_5_downbody": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_haira3": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_hairb": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_hairc": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_head": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftarm": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftfeet": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_lefthand": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftknee": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftleg": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_leftthigh": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightarm": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightfeet": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_righthand": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightknee": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightleg": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_rightthigh": {
+				"attachment": [
+					{}
+				]
+			},
+			"enemy_5_upbody": {
+				"attachment": [
+					{}
+				]
+			}
+		},
+		"bones": {
+			"bone": {
+				"scale": [
+					{},
+					{ "time": 0.3667, "x": 1.027 },
+					{ "time": 0.4333, "x": 0.967, "y": 1.021 },
+					{ "time": 0.5333, "x": 1.004, "y": 0.978 },
+					{ "time": 0.6333 }
+				]
+			}
+		}
+	},
+	"move": {
+		"slots": {
+			"enemy_5_leftsmork": {
+				"attachment": [
+					{ "name": "enemy_5_leftsmork" }
+				]
+			},
+			"enemy_5_rightsmorka": {
+				"attachment": [
+					{ "name": "enemy_5_rightsmorkb" },
+					{ "time": 0.1, "name": "enemy_5_rightsmorka" },
+					{ "time": 0.3, "name": "enemy_5_rightsmorkb" },
+					{ "time": 0.4, "name": "enemy_5_rightsmorka" },
+					{ "time": 0.5, "name": "enemy_5_rightsmorkb" }
+				]
+			}
+		},
+		"bones": {
+			"bone3": {
+				"rotate": [
+					{
+						"value": 4.3,
+						"curve": [ 0.169, 9.17, 0.334, -0.47 ]
+					},
+					{ "time": 0.5, "value": 4.3 }
+				]
+			},
+			"bone2": {
+				"rotate": [
+					{ "value": -4.85 }
+				],
+				"translate": [
+					{ "x": -2.18, "y": -6.52 }
+				]
+			},
+			"bone12": {
+				"rotate": [
+					{ "value": 10.58 },
+					{ "time": 0.2, "value": 12.57 },
+					{ "time": 0.5, "value": 10.58 }
+				],
+				"translate": [
+					{ "x": -1.41, "y": 2.58 }
+				]
+			},
+			"bone13": {
+				"rotate": [
+					{ "value": -17.69 },
+					{ "time": 0.2, "value": -17.41 },
+					{ "time": 0.5, "value": -17.69 }
+				],
+				"translate": [
+					{ "x": 0.1, "y": -2.36 },
+					{ "time": 0.2, "x": 0.31, "y": -3.37 },
+					{ "time": 0.5, "x": 0.1, "y": -2.36 }
+				]
+			},
+			"bone14": {
+				"rotate": [
+					{ "value": 9.54 }
+				],
+				"translate": [
+					{ "x": -0.51, "y": 0.41 }
+				]
+			},
+			"bone17": {
+				"translate": [
+					{},
+					{ "time": 0.1667, "x": 0.59 },
+					{ "time": 0.3333, "x": -0.52 },
+					{ "time": 0.5 }
+				],
+				"scale": [
+					{},
+					{ "time": 0.1667, "x": 2.657, "y": 1.066 },
+					{ "time": 0.3333, "x": 1.142, "y": 1.615 },
+					{ "time": 0.5 }
+				]
+			},
+			"bone8": {
+				"rotate": [
+					{ "value": -2.63 },
+					{ "time": 0.2, "value": -8.56 },
+					{ "time": 0.5, "value": -2.63 }
+				]
+			},
+			"bone9": {
+				"rotate": [
+					{ "value": -4.92 },
+					{ "time": 0.2, "value": 4.31 },
+					{ "time": 0.5, "value": -4.92 }
+				],
+				"translate": [
+					{ "x": 1.65, "y": -2.37 },
+					{ "time": 0.5, "x": 1.13, "y": -1.76 }
+				]
+			},
+			"bone10": {
+				"rotate": [
+					{ "value": 10.48 }
+				],
+				"translate": [
+					{ "x": 2.34, "y": -1.37 }
+				]
+			},
+			"bone16": {
+				"translate": [
+					{ "y": 6.19 },
+					{ "time": 0.1667, "x": -0.01, "y": 11.31 },
+					{ "time": 0.3333, "x": -0.82, "y": 9.86 },
+					{ "time": 0.5, "y": 6.19 }
+				],
+				"scale": [
+					{},
+					{ "time": 0.1667, "x": 1.165, "y": 1.018 },
+					{ "time": 0.3333, "x": 0.783, "y": 1.276 },
+					{ "time": 0.5 }
+				]
+			},
+			"bone18": {
+				"rotate": [
+					{ "value": 0.86 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.1667, "x": 0.74, "y": 1.78 },
+					{ "time": 0.3667, "x": 0.07, "y": -0.68 },
+					{ "time": 0.5 }
+				]
+			},
+			"bone19a": {
+				"rotate": [
+					{
+						"value": -16.98,
+						"curve": [ 0.327, -44.35, 0.355, -4.81 ]
+					},
+					{ "time": 0.5, "value": -16.98 }
+				]
+			},
+			"bone20a": {
+				"rotate": [
+					{
+						"value": -3.55,
+						"curve": [ 0.3, -36.25, 0.345, 13.41 ]
+					},
+					{ "time": 0.5, "value": -3.55 }
+				]
+			},
+			"bone": {
+				"translate": [
+					{},
+					{ "time": 0.1667, "y": 0.25 },
+					{ "time": 0.3333, "y": -0.13 },
+					{ "time": 0.5 }
+				],
+				"scale": [
+					{},
+					{ "time": 0.1667, "x": 1.018, "y": 1.005 },
+					{ "time": 0.3333, "x": 0.981, "y": 1.01 },
+					{ "time": 0.5 }
+				]
+			},
+			"bone6": {
+				"rotate": [
+					{ "value": 20.36 }
+				]
+			},
+			"bone7": {
+				"rotate": [
+					{ "value": -33.37 }
+				],
+				"translate": [
+					{ "x": 3.08, "y": 5.2 }
+				]
+			},
+			"bone21": {
+				"rotate": [
+					{
+						"value": -10.81,
+						"curve": [ 0.236, -0.2, 0.321, -18.84 ]
+					},
+					{ "time": 0.5, "value": -10.81 }
+				]
+			},
+			"bone19b": {
+				"rotate": [
+					{
+						"curve": [ 0.065, 16.97, 0.208, -8.46 ]
+					},
+					{
+						"time": 0.2667,
+						"value": -11.22,
+						"curve": [ 0.381, -16.65, 0.417, -21.55 ]
+					},
+					{ "time": 0.5 }
+				]
+			},
+			"bone20b": {
+				"rotate": [
+					{
+						"curve": [ 0.082, 9.71, 0.156, -3.06 ]
+					},
+					{
+						"time": 0.2667,
+						"value": -11.25,
+						"curve": [ 0.342, -16.83, 0.405, -11.2 ]
+					},
+					{ "time": 0.5 }
+				]
+			}
+		}
+	},
+	"stand": {
+		"bones": {
+			"bone": {
+				"scale": [
+					{},
+					{ "time": 0.2333, "x": 0.994, "y": 0.994 },
+					{ "time": 0.4667, "x": 0.964, "y": 1.017 },
+					{ "time": 0.6667 }
+				]
+			},
+			"bone2": {
+				"rotate": [
+					{},
+					{ "time": 0.2333, "value": 1.85 },
+					{ "time": 0.6667 }
+				]
+			},
+			"bone3": {
+				"rotate": [
+					{},
+					{ "time": 0.2333, "value": -3.75 },
+					{ "time": 0.6667 }
+				]
+			},
+			"bone4": {
+				"rotate": [
+					{},
+					{ "time": 0.3667, "value": -3.56 },
+					{ "time": 0.6667 }
+				]
+			},
+			"bone5": {
+				"rotate": [
+					{},
+					{ "time": 0.3333, "value": 8.8 },
+					{ "time": 0.6667 }
+				]
+			},
+			"bone6": {
+				"scale": [
+					{},
+					{ "time": 0.3, "x": 0.972 },
+					{ "time": 0.3667, "x": 0.97, "y": 1.035 },
+					{ "time": 0.6667 }
+				]
+			},
+			"bone7": {
+				"translate": [
+					{
+						"curve": [ 0.231, -4.3, 0.439, 4.23, 0.215, -3.12, 0.418, 3.62 ]
+					},
+					{ "time": 0.6667 }
+				],
+				"scale": [
+					{},
+					{ "time": 0.3333, "x": 0.953, "y": 1.043 },
+					{ "time": 0.6667 }
+				]
+			},
+			"bone8": {
+				"rotate": [
+					{},
+					{ "time": 0.2333, "value": -1.94 },
+					{ "time": 0.6667 }
+				]
+			},
+			"bone10": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": 0.48 },
+					{ "time": 0.5, "value": -0.08 },
+					{ "time": 0.6667 }
+				]
+			},
+			"bone11": {
+				"translate": [
+					{},
+					{ "time": 0.2, "x": 0.75, "y": -0.2 },
+					{ "time": 0.6667 }
+				]
+			},
+			"bone12": {
+				"rotate": [
+					{},
+					{ "time": 0.2333, "value": -2.13 },
+					{ "time": 0.6667 }
+				]
+			},
+			"bone14": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": -0.57 },
+					{ "time": 0.5, "value": -1.88 },
+					{ "time": 0.6667 }
+				]
+			},
+			"bone15": {
+				"translate": [
+					{},
+					{ "time": 0.2, "x": 0.43, "y": -0.64 },
+					{ "time": 0.6667 }
+				]
+			},
+			"bone18": {
+				"rotate": [
+					{},
+					{ "time": 0.3333, "value": -3.16 },
+					{ "time": 0.6667 }
+				],
+				"scale": [
+					{
+						"curve": [ 0.222, 1.042, 0.449, 0.958, 0.214, 1.065, 0.446, 0.933 ]
+					},
+					{ "time": 0.6667 }
+				]
+			},
+			"bone19a": {
+				"rotate": [
+					{
+						"curve": [ 0.078, -1.67, 0.156, -3.61 ]
+					},
+					{
+						"time": 0.2333,
+						"value": -3.61,
+						"curve": [ 0.378, -3.61, 0.412, 5.49 ]
+					},
+					{ "time": 0.6667 }
+				]
+			},
+			"bone20a": {
+				"rotate": [
+					{
+						"curve": [ 0.077, -2.55, 0.156, -2.18 ]
+					},
+					{
+						"time": 0.2333,
+						"value": -2.18,
+						"curve": [ 0.378, -2.18, 0.39, 9.14 ]
+					},
+					{ "time": 0.6667 }
+				]
+			},
+			"bone21": {
+				"rotate": [
+					{
+						"curve": [ 0.067, 1.25, 0.133, 0.72 ]
+					},
+					{
+						"time": 0.2,
+						"value": 0.72,
+						"curve": [ 0.278, 0.72, 0.356, -2.64 ]
+					},
+					{
+						"time": 0.4333,
+						"value": -2.64,
+						"curve": [ 0.511, -2.64, 0.589, -1.46 ]
+					},
+					{ "time": 0.6667 }
+				]
+			},
+			"bone19b": {
+				"rotate": [
+					{
+						"curve": [ 0.144, 0, 0.289, -7.31 ]
+					},
+					{
+						"time": 0.4333,
+						"value": -7.31,
+						"curve": [ 0.511, -7.31, 0.589, 0 ]
+					},
+					{ "time": 0.6667 }
+				]
+			},
+			"bone20b": {
+				"rotate": [
+					{
+						"curve": [ 0.143, -4.96, 0.239, -6.72 ]
+					},
+					{
+						"time": 0.4333,
+						"value": -5.12,
+						"curve": [ 0.511, -4.48, 0.541, 4.35 ]
+					},
+					{ "time": 0.6667 }
+				],
+				"translate": [
+					{
+						"curve": [ 0.222, 0, 0.444, 0, 0.222, 0, 0.444, 0 ]
+					},
+					{ "time": 0.6667 }
+				]
+			}
+		},
+		"attachments": {
+			"default": {
+				"enemy_5_hairb": {
+					"enemy_5_hairb": {
+						"deform": [
+							{
+								"time": 0.4333,
+								"vertices": [ -0.03634, 0.29303, 0.04559, 0.29306, 0.07127, 0.26957, 0.08278, 0.2039, 0.08299, 0.11729, 0.08318, 0.03067, 0.08322, 0.03068, 0.08353, -0.10063, 0.08373, -0.18199, 0.0498, -0.31791, 0.01408, -0.35355, -0.06953, -0.21597, -0.08321, -0.09743, -0.08317, -0.09742, -0.09033, 0.01797, -0.0903, 0.01797, -0.09747, 0.13335, -0.09743, 0.13336, -0.07586, 0.25427, -0.00549, 0.13859, -0.00428, -7.9E-4, -0.00424, -7.9E-4, -0.00204, -0.12603, 0.0062, -0.226 ]
+							}
+						]
+					}
+				}
+			}
+		}
+	}
+}
+}

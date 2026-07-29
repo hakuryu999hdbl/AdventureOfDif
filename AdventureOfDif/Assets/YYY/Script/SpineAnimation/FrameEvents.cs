@@ -82,5 +82,11 @@ public class FrameEvents : MonoBehaviour
         audioS.PlayOneShot(AudioManager.Attack_hit3);
     }//这个因为非常像抓取的声音
 
+
+    public void _SE_falldown()
+    {
+        audioS.PlayOneShot(AudioManager.SE_falldown);
+    }//这个由Player和Enemy中代码各自调用
+
     #endregion
 }

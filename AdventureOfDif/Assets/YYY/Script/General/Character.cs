@@ -81,7 +81,9 @@ public class Character : MonoBehaviour, IDamageable
             return;
         }
 
-
+        // Enemy_5 悬空期间无敌
+        if (enemy != null && enemy.IgnoreIncomingDamage())
+            return;
 
         if (currentHealth - attacker.damage > 0)
         {

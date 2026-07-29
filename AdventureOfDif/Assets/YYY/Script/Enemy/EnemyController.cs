@@ -830,7 +830,8 @@ public class EnemyController : MonoBehaviour
                 downTimer = knockDownTime;
 
                 anim.SetBool("down", true);
-
+                //AudioManager.Instance.PlayFX(AudioManager.Instance.SE_falldown);//落地声
+                frameEvents._SE_falldown();//落地声
                 Debug.Log("落地，进入倒地状态");
             }
         }
@@ -1072,10 +1073,39 @@ public class EnemyController : MonoBehaviour
 
     public void OnDie()
     {
+        if (isDead) return;
+
         PlayBloodEffect();
 
         isDead = true;
+
         StopMove();//死亡停
+
+
+        // 关闭所有攻击碰撞体
+        if (attack_Collider_1 != null)
+            attack_Collider_1.SetActive(false);
+
+        if (attack_Collider_2 != null)
+            attack_Collider_2.SetActive(false);
+
+        if (Catch_Collider != null)
+            Catch_Collider.SetActive(false);
+
+        // 强制清理受击、倒地和攻击参数
+        anim.ResetTrigger("attack");
+
+        anim.SetBool("hit", false);
+        anim.SetBool("down", false);
+
+        anim.SetInteger("HitType", 0);
+        anim.SetInteger("state", 0);
+        anim.SetInteger("skillState", 0);
+
+        // 最后再打开死亡
+        anim.SetBool("dead", true);
+
+
 
 
         SetStateColor(deadColor);
@@ -1086,6 +1116,13 @@ public class EnemyController : MonoBehaviour
         Destroy(Enemy_All);
     }
 
+
+
+
+    public virtual bool IgnoreIncomingDamage()
+    {
+        return false;
+    }//无敌状态
 
 
     #endregion
@@ -1100,7 +1137,8 @@ public class EnemyController : MonoBehaviour
     public Color hitColor = Color.yellow;
     public Color ChargeSkillColor = new Color(1f, 0.6f, 0.7f);//粉色
     public Color AimThrowSkillColor = Color.cyan;
-    public Color blockColor = Color.blue;
+    public Color blockColor = new Color(1f, 0.5f, 0.4f);// 珊瑚橙
+    public Color JumpStrikeColor = new Color(0.5f, 0.9f, 0.6f);  // 薄荷绿
     public Color deadColor = Color.gray;
 
     public void SetStateColor(Color color)

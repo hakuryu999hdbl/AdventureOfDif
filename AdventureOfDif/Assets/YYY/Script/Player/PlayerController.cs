@@ -379,8 +379,8 @@ public class PlayerController : MonoBehaviour
                 downTimer = knockDownTime;
 
                 playerAnimation.anim.SetBool("down", true);
-
-
+                frameEvents._SE_falldown();//落地声
+                //AudioManager.Instance.PlayFX(AudioManager.Instance.SE_falldown);//落地声
             }
         }
 
