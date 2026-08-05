@@ -2023,10 +2023,8 @@ MonoBehaviour:
   Go:
   - {fileID: 1846613206743145644}
   enemyPrefabs:
-  - {fileID: 6724541046560202250, guid: 69b2f238488e7f64fa4ad1c03c84f06e, type: 3}
-  - {fileID: 6724541046560202250, guid: 69b2f238488e7f64fa4ad1c03c84f06e, type: 3}
-  - {fileID: 6724541046560202250, guid: 69b2f238488e7f64fa4ad1c03c84f06e, type: 3}
-  - {fileID: 6724541046560202250, guid: 69b2f238488e7f64fa4ad1c03c84f06e, type: 3}
+  - {fileID: 1745234303257194375, guid: c6c03b58ab37e854e97fcdda26d40737, type: 3}
+  - {fileID: 1745234303257194375, guid: c6c03b58ab37e854e97fcdda26d40737, type: 3}
   spawnPoints:
   - {fileID: 5010056815139290799}
   - {fileID: 6047196566594091624}

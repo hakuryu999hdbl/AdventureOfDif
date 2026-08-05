@@ -486,6 +486,12 @@ MonoBehaviour:
   throwAimTime: 1
   throwTargetPos: {x: 0, y: 0}
   throwObject: {fileID: 2092918576498093091}
+  isCatching: 0
+  capturedPlayer: {fileID: 0}
+  catchCollider: {fileID: 0}
+  catchCooldown: 1
+  nextCatchTime: 0
+  Catch_Collider: {fileID: 0}
   minWalkTime: 1.5
   maxWalkTime: 4
   minIdleTime: 1
@@ -513,6 +519,7 @@ MonoBehaviour:
   Strike_Effect: {fileID: 4078472887520687969}
   Hit_Effect: {fileID: 6190120682296554489}
   frameEvents: {fileID: 6671982675141463924}
+  character: {fileID: 9125160553215111691}
   hurtPhase: 0
   Enemy_All: {fileID: 1772945055527555024}
   stateViewer: {fileID: 7306271281226040917}
@@ -521,6 +528,8 @@ MonoBehaviour:
   hitColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   ChargeSkillColor: {r: 1, g: 0.6, b: 0.7, a: 1}
   AimThrowSkillColor: {r: 0, g: 1, b: 1, a: 1}
+  blockColor: {r: 1, g: 0.5, b: 0.4, a: 1}
+  JumpStrikeColor: {r: 0.5, g: 0.9, b: 0.6, a: 1}
   deadColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!114 &9125160553215111691
 MonoBehaviour:

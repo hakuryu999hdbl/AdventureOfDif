@@ -706,6 +706,8 @@ public class UIManager : MonoBehaviour
             
             firstSelected = EventSystem.current.currentSelectedGameObject;//记录上一次你选中的位置
             EventSystem.current.SetSelectedGameObject(null);
+
+
         }
         else
         {
@@ -714,6 +716,8 @@ public class UIManager : MonoBehaviour
             inputControl.Enable();
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(firstSelected);
+
+
         }
 
         //AudioManager.instance.AudioPlay(AudioManager.instance.SE_Clothes);

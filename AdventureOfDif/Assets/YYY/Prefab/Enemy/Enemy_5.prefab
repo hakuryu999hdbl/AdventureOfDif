@@ -1029,6 +1029,7 @@ MonoBehaviour:
   Strike_Effect: {fileID: 7118335144566956447}
   Hit_Effect: {fileID: 3029910406576213923}
   frameEvents: {fileID: 4242288999619209670}
+  character: {fileID: 3417939196974422798}
   hurtPhase: 0
   Enemy_All: {fileID: 6586495895601948283}
   stateViewer: {fileID: 2441239794392642040}
@@ -1042,11 +1043,9 @@ MonoBehaviour:
   deadColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   canUseJumpStrike: 1
   jumpAimTime: 1
-  jumpStrikeCooldown: 5
   landingOffset: {x: 0, y: 0}
   jumpAimTarget: {fileID: 8124093733062802302}
   jumpStrikeCollider: {fileID: 5944926356558366118}
-  lastJumpStrikeTime: 0
   jumpStrikeTargetPos: {x: 0, y: 0}
   isJumpStrikeUntargetable: 0
 --- !u!114 &3417939196974422798

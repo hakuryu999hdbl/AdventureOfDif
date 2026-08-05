@@ -2691,8 +2691,6 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 1772945055527555024, guid: 775355ec764fe1b4ca0da48454abb954, type: 3}
   - {fileID: 1772945055527555024, guid: 775355ec764fe1b4ca0da48454abb954, type: 3}
-  - {fileID: 1745234303257194375, guid: c6c03b58ab37e854e97fcdda26d40737, type: 3}
-  - {fileID: 171920470387995713, guid: 7eaec87a5aa8e604a83304a0cf696318, type: 3}
   - {fileID: 6724541046560202250, guid: 69b2f238488e7f64fa4ad1c03c84f06e, type: 3}
   - {fileID: 6724541046560202250, guid: 69b2f238488e7f64fa4ad1c03c84f06e, type: 3}
   spawnPoints:
@@ -5063,7 +5061,8 @@ MonoBehaviour:
   Go:
   - {fileID: 8064982603720689349}
   enemyPrefabs:
-  - {fileID: 6586495895601948283, guid: 96907a397df3c7e41bb8a6f755bfa010, type: 3}
+  - {fileID: 6724541046560202250, guid: 69b2f238488e7f64fa4ad1c03c84f06e, type: 3}
+  - {fileID: 1772945055527555024, guid: 775355ec764fe1b4ca0da48454abb954, type: 3}
   spawnPoints:
   - {fileID: 7219935016556181114}
   - {fileID: 8204932246582899151}

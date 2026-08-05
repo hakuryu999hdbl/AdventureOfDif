@@ -935,7 +935,7 @@ public class EnemyController : MonoBehaviour
     public GameObject Hit_Effect;//打击特效
     [Header("主动触发声音")]
     public FrameEvents frameEvents;
-
+    public Character character;//主要是非Attack类直接回血用
 
     //受伤枚举
     public enum HurtPhase
@@ -1109,6 +1109,12 @@ public class EnemyController : MonoBehaviour
 
 
         SetStateColor(deadColor);
+
+
+
+        //给玩家加钱
+        BalanceManager.instance.ChangeMoney(Random.Range(5, 11), false);//更新钱
+
     }
     public GameObject Enemy_All;
     public void DestroyEnemy()

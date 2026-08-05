@@ -530,7 +530,7 @@ public class PlayerController : MonoBehaviour
     #region
     [Header("受伤死亡")]
     public float hurtForce;
-    public GameObject RedScreen;
+    public GameObject RedScreen, GreenScreen;
     public GameObject Effect_Blood;//受伤特效
     public GameObject Strike_Effect;//剑光特效
     public GameObject Hit_Effect;//打击特效
@@ -538,6 +538,11 @@ public class PlayerController : MonoBehaviour
 
     [Header("主动触发声音")]
     public FrameEvents frameEvents;
+    public Character character;//主要是非Attack类直接回血用
+
+
+
+
 
 
     public enum HurtPhase

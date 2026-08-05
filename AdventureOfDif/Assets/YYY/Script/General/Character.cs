@@ -114,6 +114,62 @@ public class Character : MonoBehaviour, IDamageable
 
 
 
+    public void Heal(int amount)
+    {
+        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+
+        //传输Character过去
+        OnHealthChange?.Invoke(this);
+
+        GetComponent<PlayerController>()?.GreenScreen.SetActive(true); // 玩家回血绿屏幕
+
+
+    }//非Attack系的直接回血端口
+
+    public void SaveTempState()
+    {
+        GameFlowData.playerHealth = currentHealth;
+        //GameFlowData.playerSex = currentSex;
+    }//Dif这个项目需要跨场景记录数值
+    public void LoadTempState()
+    {
+        if (!GameFlowData.HasPlayerState)
+        {
+            // 没有临时记录，说明从主菜单开始新游戏
+            currentHealth = maxHealth;
+
+            // 根据你的设计决定初始值
+            //currentSex = 0;
+
+            Debug.Log("没有临时状态，使用新游戏初始数值");
+        }
+        else
+        {
+            currentHealth = Mathf.Clamp(
+                GameFlowData.playerHealth.Value,
+                0,
+                maxHealth
+            );
+
+            //if (GameFlowData.playerSex.HasValue)
+            //{
+            //    currentSex = Mathf.Clamp(
+            //        GameFlowData.playerSex.Value,
+            //        0,
+            //        maxSex
+            //    );
+            //}
+            //
+            //Debug.Log(
+            //    $"恢复临时状态：HP={currentHealth}，Sex={currentSex}"
+            //);
+        }
+
+        //传输Character过去
+        OnHealthChange?.Invoke(this);
+    }//初始跨场景读取数值
+
+
 
 
 

@@ -197,9 +197,12 @@ public class ShopManager : MonoBehaviour
 
     void OnStart()
     {
-        inputControl = new PlayerInputControl();
-        inputControl.UI.Enable();
-        inputControl.UI.Cancel.started += OnCancel;
+
+        //暂时隐藏返回键入口，这个不知道为什么跑到别的区域还能再次触发
+
+        //inputControl = new PlayerInputControl();
+        //inputControl.UI.Enable();
+        //inputControl.UI.Cancel.started += OnCancel;
 
 
     }

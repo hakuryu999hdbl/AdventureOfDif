@@ -10,4 +10,24 @@ public static class GameFlowData
 
     public static bool suppressNextSelectSound = false;//二级菜单按钮选中声音吞掉
     public static bool suppressNextClickSound = false;//商店购买声音吞掉
+
+
+
+    // 临时角色状态
+    public static float? playerHealth = null;
+    public static float? playerSex = null;
+
+
+    //是否存在跨场景临时状态。 //null 表示从主菜单开始的新游戏。
+    public static bool HasPlayerState =>playerHealth.HasValue;
+
+    //开始新游戏时清空
+    public static void ClearRunData()
+    {
+        nextAreaId = null;
+        ShopType = 1;
+
+        playerHealth = null;
+        playerSex = null;
+    }
 }

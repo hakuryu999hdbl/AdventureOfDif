@@ -65,22 +65,22 @@ public class ItemOptionUI : MonoBehaviour,
         switch(itemKey)
         {
             case "Pudding":
-               // UIManager.instance.player.ChangeHealth(100,0);
+                RoomGenerator.instance.player.character.Heal(100);
                 break;
             case "Cola":
-               // UIManager.instance.player.ChangeHealth(200, 0);
+                RoomGenerator.instance.player.character.Heal(200);
                 break;
             case "ChocoBanana":
-               // UIManager.instance.player.ChangeHealth(300, 0);
+                RoomGenerator.instance.player.character.Heal(300);
                 break;
             case "Cone":
-               // UIManager.instance.player.ChangeHealth(500, 0);
+                RoomGenerator.instance.player.character.Heal(500);
                 break;
             case "CreamRoll":
-               // UIManager.instance.player.ChangeHealth(700, 0);
+                RoomGenerator.instance.player.character.Heal(700);
                 break;
             case "FriedCutlet":
-               // UIManager.instance.player.ChangeHealth(1000, 0);
+                RoomGenerator.instance.player.character.Heal(1000);
                 break;
             case "Potion":
                // UIManager.instance.player.ChangeSex(100);

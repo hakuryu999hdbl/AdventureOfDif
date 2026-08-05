@@ -21,7 +21,7 @@ public class RoomGenerator : MonoBehaviour
         //根据当前临时存档读取位置
         switch (GameFlowData.nextAreaId) 
         {
-            default:
+         
             //大路
             case "Area01_1":
             case "Area01_2":
@@ -58,7 +58,7 @@ public class RoomGenerator : MonoBehaviour
                 SetArea(4);
                 break;
 
-           
+            //default:
             //健身房大厅
             case "Area06_1":
             case "Area06_2":
@@ -70,6 +70,17 @@ public class RoomGenerator : MonoBehaviour
             case "Area07_1":
                 SetArea(6);
                 break;
+
+            default:
+                //Debug.LogError(
+                //    $"[RoomGenerator] 无法识别 nextAreaId：'{GameFlowData.nextAreaId}'，" +
+                //    "请检查 AreaExit 的 ExitName 或 GameFlowData 是否被重置。"
+                //);
+
+                // 临时安全出生点，默认健身房大厅
+                GameFlowData.nextAreaId = "Area06_1";
+                SetArea(5);
+                break;
         }
 
        
@@ -80,7 +91,7 @@ public class RoomGenerator : MonoBehaviour
 
 
 
-
+        player.character.LoadTempState();
 
 
         //Invoke("SetEnemy", 1f);
@@ -89,7 +100,7 @@ public class RoomGenerator : MonoBehaviour
         //Invoke("SetEnemy", 2.5f);
         //Invoke("SetEnemy", 3f);
         //Invoke("SetEnemy", 3.5f);
- 
+
     }
 
 
@@ -173,6 +184,12 @@ public class RoomGenerator : MonoBehaviour
 
     public void LoadNextArea() 
     {
+        //当玩家进入下一给场景的时候记录数值
+        player.character.SaveTempState();
+
+
+
+
         SceneTransitionController transition = FindFirstObjectByType<SceneTransitionController>();
 
         if (transition != null)

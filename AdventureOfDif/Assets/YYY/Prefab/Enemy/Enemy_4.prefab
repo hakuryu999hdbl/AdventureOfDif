@@ -1213,6 +1213,7 @@ MonoBehaviour:
   Strike_Effect: {fileID: 2216456779246208045}
   Hit_Effect: {fileID: 2897921482606475134}
   frameEvents: {fileID: 7245573029915506479}
+  character: {fileID: 0}
   hurtPhase: 0
   Enemy_All: {fileID: 171920470387995713}
   stateViewer: {fileID: 3723436780026705940}
@@ -1222,13 +1223,14 @@ MonoBehaviour:
   ChargeSkillColor: {r: 1, g: 0.6, b: 0.7, a: 1}
   AimThrowSkillColor: {r: 0, g: 1, b: 1, a: 1}
   blockColor: {r: 0, g: 0, b: 1, a: 1}
+  JumpStrikeColor: {r: 0.5, g: 0.9, b: 0.6, a: 1}
   deadColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   maxBlockValue: 50
   currentBlockValue: 50
   blockCostMultiplier: 35
   blockBarRoot: {fileID: 2868377908383184220}
   blockBarFill: {fileID: 8844499508830001110}
-  Text_Block: {fileID: 0}
+  Text_Block: {fileID: 4359209356215157794}
   isBlocking: 0
   isCountering: 0
 --- !u!114 &489423793905564578

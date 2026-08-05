@@ -37,7 +37,7 @@ public class MenuManager : MonoBehaviour
     }
     private void Start()
     {
-       // AudioManager.Instance.PlayBGM(AudioManager.Instance.BGM_Theme, true);
+        AudioManager.Instance.PlayBGM(AudioManager.Instance.BGM_Theme, true);
     }
     private void OnEnable()
     {
@@ -124,9 +124,14 @@ public class MenuManager : MonoBehaviour
 
     public void StartGame()
     {
+
+        GameFlowData.ClearRunData();//进入新游戏前清空状态（假如有离开菜单回主菜单，再度重新进入游戏路径）
+
         FindFirstObjectByType<SceneTransitionController>().StartGame("YYY");
 
         //SceneManager.LoadScene("YYY", LoadSceneMode.Single);
+
+
 
     }//开始游戏
 
@@ -174,6 +179,16 @@ public class MenuManager : MonoBehaviour
     {
         Application.OpenURL(Application.persistentDataPath);
     }//打开存档位置文件夹
+
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F8))
+        {
+            OpenSaveURL();
+        }
+    }
+
 
 
     public void Delete_All() 
