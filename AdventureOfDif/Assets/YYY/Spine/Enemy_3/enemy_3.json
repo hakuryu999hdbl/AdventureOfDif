@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "y53GeT5m7+U",
+	"hash": "mZ6yNXBnNmk",
 	"spine": "4.2.42",
 	"x": -77.15,
 	"y": -5.83,
@@ -272,7 +272,165 @@
 			}
 		}
 	},
-	"attack_ready": {
+	"attack_ready_1": {
+		"slots": {
+			"enemy_3_head_1": {
+				"attachment": [
+					{ "time": 0.1667, "name": "enemy_3_head_1" },
+					{ "time": 0.2333, "name": "enemy_3_head_3" }
+				]
+			},
+			"enemy_3_leftarm": {
+				"attachment": [
+					{ "time": 0.2333, "name": "enemy_3_leftopen" }
+				]
+			},
+			"enemy_3_lefthand": {
+				"attachment": [
+					{ "time": 0.2333 }
+				]
+			},
+			"enemy_3_rightarm": {
+				"attachment": [
+					{ "time": 0.2333, "name": "enemy_3_rightopen" }
+				]
+			},
+			"enemy_3_righthand": {
+				"attachment": [
+					{ "time": 0.2333 }
+				]
+			}
+		},
+		"bones": {
+			"bone7": {
+				"rotate": [
+					{},
+					{ "time": 0.2333, "value": 5.31 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.1667, "x": 4.22 },
+					{ "time": 0.2333, "x": -3.84, "y": 4.22 }
+				]
+			},
+			"bone": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": -7.39 },
+					{ "time": 0.2333, "value": 1.47 },
+					{ "time": 0.3667, "value": -1.85 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.3, "x": 0.44, "y": 0.32 },
+					{ "time": 0.3667, "x": 1.2, "y": 0.19 }
+				]
+			},
+			"bone2": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": 19.91 },
+					{ "time": 0.2333, "value": -29.65 },
+					{ "time": 0.3667, "value": -9.59 }
+				]
+			},
+			"bone3": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": -19.04 },
+					{ "time": 0.2333, "value": 43.89 }
+				]
+			},
+			"bone4": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": -6 },
+					{ "time": 0.2333, "value": 18.64 },
+					{ "time": 0.3667, "value": 4.18 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.3, "x": -3.91, "y": -1.4 }
+				]
+			},
+			"bone5": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": 25.02 },
+					{ "time": 0.2333, "value": -15.6 }
+				]
+			},
+			"bone6": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": -0.8 },
+					{ "time": 0.3, "value": 9.04 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.1667, "x": -1.96, "y": -0.36 },
+					{ "time": 0.3, "x": -0.15, "y": -0.01 },
+					{ "time": 0.3667 }
+				]
+			},
+			"bone8": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": -12.14 },
+					{ "time": 0.2333, "value": -11.14 }
+				]
+			},
+			"bone9": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": 14.26 },
+					{ "time": 0.2333, "value": 16.18 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.1667, "y": 0.33 },
+					{ "time": 0.2333, "x": 1.86, "y": 0.47 }
+				]
+			},
+			"bone10": {
+				"rotate": [
+					{},
+					{ "time": 0.2333, "value": -6 }
+				]
+			},
+			"bone11": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": -1.55 },
+					{ "time": 0.2333, "value": -9.77 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.1667, "x": 1.19, "y": 0.22 }
+				]
+			},
+			"bone12": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": -11.79 },
+					{ "time": 0.2333, "value": 19.79 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.1667, "x": 0.48, "y": -0.89 },
+					{ "time": 0.2333, "x": 2.15, "y": 0.31 }
+				]
+			},
+			"bone13": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "value": 4.18 },
+					{ "time": 0.2333, "value": -12.41 }
+				]
+			}
+		}
+	},
+	"attack_ready_2": {
 		"slots": {
 			"enemy_3_head_1": {
 				"attachment": [

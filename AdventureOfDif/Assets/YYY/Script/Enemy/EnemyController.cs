@@ -102,9 +102,9 @@ public class EnemyController : MonoBehaviour
         {
             attackList.Clear();
             targetPoint = null;
-            CleanState();
+            CleanState();//玩家死后强制停战
             return;
-        }//玩家死后强制停战
+        }
 
         currentState.OnUpdate(this);//每帧执行状态
         anim.SetInteger("state", animState);
@@ -151,6 +151,17 @@ public class EnemyController : MonoBehaviour
         SetAnimState(0);
         anim.SetInteger("state", 0);
         anim.ResetTrigger("attack");
+        anim.ResetTrigger("catchSuccess");
+
+
+        // ★清除抓取尝试窗口
+        if (Catch_Collider != null)
+            Catch_Collider.SetActive(false);
+
+        if (catchCollider != null)
+            catchCollider.ResetCatch();
+
+
         StopMove();
 
 
@@ -449,6 +460,8 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
+        // ===== 抓取正式成立 =====
+
         isCatching = true;
         capturedPlayer = player;
 
@@ -458,19 +471,19 @@ public class EnemyController : MonoBehaviour
 
 
         // 确保其他攻击碰撞体不会残留
-        if (attack_Collider_1 != null)
-            attack_Collider_1.SetActive(false);
-
-        if (attack_Collider_2 != null)
-            attack_Collider_2.SetActive(false);
 
         if (Catch_Collider != null)
             Catch_Collider.SetActive(false);
-
+            catchCollider.ResetCatch();
 
         player.EnterCapturedState();//玩家进入透明
 
         frameEvents._Attack_pick();//抓取声音
+
+
+        // ★关键：
+        // 从 attack_ready_2 立即切到 attack_throw
+        anim.SetTrigger("catchSuccess");
 
         Debug.Log("抓住玩家：" + capturedPlayer.name);
     }
@@ -480,7 +493,7 @@ public class EnemyController : MonoBehaviour
         // 不是有效抓取状态时，旧动画事件直接无视
         if (!isCatching || capturedPlayer == null)
         {
-            CancelCatch(false);
+            //CancelCatch(false);
             return;
         }
 
@@ -492,7 +505,7 @@ public class EnemyController : MonoBehaviour
         float dir = transform.localScale.x > 0 ? 1f : -1f;
 
         // 先结束敌人抓取状态，再恢复玩家
-        isCatching = false;
+        //isCatching = false;
         nextCatchTime = Time.time + catchCooldown;
 
         if (catchCollider != null)
@@ -503,34 +516,68 @@ public class EnemyController : MonoBehaviour
 
         player.ExitCapturedState(new Vector2(6f * dir, 4f));
 
-        SetAnimState(0);
-        TransitionToState(patrolState);
+        //
+        //SetAnimState(0);
+        //TransitionToState(patrolState);
     }
 
-
-    public void CancelCatch(bool releasePlayer)
+    public void CatchAnimationOver()
     {
-        // 先关闭抓取碰撞体，防止本帧继续触发
+        if (!isCatching)
+            return;
+
+        isCatching = false;
+        capturedPlayer = null;
+
         if (Catch_Collider != null)
             Catch_Collider.SetActive(false);
 
         if (catchCollider != null)
             catchCollider.ResetCatch();
 
-        if (capturedPlayer != null)
-        {
-            if (releasePlayer && capturedPlayer.isCaptured)
-            {
-                // 中断抓取时只恢复玩家，不给予摔出力量
-                capturedPlayer.ExitCapturedState(Vector2.zero);
-            }
+        SetAnimState(0);
 
-            capturedPlayer = null;
+        // 玩家还在敌人索敌范围
+        if (attackList != null && attackList.Count > 0)
+        {
+            TransitionToState(attackState);
+        }
+        else
+        {
+            TransitionToState(patrolState);
         }
 
-        isCatching = false;
-        nextCatchTime = Time.time + catchCooldown;
-    }// 强制取消当前抓取，并保证玩家恢复显示。
+        Debug.Log("抓取动画结束");
+    }
+
+
+
+
+
+
+    //public void CancelCatch(bool releasePlayer)
+    //{
+    //    // 先关闭抓取碰撞体，防止本帧继续触发
+    //    if (Catch_Collider != null)
+    //        Catch_Collider.SetActive(false);
+    //
+    //    if (catchCollider != null)
+    //        catchCollider.ResetCatch();
+    //
+    //    if (capturedPlayer != null)
+    //    {
+    //        if (releasePlayer && capturedPlayer.isCaptured)
+    //        {
+    //            // 中断抓取时只恢复玩家，不给予摔出力量
+    //            capturedPlayer.ExitCapturedState(Vector2.zero);
+    //        }
+    //
+    //        capturedPlayer = null;
+    //    }
+    //
+    //    isCatching = false;
+    //    nextCatchTime = Time.time + catchCooldown;
+    //}// 强制取消当前抓取，并保证玩家恢复显示。
 
 
 
@@ -970,8 +1017,8 @@ public class EnemyController : MonoBehaviour
 
 
 
-        // 受击瞬间强制退出攻击动画层
-        CleanState();
+       
+        CleanState(); // 受击瞬间强制退出攻击动画层
 
 
 

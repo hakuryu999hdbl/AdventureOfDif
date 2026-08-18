@@ -180,7 +180,7 @@ public class CharacterSkin : MonoBehaviour
         }
         if (enemyController != null)
         {
-            if (enemyController.isDead == false &&!enemyController.isHurt &&!enemyController.isCatching) { enemyController.attack_Collider_1.SetActive(true); }//我方和敌方被击倒期间无法发出攻击碰撞体
+            if (enemyController.isDead == false &&!enemyController.isHurt ) { enemyController.attack_Collider_1.SetActive(true); }//我方和敌方被击倒期间无法发出攻击碰撞体
 
         }
 
@@ -196,7 +196,7 @@ public class CharacterSkin : MonoBehaviour
         }
         if (enemyController != null)
         {
-            if (enemyController.isDead == false && !enemyController.isHurt && !enemyController.isCatching) { enemyController.attack_Collider_2.SetActive(true); }//我方和敌方被击倒期间无法发出攻击碰撞体
+            if (enemyController.isDead == false && !enemyController.isHurt) { enemyController.attack_Collider_2.SetActive(true); }//我方和敌方被击倒期间无法发出攻击碰撞体
 
         }
 
@@ -359,11 +359,11 @@ public class CharacterSkin : MonoBehaviour
             enemyController.Catch_Collider.SetActive(true);
         }
 
-        CancelInvoke(nameof(HideCatch));//以防万一？
-
-        Invoke("HideCatch", 0.2f);
+        //CancelInvoke(nameof(HideCatch));//以防万一？
+        //
+        //Invoke("HideCatch", 0.2f);
     }
-    void HideCatch()
+    public void HideCatch()
     {
         if (enemyController != null)
         {
@@ -379,6 +379,17 @@ public class CharacterSkin : MonoBehaviour
 
         }
     }
+
+    public void OnCatchAnimationOver() 
+    {
+        if (enemyController != null)
+        {
+            enemyController.CatchAnimationOver();
+
+        }
+    }
+
+
 
     #endregion
 
