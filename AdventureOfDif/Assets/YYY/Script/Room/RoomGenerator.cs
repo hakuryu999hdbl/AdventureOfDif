@@ -78,8 +78,11 @@ public class RoomGenerator : MonoBehaviour
                 //);
 
                 // 临时安全出生点，默认健身房大厅
-                GameFlowData.nextAreaId = "Area06_1";
-                SetArea(5);
+                // GameFlowData.nextAreaId = "Area06_1";
+                // SetArea(5);
+
+                SetArea(0);
+
                 break;
         }
 

@@ -391,6 +391,15 @@ public class CharacterSkin : MonoBehaviour
 
 
 
+    public void OnStartPlayerStruggle() 
+    {
+        if (enemyController != null)
+        {
+            enemyController.StartPlayerStruggle();
+
+        }
+    }//开启玩家挣扎
+
     #endregion
 
 

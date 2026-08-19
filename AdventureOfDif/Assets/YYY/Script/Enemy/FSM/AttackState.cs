@@ -37,6 +37,25 @@ public class AttackState : EnemyBaseState
             return;
         }//特殊增加进入受击状态入口
 
+
+
+        #region 当玩家处于挣扎状态，敌人的挡板
+        PlayerController player = RoomGenerator.instance.player;
+
+        if (player != null &&
+            player.isCaptured &&
+            enemy.capturedPlayer != player)
+        {
+            enemy.StopMove();
+            enemy.SetAnimState(0);
+            return;
+        }
+
+        #endregion
+
+
+
+
         enemy.attackList.RemoveAll(t => t == null || !t.CompareTag("Player"));
 
         if (enemy.attackList.Count <= 0)

@@ -743,6 +743,12 @@ MonoBehaviour:
   maxJumpHeight: 3
   isCaptured: 0
   playerCollider: {fileID: 0}
+  isStruggling: 0
+  catchingEnemy: {fileID: 0}
+  currentStruggle: 0
+  maxStruggle: 1000
+  currentSex: 0
+  maxSex: 1000
   hurtForce: 0
   RedScreen: {fileID: 1626240549}
   GreenScreen: {fileID: 2124310984}

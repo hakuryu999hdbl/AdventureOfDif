@@ -55,11 +55,23 @@ public class PlayerController : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (isDead|| isCaptured)
+        if (isDead || isCaptured)
         {
             rb.velocity = Vector2.zero;
+
+
+            if (isStruggling)
+            {
+                //ChangeStruggle(-1);
+                ChangeSex(2);
+            }//被捕获
+
+
             return;
         }//被抓住/死亡后不能滑行
+
+
+        ChangeSex(-1);//自然下降淫乱值
 
 
         if (isHurt)
@@ -85,7 +97,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-      
+
 
         CheckState();
 
@@ -522,6 +534,84 @@ public class PlayerController : MonoBehaviour
 
 
 
+    [Header("被抓挣扎")]
+    public bool isStruggling;//状态似乎要和抓了就扔区别开
+
+    public EnemyController catchingEnemy;
+
+    public void StartStruggle(EnemyController enemy)
+    {
+        // 已经在挣扎了，不要重复清零
+        if (isStruggling)
+            return;
+
+
+        isStruggling = true;
+        currentStruggle = 0;
+        catchingEnemy = enemy;
+
+        // 打开挣扎UI
+        UIManager.instance.ShowStruggleBar();
+        UIManager.instance.UpdateStruggleBar(
+            currentStruggle,
+            maxStruggle
+        );
+
+
+    }//开启挣扎
+
+    public void EndStruggle()
+    {
+        isStruggling = false;
+        currentStruggle = 0;
+
+
+        //关闭UI
+        UIManager.instance.HideStruggleBar();
+
+        catchingEnemy = null;
+
+
+    }//关闭挣扎
+
+    [Header("挣扎值")]
+    public int currentStruggle;
+    public int maxStruggle;
+
+    public void ChangeStruggle(int amount)
+    {
+
+        currentStruggle = Mathf.Clamp(currentStruggle + amount, 0, maxStruggle);
+        UIManager.instance.UpdateStruggleBar(currentStruggle, maxStruggle);
+
+        if (currentStruggle >= maxStruggle)
+        {
+            Debug.Log("挣扎成功");
+            catchingEnemy.BreakFreeFromPlayer(this);
+
+        }
+    }
+
+    [Header("淫乱值")]
+    public int currentSex;
+    public int maxSex;
+
+    public void ChangeSex(int amount)
+    {
+
+        currentSex = Mathf.Clamp(currentSex + amount, 0, maxSex);
+        UIManager.instance.UpdateSexBar(currentSex, maxSex);
+
+        if (currentSex >= maxSex)
+        {
+            Debug.Log("触发结局CG");
+
+
+        }
+    }
+
+
+
     #endregion
 
     /// <summary>
@@ -560,11 +650,14 @@ public class PlayerController : MonoBehaviour
     public void OnTakeDamage(Attack attack)
     {
 
-       
+
 
         if (isDead) return;
         if (isHurt) return;
         if (attack == null) return;
+
+        if (isStruggling) return;
+
 
         if (isGrabbing)
         {
@@ -720,11 +813,22 @@ public class PlayerController : MonoBehaviour
 
     private void OnAttackStarted(InputAction.CallbackContext ctx)
     {
+        // 被抓挣扎时，攻击键只负责挣扎
+        if (isStruggling)
+        {
+            ChangeStruggle(100);
+            return;
+        }
+
         attackPressTime = Time.time;
     }
 
     private void OnAttackCanceled(InputAction.CallbackContext ctx)
     {
+        if (isStruggling)
+            return;
+
+
         float holdTime = Time.time - attackPressTime;
 
         if (holdTime >= chargeThreshold)
@@ -733,6 +837,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+
             PlayerAttack(ctx);//单按一下
         }
     }
@@ -749,12 +854,20 @@ public class PlayerController : MonoBehaviour
             nextAttack = Time.time + attackRate;
         }
     }
+
+
     void PlayerAttack(InputAction.CallbackContext obj)
     {
 
         if (isDead) return;
         if (isHurt) return;
         if (isCaptured) return;//抓取封锁
+
+
+
+
+
+
 
         if (isGrabbing)
         {
@@ -774,7 +887,7 @@ public class PlayerController : MonoBehaviour
 
             //当这些动画在播放的时候
             AnimatorStateInfo state = playerAnimation.anim.GetCurrentAnimatorStateInfo(0);
-            if (state.IsName("attack_1") ||state.IsName("attack_2") ||state.IsName("attack_3") ||state.IsName("attack_4"))
+            if (state.IsName("attack_1") || state.IsName("attack_2") || state.IsName("attack_3") || state.IsName("attack_4"))
             {
                 return;
             }
@@ -801,7 +914,7 @@ public class PlayerController : MonoBehaviour
     private Coroutine dashAttackCoroutine;//保存冲刺协程引用
     private IEnumerator DashAttack()
     {
-       
+
 
 
 
@@ -870,7 +983,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-       
+
 
         return hit.collider != null;
     }

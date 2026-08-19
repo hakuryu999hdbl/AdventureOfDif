@@ -222,8 +222,18 @@ public class EnemyController : MonoBehaviour
                 }
                 else
                 {
-                    anim.SetInteger("attackType", Random.Range(1, 3));
-                    anim.SetTrigger("attack");
+                    if (this is Enemy_3)
+                    {
+                        anim.SetTrigger("catch");
+                    }
+                    else 
+                    {
+
+                        anim.SetInteger("attackType", Random.Range(1, 3));
+                        anim.SetTrigger("attack");
+                    }
+
+
                 }
 
             }
@@ -482,7 +492,7 @@ public class EnemyController : MonoBehaviour
 
 
         // ★关键：
-        // 从 attack_ready_2 立即切到 attack_throw
+        // 从 attack_ready 立即切到 attack_throw/Lewdmove
         anim.SetTrigger("catchSuccess");
 
         Debug.Log("抓住玩家：" + capturedPlayer.name);
@@ -555,29 +565,51 @@ public class EnemyController : MonoBehaviour
 
 
 
-    //public void CancelCatch(bool releasePlayer)
-    //{
-    //    // 先关闭抓取碰撞体，防止本帧继续触发
-    //    if (Catch_Collider != null)
-    //        Catch_Collider.SetActive(false);
-    //
-    //    if (catchCollider != null)
-    //        catchCollider.ResetCatch();
-    //
-    //    if (capturedPlayer != null)
-    //    {
-    //        if (releasePlayer && capturedPlayer.isCaptured)
-    //        {
-    //            // 中断抓取时只恢复玩家，不给予摔出力量
-    //            capturedPlayer.ExitCapturedState(Vector2.zero);
-    //        }
-    //
-    //        capturedPlayer = null;
-    //    }
-    //
-    //    isCatching = false;
-    //    nextCatchTime = Time.time + catchCooldown;
-    //}// 强制取消当前抓取，并保证玩家恢复显示。
+    public void StartPlayerStruggle()
+    {
+        if (!isCatching || capturedPlayer == null)
+            return;
+
+        capturedPlayer.StartStruggle(this);
+    }//开启挣扎
+
+
+    public void BreakFreeFromPlayer(PlayerController player)
+    {
+        if (!isCatching)
+            return;
+
+        if (capturedPlayer != player)
+            return;
+
+        // 先解除双方关系
+        capturedPlayer = null;
+
+        isCatching = false;
+        nextCatchTime = Time.time + catchCooldown;
+
+        if (catchCollider != null)
+            catchCollider.ResetCatch();
+
+        if (Catch_Collider != null)
+            Catch_Collider.SetActive(false);
+
+        // 玩家结束挣扎状态
+        player.EndStruggle();
+
+        // 玩家恢复显示
+        player.ExitCapturedState(Vector2.zero);
+
+
+        // 玩家播放挣脱攻击动画
+        player.playerAnimation.anim.SetTrigger("breakFree");
+
+        // 敌人退出 lewdmove
+        anim.SetTrigger("breakFree");
+
+    }//玩家挣扎值满了后的挣脱
+
+
 
 
 

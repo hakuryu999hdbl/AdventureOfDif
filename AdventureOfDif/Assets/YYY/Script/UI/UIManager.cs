@@ -136,20 +136,17 @@ public class UIManager : MonoBehaviour
     {
         StruggleBar.fillAmount = (float)curAmount / (float)maxAmount;
 
-        if (curAmount <= 0)
-        {
 
-            Struggle.SetActive(false);
-
-        }
-        else
-        {
-
-            Struggle.SetActive(true);
-
-        }
     }
+    public void ShowStruggleBar()
+    {
+        Struggle.SetActive(true);
+    }//单独显示挣扎
 
+    public void HideStruggleBar()
+    {
+        Struggle.SetActive(false);
+    }//单独隐藏挣扎
     #endregion
 
 
