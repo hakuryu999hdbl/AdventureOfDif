@@ -222,7 +222,7 @@ public class EnemyController : MonoBehaviour
                 }
                 else
                 {
-                    if (this is Enemy_3)
+                    if (this is Enemy_4)
                     {
                         anim.SetTrigger("catch");
                     }
