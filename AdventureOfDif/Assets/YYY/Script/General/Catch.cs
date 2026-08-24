@@ -25,7 +25,7 @@ public class Catch : MonoBehaviour
         PlayerController player = other.GetComponent<PlayerController>();
         if (player == null) return;
 
-        if (player.isDead || player.isHurt || player.isCaptured ||player.isDashAttack) return;
+        if (player.isCaptured ||player.isDashAttack) return;
 
         hasCaught = true;
         enemy.StartCatchPlayer(player);

@@ -725,9 +725,9 @@ MonoBehaviour:
   Obstacle_Attack: {fileID: 6657398186620034209, guid: 52f4eb19e9ca652438e182e6224de833,
     type: 3}
   bodyRoot: {fileID: 534242807}
-  hurtGroundFriction: 8
+  hurtGroundFriction: 5
   fakeGravity: 20
-  knockDownTime: 0.35
+  knockDownTime: 8
   useWallBounce: 1
   hurtWallMask:
     serializedVersion: 2

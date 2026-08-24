@@ -213,28 +213,69 @@ public class EnemyController : MonoBehaviour
                 nextAttack = Time.time + attackRate;
 
 
-                // 全体敌人在玩家受伤倒地死亡期间立刻停手
-                if (RoomGenerator.instance.player.isDead || RoomGenerator.instance.player.isHurt)
+                PlayerController player = RoomGenerator.instance.player;
+
+
+                // 玩家死亡：只允许抓取
+                if (player.isDead)
                 {
-                    Debug.Log("阻止攻击");
-                    SetAnimState(0);
-                    TransitionToState(patrolState);
+                    anim.SetTrigger("catch");
+                    return;
                 }
-                else
+
+                // 玩家倒地：只允许抓取
+                if (player.isHurt &&
+                    player.hurtPhase == PlayerController.HurtPhase.Down)
                 {
-                    if (this is Enemy_5)
-                    {
-                        anim.SetTrigger("catch");
-                    }
-                    else 
-                    {
-
-                        anim.SetInteger("attackType", Random.Range(1, 3));
-                        anim.SetTrigger("attack");
-                    }
-
-
+                    anim.SetTrigger("catch");
+                    return;
                 }
+
+                // 其他受击过程：暂时停手
+                if (player.isHurt)
+                {
+                    return;
+                }
+
+                // 正常状态：普通攻击
+                anim.SetInteger(
+                    "attackType",
+                    Random.Range(1, 3)
+                );
+
+                anim.SetTrigger("attack");
+
+
+
+
+                // // 死亡：完全停止攻击
+                // if (player.isDead)
+                // {
+                //     SetAnimState(0);
+                //     TransitionToState(patrolState);
+                //     return;
+                // }
+                //
+                // // 正在受击/飞行/爬起：不能攻击
+                // // 但是 Down 是特殊情况，允许抓取
+                // if (player.isHurt &&
+                //     player.hurtPhase != PlayerController.HurtPhase.Down)
+                // {
+                //     SetAnimState(0);
+                //     TransitionToState(patrolState);
+                //     return;
+                // }
+                //
+                // // 玩家倒地：所有敌人统一尝试抓取
+                // if (player.hurtPhase == PlayerController.HurtPhase.Down)
+                // {
+                //     anim.SetTrigger("catch");
+                // }
+                // else
+                // {
+                //     anim.SetInteger("attackType", Random.Range(1, 3));
+                //     anim.SetTrigger("attack");
+                // }
 
             }
         }
@@ -462,8 +503,8 @@ public class EnemyController : MonoBehaviour
         if (capturedPlayer != null) return;
         if (Time.time < nextCatchTime) return;
         if (player == null ||
-            player.isDead ||
-            player.isHurt ||
+           // player.isDead ||
+           // player.isHurt ||
             player.isCaptured ||
             player.isDashAttack)
         {

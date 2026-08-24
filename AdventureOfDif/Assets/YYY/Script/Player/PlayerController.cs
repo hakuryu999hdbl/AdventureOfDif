@@ -63,8 +63,13 @@ public class PlayerController : MonoBehaviour
             if (isStruggling)
             {
                 //ChangeStruggle(-1);
-                ChangeSex(2);
             }//被捕获
+
+            // 只要已经处于抓取循环，就增长淫乱值
+            if (isCaptured )
+            {
+                ChangeSex(2);
+            }
 
 
             return;
@@ -495,6 +500,15 @@ public class PlayerController : MonoBehaviour
 
     public void EnterCapturedState()
     {
+        // 如果是从倒地状态被抓走，
+        // 原来的受击/倒地生命周期在这里正式结束
+        if (isHurt)
+        {
+            CancelHurtForCapture();
+        }
+
+
+
         if (dashAttackCoroutine != null)
         {
             StopCoroutine(dashAttackCoroutine);
@@ -541,6 +555,18 @@ public class PlayerController : MonoBehaviour
 
     public void StartStruggle(EnemyController enemy)
     {
+        // 死亡状态只能等待淫乱值满，不能挣扎
+        if (isDead)
+        {
+            isStruggling = false;
+            currentStruggle = 0;
+
+            UIManager.instance.HideStruggleBar();
+            return;
+        }
+
+
+
         // 已经在挣扎了，不要重复清零
         if (isStruggling)
             return;
@@ -606,11 +632,36 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("触发结局CG");
 
-
+            // ★这里结束整个关卡
+            RoomGenerator.instance.gameOver = true;
         }
     }
 
 
+
+
+
+    public void CancelHurtForCapture()
+    {
+        isHurt = false;
+        hurtPhase = HurtPhase.None;
+
+        rb.velocity = Vector2.zero;
+
+        ResetFakeHeight();
+        ResetShadow();
+
+    
+        // 清理 Animator 的受击参数
+        playerAnimation.anim.SetBool("hurt", false);
+        playerAnimation.anim.SetBool("down", false);
+        playerAnimation.anim.SetInteger("hurtType", 0);
+
+        characterSkin.canAnimEndHurt = false;
+
+        RedScreen.SetActive(false);
+
+    }//倒地状态被敌人抓，清理状态
 
     #endregion
 
@@ -737,8 +788,8 @@ public class PlayerController : MonoBehaviour
         isDead = true;
         inputControl.Gameplay.Disable();//通过直接禁用来做（但是防止4层多端输入，在上方也禁止）
 
-
-        RoomGenerator.instance.gameOver = true;
+        // ★这里先不要结束整个关卡
+        //RoomGenerator.instance.gameOver = true;
     }
 
 
