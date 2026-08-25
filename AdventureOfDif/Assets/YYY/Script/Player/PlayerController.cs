@@ -633,7 +633,8 @@ public class PlayerController : MonoBehaviour
             Debug.Log("触发结局CG");
 
             // ★这里结束整个关卡
-            RoomGenerator.instance.gameOver = true;
+            //RoomGenerator.instance.gameOver = true;
+            RoomGenerator.instance.ShowEndCG(catchingEnemy);
         }
     }
 

@@ -224,6 +224,52 @@ public class RoomGenerator : MonoBehaviour
     [Header("其他设置")]
     public bool gameOver = false;//玩家死亡游戏结束
 
+    public GameObject End_CG;
+    public Image UI_CG;
+    public Sprite CG_Enemy_1, CG_Enemy_2, CG_Enemy_3, CG_Enemy_4, CG_Enemy_5;
+
+
+    public void ShowEndCG(EnemyController enemy)
+    {
+        if (gameOver)
+            return;
+
+        if (enemy == null)
+        {
+            Debug.LogWarning("结局CG：没有找到当前抓住玩家的敌人");
+            return;
+        }
+
+        gameOver = true;
+
+        // 根据抓住玩家的敌人类型选择CG
+        if (enemy is Enemy_1)
+        {
+            UI_CG.sprite = CG_Enemy_1;
+        }
+        else if (enemy is Enemy_2)
+        {
+            UI_CG.sprite = CG_Enemy_2;
+        }
+        else if (enemy is Enemy_3)
+        {
+            UI_CG.sprite = CG_Enemy_3;
+        }
+        else if (enemy is Enemy_4)
+        {
+            UI_CG.sprite = CG_Enemy_4;
+        }
+        else if (enemy is Enemy_5)
+        {
+            UI_CG.sprite = CG_Enemy_5;
+        }
+
+        End_CG.SetActive(true);
+    }
+
+
+
+
     #endregion
 
     /// <summary>
