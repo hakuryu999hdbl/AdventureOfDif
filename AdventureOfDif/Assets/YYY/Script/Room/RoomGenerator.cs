@@ -294,19 +294,27 @@ public class RoomGenerator : MonoBehaviour
     /// 连击数字显示
     /// </summary>
     #region
+
     [Header("连击显示")]
-    private int currentCombo = 0;
-    private float comboTimer = 0f;
-    public float comboResetTime = 3f; // 3秒内没打人就归零
+    public float comboResetTime = 3f;
 
     public GameObject comboTextUI;
-    public Text comboText;
+
+    private int currentCombo = 0;
+    private float comboTimer = 0f;
+
+    // 新的图片数字显示
+    public ComboNumberUI comboNumberUI;
+
+    // 如果要配合动画器
+    public Animator comboAnimator;
 
     private void Update()
     {
         if (currentCombo > 0)
         {
             comboTimer += Time.deltaTime;
+
             if (comboTimer >= comboResetTime)
             {
                 ResetCombo();
@@ -322,19 +330,35 @@ public class RoomGenerator : MonoBehaviour
         if (currentCombo >= 3)
         {
             comboTextUI.SetActive(true);
-            comboText.text = "Combo x" + currentCombo;
+
+            // 更新图片数字
+            comboNumberUI.SetNumber(currentCombo);
+
+            // 每次增加连击时重新播放一下弹跳动画
+            comboAnimator.SetBool("isShow", true);
+            comboAnimator.SetTrigger("Number");
         }
     }
 
     public void ResetCombo()
     {
         currentCombo = 0;
-        comboTextUI.SetActive(false);
         comboTimer = 0f;
+
+        comboAnimator.SetBool("isShow", false);
+        Invoke(nameof(HideCombe),0.3f);
     }
 
+    void HideCombe() 
+    {
+        comboTextUI.SetActive(false);
+    }
 
     #endregion
+
+
+
+
 
     /// <summary>
     /// 前进提示

@@ -13,6 +13,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using static Pathfinding.RaycastModifier;
 using static UnityEngine.Analytics.IAnalytic;
+using UnityEngine.SceneManagement;
 
 
 public class UIManager : MonoBehaviour
@@ -186,6 +187,58 @@ public class UIManager : MonoBehaviour
     #endregion
 
 
+    [Header("暂停菜单")]
+    public GameObject PauseMenu;
+    public GameObject Resume, BackToMenu;
+
+    public GameObject firstSelected;//打开暂停第一个选中
+
+    public void OpenPauseMenu()
+    {
+        // 先记录暂停前选中的东西
+        firstSelected = EventSystem.current.currentSelectedGameObject;
+
+        PauseMenu.SetActive(true);
+
+        GameFlowData.suppressNextSelectSound = true;
+
+        // 清空一下旧选择再选择 Resume
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(Resume);
+
+        Time.timeScale = 0;
+    }
+
+    public void ClosePauseMenu()
+    {
+        PauseMenu.SetActive(false);
+
+        GameFlowData.suppressNextSelectSound = true;
+
+        // 不要继续选中已经隐藏的 Resume
+        EventSystem.current.SetSelectedGameObject(null);
+
+        // 恢复暂停前的选中项
+        if (firstSelected != null && firstSelected.activeInHierarchy)
+        {
+            EventSystem.current.SetSelectedGameObject(firstSelected);
+        }
+
+        Time.timeScale = 1;
+    }
+
+    public void _BackToMenu()
+    {
+        Time.timeScale = 1;
+
+        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+    }
+
+
+
+
+
+
     /// <summary>
     /// 手机菜单系统
     /// </summary>
@@ -348,6 +401,7 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
+
     /// <summary>
     /// 物品栏
     /// </summary>
@@ -444,6 +498,8 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
+
+
     /// <summary>
     /// 菜单层面多端输入
     /// </summary>
@@ -464,7 +520,7 @@ public class UIManager : MonoBehaviour
 
 
     private PlayerInputControl inputControl;
-    public GameObject firstSelected;//打开手机第一个选中
+
     public GameObject Back_Map,Back_Setting,Back_Item;//打开对应界面的时候，当前选中变成了各自的退回按钮
     public GameObject App;//主菜单所有按钮合集，防止移动物品的当前选中过去
 
@@ -697,22 +753,25 @@ public class UIManager : MonoBehaviour
     {
         if (Anim_Phone.GetBool("Open") == true)
         {
-            ClosePhone();
+            //ClosePhone();
+            ClosePauseMenu();
             playerController.EnableGameplayInput();
             inputControl.Disable();
             
-            firstSelected = EventSystem.current.currentSelectedGameObject;//记录上一次你选中的位置
-            EventSystem.current.SetSelectedGameObject(null);
+            //firstSelected = EventSystem.current.currentSelectedGameObject;//记录上一次你选中的位置
+            //EventSystem.current.SetSelectedGameObject(null);
 
 
         }
         else
         {
-            OpenPhone();
+            //OpenPhone();
+            OpenPauseMenu();
             playerController.DisableGameplayInput();
             inputControl.Enable();
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(firstSelected);
+
+            //EventSystem.current.SetSelectedGameObject(null);
+            //EventSystem.current.SetSelectedGameObject(firstSelected);
 
 
         }
