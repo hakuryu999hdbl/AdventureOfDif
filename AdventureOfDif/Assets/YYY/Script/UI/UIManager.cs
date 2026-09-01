@@ -114,22 +114,22 @@ public class UIManager : MonoBehaviour
         //}
 
         // 高暴击值闪烁（红黄闪）
-        if (fillPercent > 0.9f)
-        {
-            //flashTimer += Time.deltaTime * 4f; // 闪烁速度
-            //float alpha = Mathf.Abs(Mathf.Sin(flashTimer));
-            //Color flashColor = Color.Lerp(baseColor, Color.blue, alpha); 
-            //CriticalBar.color = flashColor;
-
-
-            R.SetActive(true);
-        }
-        else
-        {
-            //CriticalBar.color = baseColor;
-
-            R.SetActive(false);
-        }
+        //if (fillPercent > 0.9f)
+        //{
+        //    //flashTimer += Time.deltaTime * 4f; // 闪烁速度
+        //    //float alpha = Mathf.Abs(Mathf.Sin(flashTimer));
+        //    //Color flashColor = Color.Lerp(baseColor, Color.blue, alpha); 
+        //    //CriticalBar.color = flashColor;
+        //
+        //
+        //    R.SetActive(true);
+        //}
+        //else
+        //{
+        //    //CriticalBar.color = baseColor;
+        //
+        //    R.SetActive(false);
+        //}
     }
 
 

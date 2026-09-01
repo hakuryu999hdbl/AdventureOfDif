@@ -1167,8 +1167,7 @@ public class EnemyController : MonoBehaviour
         StartHurtMotion(attack);
         TransitionToState(hitState);//进入受击状态
 
-
-        RoomGenerator.instance.AddCombo();//连击显示
+        RoomGenerator.instance.player.ChangeCritical(200);//每一把受击都增加玩家爆气值
     }
 
 

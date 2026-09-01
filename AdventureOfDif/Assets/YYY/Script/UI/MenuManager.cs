@@ -183,7 +183,7 @@ public class MenuManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F8))
+        if (Keyboard.current.f8Key.wasPressedThisFrame)
         {
             OpenSaveURL();
         }

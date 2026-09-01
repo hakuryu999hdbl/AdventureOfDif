@@ -18,9 +18,14 @@ public class Attack : MonoBehaviour
     private HashSet<IDamageable> hitTargets = new HashSet<IDamageable>();
 
 
+    private bool comboAddedThisAttack;//如果是主角的Attack的话，算入连击
+    public bool isPlayer = false;
+
     private void OnEnable()
     {
         hitTargets.Clear();
+
+        comboAddedThisAttack = false;
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -36,6 +41,14 @@ public class Attack : MonoBehaviour
            
             hitTargets.Add(target);
             target.TakeDamage(this);
+
+            // 本次攻击第一次有效命中
+            if (isPlayer && !comboAddedThisAttack)
+            {
+                comboAddedThisAttack = true;
+
+                RoomGenerator.instance.AddCombo();//连击显示
+            }
         }
 
     }

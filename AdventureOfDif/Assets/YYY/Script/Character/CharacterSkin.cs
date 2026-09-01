@@ -203,7 +203,16 @@ public class CharacterSkin : MonoBehaviour
         Invoke("HideAttack", 0.2f);
     }//攻击碰撞体闪出来一下就消失
 
+    public void Attack_3()
+    {
+        if (playerController != null)
+        {
+            if (playerController.isDead == false) { playerController.attack_Collider_3.SetActive(true); }//我方和敌方被击倒期间无法发出攻击碰撞体
 
+        }
+       
+        Invoke("HideAttack", 0.2f);
+    }//攻击碰撞体闪出来一下就消失
 
     void HideAttack()
     {
@@ -212,6 +221,7 @@ public class CharacterSkin : MonoBehaviour
         {
             playerController.attack_Collider_1.SetActive(false);
             playerController.attack_Collider_2.SetActive(false);
+            playerController.attack_Collider_3.SetActive(false);
         }
         if (enemyController != null)
         {

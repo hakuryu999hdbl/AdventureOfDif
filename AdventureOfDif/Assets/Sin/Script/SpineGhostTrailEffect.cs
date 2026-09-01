@@ -177,4 +177,21 @@ public class SpineGhostTrail : MonoBehaviour
             if (g.go) Destroy(g.go);
         }
     }
+
+
+    private void OnDisable()
+    {
+        ClearGhosts();
+    }//组件关闭时自动清理残余残影
+
+    public void ClearGhosts()
+    {
+        foreach (var ghost in ghostPool)
+        {
+            if (ghost != null && ghost.isActive)
+            {
+                ghost.SetActive(false);
+            }
+        }
+    }
 }

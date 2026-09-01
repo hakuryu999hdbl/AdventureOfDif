@@ -55,6 +55,17 @@ public class PlayerController : MonoBehaviour
 
     public void FixedUpdate()
     {
+        if (isCritical)
+        {
+            ChangeCritical(-3);//自然下降爆气值（其实也是更新）
+        }
+        else 
+        {
+            ChangeCritical(-1);//自然下降爆气值（其实也是更新）
+        }
+
+      
+
         if (isDead || isCaptured)
         {
             rb.velocity = Vector2.zero;
@@ -76,8 +87,8 @@ public class PlayerController : MonoBehaviour
         }//被抓住/死亡后不能滑行
 
 
-        ChangeSex(-1);//自然下降淫乱值
-
+        ChangeSex(-1);//自然下降淫乱值（其实也是更新）
+     
 
         if (isHurt)
         {
@@ -796,6 +807,43 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
+
+    /// <summary>
+    /// UI条 暴击值
+    /// </summary>
+    #region
+    [Header("UI条 暴击值")]
+    public int currentCritical;
+    public int maxCritical;
+    public SpineGhostTrail spineGhostTrail;
+    public bool isCritical = false;
+
+    public void ChangeCritical(int amount)
+    {
+        currentCritical = Mathf.Clamp(currentCritical + amount, 0, maxCritical);
+        UIManager.instance.UpdateCriticalBar(currentCritical, maxCritical);
+
+        if (currentCritical>=maxCritical&&!isCritical) 
+        {
+            Debug.Log("爆气！");
+            characterSkin.Attack_3();
+
+            playerAnimation.anim.SetTrigger("Rage");
+            spineGhostTrail.enabled = true;
+            isCritical = true;
+            UIManager.instance.R.SetActive(true);
+        }
+        if (isCritical&& currentCritical<=0)
+        {
+            spineGhostTrail.enabled = false;
+            isCritical = false;
+            UIManager.instance.R.SetActive(false);
+        }
+    }
+
+    #endregion
+
+
     /// <summary>
     /// 多端输入
     /// </summary>
@@ -862,7 +910,7 @@ public class PlayerController : MonoBehaviour
     private float chargeThreshold = 0.35f;
     public GameObject attack_Collider_1;
     public GameObject attack_Collider_2;
-
+    public GameObject attack_Collider_3;
     private void OnAttackStarted(InputAction.CallbackContext ctx)
     {
         // 被抓挣扎时，攻击键只负责挣扎
