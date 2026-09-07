@@ -516,6 +516,8 @@ public class EnemyController : MonoBehaviour
         isCatching = true;
         capturedPlayer = player;
 
+        // ★就是这里记录“谁抓住了玩家”
+        player.catchingEnemy = this;
 
 
         StopMove();
@@ -531,6 +533,7 @@ public class EnemyController : MonoBehaviour
 
         frameEvents._Attack_pick();//抓取声音
 
+        player.transform.position = transform.position;//为了让DIf被抓的时候挣扎值直接显示在旁边，先把Dif抓过去
 
         // ★关键：
         // 从 attack_ready 立即切到 attack_throw/Lewdmove

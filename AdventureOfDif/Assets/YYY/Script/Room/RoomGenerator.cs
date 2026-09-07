@@ -337,6 +337,8 @@ public class RoomGenerator : MonoBehaviour
             // 每次增加连击时重新播放一下弹跳动画
             comboAnimator.SetBool("isShow", true);
             comboAnimator.SetTrigger("Number");
+
+            Debug.Log("每次增加连击时重新播放一下弹跳动画");
         }
     }
 

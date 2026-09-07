@@ -60,10 +60,38 @@ public class UIManager : MonoBehaviour
     [Header("挣扎值")]
     public Image StruggleBar;
     public GameObject Struggle;
+    public GameObject Struggle_Forbiden;
+
+    [Header("头像")]
+    public Image HeadIcon;
+    public Sprite HeadIcon_1, HeadIcon_2, HeadIcon_3;
+
 
     // 用于闪烁控制
     //private float flashTimer = 0f;
     //private bool flashOn = false;
+
+    public void UpdateHeadIcon()
+    {
+        if (HeadIcon == null || playerController == null)
+            return;
+
+        if (playerController.isStruggling)
+        {
+            HeadIcon.sprite = HeadIcon_2;
+            return;
+        }
+
+        if (playerController.character.currentHealth <
+            playerController.character.maxHealth * 0.5f)
+        {
+            HeadIcon.sprite = HeadIcon_1;
+            return;
+        }
+
+        HeadIcon.sprite = HeadIcon_3;
+    }
+
 
     public void UpdateHealthBar(int curAmount, int maxAmount)
     {
@@ -139,6 +167,12 @@ public class UIManager : MonoBehaviour
 
 
     }
+
+    public void ShowStruggleBar_Forbiden()
+    {
+        Struggle_Forbiden.SetActive(true);
+    }//单独显示禁止挣扎
+
     public void ShowStruggleBar()
     {
         Struggle.SetActive(true);

@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
             // 只要已经处于抓取循环，就增长淫乱值
             if (isCaptured )
             {
-                ChangeSex(2);
+                ChangeSex(-2);
             }
 
 
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
         }//被抓住/死亡后不能滑行
 
 
-        ChangeSex(-1);//自然下降淫乱值（其实也是更新）
+        ChangeSex(1);//自然下降淫乱值（其实也是更新）
      
 
         if (isHurt)
@@ -542,6 +542,7 @@ public class PlayerController : MonoBehaviour
         isDashAttack = false;
         isGrabbing = false;
 
+
     }
 
     public void ExitCapturedState(Vector2 throwForce)
@@ -573,6 +574,7 @@ public class PlayerController : MonoBehaviour
             currentStruggle = 0;
 
             UIManager.instance.HideStruggleBar();
+            UIManager.instance.ShowStruggleBar_Forbiden();
             return;
         }
 
@@ -594,6 +596,8 @@ public class PlayerController : MonoBehaviour
             maxStruggle
         );
 
+        //更新头像
+        UIManager.instance.UpdateHeadIcon();
 
     }//开启挣扎
 
@@ -608,6 +612,9 @@ public class PlayerController : MonoBehaviour
 
         catchingEnemy = null;
 
+
+        //更新头像
+        UIManager.instance.UpdateHeadIcon();
 
     }//关闭挣扎
 
@@ -639,7 +646,7 @@ public class PlayerController : MonoBehaviour
         currentSex = Mathf.Clamp(currentSex + amount, 0, maxSex);
         UIManager.instance.UpdateSexBar(currentSex, maxSex);
 
-        if (currentSex >= maxSex)
+        if (currentSex <= 0)
         {
             Debug.Log("触发结局CG");
 
@@ -774,6 +781,10 @@ public class PlayerController : MonoBehaviour
         PlayBloodEffect();
 
         StartHurtMotion(attack);
+
+
+        //更新头像
+        UIManager.instance.UpdateHeadIcon();
     }
 
     void PlayBloodEffect()
