@@ -207,7 +207,13 @@ public class CharacterSkin : MonoBehaviour
     {
         if (playerController != null)
         {
-            if (playerController.isDead == false) { playerController.attack_Collider_3.SetActive(true); }//我方和敌方被击倒期间无法发出攻击碰撞体
+            if (playerController.isDead == false)
+            {
+                playerController.attack_Collider_3.SetActive(true);
+
+                playerController.WhiteScreen.SetActive(true);
+
+            }//我方和敌方被击倒期间无法发出攻击碰撞体
 
         }
        

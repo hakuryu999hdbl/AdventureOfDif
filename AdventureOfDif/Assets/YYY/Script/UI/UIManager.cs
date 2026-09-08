@@ -62,6 +62,13 @@ public class UIManager : MonoBehaviour
     public GameObject Struggle;
     public GameObject Struggle_Forbiden;
 
+    [Header("倒地恢复")]
+    public GameObject DownRecover;
+    public Image DownRecoverBar;
+
+    // 每按一次攻击键，减少多少秒倒地时间
+    public float downRecoverPerPress = 0.5f;
+
     [Header("头像")]
     public Image HeadIcon;
     public Sprite HeadIcon_1, HeadIcon_2, HeadIcon_3;
@@ -158,6 +165,8 @@ public class UIManager : MonoBehaviour
         //
         //    R.SetActive(false);
         //}
+
+
     }
 
 
@@ -182,6 +191,36 @@ public class UIManager : MonoBehaviour
     {
         Struggle.SetActive(false);
     }//单独隐藏挣扎
+
+
+
+    public void ShowDownRecover()
+    {
+        if (DownRecover != null)
+            DownRecover.SetActive(true);
+    }//单独显示恢复
+
+    public void HideDownRecover()
+    {
+        if (DownRecover != null)
+            DownRecover.SetActive(false);
+    }//单独隐藏恢复
+
+    public void UpdateDownRecoverBar(float currentTime, float maxTime)
+    {
+        if (DownRecoverBar == null)
+            return;
+
+        if (maxTime <= 0f)
+        {
+            DownRecoverBar.fillAmount = 1f;
+            return;
+        }
+
+        DownRecoverBar.fillAmount =
+            1f - Mathf.Clamp01(currentTime / maxTime);
+    }
+
     #endregion
 
 

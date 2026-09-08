@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -305,6 +306,13 @@ public class PlayerController : MonoBehaviour
         UpdateHurtGroundMove();
         hurtTimer -= Time.deltaTime;
 
+
+        UIManager.instance.UpdateDownRecoverBar(
+       downTimer,
+       knockDownTime
+   );
+
+
         if (hurtPhase == HurtPhase.Hurt)
             return hurtTimer <= 0f;
 
@@ -320,6 +328,11 @@ public class PlayerController : MonoBehaviour
 
             if (downTimer <= 0f)
             {
+                downTimer = 0f;
+
+                // ★开始起身，倒地条立即消失
+                UIManager.instance.HideDownRecover();
+
                 hurtPhase = HurtPhase.GetUp;
                 characterSkin.canAnimEndHurt = true;
 
@@ -408,7 +421,14 @@ public class PlayerController : MonoBehaviour
 
                 playerAnimation.anim.SetBool("down", true);
                 frameEvents._SE_falldown();//落地声
-                //AudioManager.Instance.PlayFX(AudioManager.Instance.SE_falldown);//落地声
+                                         
+
+                // ★倒地恢复UI
+                UIManager.instance.ShowDownRecover();
+                UIManager.instance.UpdateDownRecoverBar(
+                    downTimer,
+                    knockDownTime
+                );
             }
         }
 
@@ -680,6 +700,9 @@ public class PlayerController : MonoBehaviour
 
         RedScreen.SetActive(false);
 
+        // ★被抓，倒地恢复条消失
+        UIManager.instance.HideDownRecover();
+
     }//倒地状态被敌人抓，清理状态
 
     #endregion
@@ -690,7 +713,7 @@ public class PlayerController : MonoBehaviour
     #region
     [Header("受伤死亡")]
     public float hurtForce;
-    public GameObject RedScreen, GreenScreen;
+    public GameObject RedScreen, GreenScreen, WhiteScreen;
     public GameObject Effect_Blood;//受伤特效
     public GameObject Strike_Effect;//剑光特效
     public GameObject Hit_Effect;//打击特效
@@ -828,7 +851,7 @@ public class PlayerController : MonoBehaviour
     public int maxCritical;
     public SpineGhostTrail spineGhostTrail;
     public bool isCritical = false;
-
+    public GameObject CutIn;
     public void ChangeCritical(int amount)
     {
         currentCritical = Mathf.Clamp(currentCritical + amount, 0, maxCritical);
@@ -837,19 +860,34 @@ public class PlayerController : MonoBehaviour
         if (currentCritical>=maxCritical&&!isCritical) 
         {
             Debug.Log("爆气！");
-            characterSkin.Attack_3();
+            Invoke(nameof(Attack_3), 0.2f);
 
             playerAnimation.anim.SetTrigger("Rage");
             spineGhostTrail.enabled = true;
             isCritical = true;
             UIManager.instance.R.SetActive(true);
+
+            CutIn.SetActive(true);
+
+            
+
+            //触发相机震动
+            OnCritical?.Invoke();
         }
+
         if (isCritical&& currentCritical<=0)
         {
             spineGhostTrail.enabled = false;
             isCritical = false;
             UIManager.instance.R.SetActive(false);
         }
+    }
+
+    public UnityEvent OnCritical;
+
+    void Attack_3() 
+    {
+        characterSkin.Attack_3();
     }
 
     #endregion
@@ -924,10 +962,26 @@ public class PlayerController : MonoBehaviour
     public GameObject attack_Collider_3;
     private void OnAttackStarted(InputAction.CallbackContext ctx)
     {
+
+
         // 被抓挣扎时，攻击键只负责挣扎
         if (isStruggling)
         {
             ChangeStruggle(100);
+            return;
+        }
+
+        // ② 倒地：攻击键用于加速起身
+        if (isHurt && hurtPhase == HurtPhase.Down)
+        {
+            downTimer -= UIManager.instance.downRecoverPerPress;
+            downTimer = Mathf.Max(downTimer, 0f);
+
+            UIManager.instance.UpdateDownRecoverBar(
+                downTimer,
+                knockDownTime
+            );
+
             return;
         }
 
@@ -939,6 +993,9 @@ public class PlayerController : MonoBehaviour
         if (isStruggling)
             return;
 
+        // 受击/倒地/起身期间都不处理普通攻击
+        if (isHurt)
+            return;
 
         float holdTime = Time.time - attackPressTime;
 

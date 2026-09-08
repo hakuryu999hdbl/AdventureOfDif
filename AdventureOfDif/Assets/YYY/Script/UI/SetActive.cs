@@ -17,4 +17,9 @@ public class SetActive : MonoBehaviour
        
     }
 
+    void TimeStop() 
+    {
+        Time.timeScale = 0f;
+    }
+
 }
