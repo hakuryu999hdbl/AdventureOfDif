@@ -13,8 +13,12 @@ public class language : MonoBehaviour
     public string C_2;
     public string E;
     public string K;
-
-    public void OnEnable()
+    void OnEnable()
+    {
+        Text = GetComponent<Text>();
+        Refresh();
+    }
+    public void Refresh()
     {
         Text = GetComponent<Text>();
 

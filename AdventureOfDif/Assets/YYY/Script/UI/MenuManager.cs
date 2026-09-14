@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class MenuManager : MonoBehaviour
 {
 
+
     /// <summary>
     /// 菜单层面多端输入
     /// </summary>
@@ -56,27 +57,37 @@ public class MenuManager : MonoBehaviour
     public GameObject PlayList, SettingList, ExitList,SaveList;
     public void ChangeShowList(int Number) 
     {
+
+        //不管现在在哪个二级菜单，
+        //点击底部 PLAY / SETTING / EXIT 都直接强制关闭
+        ForceCloseAllSettingSubMenu();
+
         switch (Number) 
         {
             case 0:
                 PlayList.SetActive(true);
                 SettingList.SetActive(false);
                 ExitList.SetActive(false);
+
+                CurrentOpen = 0;
                 break;
             case 1:
                 PlayList.SetActive(false);
                 SettingList.SetActive(true);
                 ExitList.SetActive(false);
+
+                CurrentOpen = 1;
                 break;
             case 2:
                 PlayList.SetActive(false);
                 SettingList.SetActive(false);
                 ExitList.SetActive(true);
+
+                CurrentOpen = -2;
                 break;
         }
     }
 
-    bool isSaveListOpen = false;
  
     public void OpenSave()
     {
@@ -91,27 +102,49 @@ public class MenuManager : MonoBehaviour
 
         CurrentSaveSlotUI = saveFirstSelected.GetComponent<SaveSlotUI>();
 
-        isSaveListOpen = true;
+        CurrentOpen = -1;
     }
 
     private void OnCancel(InputAction.CallbackContext ctx)
     {
-        if (isSaveListOpen)
+
+        switch (CurrentOpen)
         {
-            SaveList.SetActive(false);
-            newGameButton.SetActive(true);
-            
+            case -1:
 
-            EventSystem.current.SetSelectedGameObject(null);        
-            EventSystem.current.SetSelectedGameObject(newGameButton);
+                SaveList.SetActive(false);
+                newGameButton.SetActive(true);
 
-            isSaveListOpen = false;
+
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(newGameButton);
+
+                CurrentOpen = 0;
+
+                break;
+
+
+            //设置二级菜单
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+
+                CloseSettingSubMenu();
+                break;
+
+
+                //以后这里可以继续追加
+                //case 1:
+                //    CloseSetting();
+                //    break;
         }
+
 
     }//退出到开始菜单
     private void OnDeleteSave(InputAction.CallbackContext ctx)
     {
-        if (!isSaveListOpen) return;
+        if (CurrentOpen !=-1) return;
 
         if (CurrentSaveSlotUI == null) return;
 
@@ -146,6 +179,168 @@ public class MenuManager : MonoBehaviour
     }//返回进入游戏状态
 
     #endregion
+
+
+    /// <summary>
+    /// 设置二级菜单
+    /// </summary>
+    #region
+
+    [Header("设置二级菜单")]
+    public GameObject ResetMenu;
+    public GameObject ScreenMenu;
+    public GameObject VoiceMenu;
+    public GameObject LanguageMenu;
+
+    [Header("二级菜单 Back")]
+    public GameObject ResetBack;
+    public GameObject ScreenBack;
+    public GameObject VoiceBack;
+    public GameObject LanguageBack;
+
+    [Header("设置主页按钮")]
+    public GameObject ResetButton;
+    public GameObject ScreenButton;
+    public GameObject VoiceButton;
+    public GameObject LanguageButton;
+
+
+    //当前打开的菜单
+
+    //-2 是否退出
+    //-1 存档界面
+    //0 主菜单
+    //1 设置主页
+    //2 Reset
+    //3 Screen
+    //4 Voice
+    //5 Language
+    private int CurrentOpen = 0;
+
+
+    //打开 RESET
+    public void OpenReset()
+    {
+        OpenSettingSubMenu(
+            ResetMenu,
+            ResetBack,
+            2
+        );
+    }
+
+
+    //打开 SCREEN
+    public void OpenScreen()
+    {
+        OpenSettingSubMenu(
+            ScreenMenu,
+            ScreenBack,
+            3
+        );
+    }
+
+
+    //打开 VOICE
+    public void OpenVoice()
+    {
+        OpenSettingSubMenu(
+            VoiceMenu,
+            VoiceBack,
+            4
+        );
+    }
+
+
+    //打开 LANGUAGE
+    public void OpenLanguage()
+    {
+        OpenSettingSubMenu(
+            LanguageMenu,
+            LanguageBack,
+            5
+        );
+    }
+
+
+    //统一打开二级菜单
+    private void OpenSettingSubMenu(
+        GameObject menu,
+        GameObject backButton,
+        int menuNumber
+    )
+    {
+        menu.SetActive(true);
+
+        //设置主页隐藏
+        SettingList.SetActive(false);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(backButton);
+
+        CurrentOpen = menuNumber;
+    }
+
+
+    //关闭二级菜单
+    public void CloseSettingSubMenu()
+    {
+        GameObject returnButton = null;
+
+        switch (CurrentOpen)
+        {
+            case 2:
+
+                ResetMenu.SetActive(false);
+                returnButton = ResetButton;
+
+                break;
+
+            case 3:
+
+                ScreenMenu.SetActive(false);
+                returnButton = ScreenButton;
+
+                break;
+
+            case 4:
+
+                VoiceMenu.SetActive(false);
+                returnButton = VoiceButton;
+
+                break;
+
+            case 5:
+
+                LanguageMenu.SetActive(false);
+                returnButton = LanguageButton;
+
+                break;
+        }
+
+        SettingList.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(null);
+
+        if (returnButton != null)
+        {
+            EventSystem.current.SetSelectedGameObject(returnButton);
+        }
+
+        CurrentOpen = 1;
+    }
+
+    private void ForceCloseAllSettingSubMenu()
+    {
+        ResetMenu.SetActive(false);
+        ScreenMenu.SetActive(false);
+        VoiceMenu.SetActive(false);
+        LanguageMenu.SetActive(false);
+    }// 强制关闭所有设置二级菜单//不处理选中对象，不修改CurrentOpen
+
+
+    #endregion
+
+
 
     /// <summary>
     /// 存档统合
