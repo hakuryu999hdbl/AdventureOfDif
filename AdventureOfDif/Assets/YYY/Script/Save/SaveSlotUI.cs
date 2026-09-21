@@ -92,10 +92,19 @@ public class SaveSlotUI : MonoBehaviour, ISelectHandler
 
     public void OnDeleteClicked()
     {
-        if (SaveManager.Exists(slotName))
-        {
-            SaveManager.DeleteGame(slotName);
-            Refresh(); // UI刷新
-        }
-    }//被删除
+        if (!SaveManager.Exists(slotName))
+            return;
+
+        menuManager.OpenDeleteConfirm(this);
+    }//首先打开确认删除菜单
+
+
+    public void DeleteSaveImmediately()
+    {
+        if (!SaveManager.Exists(slotName))
+            return;
+
+        SaveManager.DeleteGame(slotName);
+        Refresh();
+    }//确认删除
 }

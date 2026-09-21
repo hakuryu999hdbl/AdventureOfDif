@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -22,8 +23,7 @@ public class MenuManager : MonoBehaviour
     {
         inputControl = new PlayerInputControl();
 
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(newGameButton);//开头设置默认按钮
+      
 
         inputControl.UI.Cancel.started += OnCancel;
         inputControl.UI.Delete.started += OnDeleteSave;
@@ -39,6 +39,11 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         AudioManager.Instance.PlayBGM(AudioManager.Instance.BGM_Theme, true);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(newGameButton);//开头设置默认按钮
+
+        Invoke(nameof(Hide_HomePageAnim), 1f);
     }
     private void OnEnable()
     {
@@ -51,10 +56,20 @@ public class MenuManager : MonoBehaviour
     {
         inputControl.Disable();
     }
-   
+
+
+    public Animator HomePage;//这个在大概1秒后禁用，为了让Main和Title的动画器能解放出来
+    public void Hide_HomePageAnim()
+    {
+        HomePage.enabled=false;
+    }
+
+
+
 
 
     public GameObject PlayList, SettingList, ExitList,SaveList;
+
     public void ChangeShowList(int Number) 
     {
 
@@ -133,11 +148,11 @@ public class MenuManager : MonoBehaviour
                 CloseSettingSubMenu();
                 break;
 
+            case 6:
 
-                //以后这里可以继续追加
-                //case 1:
-                //    CloseSetting();
-                //    break;
+                CancelDeleteSave();
+                break;
+
         }
 
 
@@ -186,6 +201,38 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     #region
 
+    [Header("设置界面切换隐藏")]
+    public GameObject CharacterRoot;
+    public GameObject TitleRoot;
+
+
+    public void PreviewSettingMenu(GameObject target)
+    {
+        ResetMenu.SetActive(false);
+        ScreenMenu.SetActive(false);
+        VoiceMenu.SetActive(false);
+        LanguageMenu.SetActive(false);
+
+        target.SetActive(true);
+        CharacterRoot.SetActive(false);
+        TitleRoot.SetActive(false);
+    }
+
+    public void HideSettingMenu() 
+    {
+
+        ResetMenu.SetActive(false);
+        ScreenMenu.SetActive(false);
+        VoiceMenu.SetActive(false);
+        LanguageMenu.SetActive(false);
+
+
+        CharacterRoot.SetActive(true);
+        TitleRoot.SetActive(true);
+
+    }
+
+
     [Header("设置二级菜单")]
     public GameObject ResetMenu;
     public GameObject ScreenMenu;
@@ -215,6 +262,7 @@ public class MenuManager : MonoBehaviour
     //3 Screen
     //4 Voice
     //5 Language
+    //6 确认是否删除存档
     private int CurrentOpen = 0;
 
 
@@ -271,8 +319,11 @@ public class MenuManager : MonoBehaviour
     {
         menu.SetActive(true);
 
-        //设置主页隐藏
-        SettingList.SetActive(false);
+        //设置角色隐藏
+        //SettingList.SetActive(false);
+        //CharacterRoot.SetActive(false);
+        //TitleRoot.SetActive(false);
+
 
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(backButton);
@@ -317,7 +368,10 @@ public class MenuManager : MonoBehaviour
                 break;
         }
 
-        SettingList.SetActive(true);
+        //设置角色显示
+        //CharacterRoot.SetActive(true);
+        //TitleRoot.SetActive(true);
+        //SettingList.SetActive(true);
 
         EventSystem.current.SetSelectedGameObject(null);
 
@@ -338,6 +392,264 @@ public class MenuManager : MonoBehaviour
     }// 强制关闭所有设置二级菜单//不处理选中对象，不修改CurrentOpen
 
 
+    #endregion
+
+
+    /// <summary>
+    /// 确认删除存档菜单
+    /// </summary>
+    #region
+
+    [Header("删除存档确认")]
+    public GameObject DeleteConfirmMenu;
+    public GameObject DeleteConfirmFirstSelected;
+    public GameObject DeleteConfirmReturnSelected;
+
+    private SaveSlotUI pendingDeleteSlot;
+
+    public void OpenDeleteConfirm(SaveSlotUI slot)
+    {
+        if (slot == null)
+            return;
+
+        if (!SaveManager.Exists(slot.slotName))
+            return;
+
+        pendingDeleteSlot = slot;
+
+        // 记录确认窗口关闭后，要重新选中的存档槽位
+        DeleteConfirmReturnSelected =
+            EventSystem.current.currentSelectedGameObject;
+
+        DeleteConfirmMenu.SetActive(true);
+
+        GameFlowData.suppressNextSelectSound = true;
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(
+            DeleteConfirmFirstSelected
+        );
+
+        CurrentOpen = 6;
+    }//打开确认删除菜单
+    public void CloseDeleteConfirm()
+    {
+        DeleteConfirmMenu.SetActive(false);
+
+        pendingDeleteSlot = null;
+
+        GameFlowData.suppressNextSelectSound = true;
+
+        EventSystem.current.SetSelectedGameObject(null);
+
+        EventSystem.current.SetSelectedGameObject(
+              DeleteConfirmReturnSelected
+          );
+
+        CurrentOpen = -1; //回到存档界面
+    }//关闭确认删除菜单
+
+
+    public void ConfirmDeleteSave()
+    {
+        if (pendingDeleteSlot != null)
+        {
+            pendingDeleteSlot.DeleteSaveImmediately();
+        }
+
+        AudioManager.Instance.PlayFX(
+            AudioManager.Instance.UI_Click
+        );
+
+        CloseDeleteConfirm();
+    }//确认删除
+
+    public void CancelDeleteSave()
+    {
+        AudioManager.Instance.PlayFX(
+            AudioManager.Instance.UI_Select
+        );
+
+        CloseDeleteConfirm();
+    }//不删除
+
+    #endregion
+
+    /// <summary>
+    /// 頁面設置UI显示
+    /// </summary>
+    #region
+    [Header("画面显示方法")]
+    public GameObject DisplayMode_1;//全屏
+    public GameObject DisplayMode_2;//窗口
+
+
+
+    void StartSetDisplayMode()
+    {
+        bool fullscreen = PlayerPrefs.GetInt("DisplayMode", 1) == 1;
+        int resIndex = PlayerPrefs.GetInt("ResolutionIndex", 2); // 默认1080p
+
+        currentMode = fullscreen ? DisplayMode.Fullscreen : DisplayMode.Windowed;
+
+        //修改显示
+        if (currentMode == DisplayMode.Fullscreen)
+        {
+            DisplayMode_1.SetActive(true);
+            DisplayMode_2.SetActive(false);
+        }
+        else
+        {
+            DisplayMode_1.SetActive(false);
+            DisplayMode_2.SetActive(true);
+        }
+
+
+
+        var res = supportedResolutions[resIndex];
+        Screen.SetResolution(res.x, res.y, fullscreen);
+
+    }//开始设置屏幕分辨率
+
+
+
+
+    enum DisplayMode
+    {
+        Fullscreen,
+        Windowed
+    }
+
+    DisplayMode currentMode;
+    Resolution currentResolution;
+
+
+
+    public void SetFullScreenOrWindowed()
+    {
+        if (currentMode == DisplayMode.Fullscreen)
+        {
+            SetDisplayMode(false);
+        }
+        else
+        {
+            SetDisplayMode(true);
+        }
+    }//设置屏幕模式活扣
+
+    public void SetDisplayMode(bool fullscreen)
+    {
+        Screen.fullScreen = fullscreen;
+        currentMode = fullscreen ? DisplayMode.Fullscreen : DisplayMode.Windowed;
+
+        PlayerPrefs.SetInt("DisplayMode", fullscreen ? 1 : 0);
+
+
+
+        //修改显示
+        if (currentMode == DisplayMode.Fullscreen)
+        {
+            DisplayMode_1.SetActive(true);
+            DisplayMode_2.SetActive(false);
+        }
+        else
+        {
+            DisplayMode_1.SetActive(false);
+            DisplayMode_2.SetActive(true);
+        }
+
+
+    }//设置全屏或者窗口化
+
+    Vector2Int[] supportedResolutions =
+{
+    new Vector2Int(3840, 2160),
+    new Vector2Int(2560, 1440),
+    new Vector2Int(1920, 1080),
+    new Vector2Int(1600, 900),
+    new Vector2Int(1280, 720),
+};
+
+    public void SetResolutionByIndex(int index)
+    {
+        var res = supportedResolutions[index];
+
+        Screen.SetResolution(
+            res.x,
+            res.y,
+            currentMode == DisplayMode.Fullscreen
+        );
+
+        // if (index == 0)
+        // {
+        //     //默认的就是基于当前屏幕分辨率
+        //     InitResolutions();
+        // }
+        // else
+        // {
+        //     var res = supportedResolutions[index];
+        //
+        //     Screen.SetResolution(
+        //         res.x,
+        //         res.y,
+        //         currentMode == DisplayMode.Fullscreen
+        //     );
+        // }
+
+        PlayerPrefs.SetInt("ResolutionIndex", index);
+
+        //设置屏幕分辨率文字
+        GetResolutionIndex_Text();
+
+    }//设置当前屏幕模式的分辨率
+
+
+    public void ChangeResolution()
+    {
+        //读取当前分辨率编号，默认1920×1080（索引2）
+        int index = PlayerPrefs.GetInt("ResolutionIndex", 2);
+
+        //切换到下一个
+        index++;
+
+        //超过最后一个后回到第一个
+        if (index >= supportedResolutions.Length)
+        {
+            index = 0;
+        }
+
+        var res = supportedResolutions[index];
+
+        Screen.SetResolution(
+            res.x,
+            res.y,
+            currentMode == DisplayMode.Fullscreen
+        );
+
+        PlayerPrefs.SetInt("ResolutionIndex", index);
+        PlayerPrefs.Save();
+
+        GetResolutionIndex_Text();
+    }
+
+    public Text ResolutionsText;
+
+    public void GetResolutionIndex_Text()
+    {
+        //设置屏幕分辨率文字
+        int index = PlayerPrefs.GetInt("ResolutionIndex");
+        ResolutionsText.text = GetResolutionLabel(index).ToString();
+
+    }//读取分辨率数字
+
+
+
+    string GetResolutionLabel(int index)
+    {
+        var r = supportedResolutions[index];
+
+        return $"{r.x}×{r.y}";
+    }
     #endregion
 
 
