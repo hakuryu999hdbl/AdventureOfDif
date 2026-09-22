@@ -5,6 +5,33 @@ using UnityEngine.UI;
 
 public class Boss_1 : EnemyController
 {
+
+
+    [Header("Boss弹幕爆炸")]
+    public GameObject Barrage;
+
+
+    public void ShowBarrage() 
+    {
+
+        Barrage.SetActive(true);
+
+        Invoke(nameof(HideBarrage), 1f);
+    }
+
+
+    void HideBarrage() 
+    {
+        Barrage.SetActive(false);
+    }
+
+
+
+
+
+
+
+
     [Header("格挡系统")]
     public float maxBlockValue = 50f;
     public float currentBlockValue = 50f;

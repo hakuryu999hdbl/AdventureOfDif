@@ -506,6 +506,22 @@ public class CharacterSkin : MonoBehaviour
 
     #endregion
 
+
+
+    #region Boss_1 弹幕
+
+    public void ShowBarrage() 
+    {
+        if (enemyController is Boss_1 boss_1)
+        {
+            boss_1.ShowBarrage();
+        }
+
+    }
+
+
+    #endregion
+
     #endregion
 
 
