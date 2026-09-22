@@ -19,6 +19,14 @@ public class HitState : EnemyBaseState
 
     public override void OnUpdate(EnemyController enemy)
     {
+        Debug.Log(
+       $"HitState运行中：{enemy.name}  " +
+       $"hurtPhase={enemy.hurtPhase} " +
+       $"isHurt={enemy.isHurt} " +
+       $"isCatching={enemy.isCatching}"
+   );
+
+
         enemy.StopMove(); // 防止AIPath被别的地方重新打开
 
         if (enemy.UpdateHurtMotion())

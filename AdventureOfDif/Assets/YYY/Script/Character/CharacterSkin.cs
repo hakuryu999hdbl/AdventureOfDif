@@ -428,6 +428,10 @@ public class CharacterSkin : MonoBehaviour
         {
             biker.StartCounterAttack();
         }
+        if (enemyController is Boss_1 boss_1)
+        {
+            boss_1.StartCounterAttack();
+        }
     }
 
     //敌人防御反击后
@@ -436,6 +440,10 @@ public class CharacterSkin : MonoBehaviour
         if (enemyController is Enemy_4 biker)
         {
             biker.EndCounterAttack();
+        }
+        if (enemyController is Boss_1 boss_1)
+        {
+            boss_1.EndCounterAttack();
         }
     }
 

@@ -1076,6 +1076,15 @@ public class EnemyController : MonoBehaviour
     public void OnTakeDamage(Attack attack)
     {
         if (isDead) return;
+
+        #region //受伤特效/血/计数集中到这里，每次受击直接抓这个（如同相机震动一样处理）
+
+
+       
+
+        #endregion
+
+
         if (isHurt) return; // 受击流程中不再吃新攻击
         if (attack == null) return;
 
@@ -1088,16 +1097,6 @@ public class EnemyController : MonoBehaviour
         //isCatching = false;
         //capturedPlayer = null;
         //nextCatchTime = Time.time + catchCooldown;
-
-
-
-
-
-       
-        CleanState(); // 受击瞬间强制退出攻击动画层
-
-
-
 
 
         switch (attack.hitEffectType)
@@ -1115,8 +1114,20 @@ public class EnemyController : MonoBehaviour
                 break;
         }
 
-
         characterSkin.FlashRed();//受伤闪红
+        PlayBloodEffect();
+
+
+
+        CleanState(); // 受击瞬间强制退出攻击动画层
+
+
+
+
+
+     
+
+
 
 
 
@@ -1164,7 +1175,7 @@ public class EnemyController : MonoBehaviour
 
 
 
-        PlayBloodEffect();
+      
 
         //isHurt = true;
         StartHurtMotion(attack);
@@ -1187,8 +1198,6 @@ public class EnemyController : MonoBehaviour
 
         Destroy(blood, 1f); // 1秒后销毁
     }
-
-
 
 
 

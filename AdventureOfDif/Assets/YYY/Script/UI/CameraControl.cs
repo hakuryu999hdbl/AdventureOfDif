@@ -93,6 +93,12 @@ public class CameraControl : MonoBehaviour
 
     private void OnCameraShakeEvent(float force)
     {
-        impulseSource.GenerateImpulse(force);
+
+        if (impulseSource == null) return;
+
+        Vector3 shakeVelocity = new Vector3(1f, 1f, 0f).normalized * force;
+
+        impulseSource.GenerateImpulseWithVelocity(shakeVelocity);
+
     }//接受力度
 }

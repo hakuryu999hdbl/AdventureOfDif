@@ -561,7 +561,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0.2
+          m_FloatArgument: 0.1
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -970,6 +970,7 @@ MonoBehaviour:
   knockbackY: 0
   hurtTime: 0.2
   clearVelocity: 1
+  isPlayer: 0
 --- !u!1 &4078472887520687969
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,6 +1362,7 @@ MonoBehaviour:
   knockbackY: 10
   hurtTime: 0.2
   clearVelocity: 1
+  isPlayer: 0
 --- !u!1 &5040560640494067378
 GameObject:
   m_ObjectHideFlags: 0

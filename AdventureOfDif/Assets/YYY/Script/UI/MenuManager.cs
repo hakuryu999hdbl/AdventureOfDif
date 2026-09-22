@@ -698,15 +698,39 @@ public class MenuManager : MonoBehaviour
 
 
 
-    public void Delete_All() 
+    public void InitialSetup()
     {
-        Save_1.OnDeleteClicked();
-        Save_2.OnDeleteClicked();
-        Save_3.OnDeleteClicked();
+        AudioManager.Instance.PlayFX(AudioManager.Instance.UI_Click);
 
         PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
 
-    }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        //Debug.Log("初始化");
+    }//初始化设置
+
+    public void Delete_All()
+    {
+        // 删除3个角色存档
+        Save_1.DeleteSaveImmediately();
+        Save_2.DeleteSaveImmediately();
+        Save_3.DeleteSaveImmediately();
+
+        //这个等全部CG解锁设置做完再弄
+        // 删除全局CG解锁存档
+        //GlobalSaveManager.DeleteGlobalSave();
+
+        // 删除所有PlayerPrefs
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+     
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        Debug.Log("已删除全部游戏数据");
+
+    }//这是删除全部存档
     #endregion
 
 
