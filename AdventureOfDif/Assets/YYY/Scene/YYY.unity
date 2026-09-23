@@ -1266,6 +1266,7 @@ MonoBehaviour:
   - {fileID: 5353862127057988490, guid: b249cc969d3e9d34484399c0da6fff93, type: 3}
   - {fileID: 5709505278263450279, guid: 0f9a356d7fbc9e5408d2af8444265976, type: 3}
   - {fileID: 5925675809781428618, guid: 6144696819e1dd143bae8c4389929f53, type: 3}
+  cameraControl: {fileID: 1973605815}
   confiner: {fileID: 1973605812}
   Player: {fileID: 65564740}
   gameOver: 0

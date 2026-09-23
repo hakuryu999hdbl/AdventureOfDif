@@ -101,4 +101,37 @@ public class CameraControl : MonoBehaviour
         impulseSource.GenerateImpulseWithVelocity(shakeVelocity);
 
     }//接受力度
+
+
+
+
+
+
+
+
+
+
+
+
+    //切换当前跟随相机对象
+    public void SetFollowTarget(Transform target)
+    {
+        if (virtualCamera == null || target == null)
+            return;
+
+        virtualCamera.Follow = target;
+    }
+
+    public void FollowPlayer()
+    {
+        if (RoomGenerator.instance == null ||
+            RoomGenerator.instance.player == null)
+            return;
+
+        virtualCamera.Follow =
+            RoomGenerator.instance.player.transform;
+    }
+
+
+
 }

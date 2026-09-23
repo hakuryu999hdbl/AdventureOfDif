@@ -81,7 +81,7 @@ public class RoomGenerator : MonoBehaviour
                 // GameFlowData.nextAreaId = "Area06_1";
                 // SetArea(5);
 
-                SetArea(0);
+                SetArea(2);
 
                 break;
         }
@@ -118,7 +118,8 @@ public class RoomGenerator : MonoBehaviour
     public List<GameObject> areaList; // 在Inspector中添加Area_1~3
     //private int currentAreaIndex = 0;
 
-
+    [Header("相机")]
+    public CameraControl cameraControl;
 
     public CinemachineConfiner confiner;//摄像机边界
     public GameObject Player;//开头把玩家送到地图入口

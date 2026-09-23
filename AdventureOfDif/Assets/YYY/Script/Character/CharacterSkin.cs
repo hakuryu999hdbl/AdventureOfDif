@@ -519,6 +519,22 @@ public class CharacterSkin : MonoBehaviour
 
     }
 
+    public void JumpIn() 
+    {
+        if (enemyController is Boss_1 boss_1)
+        {
+            boss_1.MoveBossToBattle();
+        }
+    }
+
+    public void JumpOut()
+    {
+        if (enemyController is Boss_1 boss_1)
+        {
+           
+            boss_1.MoveBossToTruck();
+        }
+    }
 
     #endregion
 

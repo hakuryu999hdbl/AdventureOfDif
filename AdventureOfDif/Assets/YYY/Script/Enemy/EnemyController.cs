@@ -1262,6 +1262,20 @@ public class EnemyController : MonoBehaviour
     }//无敌状态
 
 
+    public void ClearHitState()
+    {
+        isHurt = false;
+        hurtPhase = HurtPhase.None;
+
+        anim.SetBool("hit", false);
+        anim.SetBool("down", false);
+        anim.SetInteger("HitType", 0);
+
+        // Dead Layer = 3
+        anim.Play("Dead State", 3, 0f);
+
+    }//立刻从死亡层清空状态，适用与于Boss进入阶段动画
+
     #endregion
 
 

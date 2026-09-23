@@ -16,14 +16,57 @@ public class Boss_1 : EnemyController
 
         Barrage.SetActive(true);
 
-        Invoke(nameof(HideBarrage), 1f);
     }
 
 
-    void HideBarrage() 
+    [Header("Boss动画器移动")]
+    public BossController_1 BossController_1;
+    public  Vector3 animOriginalLocalPosition;//动画原始位置
+
+    [Header("Boss特殊阶段")]
+    public bool isBossAir = false;
+
+
+    // jump_In 帧事件
+    // Boss跳上卡车
+    public void MoveBossToTruck()
     {
-        Barrage.SetActive(false);
+ 
+
+        anim.gameObject.transform.position = BossController_1.truckPoint.transform.position;
+
+
+
+        //镜头拉相机
+        BossController_1.cameraControl.SetFollowTarget(BossController_1.truckPoint);
+
+        Invoke(nameof(SunmonEnemy), 1f);
     }
+
+    void SunmonEnemy() 
+    {
+
+        //召唤敌人
+        BossController_1.SpawnMinions();
+    }
+
+
+
+    // jump_Out 帧事件
+    // Boss回到战斗场地
+    public void MoveBossToBattle()
+    {
+     
+
+        BossController_1.FinishPhase2();
+
+
+    }
+
+
+
+
+
 
 
 
@@ -56,17 +99,32 @@ public class Boss_1 : EnemyController
     {
         base.Init();
 
+        // ★记录动画器最初的位置
+        animOriginalLocalPosition = anim.transform.localPosition;
+
         currentBlockValue = maxBlockValue;
         UpdateBlockUI();
     }
 
     public override void Update()
     {
+        // Boss处于跳出场地/卡车/演出状态
+        if (isBossAir)
+        {
+            StopMove();
+            return;
+        }
+
+
+
         base.Update();
 
         UpdateBlockRecovery();
     }
-
+    public override bool IgnoreIncomingDamage()
+    {
+        return isBossAir;
+    }
     public override bool TryHandleIncomingAttack(Attack attack)
     {
         //Debug.Log("摩托哥收到攻击，检查格挡");
