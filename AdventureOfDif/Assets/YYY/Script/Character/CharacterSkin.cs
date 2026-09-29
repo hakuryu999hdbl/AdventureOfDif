@@ -517,24 +517,55 @@ public class CharacterSkin : MonoBehaviour
             boss_1.ShowBarrage();
         }
 
-    }
+    }//攻击弹幕
 
     public void JumpIn() 
     {
+
         if (enemyController is Boss_1 boss_1)
         {
+
+            if (boss_1.BossController_1.currentPhase == BossController_1.BossPhase.Phase3_Barrage)
+            {
+                return;
+            }
+
             boss_1.MoveBossToBattle();
         }
-    }
+
+    }//从卡车回到场内
 
     public void JumpOut()
     {
+
         if (enemyController is Boss_1 boss_1)
         {
            
-            boss_1.MoveBossToTruck();
+            if(boss_1.BossController_1.currentPhase == BossController_1.BossPhase.Phase3_Barrage)
+            {
+                boss_1.BossController_1.MoveBossToBarragePoint();
+            }
+            else
+            {
+                boss_1.MoveBossToTruck();
+            }
+
+           
         }
-    }
+
+    }//从场内跳上卡车
+
+
+
+    public void BarrageAttackOver()
+    {
+
+        if (enemyController is Boss_1 boss_1)
+        {
+            boss_1.BossController_1.BarrageAttackOver();
+        }
+     
+    }//状态3弹幕打完之后
 
     #endregion
 

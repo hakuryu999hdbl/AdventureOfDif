@@ -906,6 +906,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 806505142763908332}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2879770710744870367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8914621167597759584}
+  m_Layer: 0
+  m_Name: barrageLeftPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8914621167597759584
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2879770710744870367}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.1, y: -2.67, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4276526037225229988}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3620075617947037971
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,7 +1070,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3758838903680815805
 Transform:
   m_ObjectHideFlags: 0
@@ -1379,6 +1410,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 5.794571, y: 9.867043}
   m_EdgeRadius: 0
+--- !u!1 &5187463942138294901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4569671979387252438}
+  m_Layer: 0
+  m_Name: barrageRightPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4569671979387252438
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187463942138294901}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.95, y: -2.67, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4276526037225229988}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5351026856474627162
 GameObject:
   m_ObjectHideFlags: 0
@@ -1395,7 +1457,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4276526037225229988
 Transform:
   m_ObjectHideFlags: 0
@@ -1414,6 +1476,8 @@ Transform:
   - {fileID: 8915225773174810354}
   - {fileID: 1851062377836147934}
   - {fileID: 7895369495959118431}
+  - {fileID: 8914621167597759584}
+  - {fileID: 4569671979387252438}
   m_Father: {fileID: 2735119305244761307}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2553328300574861103
@@ -1441,6 +1505,9 @@ MonoBehaviour:
   - {fileID: 8915225773174810354}
   - {fileID: 1851062377836147934}
   - {fileID: 7895369495959118431}
+  barrageLeftPoint: {fileID: 8914621167597759584}
+  barrageRightPoint: {fileID: 4569671979387252438}
+  barrageRoundCount: 4
   cameraControl: {fileID: 0}
   player: {fileID: 0}
 --- !u!1 &5373792091197649058
@@ -1574,7 +1641,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &806505142763908332
 Transform:
   m_ObjectHideFlags: 0
@@ -1609,7 +1676,9 @@ MonoBehaviour:
   - {fileID: 2877831790504476523}
   - {fileID: 3075428834349337108}
   enemyPrefabs:
-  - {fileID: 3112607300831458430, guid: be501489419aa534da3276b4cf7ed403, type: 3}
+  - {fileID: 6724541046560202250, guid: 69b2f238488e7f64fa4ad1c03c84f06e, type: 3}
+  - {fileID: 6724541046560202250, guid: 69b2f238488e7f64fa4ad1c03c84f06e, type: 3}
+  - {fileID: 6724541046560202250, guid: 69b2f238488e7f64fa4ad1c03c84f06e, type: 3}
   spawnPoints:
   - {fileID: 624595013112150264}
   - {fileID: 4773439151434238297}

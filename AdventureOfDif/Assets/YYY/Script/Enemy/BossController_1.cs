@@ -39,6 +39,17 @@ public class BossController_1 : MonoBehaviour
     private bool phase2Started;
 
 
+    [Header("阶段3 弹幕")]
+    public Transform barrageLeftPoint;
+    public Transform barrageRightPoint;
+
+    public int barrageRoundCount = 4;
+
+    private int currentBarrageRound;
+    private bool barrageGoingRight;
+
+
+
     private void Update()
     {
         if (boss == null || bossCharacter == null)
@@ -63,7 +74,6 @@ public class BossController_1 : MonoBehaviour
     // =========================
     // Phase 1
     // =========================
-
     void CheckPhase1()
     {
         if (phase2Started)
@@ -83,7 +93,6 @@ public class BossController_1 : MonoBehaviour
     // =========================
     // Phase 2
     // =========================
-
     void StartPhase2()
     {
         phase2Started = true;
@@ -118,6 +127,89 @@ public class BossController_1 : MonoBehaviour
 
         minionsSpawned = false;
     }
+
+    // =========================
+    // Phase 3
+    // =========================
+    public void StartPhase3()
+    {
+        currentPhase = BossPhase.Phase3_Barrage;
+
+        boss.isBossAir = true;
+
+        boss.CleanState();
+        boss.StopMove();
+        boss.ClearHitState();
+
+        currentBarrageRound = 0;
+
+        // 第一站左边
+        barrageGoingRight = false;
+
+        boss.anim.SetTrigger("barrageJumpOut");
+    }
+
+    public void MoveBossToBarragePoint()
+    {
+        Transform point = barrageGoingRight
+            ? barrageRightPoint
+            : barrageLeftPoint;
+
+        // ★整个Boss移动
+        boss.transform.position = point.position;
+
+        // ★动画器恢复自己正常的局部位置
+        boss.anim.transform.localPosition =
+            boss.animOriginalLocalPosition;
+
+
+        // ★右边：朝左
+        if (barrageGoingRight)
+        {
+            boss.transform.localScale =
+                new Vector3(-1, 1, 1);
+        }
+        // ★左边：朝右
+        else
+        {
+            boss.transform.localScale =
+                new Vector3(1, 1, 1);
+        }
+
+
+    }
+    public void BarrageAttackOver()
+    {
+        if (currentPhase != BossPhase.Phase3_Barrage)
+            return;
+
+        currentBarrageRound++;
+
+        // 达到次数，结束Phase3
+        if (currentBarrageRound >= barrageRoundCount)
+        {
+            EndPhase3();
+            return;
+        }
+
+        // 下一次换另一边
+        barrageGoingRight = !barrageGoingRight;
+
+        // 再次跳走
+        boss.anim.SetTrigger("barrageJumpOut");
+    }
+
+
+
+
+    private void StartNextBarrage()
+    {
+        if (currentPhase != BossPhase.Phase3_Barrage)
+            return;
+
+        boss.anim.SetTrigger("barrageJumpOut");
+    }
+
 
 
 
@@ -178,6 +270,12 @@ public class BossController_1 : MonoBehaviour
     }
 
 
+    void EndPhase3()
+    {
+        StartPhase2();
+    }
+
+
     public void FinishPhase2()
     {
         boss.isBossAir = false;
@@ -204,6 +302,12 @@ public class BossController_1 : MonoBehaviour
     {
         player = RoomGenerator.instance.player;
         cameraControl = RoomGenerator.instance.cameraControl;
+
+
+
+
+        // ★测试：开场直接进入弹幕阶段
+        //Invoke(nameof(StartPhase3), 1f);
     }
 
 

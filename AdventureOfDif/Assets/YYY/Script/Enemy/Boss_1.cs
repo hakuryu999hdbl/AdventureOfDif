@@ -65,7 +65,10 @@ public class Boss_1 : EnemyController
 
 
 
-
+    public void MoveBossToBarragePoint()
+    {
+        BossController_1.MoveBossToBarragePoint();
+    }//移动到位置
 
 
 

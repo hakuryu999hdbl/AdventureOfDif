@@ -73,17 +73,19 @@ public class Character : MonoBehaviour, IDamageable
             return;
         }
 
+        // ★特殊无敌状态优先于防御反击
+        // Boss Phase3 / Enemy_5悬空等全部在这里挡掉
+        if (enemy != null && enemy.IgnoreIncomingDamage())
+            return;
 
-        // 摩托哥防御反击
+        // 摩托哥和Boss_1防御反击
         if (enemy != null && enemy.TryHandleIncomingAttack(attacker))
         {
             Debug.Log("攻击已被特殊状态处理");
             return;
         }
 
-        // Enemy_5 悬空期间无敌
-        if (enemy != null && enemy.IgnoreIncomingDamage())
-            return;
+     
 
         if (currentHealth - attacker.damage > 0)
         {

@@ -1076,17 +1076,33 @@ public class EnemyController : MonoBehaviour
     public void OnTakeDamage(Attack attack)
     {
         if (isDead) return;
-
+        if (attack == null) return;
         #region //受伤特效/血/计数集中到这里，每次受击直接抓这个（如同相机震动一样处理）
 
 
-       
+        PlayBloodEffect();
+
+        //switch (attack.hitEffectType)
+        //{
+        //    case 0:
+        //        // 打击特效
+        //        Hit_Effect.SetActive(true);
+        //        frameEvents._Attack_hit();//击打声音
+        //        break;
+        //
+        //    case 1:
+        //        // 斩击特效
+        //        Strike_Effect.transform.localRotation = Quaternion.Euler(0, 0, UnityEngine.Random.Range(-45f, 45f));
+        //        Strike_Effect.SetActive(true);
+        //        break;
+        //}
+
 
         #endregion
 
 
         if (isHurt) return; // 受击流程中不再吃新攻击
-        if (attack == null) return;
+     
 
 
 
@@ -1099,20 +1115,7 @@ public class EnemyController : MonoBehaviour
         //nextCatchTime = Time.time + catchCooldown;
 
 
-        switch (attack.hitEffectType)
-        {
-            case 0:
-                // 打击特效
-                Hit_Effect.SetActive(true);
-                frameEvents._Attack_hit();//击打声音
-                break;
-
-            case 1:
-                // 斩击特效
-                Strike_Effect.transform.localRotation = Quaternion.Euler(0, 0, UnityEngine.Random.Range(-45f, 45f));
-                Strike_Effect.SetActive(true);
-                break;
-        }
+      
 
         characterSkin.FlashRed();//受伤闪红
         PlayBloodEffect();
@@ -1187,6 +1190,11 @@ public class EnemyController : MonoBehaviour
 
     void PlayBloodEffect()
     {
+        Hit_Effect.SetActive(true);
+        frameEvents._Attack_hit();//击打声音
+
+
+
         GameObject blood = Instantiate(
             Effect_Blood,
             transform.position,
@@ -1204,9 +1212,11 @@ public class EnemyController : MonoBehaviour
 
     public void OnDie()
     {
+        PlayBloodEffect();
+
         if (isDead) return;
 
-        PlayBloodEffect();
+      
 
         isDead = true;
 
