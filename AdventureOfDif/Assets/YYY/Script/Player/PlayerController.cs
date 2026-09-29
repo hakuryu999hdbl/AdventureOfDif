@@ -1082,40 +1082,49 @@ public class PlayerController : MonoBehaviour
     private Coroutine dashAttackCoroutine;//保存冲刺协程引用
     private IEnumerator DashAttack()
     {
-
-
-
-
         isAttack = true;
         isDashAttack = true;
 
-        dashDir = lastMoveDir.normalized;
+        // ★冲刺攻击只取左右方向
+        float dirX = lastMoveDir.x;
 
-        if (dashDir == Vector2.zero)
+        // 如果没有明显横向输入，就使用当前朝向
+        if (Mathf.Abs(dirX) < 0.1f)
         {
-            dashDir = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+            dirX = transform.localScale.x > 0 ? 1f : -1f;
         }
 
+        dashDir = dirX > 0 ? Vector2.right : Vector2.left;
+
+        // 朝向
         if (dashDir.x > 0)
             transform.localScale = new Vector3(1, 1, 1);
-        else if (dashDir.x < 0)
+        else
             transform.localScale = new Vector3(-1, 1, 1);
 
+        // ★准备阶段：原地停顿
+        rb.velocity = Vector2.zero;
 
+        yield return new WaitForSeconds(0.5f);
+
+        // 准备过程中被打断
+        if (isCaptured || isHurt || isDead)
+        {
+            isDashAttack = false;
+            dashAttackCoroutine = null;
+            yield break;
+        }
+
+        // ★正式冲刺
         float timer = 0f;
 
         while (timer < dashAttackMoveTime)
         {
-            // 被抓、受伤、死亡后立即结束冲刺
             if (isCaptured || isHurt || isDead)
                 break;
 
             if (CheckDashHitMap())
-            {
                 break;
-            }
-
-            if (isHurt || isDead || isCaptured) break;//滑行期间挂掉不移动
 
             rb.velocity = dashDir * dashAttackSpeed;
 
@@ -1125,17 +1134,7 @@ public class PlayerController : MonoBehaviour
 
         rb.velocity = Vector2.zero;
         isDashAttack = false;
-        dashAttackCoroutine = null;//协程结尾也清空引用
-
-        // 被抓状态下，攻击状态已经由 EnterCapturedState 清理
-        if (!isCaptured && !isHurt && !isDead)
-        {
-            // isAttack 仍然交给攻击动画结尾关闭
-        }
-
-
-
-
+        dashAttackCoroutine = null;
     }//冲刺攻击
 
     private bool CheckDashHitMap()
