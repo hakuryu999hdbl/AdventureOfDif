@@ -26,8 +26,21 @@ public class BossController_1 : MonoBehaviour
     [Header("阶段")]
     public BossPhase currentPhase = BossPhase.Phase1_Battle;
 
-    [Header("阶段2")]
-    public float phase2HealthRate = 0.7f;
+
+
+    [Header("阶段循环")]
+    public float[] phaseHealthRates = { 0.7f, 0.3f };
+
+    // 当前已经触发到第几次血量循环
+    private int phaseCycleIndex = 0;
+
+    // 当前这个 Phase2 是循环里的第几个 2
+    // 0 = 1后面的2
+    // 1 = 3后面的2
+    private int phase2Step = 0;
+
+
+
 
     public GameObject[] minionPrefabs;
     public Transform[] minionSpawnPoints;
@@ -36,7 +49,6 @@ public class BossController_1 : MonoBehaviour
 
     private bool minionsSpawned = false;
 
-    private bool phase2Started;
 
 
     [Header("阶段3 弹幕")]
@@ -76,15 +88,22 @@ public class BossController_1 : MonoBehaviour
     // =========================
     void CheckPhase1()
     {
-        if (phase2Started)
+        // 两次血量阶段都已经触发完
+        if (phaseCycleIndex >= phaseHealthRates.Length)
             return;
 
         float healthRate =
             bossCharacter.currentHealth /
             bossCharacter.maxHealth;
 
-        if (healthRate <= phase2HealthRate)
+        if (healthRate <= phaseHealthRates[phaseCycleIndex])
         {
+            // 进入这一轮的第一个 Phase2
+            phase2Step = 0;
+
+            // 先推进循环，防止回来后再次触发同一个血量点
+            phaseCycleIndex++;
+
             StartPhase2();
         }
     }
@@ -95,7 +114,7 @@ public class BossController_1 : MonoBehaviour
     // =========================
     void StartPhase2()
     {
-        phase2Started = true;
+
         currentPhase = BossPhase.Phase2_Summon;
 
 
@@ -259,14 +278,15 @@ public class BossController_1 : MonoBehaviour
 
     void EndPhase2()
     {
-        // ★恢复动画器出生时的局部位置
-        boss.anim.transform.localPosition = boss.animOriginalLocalPosition;
+        // 防止 Update 每帧重复调用
+        minionsSpawned = false;
 
-        // Boss播放从卡车跳回来的动画
+        // 恢复动画器出生时的局部位置
+        boss.anim.transform.localPosition =
+            boss.animOriginalLocalPosition;
+
+        // Boss从卡车跳回场地
         boss.anim.SetTrigger("jumpIn");
-
-
-       
     }
 
 
@@ -279,14 +299,23 @@ public class BossController_1 : MonoBehaviour
     public void FinishPhase2()
     {
         boss.isBossAir = false;
-
         boss.shadow.gameObject.SetActive(true);
 
+        // 第一轮2结束
+        // 1 → 2 → 3
+        if (phase2Step == 0)
+        {
+            phase2Step = 1;
+
+            StartPhase3();
+            return;
+        }
+
+        // 第二轮2结束
+        // 3 → 2 → 1
         currentPhase = BossPhase.Phase1_Battle;
 
         boss.EnterBattleState();
-
-       // Debug.Log("★★ Boss返回战斗");
     }
 
 

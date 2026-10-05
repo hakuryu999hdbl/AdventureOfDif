@@ -126,7 +126,13 @@ public class Boss_1 : EnemyController
     }
     public override bool IgnoreIncomingDamage()
     {
-        return isBossAir;
+        //return isBossAir;
+
+        if (BossController_1 == null)
+            return false;
+
+        return BossController_1.currentPhase
+            != BossController_1.BossPhase.Phase1_Battle;
     }
     public override bool TryHandleIncomingAttack(Attack attack)
     {

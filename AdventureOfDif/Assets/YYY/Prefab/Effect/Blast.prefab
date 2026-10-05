@@ -41,7 +41,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 827543187456329918}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -147,10 +147,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
+  hitEffectType: 0
   knockbackX: 10
   knockbackY: 10
   hurtTime: 0.2
   clearVelocity: 1
+  isPlayer: 0
 --- !u!1 &1111807069115479475
 GameObject:
   m_ObjectHideFlags: 0
