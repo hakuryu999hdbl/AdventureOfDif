@@ -924,7 +924,7 @@ public class PlayerController : MonoBehaviour
 
 
         inputControl.Gameplay.Pause.started += OnPause;
-
+        inputControl.UI.Cancel.started += OnCancel;
     }
 
 
@@ -939,10 +939,15 @@ public class PlayerController : MonoBehaviour
     public void EnableGameplayInput()
     {
         inputControl.Gameplay.Enable();
+        inputControl.UI.Disable();
     }//UIManager暂停菜单关闭调用
     public void DisableGameplayInput()
     {
         inputControl.Gameplay.Disable();
+        inputControl.UI.Enable();
+
+        // Pause 始终保持启用
+        inputControl.Gameplay.Pause.Enable();
     }//UIManager暂停菜单打开调用
 
 
@@ -1162,7 +1167,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnPause(InputAction.CallbackContext ctx)
     {
+        Debug.Log("【Dif】Pause输入触发：" + ctx.control.path);
+
         UIManager.instance.TogglePause();
+    }
+    public void OnCancel(InputAction.CallbackContext ctx)
+    {
+        UIManager.instance.OnCancel();
     }
     #endregion
 }

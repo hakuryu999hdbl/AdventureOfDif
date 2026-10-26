@@ -1,20 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Gate : MonoBehaviour
+public class Gate : MonoBehaviour, IInteractable
 {
-
     public Animator anim;
 
-    private void OnTriggerStay2D(Collider2D collision)//检测到玩家显示
+    public void TriggerAction()
     {
+        if (anim == null) return;
 
-        if (collision.gameObject.tag == "Player")
-        {
-
-            anim.SetTrigger("Open");
-        }
-        
+        anim.SetTrigger("Open");
     }
 }

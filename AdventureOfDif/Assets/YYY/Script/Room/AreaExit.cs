@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AreaExit : MonoBehaviour
+public class AreaExit : MonoBehaviour, IInteractable
 {
 
 
@@ -13,6 +13,8 @@ public class AreaExit : MonoBehaviour
 
     public int ShopNumber = 0;//0离开场景出口   1超市一  2超市二   3涩情超市
 
+    private bool isLoading;
+
     void Start() 
     {
         //寻找RoomGenerator
@@ -20,41 +22,32 @@ public class AreaExit : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void TriggerAction()
     {
-        if (other.CompareTag("Player"))
+        if (isLoading || RoomGenerator.instance == null) return;
+        if (string.IsNullOrEmpty(ExitName))
         {
- 
+            Debug.LogWarning($"{name}: AreaExit 的 ExitName 未设置", this);
+            return;
+        }
 
+        if (ShopNumber < 0 || ShopNumber > 3)
+        {
+            Debug.LogWarning($"{name}: 未知的 ShopNumber = {ShopNumber}", this);
+            return;
+        }
 
-            switch (ShopNumber) 
-            {
-                case 0:
-                    GameFlowData.nextAreaId = ExitName;//记录下一个前往区域
-                    RoomGenerator.instance.LoadNextArea();
-                    break;
+        isLoading = true;
+        GameFlowData.nextAreaId = ExitName;
 
-                case 1:
-                    GameFlowData.ShopType = 1;
-                    GameFlowData.nextAreaId = ExitName;//记录下一个前往区域
-                    RoomGenerator.instance.LoadShop();
-                    break;
-
-                case 2:
-                    GameFlowData.ShopType = 2;
-                    GameFlowData.nextAreaId = ExitName;//记录下一个前往区域
-                    RoomGenerator.instance.LoadShop();
-                    break;
-
-                case 3:
-                    GameFlowData.ShopType = 3;
-                    GameFlowData.nextAreaId = ExitName;//记录下一个前往区域
-                    RoomGenerator.instance.LoadShop();
-                    break;
-            }
-
-
-         
+        if (ShopNumber == 0)
+        {
+            RoomGenerator.instance.LoadNextArea();
+        }
+        else
+        {
+            GameFlowData.ShopType = ShopNumber;
+            RoomGenerator.instance.LoadShop();
         }
     }
 }

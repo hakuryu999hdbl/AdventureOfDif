@@ -1097,7 +1097,7 @@ public class Player : MonoBehaviour
 
     private void OnPause(InputAction.CallbackContext ctx)
     {
-        UIManager.instance.TogglePause();
+        //UIManager.instance.TogglePause();
     }//打开手机菜单
 
 
