@@ -642,8 +642,6 @@ public class UIManager : MonoBehaviour
             dialogSystem.ShowText();//下一句
         }
 
-     
-
 
      
 
@@ -670,10 +668,10 @@ public class UIManager : MonoBehaviour
         //if (player.isInputBlocked == false) { return; }
 
         //对话AVG界面
-        //if (CurrentChooseMenu == -2)
-        //{
-        //    dialogSystem.ChangeStory();//跳过
-        //}
+        if (CurrentChooseMenu == -2)
+        {
+            dialogSystem.ChangeStory();//跳过
+        }
         
         
         if (CurrentChooseMenu == 1)
@@ -727,47 +725,93 @@ public class UIManager : MonoBehaviour
     /// 启动AVG对话
     /// </summary>
     #region
-    public DialogSystem dialogSystem;
-    public void OpenAVG() 
-    {
-        dialogSystem.gameObject.SetActive(true);
+    [Header("战后AVG")]
+    public OpenAVG clearAVG;
 
+    public void SaveOpenAVG(OpenAVG AVG) 
+    {
+        clearAVG = AVG;
+    }
+
+
+    public DialogSystem dialogSystem;
+    private NpcController currentNpc;
+
+    public void OpenAVG(int Number, NpcController npc = null) 
+    {
+        currentNpc = npc;
 
         CurrentChooseMenu = -2;
 
-        Invoke("StopAllEnemy", 1f);
+        playerController.DisableGameplayInput();
+
+        dialogSystem.animation_number = Number;
+        dialogSystem.gameObject.SetActive(true);
+
+        Invoke(nameof(SuspendAllEnemiesForAVG), 0.5f);
     }
 
-    void StopAllEnemy() 
+
+
+
+    private readonly List<EnemyController> avgPausedEnemies =
+    new List<EnemyController>();
+
+
+    private void SuspendAllEnemiesForAVG()
     {
-        // 寻找场景中所有其他敌人，设置围观
-        GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject e in allEnemies)
+        avgPausedEnemies.Clear();
+
+        EnemyController[] enemies = FindObjectsByType<EnemyController>(FindObjectsSortMode.None);
+
+        foreach (EnemyController enemy in enemies)
         {
-            e.GetComponent<Enemy>().state = EnemyState.Frozen; // 进入围观状态
-            //player.observingEnemies.Add(e.GetComponent<Enemy>());
-        }
-    }
+            if (enemy == null || enemy.isAVGPaused)
+                continue;
 
-    void AllowAllEnemy() 
+            enemy.SuspendForAVG();
+            avgPausedEnemies.Add(enemy);
+
+            Debug.Log(
+            "暂停敌人：" + enemy.name +
+            " / paused=" + enemy.isAVGPaused +
+            " / AI=" + enemy.aiPath.canMove +
+            " / AnimSpeed=" + enemy.anim.speed
+        );
+        }
+    }// 寻找场景中所有其他敌人，设置围观
+
+    private void ResumeAllEnemiesFromAVG()
     {
-        // 清空所有围观敌人状态
-        //foreach (Enemy e in player.observingEnemies)
-        //{
-        //    if (e != null)
-        //    {
-        //        e.state = EnemyState.Idle;
-        //    }
-        //}
-    }
+        foreach (EnemyController enemy in avgPausedEnemies)
+        {
+            if (enemy != null)
+                enemy.ResumeFromAVG();
+        }
+
+        avgPausedEnemies.Clear();
+    } // 清空所有围观敌人状态
+
+
+
 
     public void CloseAVG() 
     {
-        Invoke("AllowAllEnemy", 1f);
 
-      
+        // 让当前对话的 NPC 返回待机
+        if (currentNpc != null)
+        {
+            currentNpc.StopTalk();
+            currentNpc = null;
+        }
+
+        ResumeAllEnemiesFromAVG();
+
+        playerController.EnableGameplayInput();
         CurrentChooseMenu = 0;
     }
+
+
     #endregion
 
 

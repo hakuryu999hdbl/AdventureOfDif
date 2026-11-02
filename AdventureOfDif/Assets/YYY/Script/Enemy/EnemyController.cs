@@ -80,6 +80,7 @@ public class EnemyController : MonoBehaviour
 
     public virtual void Update()
     {
+        if (isAVGPaused) return;//AVG暂停
 
         anim.SetBool("dead", isDead);
 
@@ -1289,6 +1290,54 @@ public class EnemyController : MonoBehaviour
     #endregion
 
 
+    /// <summary>
+    /// AVG暂停
+    /// </summary>
+    #region
+    [Header("AVG暂停")]
+    public bool isAVGPaused;
+
+    private bool aiWasMoving;
+    private float animatorSpeedBeforeAVG;
+
+    public void SuspendForAVG()
+    {
+        if (isAVGPaused || isDead) return;
+
+        isAVGPaused = true;
+
+        // 保存原本状态
+        aiWasMoving = aiPath != null && aiPath.canMove;
+        animatorSpeedBeforeAVG = anim.speed;
+
+        // 停止寻路
+        if (aiPath != null)
+            aiPath.canMove = false;
+
+        // 停止动画
+        anim.speed = 0f;
+
+        // 停止刚体移动
+        if (rb != null)
+            rb.velocity = Vector2.zero;
+    }
+
+    public void ResumeFromAVG()
+    {
+        if (!isAVGPaused) return;
+
+        isAVGPaused = false;
+
+        // 恢复动画
+        anim.speed = animatorSpeedBeforeAVG;
+
+        // 恢复原本寻路状态
+        if (aiPath != null)
+            aiPath.canMove = aiWasMoving;
+    }
+
+
+    #endregion
 
     [Header("状态显示器")]
     public SpriteRenderer stateViewer;

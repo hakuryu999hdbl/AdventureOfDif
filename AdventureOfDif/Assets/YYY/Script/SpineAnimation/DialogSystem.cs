@@ -26,28 +26,40 @@ public class DialogSystem : MonoBehaviour
 
     [Header("Dif")]
     public Image Dif_Image;
-    public Sprite Dif_Happy, Dif_Angry, Dif_Sad, Dif_Confusion, Dif_Common;
+    public Sprite Dif_Angry, Dif_Doubt, Dif_Happy, Dif_Normal, Dif_Shy, Dif_Surprise;
     public GameObject Dif_Name;
-    [Header("Enemy")]
-    public Image Enemy_Image;
-    public Sprite Enemy_01;
-    public GameObject Enemy_Name;
-    [Header("Boss")]
-    public Image Boss_Image;
-    public Sprite Boss_Common, Boss_Angry, Boss_Sad, Boss_Shame;
-    public GameObject Boss_Name;
+    [Header("Enemy_1")]
+    public Image Enemy_1_Image;
+    public Sprite Enemy_1_Hit, Enemy_1_Normal;
+    public GameObject Enemy_1_Name;
+    [Header("Scarlett")]
+    public Image Scarlett_Image;
+    public Sprite Scarlett_Angry, Scarlett_Defeat, Scarlett_Happy, Scarlett_Normal, Scarlett_Shy;
+    public GameObject Scarlett_Name;
     [Header("Sin")]
     public Image Sin_Image;
-    public Sprite Sin_Common, Sin_Happy, Sin_Confusion, Sin_Angry, Sin_Sad, Sin_Like;
+    public Sprite Sin_Angry, Sin_Doubt, Sin_Happy, Sin_Normal, Sin_Sad, Sin_Shy;
     public GameObject Sin_Name;
-
-
+    [Header("Leo")]
+    public Image Leo_Image;
+    public Sprite Leo_Doubt, Leo_Happy, Leo_Normal;
+    public GameObject Leo_Name;
+    [Header("Lanz")]
+    public Image Lanz_Image;
+    public Sprite Lanz_Focus, Lanz_Normal;
+    public GameObject Lanz_Name;
+    [Header("YYY")]
+    public Image YYY_Image;
+    public Sprite YYY_Happy, YYY_Normal;
+    public GameObject YYY_Name;
 
     private void OnEnable()
     {
         //textLabel.text = textList[index];
         //index++;
         Invoke("Read", 0.1f);
+
+        HideAll();
 
     }//一开始不会产生空白，OnEnable会在Start之前，Awake之后被调用
 
@@ -94,9 +106,39 @@ public class DialogSystem : MonoBehaviour
         //}
 
 
-        textAssets.Add(1001, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_Story_01"));
+        //textAssets.Add(1001, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_Story_01"));
 
+        textAssets.Add(101, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_01_01"));
 
+        textAssets.Add(201, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_02_01"));
+        textAssets.Add(202, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_02_02"));
+        textAssets.Add(203, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_02_03"));
+        textAssets.Add(204, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_02_03_A"));
+        textAssets.Add(205, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_02_03_B"));
+        textAssets.Add(206, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_02_03_C"));
+        textAssets.Add(207, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_02_03_D"));
+        textAssets.Add(208, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_02_04"));
+        textAssets.Add(209, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_02_05"));
+
+        textAssets.Add(301, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_03_01"));
+        textAssets.Add(302, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_03_02"));
+
+        textAssets.Add(401, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_04_01"));
+        textAssets.Add(402, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_04_02_A"));
+        textAssets.Add(403, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_04_02_B"));
+        textAssets.Add(404, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_04_02_C"));
+        textAssets.Add(405, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_04_02_D"));
+
+        textAssets.Add(501, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_05_01"));
+        textAssets.Add(502, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_05_02"));
+        textAssets.Add(503, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_05_03_LOSE"));
+        textAssets.Add(504, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_05_03_WIN"));
+        textAssets.Add(505, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_05_04"));
+
+        textAssets.Add(601, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_06_01"));
+        textAssets.Add(602, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_06_02"));
+        textAssets.Add(603, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_06_03"));
+        textAssets.Add(604, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_06_04"));
 
         // 使用字典查找相应的 TextAsset
         if (textAssets.TryGetValue(animation_number, out TextAsset selectedText))
@@ -118,7 +160,7 @@ public class DialogSystem : MonoBehaviour
         {
             if (index >= textList.Count) // 添加边界检查
             {
-                gameObject.SetActive(false);
+              
                 index = 0;
 
                 ChangeStory();//结束重刷场景
@@ -172,8 +214,10 @@ public class DialogSystem : MonoBehaviour
         switch (textList[index].Trim().ToString())
         {
             //字的颜色
-            case "BG":
+            case "bg":
                 text.color = Color.white;
+                HideAll();
+
                 index++;
                 break;
 
@@ -183,7 +227,25 @@ public class DialogSystem : MonoBehaviour
 
             #region [Dif]
 
-            case "Dif_Happy":
+            case "dif_angry":
+
+                text.color = new Color(0.0f, 0.68f, 0.93f, 1.0f);//蓝色(Dif)
+                SetActiveSpeaker("Dif");
+                Dif_Image.sprite = Dif_Angry;
+
+                index++;
+                break;
+
+            case "dif_doubt":
+
+                text.color = new Color(0.0f, 0.68f, 0.93f, 1.0f);//蓝色(Dif)
+                SetActiveSpeaker("Dif");
+                Dif_Image.sprite = Dif_Doubt;
+
+                index++;
+                break;
+
+            case "dif_happy":
 
                 text.color = new Color(0.0f, 0.68f, 0.93f, 1.0f);//蓝色(Dif)
                 SetActiveSpeaker("Dif");
@@ -192,38 +254,29 @@ public class DialogSystem : MonoBehaviour
                 index++;
                 break;
 
-            case "Dif_Angry":
+            case "dif_normal":
 
                 text.color = new Color(0.0f, 0.68f, 0.93f, 1.0f);//蓝色(Dif)
                 SetActiveSpeaker("Dif");
-                Dif_Image.sprite = Dif_Angry;
+                Dif_Image.sprite = Dif_Normal;
 
                 index++;
                 break;
 
-            case "Dif_Sad":
+            case "dif_shy":
 
                 text.color = new Color(0.0f, 0.68f, 0.93f, 1.0f);//蓝色(Dif)
                 SetActiveSpeaker("Dif");
-                Dif_Image.sprite = Dif_Angry;
+                Dif_Image.sprite = Dif_Shy;
 
                 index++;
                 break;
 
-            case "Dif_Confusion":
+            case "dif_surprise":
 
                 text.color = new Color(0.0f, 0.68f, 0.93f, 1.0f);//蓝色(Dif)
                 SetActiveSpeaker("Dif");
-                Dif_Image.sprite = Dif_Confusion;
-
-                index++;
-                break;
-
-            case "Dif_Common":
-
-                text.color = new Color(0.0f, 0.68f, 0.93f, 1.0f);//蓝色(Dif)
-                SetActiveSpeaker("Dif");
-                Dif_Image.sprite = Dif_Common;
+                Dif_Image.sprite = Dif_Surprise;
 
                 index++;
                 break;
@@ -231,34 +284,7 @@ public class DialogSystem : MonoBehaviour
 
             #region [Sin]
 
-            case "Sin_Common":
-
-                text.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); // 黄色（Sin）
-                SetActiveSpeaker("Sin");
-                Sin_Image.sprite = Sin_Common;
-
-                index++;
-                break;
-
-            case "Sin_Happy":
-
-                text.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); // 黄色（Sin）
-                SetActiveSpeaker("Sin");
-                Sin_Image.sprite = Sin_Happy;
-
-                index++;
-                break;
-
-            case "Sin_Confusion":
-
-                text.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); // 黄色（Sin）
-                SetActiveSpeaker("Sin");
-                Sin_Image.sprite = Sin_Confusion;
-
-                index++;
-                break;
-
-            case "Sin_Angry":
+            case "sin_angry":
 
                 text.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); // 黄色（Sin）
                 SetActiveSpeaker("Sin");
@@ -267,7 +293,34 @@ public class DialogSystem : MonoBehaviour
                 index++;
                 break;
 
-            case "Sin_Sad":
+            case "sin_doubt":
+
+                text.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); // 黄色（Sin）
+                SetActiveSpeaker("Sin");
+                Sin_Image.sprite = Sin_Doubt;
+
+                index++;
+                break;
+
+            case "sin_happy":
+
+                text.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); // 黄色（Sin）
+                SetActiveSpeaker("Sin");
+                Sin_Image.sprite = Sin_Happy;
+
+                index++;
+                break;
+
+            case "sin_normal":
+
+                text.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); // 黄色（Sin）
+                SetActiveSpeaker("Sin");
+                Sin_Image.sprite = Sin_Normal;
+
+                index++;
+                break;
+
+            case "sin_sad":
 
                 text.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); // 黄色（Sin）
                 SetActiveSpeaker("Sin");
@@ -276,11 +329,11 @@ public class DialogSystem : MonoBehaviour
                 index++;
                 break;
 
-            case "Sin_Like":
+            case "sin_shy":
 
                 text.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); // 黄色（Sin）
                 SetActiveSpeaker("Sin");
-                Sin_Image.sprite = Sin_Like;
+                Sin_Image.sprite = Sin_Shy;
 
                 index++;
                 break;
@@ -288,56 +341,127 @@ public class DialogSystem : MonoBehaviour
 
             #endregion
 
-            #region [Boss]
+            #region [Scarlett]
 
-            case "Boss_Common":
+            case "scarlett_angry":
                 text.color = new Color(0.8f, 0.2f, 0.2f, 1.0f); // 深红色（女Boss）
-                SetActiveSpeaker("Boss");
-                Sin_Image.sprite = Boss_Common;
+                SetActiveSpeaker("Scarlett");
+                Sin_Image.sprite = Scarlett_Angry;
 
                 index++;
                 break;
 
-            case "Boss_Angry":
+            case "scarlett_defeat":
                 text.color = new Color(0.8f, 0.2f, 0.2f, 1.0f); // 深红色（女Boss）
-                SetActiveSpeaker("Boss");
-                Sin_Image.sprite = Boss_Angry;
+                SetActiveSpeaker("Scarlett");
+                Sin_Image.sprite = Scarlett_Defeat;
 
                 index++;
                 break;
 
-            case "Boss_Sad":
+            case "scarlett_happy":
                 text.color = new Color(0.8f, 0.2f, 0.2f, 1.0f); // 深红色（女Boss）
-                SetActiveSpeaker("Boss");
-                Sin_Image.sprite = Boss_Sad;
+                SetActiveSpeaker("Scarlett");
+                Sin_Image.sprite = Scarlett_Happy;
 
                 index++;
                 break;
 
-            case "Boss_Shame":
+            case "scarlett_normal":
                 text.color = new Color(0.8f, 0.2f, 0.2f, 1.0f); // 深红色（女Boss）
-                SetActiveSpeaker("Boss");
-                Sin_Image.sprite = Boss_Shame;
+                SetActiveSpeaker("Scarlett");
+                Sin_Image.sprite = Scarlett_Normal;
+
+                index++;
+                break;
+
+            case "scarlett_shy":
+                text.color = new Color(0.8f, 0.2f, 0.2f, 1.0f); // 深红色（女Boss）
+                SetActiveSpeaker("Scarlett");
+                Sin_Image.sprite = Scarlett_Shy;
 
                 index++;
                 break;
 
             #endregion
 
-            #region [Enemy]
+            #region [Enemy_1]
 
-            case "Enemy_01":
+            case "enemy1_hit":
                 text.color = new Color(1.0f, 0.2f, 0.5f, 1.0f); //浅红色(Enemy)
                 SetActiveSpeaker("Enemy");
-                Enemy_Image.sprite = Enemy_01;
+                Enemy_1_Image.sprite = Enemy_1_Hit;
 
                 index++;
                 break;
 
+            case "enemy1_normal":
+                text.color = new Color(1.0f, 0.2f, 0.5f, 1.0f); //浅红色(Enemy)
+                SetActiveSpeaker("Enemy");
+                Enemy_1_Image.sprite = Enemy_1_Normal;
 
+                index++;
+                break;
+
+            #endregion
+
+            #region [Leo]
+
+            case "leo_doubt":
+                text.color = new Color(0.71f, 0.94f, 0.28f, 1f); //青柠色(Leo)
+                SetActiveSpeaker("Leo");
+                Leo_Image.sprite = Leo_Doubt;
+
+                index++;
+                break;
+
+            case "leo_happy":
+                text.color = new Color(0.71f, 0.94f, 0.28f, 1f); //青柠色(Leo)
+                SetActiveSpeaker("Leo");
+                Leo_Image.sprite = Leo_Happy;
+
+                index++;
+                break;
+
+            case "leo_normal":
+                text.color = new Color(0.71f, 0.94f, 0.28f, 1f); //青柠色(Leo)
+                SetActiveSpeaker("Leo");
+                Leo_Image.sprite = Leo_Normal;
+
+                index++;
+                break;
+
+            #endregion
+
+            #region [Lanz]
+
+            case "lanz_focus":
+                text.color = new Color(0.78f, 0.42f, 0.33f, 1f); //棕红色(Lanz)
+                SetActiveSpeaker("Lanz");
+                Lanz_Image.sprite = Lanz_Focus;
+
+                index++;
+                break;
+            #endregion
+
+            #region [YYY]
+
+            case "queque_happy":
+                text.color = new Color(1.00f, 0.50f, 0.74f, 1f);//粉色（Pink）
+                SetActiveSpeaker("YYY");
+                YYY_Image.sprite = YYY_Happy;
+
+                index++;
+                break;
+
+            case "queque_normal":
+                text.color = new Color(1.00f, 0.50f, 0.74f, 1f);//粉色（Pink）
+                SetActiveSpeaker("YYY");
+                YYY_Image.sprite = YYY_Normal;
+
+                index++;
+                break;
                 #endregion
-
-
         }
 
 
@@ -356,10 +480,28 @@ public class DialogSystem : MonoBehaviour
 
 
 
-       
+
     }
 
+    void HideAll()
+    {
+        Dif_Name.SetActive(false);
+        Scarlett_Name.SetActive(false);
+        Enemy_1_Name.SetActive(false);
+        Sin_Name.SetActive(false);
+        Leo_Name.SetActive(false);
+        Lanz_Name.SetActive(false);
+        YYY_Name.SetActive(false);
 
+
+        Dif_Image.gameObject.SetActive(false);
+        Scarlett_Image.gameObject.SetActive(false);
+        Enemy_1_Image.gameObject.SetActive(false);
+        Sin_Image.gameObject.SetActive(false);
+        Leo_Image.gameObject.SetActive(false);
+        Lanz_Image.gameObject.SetActive(false);
+        YYY_Image.gameObject.SetActive(false);
+    }
 
     public void SetActiveSpeaker(string speaker)
     {
@@ -368,14 +510,22 @@ public class DialogSystem : MonoBehaviour
         Color normal = Color.white;
 
         Dif_Image.color = dark;
-        Boss_Image.color = dark;
-        Enemy_Image.color = dark;
+        Scarlett_Image.color = dark;
+        Enemy_1_Image.color = dark;
         Sin_Image.color = dark;
+        Leo_Image.color = dark;
+        Lanz_Image.color = dark;
+        YYY_Image.color = dark;
+
+
 
         Dif_Name.SetActive(false);
-        Boss_Name.SetActive(false);
-        Enemy_Name.SetActive(false);
+        Scarlett_Name.SetActive(false);
+        Enemy_1_Name.SetActive(false);
         Sin_Name.SetActive(false);
+        Leo_Name.SetActive(false);
+        Lanz_Name.SetActive(false);
+        YYY_Name.SetActive(false);
 
         // 根据说话人激活对应角色与名字，并还原颜色
         switch (speaker)
@@ -386,47 +536,104 @@ public class DialogSystem : MonoBehaviour
                 Dif_Image.gameObject.SetActive(true);
                 break;
 
-            case "Boss":
-                Boss_Image.color = normal;
-                Boss_Name.SetActive(true);
-                Boss_Image.gameObject.SetActive(true);
-
-                //Boss出现，Sin消失
-                Sin_Image.gameObject.SetActive(false);
+            case "Scarlett":
+                Scarlett_Image.color = normal;
+                Scarlett_Name.SetActive(true);
+                Scarlett_Image.gameObject.SetActive(true);
                 break;
 
             case "Enemy":
-                Enemy_Image.color = normal;
-                Enemy_Name.SetActive(true);
-                Enemy_Image.gameObject.SetActive(true);
+                Enemy_1_Image.color = normal;
+                Enemy_1_Name.SetActive(true);
+                Enemy_1_Image.gameObject.SetActive(true);
                 break;
 
             case "Sin":
                 Sin_Image.color = normal;
                 Sin_Name.SetActive(true);
                 Sin_Image.gameObject.SetActive(true);
+                break;
 
-                //Sin出现，Boss消失
-                Boss_Image.gameObject.SetActive(false);
+            case "Leo":
+                Leo_Image.color = normal;
+                Leo_Name.SetActive(true);
+                Leo_Image.gameObject.SetActive(true);
+                break;
+
+            case "Lanz":
+                Lanz_Image.color = normal;
+                Lanz_Name.SetActive(true);
+                Lanz_Image.gameObject.SetActive(true);
+                break;
+
+            case "YYY":
+                YYY_Image.color = normal;
+                YYY_Name.SetActive(true);
+                YYY_Image.gameObject.SetActive(true);
                 break;
         }
     }
 
 
 
+    [Header("分支回答")]
+    public AVGChoice avgChoice;
+
+
     //快进按钮触发在这里
     public void ChangeStory()
     {
 
-        UIManager.instance.CloseAVG();
-        
+
+        switch (animation_number) 
+        {
+
+            case 203://开始
+            case 204://A
+            case 205://B
+            case 206://C
+                //跳出ABCD选项菜单
+                // 清空上一句文字
+
+                textLabel.text = "";
+
+                // 打开选项菜单
+                avgChoice.gameObject.SetActive(true);
+                avgChoice.OpenChoice();
+
+                break;
+
+
+            default:
+                UIManager.instance.CloseAVG();
+                gameObject.SetActive(false);
+                break;
+        }
+
+      
+
 
         //AudioManager.instance.AudioPlay(AudioManager.instance.Attack_hit2);
-
-        gameObject.SetActive(false);
     }
 
 
 
+    public void LoadChoice(int number)
+    {
+        animation_number = number;
 
+        // 停止旧文本播放
+        StopAllCoroutines();
+        CancelInvoke(nameof(Read));
+
+        // 重置打字状态
+        index = 0;
+        textFinished = true;
+        cancelTyping = false;
+
+        textLabel.text = "";
+
+        // 重新读取对应TXT
+        Read();
+    }
 }

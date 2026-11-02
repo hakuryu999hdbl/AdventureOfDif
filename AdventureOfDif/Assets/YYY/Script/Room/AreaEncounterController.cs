@@ -14,6 +14,7 @@ public class AreaEncounterController : MonoBehaviour
 
     private bool areaActivated = false;//是否被触发一遍
 
+  
 
     private void Start()
     {
@@ -62,7 +63,27 @@ public class AreaEncounterController : MonoBehaviour
 
             if (aliveEnemies.Count == 0)
             {
-             
+
+
+
+
+                #region 目前先设置所有OpenAVG都有第二次调用
+                if (UIManager.instance.clearAVG.Number_2 != 0)
+                {
+                    UIManager.instance.clearAVG.TriggerAVG();
+                }
+                #endregion
+
+
+
+
+
+
+
+
+
+
+
                 RoomGenerator.instance.GoGo.SetActive(true);//提示清理完毕
 
                 if (Go != null)

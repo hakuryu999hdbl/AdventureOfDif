@@ -925,6 +925,8 @@ public class PlayerController : MonoBehaviour
 
         inputControl.Gameplay.Pause.started += OnPause;
         inputControl.UI.Cancel.started += OnCancel;
+        inputControl.UI.Submit.started += OnUISubmit;
+
     }
 
 
@@ -1174,6 +1176,13 @@ public class PlayerController : MonoBehaviour
     public void OnCancel(InputAction.CallbackContext ctx)
     {
         UIManager.instance.OnCancel();
+    }
+    private void OnUISubmit(InputAction.CallbackContext ctx)
+    {
+        if (UIManager.instance.CurrentChooseMenu == -2)
+        {
+            UIManager.instance.dialogSystem.ShowText();
+        }
     }
     #endregion
 }
