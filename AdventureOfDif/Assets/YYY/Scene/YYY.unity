@@ -518,7 +518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterSkin: {fileID: 534242812}
   rb: {fileID: 65564745}
-  speed: 5
+  walkSpeed: 2.4
   runSpeed: 5
   grabSpeed: 2.4
   playerAnimation: {fileID: 534242817}
@@ -13720,7 +13720,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLocale: zhCN
-  HealthBar: {fileID: 1043547360}
   SexBar: {fileID: 1163105031}
   CriticalBar: {fileID: 180605861}
   R: {fileID: 1773800731}
@@ -16829,37 +16828,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1722557521}
   m_CullTransparentMesh: 1
---- !u!1 &1739439689
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1739439690}
-  m_Layer: 0
-  m_Name: -2_Platform
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1739439690
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1739439689}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 43.492226, y: 2.7797606, z: -5.5594025}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1782697182}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1743931158
 GameObject:
   m_ObjectHideFlags: 0
@@ -17343,7 +17311,6 @@ Transform:
   - {fileID: 436301101}
   - {fileID: 464909485}
   - {fileID: 848602224}
-  - {fileID: 1739439690}
   - {fileID: 1510701002}
   - {fileID: 1556002528}
   - {fileID: 947761706}

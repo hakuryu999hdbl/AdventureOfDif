@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public CharacterSkin characterSkin;
 
     public Rigidbody2D rb;
-    public float speed;
+    public float walkSpeed = 2.4f;
 
     public float runSpeed = 5f;
     public float grabSpeed = 2.4f;
@@ -128,7 +128,8 @@ public class PlayerController : MonoBehaviour
     {
         if (isCaptured) return;//抓取封锁
 
-        float currentSpeed = isGrabbing ? grabSpeed : runSpeed;
+        float movementSpeed = inputControl.Gameplay.WalkButton.IsPressed() ? walkSpeed : runSpeed;
+        float currentSpeed = isGrabbing ? grabSpeed : movementSpeed;
 
         rb.velocity = inputDirection.normalized * currentSpeed;
 
@@ -904,19 +905,6 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         inputControl = new PlayerInputControl();
-
-        #region 强制走路
-
-        inputControl.Gameplay.WalkButton.performed += ctx =>
-        {
-            speed = 2.4f;
-        };//检测按住
-        inputControl.Gameplay.WalkButton.canceled += ctx =>
-        {
-            speed = 5f;
-        };//检测松开
-        #endregion
-
 
         inputControl.Gameplay.Attack.started += OnAttackStarted;
         inputControl.Gameplay.Attack.canceled += OnAttackCanceled;

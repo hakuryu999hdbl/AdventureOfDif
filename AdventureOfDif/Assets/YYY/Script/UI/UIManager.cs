@@ -1,11 +1,10 @@
-﻿using NUnit.Framework.Interfaces;
+using NUnit.Framework.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using TMPro;
 //using Unity.Android.Gradle.Manifest;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
@@ -47,9 +46,6 @@ public class UIManager : MonoBehaviour
     /// 血条等各种值
     /// </summary>
     #region
-    [Header("生命值")]
-    public Image HealthBar;
-
     [Header("淫乱值")]
     public Image SexBar;
 
@@ -100,19 +96,6 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void UpdateHealthBar(int curAmount, int maxAmount)
-    {
-        HealthBar.fillAmount = (float)curAmount / (float)maxAmount;
-
-
-        //if (curAmount <= maxAmount / 3)
-        //{ HealthBar.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); }// 纯黄色
-        //else if (curAmount > maxAmount / 3 && curAmount <= maxAmount / 2)
-        //{ HealthBar.color = new Color(1.0f, 0.5f, 0.0f, 1.0f); } // 橙色
-        //else
-        //{ HealthBar.color = Color.red; }
-    }
-
     public void UpdateSexBar(int curAmount, int maxAmount)
     {
         float percent = Mathf.Clamp01((float)curAmount / (float)maxAmount);
@@ -157,13 +140,11 @@ public class UIManager : MonoBehaviour
         //    //CriticalBar.color = flashColor;
         //
         //
-        //    R.SetActive(true);
         //}
         //else
         //{
         //    //CriticalBar.color = baseColor;
         //
-        //    R.SetActive(false);
         //}
 
 
@@ -858,8 +839,6 @@ public class UIManager : MonoBehaviour
     }
 
    
-    Character currentCharacter;
-
     private void Update()
     {
         if (healthDelayImage.fillAmount > healthImage.fillAmount)
@@ -872,25 +851,4 @@ public class UIManager : MonoBehaviour
     #endregion
 
 
-    #region   【寻找场景内残留脚本】
-    [MenuItem("Tools/Cleanup/Remove All FaceToCamera Scripts")]
-    static void RemoveAllFaceToCamera()
-    {
-        int count = 0;
-
-        // 查找场景里所有 FaceToCamera 脚本
-        FaceToCamera[] allFaces = GameObject.FindObjectsOfType<FaceToCamera>(true);
-
-        foreach (var face in allFaces)
-        {
-            // 记录并销毁
-            GameObject obj = face.gameObject;
-           
-            Debug.Log($"✅ Removed FaceToCamera from: {obj.name}");
-            count++;
-        }
-
-        Debug.Log($"--- 共清理 {count} 个 FaceToCamera 组件 ---");
-    }
-#endregion
 }
