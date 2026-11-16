@@ -12,6 +12,7 @@ public class AreaExit : MonoBehaviour, IInteractable
     public String ExitName;
 
     public int ShopNumber = 0;//0离开场景出口   1超市一  2超市二   3涩情超市
+    [SerializeField] private int blockedDialogueAfterSinQuestions;
 
     private bool isLoading;
 
@@ -25,6 +26,16 @@ public class AreaExit : MonoBehaviour, IInteractable
     public void TriggerAction()
     {
         if (isLoading || RoomGenerator.instance == null) return;
+        UIManager ui = UIManager.instance;
+        if (ui != null && ui.CurrentChooseMenu == -2)
+            return;
+
+        if (blockedDialogueAfterSinQuestions > 0 && GameFlowData.SinQuestionsCompleted && ui != null)
+        {
+            ui.OpenAVG(blockedDialogueAfterSinQuestions);
+            return;
+        }
+
         if (string.IsNullOrEmpty(ExitName))
         {
             Debug.LogWarning($"{name}: AreaExit 的 ExitName 未设置", this);

@@ -23,6 +23,10 @@ public class BossController_1 : MonoBehaviour
     public Character bossCharacter;
     public Transform BossTransform;
 
+    [Header("AVG")]
+    [SerializeField] private int introDialogue;
+    [SerializeField] private int defeatedDialogue;
+
     [Header("阶段")]
     public BossPhase currentPhase = BossPhase.Phase1_Battle;
 
@@ -64,7 +68,7 @@ public class BossController_1 : MonoBehaviour
 
     private void Update()
     {
-        if (boss == null || bossCharacter == null)
+        if (boss == null || bossCharacter == null || boss.isAVGPaused || boss.isDead)
             return;
 
         switch (currentPhase)
@@ -332,13 +336,35 @@ public class BossController_1 : MonoBehaviour
         player = RoomGenerator.instance.player;
         cameraControl = RoomGenerator.instance.cameraControl;
 
+        if (bossCharacter != null)
+            bossCharacter.OnDie.AddListener(OnBossDefeated);
 
-
-
-        // ★测试：开场直接进入弹幕阶段
-        //Invoke(nameof(StartPhase3), 1f);
+        if (introDialogue > 0)
+            UIManager.instance.OpenAVG(introDialogue, pauseEnemiesImmediately: true);
     }
 
+    private void OnDestroy()
+    {
+        if (bossCharacter != null)
+            bossCharacter.OnDie.RemoveListener(OnBossDefeated);
+    }
+
+    private void OnBossDefeated()
+    {
+        if (currentPhase == BossPhase.Dead)
+            return;
+
+        currentPhase = BossPhase.Dead;
+        if (defeatedDialogue > 0)
+            StartCoroutine(PlayDefeatedDialogue());
+    }
+
+    private IEnumerator PlayDefeatedDialogue()
+    {
+        UIManager ui = UIManager.instance;
+        yield return new WaitUntil(() => ui.CurrentChooseMenu != -2);
+        ui.OpenAVG(defeatedDialogue, pauseEnemiesImmediately: true);
+    }
 
 
 

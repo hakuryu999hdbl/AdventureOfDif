@@ -1,0 +1,12 @@
+dif_angry
+Hey! What are you doing, ganging up on someone outside my gym in broad daylight?
+enemy1_normal
+Who the hell are you? Mind your own business. Trust me, you don't want trouble with us.
+sin_sad
+P-please help me! I can't take much more of this…
+enemy1_normal
+Shut up! Who said you could talk? Grab the kid and get moving! The bosses are already pissed he escaped. Quit stalling before something else goes wrong!
+dif_angry
+Acting like I'm not even here? You really think you can beat someone up and drag them off in broad daylight?
+enemy1_normal
+Hah. This bitch has no idea who she's messing with. Girls, teach her a lesson!

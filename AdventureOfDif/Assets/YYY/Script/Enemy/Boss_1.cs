@@ -111,6 +111,9 @@ public class Boss_1 : EnemyController
 
     public override void Update()
     {
+        if (isAVGPaused)
+            return;
+
         // Boss处于跳出场地/卡车/演出状态
         if (isBossAir)
         {
@@ -126,7 +129,8 @@ public class Boss_1 : EnemyController
     }
     public override bool IgnoreIncomingDamage()
     {
-        //return isBossAir;
+        if (isAVGPaused)
+            return true;
 
         if (BossController_1 == null)
             return false;

@@ -1,0 +1,4 @@
+lanz_focus
+(She's absorbed in her mobile game and doesn't notice you arrive.)
+dif_normal
+She's really into it. Better leave her to it.

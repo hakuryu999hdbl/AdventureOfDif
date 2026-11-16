@@ -1,0 +1,10 @@
+lanz_normal
+저기, 언니! 요즘 엄청 핫한 신작 게임 해 봤어요? 진짜 끝내줘요~♪
+dif_doubt
+어…… 네? 무슨 게임이요?
+lanz_normal
+자, 이거 가져가서 해 봐요~
+dif_surprise
+아, 아! 가, 감사해요!
+lanz_normal
+별거 아니에요. 뭘요, 자기♥

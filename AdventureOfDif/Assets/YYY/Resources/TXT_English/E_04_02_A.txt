@@ -1,0 +1,14 @@
+dif_doubt
+What exactly did they take from you? How could it be a matter of life and death?
+sin_normal
+It's a substance I need to survive… If I go too long without absorbing it, my body slowly starts to fail. I ache all over and can barely move.
+sin_sad
+The company once locked me in isolation for two weeks to observe me. I had no access to it the whole time. I nearly died in there.
+dif_surprise
+Wait, no way… You're not talking about what I think you're talking about, are you?
+sin_sad
+Huh? What do you mean…?
+sin_angry
+N-no! It's absolutely not whatever weird thing you're imagining! I swear it's not!
+dif_shy
+Ahaha… Sorry, sorry. My mind went somewhere else.

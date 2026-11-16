@@ -1,0 +1,16 @@
+leo_normal
+Morning, Dif! You're looking as fired up as ever.
+dif_happy
+Morning, Leo! You're on the front desk today? Where's the boss? Slacking off somewhere in the gym?
+leo_happy
+She doesn't have time to slack off. Didn't she tell you? Last-minute business trip. She'll be gone a whole week. It'll be quieter around here with nobody breathing down our necks…
+bg
+(A sudden commotion outside cuts the conversation short.)
+leo_doubt
+?!
+dif_doubt
+What's going on out there? It's way too early for this racket.
+leo_doubt
+(A little worried) No idea. It sounds like it's right at the entrance. We just opened. A scene out front could hurt our reputation and our business.
+dif_normal
+You stay at the desk. I'll go see what's happening.

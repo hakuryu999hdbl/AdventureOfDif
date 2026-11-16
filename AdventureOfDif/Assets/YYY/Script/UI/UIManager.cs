@@ -718,7 +718,7 @@ public class UIManager : MonoBehaviour
     public DialogSystem dialogSystem;
     private NpcController currentNpc;
 
-    public void OpenAVG(int Number, NpcController npc = null) 
+    public void OpenAVG(int Number, NpcController npc = null, bool pauseEnemiesImmediately = false)
     {
         currentNpc = npc;
 
@@ -729,7 +729,10 @@ public class UIManager : MonoBehaviour
         dialogSystem.animation_number = Number;
         dialogSystem.gameObject.SetActive(true);
 
-        Invoke(nameof(SuspendAllEnemiesForAVG), 0.5f);
+        if (pauseEnemiesImmediately)
+            SuspendAllEnemiesForAVG();
+        else
+            Invoke(nameof(SuspendAllEnemiesForAVG), 0.5f);
     }
 
 
@@ -778,6 +781,7 @@ public class UIManager : MonoBehaviour
 
     public void CloseAVG() 
     {
+        CancelInvoke(nameof(SuspendAllEnemiesForAVG));
 
         // 让当前对话的 NPC 返回待机
         if (currentNpc != null)

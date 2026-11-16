@@ -1,0 +1,16 @@
+dif_happy
+You're safe now. After the way they ran off, I doubt they'll be back anytime soon. I'll call the police for you.
+sin_normal
+N-no… Don't call the police. It's too late for that now…
+sin_sad
+They just took the one thing I need most… Without it, I won't last more than a few days. I'll die.
+dif_surprise
+What?! Why didn't you say so sooner? Come on, I'll help you get it back!
+sin_shy
+R-really?! I'm coming too! If it means getting it back, I'll help however I can. I won't slow you down!
+dif_doubt
+You're still hurt. Are you sure?
+sin_normal
+It still hurts… but I can handle it! Please take me with you. I swear I won't get in the way!
+dif_normal
+All right! Let's hurry and catch up to them!

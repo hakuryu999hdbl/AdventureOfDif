@@ -5,6 +5,7 @@ using Cinemachine;
 public class AreaEncounterController : MonoBehaviour
 {
     public GameObject[] Go;//清理区域解锁下一个场景入口
+    [SerializeField] private int postClearDialogue;
     //public RoomGenerator RoomGenerator;//寻找RoomGenerator
 
     [Header("敌人生成")]
@@ -67,12 +68,18 @@ public class AreaEncounterController : MonoBehaviour
 
 
 
-                #region 目前先设置所有OpenAVG都有第二次调用
-                if (UIManager.instance.clearAVG.Number_2 != 0)
+                UIManager ui = UIManager.instance;
+                OpenAVG introDialogue = ui.clearAVG;
+                if (postClearDialogue > 0)
                 {
-                    UIManager.instance.clearAVG.TriggerAVG();
+                    yield return new WaitUntil(() => ui.CurrentChooseMenu != -2);
+                    ui.OpenAVG(postClearDialogue);
+                    yield return new WaitUntil(() => ui.CurrentChooseMenu != -2);
                 }
-                #endregion
+                else if (introDialogue != null && introDialogue.Number_2 != 0)
+                {
+                    introDialogue.TriggerAVG();
+                }
 
 
 

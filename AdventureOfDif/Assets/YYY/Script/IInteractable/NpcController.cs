@@ -6,6 +6,7 @@ public class NpcController : MonoBehaviour, IInteractable
 {
     public Animator anim;
     public int Number;
+    [SerializeField] private int dialogueAfterSinQuestions;
 
     public void TriggerAction()
     {
@@ -14,7 +15,10 @@ public class NpcController : MonoBehaviour, IInteractable
 
       
 
-        UIManager.instance.OpenAVG(Number, this);
+        int dialogue = GameFlowData.SinQuestionsCompleted && dialogueAfterSinQuestions > 0
+            ? dialogueAfterSinQuestions
+            : Number;
+        UIManager.instance.OpenAVG(dialogue, this);
 
         anim.Play("talk");
     }

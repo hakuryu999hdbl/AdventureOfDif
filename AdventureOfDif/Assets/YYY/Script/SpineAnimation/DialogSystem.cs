@@ -8,7 +8,35 @@ public class DialogSystem : MonoBehaviour
     [Header("UI组件")]
     public Text textLabel;
 
-    private Dictionary<int, TextAsset> textAssets = new Dictionary<int, TextAsset>();
+    private static readonly Dictionary<int, string> DialogueFiles = new Dictionary<int, string>
+    {
+        [101] = "01_01",
+        [201] = "02_01",
+        [202] = "02_02",
+        [203] = "02_03",
+        [204] = "02_03_A",
+        [205] = "02_03_B",
+        [206] = "02_03_C",
+        [207] = "02_03_D",
+        [208] = "02_04",
+        [209] = "02_05",
+        [301] = "03_01",
+        [302] = "03_02",
+        [401] = "04_01",
+        [402] = "04_02_A",
+        [403] = "04_02_B",
+        [404] = "04_02_C",
+        [405] = "04_02_D",
+        [501] = "05_01",
+        [502] = "05_02",
+        [503] = "05_03_LOSE",
+        [504] = "05_03_WIN",
+        [505] = "05_04",
+        [601] = "06_01",
+        [602] = "06_02",
+        [603] = "06_03",
+        [604] = "06_04",
+    };
 
 
     public int index;
@@ -38,8 +66,19 @@ public class DialogSystem : MonoBehaviour
     public GameObject Scarlett_Name;
     [Header("Sin")]
     public Image Sin_Image;
+    [SerializeField] private Image sinLeftImage;
     public Sprite Sin_Angry, Sin_Doubt, Sin_Happy, Sin_Normal, Sin_Sad, Sin_Shy;
     public GameObject Sin_Name;
+
+    private Image CurrentSinImage =>
+        sinLeftImage != null && ShouldUseLeftSin(animation_number) ? sinLeftImage : Sin_Image;
+
+    private static bool ShouldUseLeftSin(int dialogueNumber)
+    {
+        // 需要让 Sin 站在 Dif 旁边的对话编号。
+        return dialogueNumber is 208 or 209 or 301
+            or 502 or 505 or 604;
+    }
     [Header("Leo")]
     public Image Leo_Image;
     public Sprite Leo_Doubt, Leo_Happy, Leo_Normal;
@@ -55,6 +94,9 @@ public class DialogSystem : MonoBehaviour
 
     private void OnEnable()
     {
+        if (avgChoice != null)
+            avgChoice.ResetChoices();
+
         //textLabel.text = textList[index];
         //index++;
         Invoke("Read", 0.1f);
@@ -81,81 +123,53 @@ public class DialogSystem : MonoBehaviour
 
     }//强制关闭对话
 
+    private static (string folder, string prefix) GetDialogueLocale(int language)
+    {
+        return language switch
+        {
+            0 => ("TXT_Japanese", "J"),
+            2 => ("TXT_Traditional_Chinese", "C2"),
+            3 => ("TXT_English", "E"),
+            4 => ("TXT_Korean", "K"),
+            _ => ("TXT_Simplified_Chinese", "C1")
+        };
+    }
+
     void Read()
     {
-        // Clear the existing dictionary to avoid key conflicts
-        textAssets.Clear();
-
-        //switch (PlayerPrefs.GetInt("language"))
-        //{
-        //    case 0:
-        //        textAssets.Add(1001, Resources.Load<TextAsset>("TXT_Japanese/J_Story_01"));
-        //        break;
-        //    case 1:
-        //        textAssets.Add(1001, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_Story_01"));
-        //        break;
-        //    case 2:
-        //        textAssets.Add(1001, Resources.Load<TextAsset>("TXT_Traditional_Chinese/C2_Story_01"));
-        //        break;
-        //    case 3:
-        //        textAssets.Add(1001, Resources.Load<TextAsset>("TXT_English/E_Story_01"));
-        //        break;
-        //    case 4:
-        //        textAssets.Add(1001, Resources.Load<TextAsset>("TXT_Korean/K_Story_01"));                                                                                             
-        //        break;
-        //}
-
-
-        //textAssets.Add(1001, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_Story_01"));
-
-        textAssets.Add(101, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_01_01"));
-
-        textAssets.Add(201, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_02_01"));
-        textAssets.Add(202, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_02_02"));
-        textAssets.Add(203, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_02_03"));
-        textAssets.Add(204, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_02_03_A"));
-        textAssets.Add(205, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_02_03_B"));
-        textAssets.Add(206, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_02_03_C"));
-        textAssets.Add(207, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_02_03_D"));
-        textAssets.Add(208, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_02_04"));
-        textAssets.Add(209, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_02_05"));
-
-        textAssets.Add(301, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_03_01"));
-        textAssets.Add(302, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_03_02"));
-
-        textAssets.Add(401, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_04_01"));
-        textAssets.Add(402, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_04_02_A"));
-        textAssets.Add(403, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_04_02_B"));
-        textAssets.Add(404, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_04_02_C"));
-        textAssets.Add(405, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_04_02_D"));
-
-        textAssets.Add(501, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_05_01"));
-        textAssets.Add(502, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_05_02"));
-        textAssets.Add(503, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_05_03_LOSE"));
-        textAssets.Add(504, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_05_03_WIN"));
-        textAssets.Add(505, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_05_04"));
-
-        textAssets.Add(601, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_06_01"));
-        textAssets.Add(602, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_06_02"));
-        textAssets.Add(603, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_06_03"));
-        textAssets.Add(604, Resources.Load<TextAsset>("TXT_Simplified_Chinese/C1_06_04"));
-
-        // 使用字典查找相应的 TextAsset
-        if (textAssets.TryGetValue(animation_number, out TextAsset selectedText))
+        if (!DialogueFiles.TryGetValue(animation_number, out string file))
         {
-            GetTextFormFile(selectedText);
-        }
-        else
-        {
-            Debug.LogError("No TextAsset found for animation_number: " + animation_number);
+            Debug.LogError($"No dialogue file mapped for animation_number: {animation_number}", this);
+            ChangeStory();
+            return;
         }
 
+        var (folder, prefix) = GetDialogueLocale(PlayerPrefs.GetInt("language", 0));
+        TextAsset selectedText = Resources.Load<TextAsset>($"{folder}/{prefix}_{file}");
+        if (selectedText == null && prefix != "C1")
+        {
+            Debug.LogWarning($"Missing localized dialogue {folder}/{prefix}_{file}; using Simplified Chinese.", this);
+            selectedText = Resources.Load<TextAsset>($"TXT_Simplified_Chinese/C1_{file}");
+        }
+
+        if (selectedText == null)
+        {
+            Debug.LogError($"No text asset for dialogue {animation_number} ({file})", this);
+            UIManager.instance.CloseAVG();
+            gameObject.SetActive(false);
+            return;
+        }
+
+        GetTextFormFile(selectedText);
         textFinished = true;
         StartCoroutine(SetTextUI());
     }
 
     public void ShowText()
     {
+        if (avgChoice != null && avgChoice.isActiveAndEnabled)
+            return;
+
         if (textFinished && !cancelTyping)
         {
             if (index >= textList.Count) // 添加边界检查
@@ -211,7 +225,8 @@ public class DialogSystem : MonoBehaviour
 
         //判断一整行的字符是
         Text text = textLabel;
-        switch (textList[index].Trim().ToString())
+        string speakerTag = textList[index].Trim();
+        switch (speakerTag)
         {
             //字的颜色
             case "bg":
@@ -288,7 +303,7 @@ public class DialogSystem : MonoBehaviour
 
                 text.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); // 黄色（Sin）
                 SetActiveSpeaker("Sin");
-                Sin_Image.sprite = Sin_Angry;
+                CurrentSinImage.sprite = Sin_Angry;
 
                 index++;
                 break;
@@ -297,7 +312,7 @@ public class DialogSystem : MonoBehaviour
 
                 text.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); // 黄色（Sin）
                 SetActiveSpeaker("Sin");
-                Sin_Image.sprite = Sin_Doubt;
+                CurrentSinImage.sprite = Sin_Doubt;
 
                 index++;
                 break;
@@ -306,7 +321,7 @@ public class DialogSystem : MonoBehaviour
 
                 text.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); // 黄色（Sin）
                 SetActiveSpeaker("Sin");
-                Sin_Image.sprite = Sin_Happy;
+                CurrentSinImage.sprite = Sin_Happy;
 
                 index++;
                 break;
@@ -315,7 +330,7 @@ public class DialogSystem : MonoBehaviour
 
                 text.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); // 黄色（Sin）
                 SetActiveSpeaker("Sin");
-                Sin_Image.sprite = Sin_Normal;
+                CurrentSinImage.sprite = Sin_Normal;
 
                 index++;
                 break;
@@ -324,7 +339,7 @@ public class DialogSystem : MonoBehaviour
 
                 text.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); // 黄色（Sin）
                 SetActiveSpeaker("Sin");
-                Sin_Image.sprite = Sin_Sad;
+                CurrentSinImage.sprite = Sin_Sad;
 
                 index++;
                 break;
@@ -333,7 +348,7 @@ public class DialogSystem : MonoBehaviour
 
                 text.color = new Color(1.0f, 1.0f, 0.0f, 1.0f); // 黄色（Sin）
                 SetActiveSpeaker("Sin");
-                Sin_Image.sprite = Sin_Shy;
+                CurrentSinImage.sprite = Sin_Shy;
 
                 index++;
                 break;
@@ -387,6 +402,7 @@ public class DialogSystem : MonoBehaviour
 
             #region [Enemy_1]
 
+            case "enemy_hit":
             case "enemy1_hit":
                 text.color = new Color(1.0f, 0.2f, 0.5f, 1.0f); //浅红色(Enemy)
                 SetActiveSpeaker("Enemy");
@@ -436,9 +452,10 @@ public class DialogSystem : MonoBehaviour
             #region [Lanz]
 
             case "lanz_focus":
+            case "lanz_normal":
                 text.color = new Color(0.78f, 0.42f, 0.33f, 1f); //棕红色(Lanz)
                 SetActiveSpeaker("Lanz");
-                Lanz_Image.sprite = Lanz_Focus;
+                Lanz_Image.sprite = speakerTag == "lanz_focus" ? Lanz_Focus : Lanz_Normal;
 
                 index++;
                 break;
@@ -498,6 +515,8 @@ public class DialogSystem : MonoBehaviour
         Scarlett_Image.gameObject.SetActive(false);
         Enemy_1_Image.gameObject.SetActive(false);
         Sin_Image.gameObject.SetActive(false);
+        if (sinLeftImage != null)
+            sinLeftImage.gameObject.SetActive(false);
         Leo_Image.gameObject.SetActive(false);
         Lanz_Image.gameObject.SetActive(false);
         YYY_Image.gameObject.SetActive(false);
@@ -512,7 +531,7 @@ public class DialogSystem : MonoBehaviour
         Dif_Image.color = dark;
         Scarlett_Image.color = dark;
         Enemy_1_Image.color = dark;
-        Sin_Image.color = dark;
+        CurrentSinImage.color = dark;
         Leo_Image.color = dark;
         Lanz_Image.color = dark;
         YYY_Image.color = dark;
@@ -549,9 +568,12 @@ public class DialogSystem : MonoBehaviour
                 break;
 
             case "Sin":
-                Sin_Image.color = normal;
+                Image sinPortrait = CurrentSinImage;
+                Sin_Image.gameObject.SetActive(sinPortrait == Sin_Image);
+                if (sinLeftImage != null)
+                    sinLeftImage.gameObject.SetActive(sinPortrait == sinLeftImage);
+                sinPortrait.color = normal;
                 Sin_Name.SetActive(true);
-                Sin_Image.gameObject.SetActive(true);
                 break;
 
             case "Leo":
@@ -579,6 +601,29 @@ public class DialogSystem : MonoBehaviour
     [Header("分支回答")]
     public AVGChoice avgChoice;
 
+    private static string[] GetChoiceLabels(int firstQuestion, int language)
+    {
+        if (firstQuestion == 204)
+        {
+            return language switch
+            {
+                0 => new[] { "追われる理由", "服装と角について", "敵の正体", "話を切り上げる" },
+                2 => new[] { "追問被追捕原因", "詢問衣著與犄角疑點", "盤問敵人勢力來歷", "就此收尾" },
+                3 => new[] { "Why they chased you", "Clothes and horns", "Who are they?", "Wrap up" },
+                4 => new[] { "쫓기는 이유", "옷과 뿔에 대해", "적의 정체", "대화 마치기" },
+                _ => null
+            };
+        }
+
+        return language switch
+        {
+            0 => new[] { "奪われたもの", "会社との関係", "特殊能力について", "もう十分" },
+            2 => new[] { "追問被搶走的物品", "詢問與公司的關係", "詢問自身特殊能力", "就這樣吧" },
+            3 => new[] { "What did they take?", "Why they want you", "Your special ability", "That's all" },
+            4 => new[] { "빼앗긴 물건", "회사와의 관계", "특수 능력에 대해", "이 정도면 됐어" },
+            _ => new[] { "追问被抢走的物品", "询问与公司的关系", "询问自身特殊能力", "就这样吧" }
+        };
+    }
 
     //快进按钮触发在这里
     public void ChangeStory()
@@ -592,17 +637,19 @@ public class DialogSystem : MonoBehaviour
             case 204://A
             case 205://B
             case 206://C
-                //跳出ABCD选项菜单
-                // 清空上一句文字
-
-                textLabel.text = "";
-
-                // 打开选项菜单
-                avgChoice.gameObject.SetActive(true);
-                avgChoice.OpenChoice();
-
+                ShowChoices(204);
                 break;
 
+            case 401:
+            case 402:
+            case 403:
+            case 404:
+                ShowChoices(402);
+                break;
+
+            case 207://就此收尾
+                GameFlowData.SinQuestionsCompleted = true;
+                goto default;
 
             default:
                 UIManager.instance.CloseAVG();
@@ -617,6 +664,15 @@ public class DialogSystem : MonoBehaviour
     }
 
 
+
+    private void ShowChoices(int firstQuestion)
+    {
+        StopAllCoroutines();
+        CancelInvoke(nameof(Read));
+        textLabel.text = "";
+        int language = PlayerPrefs.GetInt("language", 0);
+        avgChoice.OpenChoice(animation_number, firstQuestion, GetChoiceLabels(firstQuestion, language));
+    }
 
     public void LoadChoice(int number)
     {

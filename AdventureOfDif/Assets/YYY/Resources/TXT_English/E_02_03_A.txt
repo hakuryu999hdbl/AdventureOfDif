@@ -1,0 +1,10 @@
+dif_doubt
+What was with that gang? Why wouldn't they stop chasing you, and why were they so desperate to take you back?
+sin_sad
+They're bad people… They want my ability. I wouldn't do what they said, so they tried to drag me back and keep me under their control…
+dif_doubt
+Huh? An ability? What kind of ability?
+sin_sad
+(Hesitates, pressing his lips together and looking away.) …Just something ordinary. Nothing special.
+dif_normal
+I see… (Muttering to herself) Guess the kid still doesn't trust me much.

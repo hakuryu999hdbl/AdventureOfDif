@@ -1,0 +1,4 @@
+dif_normal
+I think I've heard everything I need. Leave the rest to me. I'll charge in and take care of them!
+sin_happy
+Yeah! I'll do everything I can to help!

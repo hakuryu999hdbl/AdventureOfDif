@@ -1,0 +1,16 @@
+dif_doubt
+While we're on the subject, I'm really curious. What exactly is that ability you mentioned?
+sin_normal
+AkaKegare's new drink, the one people have been talking about, contains a special ingredient. It amplifies people's deepest desires until they lose control, become slaves to those urges, and succumb to corruption.
+sin_normal
+During the long experiments to see how I adapted to that ingredient, I developed an unexpected ability. I can neutralize and purge those distorted, amplified desires.
+dif_surprise
+I knew something was off about that drink! A bunch of people started acting strange after drinking it. I had no idea it was that nasty!
+dif_normal
+So how do you use that purifying ability?
+sin_shy
+(Blushes, looks away, and stammers.) Um… well, I have to… do that thing… make very close contact with the person affected. O-otherwise it won't work…
+dif_doubt
+That thing…? What exactly do you mean?
+dif_shy
+Whoa, whoa, whoa! No way! You don't mean that, do you?! Oh my god, that's so embarrassing!

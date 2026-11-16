@@ -1,0 +1,10 @@
+dif_doubt
+Who were those people, anyway? Their uniforms look familiar. I swear I've seen them somewhere.
+sin_normal
+They work for… the AkaKegare Group.
+dif_surprise
+Oh, them! I've heard of that company. They've been pushing their new drink hard lately. Their ads are everywhere.
+dif_doubt
+But if they go around beating people up like that, aren't they worried what the public will think…?
+sin_sad
+…

@@ -1,0 +1,18 @@
+leo_normal
+Whoa, you were gone a while. I was just about to start worrying.
+leo_happy
+But you look fine, and you even brought a friend back!
+sin_shy
+Uh… h-hello.
+dif_happy
+You won't believe what just happened to me!
+leo_doubt
+Uh, so you went and picked a fight with a huge corporation?
+dif_happy
+What's the big deal? Haha. They're bad news anyway.
+leo_happy
+I don't mind, but you're in for it when the boss gets back.
+dif_surprise
+Don't tell her! I'll get it sorted before she gets back!
+sin_doubt
+Can you really sort it out that easily…?

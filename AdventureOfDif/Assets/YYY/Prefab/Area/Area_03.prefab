@@ -1496,6 +1496,8 @@ MonoBehaviour:
   boss: {fileID: 6963755133990028957}
   bossCharacter: {fileID: 315270376086705125}
   BossTransform: {fileID: 6286165773940996084}
+  introDialogue: 501
+  defeatedDialogue: 502
   currentPhase: 0
   phase2HealthRate: 0.7
   minionPrefabs:

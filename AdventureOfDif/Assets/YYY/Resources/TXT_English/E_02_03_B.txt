@@ -1,0 +1,10 @@
+dif_normal
+Those aren't exactly everyday clothes. And what are the handcuffs for?
+sin_normal
+Th-they made me wear all of this. I didn't want to, but I didn't have a choice.
+dif_surprise
+And that thing on your head… It's real? I thought it was part of the outfit!
+sin_shy
+W-whoa! Don't just touch my horns! They're really sensitive!
+dif_shy
+Oh, sorry, sorry! I didn't realize. That was rude of me.

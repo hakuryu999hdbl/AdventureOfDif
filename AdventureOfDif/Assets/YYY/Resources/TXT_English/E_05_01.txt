@@ -1,0 +1,34 @@
+scarlett_normal
+Hm? Who are you, barging in here uninvited?
+enemy_hit
+Boss! That's her! She's the woman who ruined everything! And that's the kid who ran away, right next to her!
+dif_happy
+Look at you, full of energy. Guess I really did go too easy on you back there.
+enemy_hit
+Eek! Watch out, boss! She's a hell of a fighter!
+scarlett_normal
+…Get out of my way, you useless idiot.
+enemy_hit
+Eeeek!
+scarlett_happy
+So you're the bitch who's been screwing with my business?
+dif_normal
+Huh?
+scarlett_happy
+I thought it'd be someone impressive. This is it? Those useless idiots couldn't handle two people, so now I have to clean up their mess myself.
+scarlett_happy
+Hey, I'll give you one chance. Hand over the kid, get on your knees, and beg for forgiveness. If I'm feeling generous, I might let you live.
+dif_normal
+…
+dif_angry
+Piss off, bitch. Who do you think you are? I've already taken care of all your idiot lackeys!
+dif_angry
+And you're next!
+scarlett_angry
+Hah. That's a big mouth for a fat pig who can barely move.
+scarlett_angry
+If you're that eager to die, I'll oblige!
+dif_angry
+Enough talk, you ugly freckle-face!
+scarlett_angry
+You damn cow!

@@ -1,0 +1,14 @@
+dif_normal
+Hm? What's wrong?
+sin_normal
+The enemy base is just ahead… We've come all this way, and I really think you're a good person.
+sin_sad
+Their leader is really strong. I can't thank you enough for going this far for me, but I don't want to drag you into any more danger…
+dif_happy
+Come on, don't worry about it. A company like that would've picked a fight with us sooner or later, even if we'd never met. I've heard they go after businesses that refuse to cooperate.
+dif_angry
+Besides, don't sell me short. I'm strong! You've got nothing to worry about.
+sin_happy
+That's a relief… I guess I was overthinking it.
+sin_normal
+I've been keeping things from you. But we've come this far. Ask me anything you still want to know. I promise I'll tell you everything.

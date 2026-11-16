@@ -1,0 +1,38 @@
+sin_shy
+I don't think there's any sign of corruption left in her.
+dif_shy
+Does that really count as purification?
+dif_shy
+You didn't make that up just to enjoy yourself, did you? You looked like you were having a lot of fun back there.
+sin_shy
+Of course not! I swear I didn't lie to you. My ability really works!
+scarlett_defeat
+Ugh… Would you two shut up already?
+dif_angry
+Huh? Still as foul-mouthed as ever. Did the purification even work?!
+scarlett_defeat
+Shut up, you fat cow! All that rage I felt earlier is long gone!
+scarlett_defeat
+Let me straighten out my clothes… What a mess.
+dif_surprise
+So she was always this obnoxious?!
+scarlett_normal
+So you two are planning to go head-to-head with our company and tear the whole operation down?
+dif_surprise
+You bounced back fast. And yes, we're taking on your company.
+scarlett_normal
+You've got no idea how deep AkaKegare's roots go. Its influence reaches into every corner of this city. Two people like you don't stand a chance of bringing it down.
+dif_angry
+Can you say something useful for once?!
+sin_doubt
+There must be more of the substance you took from me. Do you know where all those supplies went?
+scarlett_normal
+All of it went to the underground transit depot behind me. I'm just a low-level supervisor who receives and watches the cargo.
+scarlett_happy
+If you want to go deeper and get more of it, find Yoihime at AkaMitsu MiSu. She has the keycard for the underground workshop.
+sin_happy
+Then let's head there right away!
+dif_normal
+Yeah! Now that you're safe, Sin, I should stop by the gym and fill my friend in so he doesn't worry.
+scarlett_normal
+You'd better think this through. Where you're headed next, once you're in, you may never find your way out.

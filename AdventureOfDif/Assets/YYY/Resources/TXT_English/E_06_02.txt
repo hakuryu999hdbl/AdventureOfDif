@@ -1,0 +1,8 @@
+queque_normal
+I hear Yoihime's giving a concert tonight. Better grab tickets early if you want to get in!
+dif_normal
+Oh, wow! What a coincidence…
+dif_surprise
+Wait, what?! How did you know we were looking for her?!
+queque_happy
+A detective has her sources. That's a secret!

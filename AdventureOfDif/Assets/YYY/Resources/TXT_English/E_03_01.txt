@@ -1,0 +1,14 @@
+dif_normal
+Hi. Did you see a group in matching company uniforms run past here just now?
+queque_normal
+Sure did! They were in a real hurry. They ducked right into that alley behind me!
+queque_normal
+Hehe, hey gorgeous, want to unlock my exclusive detective service? Looks like you're tracking something down. Digging up leads is my specialty!
+sin_doubt
+…
+dif_surprise
+Wow, you're a detective? That's awesome!
+dif_happy
+Thanks a ton! If we need more leads, I'll come back and ask for your help.
+queque_normal
+See you around! ♥

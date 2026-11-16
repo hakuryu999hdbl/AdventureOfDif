@@ -1,0 +1,8 @@
+queque_normal
+聽說宵姫今晚要辦個演唱會，不早點搶票可是不好入場的哦~
+dif_normal
+哦哦!真是巧了......
+dif_surprise
+？！你怎麼知道我們要去找她！？
+queque_happy
+偵探自然有渠道，這是秘密~

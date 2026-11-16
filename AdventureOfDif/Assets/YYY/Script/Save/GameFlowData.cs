@@ -16,6 +16,7 @@ public static class GameFlowData
     // 临时角色状态
     public static float? playerHealth = null;
     public static float? playerSex = null;
+    public static bool SinQuestionsCompleted { get; set; }
 
 
     //是否存在跨场景临时状态。 //null 表示从主菜单开始的新游戏。
@@ -29,5 +30,6 @@ public static class GameFlowData
 
         playerHealth = null;
         playerSex = null;
+        SinQuestionsCompleted = false;
     }
 }

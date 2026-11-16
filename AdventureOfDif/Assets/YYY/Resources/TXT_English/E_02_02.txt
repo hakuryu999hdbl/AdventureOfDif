@@ -1,0 +1,8 @@
+enemy1_hit
+Ow, ow, ow… How the hell are you that good at fighting…?
+dif_angry
+Underestimated me, huh? We teach real fighting at this gym.
+enemy1_hit
+Just you wait, you fat pig! This isn't over! We'll be back for you! (She scrambles away.)
+dif_angry
+Hey! Who the fuck are you calling fat? Come back and fight me! …Damn it. Lousy fighter, fast runner.

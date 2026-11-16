@@ -1,0 +1,12 @@
+dif_normal
+So why is this company so desperate to catch you?
+sin_sad
+They've been running strange experiments on people in secret. I was one of the people they forced to take part.
+sin_normal
+These horns are a result of the modifications. The number on my clothes is my test subject ID. (Points to his horns and clothes.)
+sin_normal
+I don't even know what they were trying to accomplish. I couldn't stand being locked up and experimented on anymore, so I risked everything to get out.
+sin_normal
+They're probably afraid I'll expose their experiments, so they'll do anything to get me back.
+dif_normal
+I see. A shady company hiding an ugly secret. That's straight out of the classic villain playbook.

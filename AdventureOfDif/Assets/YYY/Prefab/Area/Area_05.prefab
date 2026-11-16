@@ -730,6 +730,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!1 &2100000000000000011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2100000000000000012}
+  - component: {fileID: 2100000000000000013}
+  m_Layer: 0
+  m_Name: SpineGroundPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2100000000000000012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100000000000000011}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7966282816693522194}
+  m_Father: {fileID: 5616357036061741981}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &2100000000000000013
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100000000000000011}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &2190411835716699902
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,6 +869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 6086995218296387040}
   Number: 203
+  dialogueAfterSinQuestions: 208
 --- !u!1 &2307828048439143684
 GameObject:
   m_ObjectHideFlags: 0
@@ -2953,7 +2999,6 @@ MonoBehaviour:
   Go:
   - {fileID: 7611396326290369556}
   - {fileID: 556939996733365836}
-  - {fileID: 6457628797055896141}
   - {fileID: 2190411835716699902}
   enemyPrefabs:
   - {fileID: 6724541046560202250, guid: 69b2f238488e7f64fa4ad1c03c84f06e, type: 3}
@@ -2961,7 +3006,6 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 2296721515652213753}
   - {fileID: 5551093783468172697}
-  clearAVG: {fileID: 0}
 --- !u!61 &6098421045953107158
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5453,6 +5497,11 @@ PrefabInstance:
       propertyPath: ExitName
       value: Area06_1
       objectReference: {fileID: 0}
+    - target: {fileID: 2754899177847531547, guid: ef2290044b76ca64b990f0a4967ae4b1,
+        type: 3}
+      propertyPath: blockedDialogueAfterSinQuestions
+      value: 209
+      objectReference: {fileID: 0}
     - target: {fileID: 4374644275559880038, guid: ef2290044b76ca64b990f0a4967ae4b1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5724,54 +5773,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 9028555183791478136}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6457628797055896141 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2654243300189314869, guid: ef2290044b76ca64b990f0a4967ae4b1,
-    type: 3}
-  m_PrefabInstance: {fileID: 9028555183791478136}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2100000000000000011
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2100000000000000012}
-  - component: {fileID: 2100000000000000013}
-  m_Layer: 0
-  m_Name: SpineGroundPivot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2100000000000000012
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2100000000000000011}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7966282816693522194}
-  m_Father: {fileID: 5616357036061741981}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!210 &2100000000000000013
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2100000000000000011}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_SortAtRoot: 0
