@@ -143,7 +143,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      leo_mouth_0: 5501818892766982831
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -143,7 +143,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      rage_hita_0: 1736311195210738561
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

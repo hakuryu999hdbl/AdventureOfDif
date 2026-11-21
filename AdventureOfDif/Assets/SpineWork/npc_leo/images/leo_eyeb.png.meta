@@ -167,7 +167,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      leo_eyeb_0: 2191848733493973372
+      leo_eyeb_1: -7865183487530900231
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

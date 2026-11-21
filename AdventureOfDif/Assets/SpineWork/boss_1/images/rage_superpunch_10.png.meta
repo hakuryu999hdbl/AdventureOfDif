@@ -143,7 +143,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      rage_superpunch_10_0: -7108035958163104906
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

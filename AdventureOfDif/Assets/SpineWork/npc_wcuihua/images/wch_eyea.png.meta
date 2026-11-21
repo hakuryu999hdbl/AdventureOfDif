@@ -191,7 +191,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      wch_eyea_0: -7305096642581190442
+      wch_eyea_1: 3883806389048706292
+      wch_eyea_2: -3163774460308634643
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

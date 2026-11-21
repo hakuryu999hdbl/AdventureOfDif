@@ -167,7 +167,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sin_eyeb_0: 1379244162112358355
+      sin_eyeb_1: 7653719115204571080
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -167,7 +167,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      rage_eyebrowa_0: -5974362601007197913
+      rage_eyebrowa_1: -190428660336522946
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

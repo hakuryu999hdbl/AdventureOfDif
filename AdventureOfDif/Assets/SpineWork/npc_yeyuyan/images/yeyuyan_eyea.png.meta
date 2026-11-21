@@ -167,7 +167,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      yeyuyan_eyea_0: -5999556981177319314
+      yeyuyan_eyea_1: 7774399471396743559
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -431,7 +431,20 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      rage_superpunch_9_0: 489822063341952805
+      rage_superpunch_9_1: 6108576339238227128
+      rage_superpunch_9_10: -6960955242769101292
+      rage_superpunch_9_11: 2767221343819547315
+      rage_superpunch_9_12: -153274252268649499
+      rage_superpunch_9_2: -3647379482284061865
+      rage_superpunch_9_3: 8915333709913932946
+      rage_superpunch_9_4: 5791279773775937394
+      rage_superpunch_9_5: -1686387361168930835
+      rage_superpunch_9_6: -1423017111201106984
+      rage_superpunch_9_7: -2371969251222440726
+      rage_superpunch_9_8: -6556089469860302212
+      rage_superpunch_9_9: -2204991657172646528
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
