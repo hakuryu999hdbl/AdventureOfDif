@@ -73,6 +73,9 @@ public class AttackState : EnemyBaseState
             return;
         }
 
+        if (enemy is Enemy_3 grappler && grappler.TryStartDashGrab(player))
+            return;
+
         float distance = Vector2.Distance(enemy.transform.position, enemy.targetPoint.position);
 
         if (distance > enemy.attackRange)

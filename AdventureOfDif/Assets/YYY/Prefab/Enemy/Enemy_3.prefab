@@ -1513,6 +1513,10 @@ MonoBehaviour:
   blockColor: {r: 1, g: 0.5, b: 0.4, a: 1}
   JumpStrikeColor: {r: 0.5, g: 0.9, b: 0.6, a: 1}
   deadColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  minDashDistance: 3
+  maxDashDistance: 10
+  dashLaneTolerance: 0.55
+  dashMissRecoveryTime: 0.35
 --- !u!114 &944684242434676031
 MonoBehaviour:
   m_ObjectHideFlags: 0

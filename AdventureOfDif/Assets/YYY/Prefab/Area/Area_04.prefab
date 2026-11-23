@@ -2022,12 +2022,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Go:
   - {fileID: 1846613206743145644}
+  postClearDialogue: 0
   enemyPrefabs:
-  - {fileID: 1745234303257194375, guid: c6c03b58ab37e854e97fcdda26d40737, type: 3}
   - {fileID: 1745234303257194375, guid: c6c03b58ab37e854e97fcdda26d40737, type: 3}
   spawnPoints:
   - {fileID: 5010056815139290799}
   - {fileID: 6047196566594091624}
+  enemy5LoopPoints: []
 --- !u!61 &6077807676070532958
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7911,13 +7912,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Go:
   - {fileID: 8624076683744521824}
+  postClearDialogue: 0
   enemyPrefabs:
-  - {fileID: 6724541046560202250, guid: 69b2f238488e7f64fa4ad1c03c84f06e, type: 3}
-  - {fileID: 1772945055527555024, guid: 775355ec764fe1b4ca0da48454abb954, type: 3}
-  - {fileID: 6724541046560202250, guid: 69b2f238488e7f64fa4ad1c03c84f06e, type: 3}
+  - {fileID: 1745234303257194375, guid: c6c03b58ab37e854e97fcdda26d40737, type: 3}
   spawnPoints:
   - {fileID: 7211741351824764154}
   - {fileID: 4631487875395475489}
+  enemy5LoopPoints: []
 --- !u!61 &4592684815084836806
 BoxCollider2D:
   m_ObjectHideFlags: 0

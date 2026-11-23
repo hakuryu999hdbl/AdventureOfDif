@@ -361,10 +361,12 @@ public class CharacterSkin : MonoBehaviour
         if (enemyController != null)
         {
 
-            // 旧攻击动画的帧事件可能仍会执行，所以这里必须再次拦截
+            // Enemy_3 的冲刺预备复用普通抓取动画，冲刺抓取由移动判定触发。
+            // 旧攻击动画的帧事件也可能仍会执行。
             if (enemyController.isDead ||
                 enemyController.isHurt ||
-                enemyController.isCatching)
+                enemyController.isCatching ||
+                (enemyController is Enemy_3 && enemyController.animState != 3))
             {
                 enemyController.Catch_Collider.SetActive(false);
                 return;
