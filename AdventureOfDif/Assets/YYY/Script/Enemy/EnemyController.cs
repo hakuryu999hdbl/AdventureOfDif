@@ -462,7 +462,7 @@ public class EnemyController : MonoBehaviour
 
         targetPoint = null;
 
-        TransitionToState(patrolState);
+        ResumeAfterInterruption();
     }
 
 

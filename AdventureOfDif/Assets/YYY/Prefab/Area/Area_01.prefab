@@ -2970,11 +2970,13 @@ MonoBehaviour:
   - {fileID: 7719950554057704908}
   - {fileID: 2438172130202719277}
   - {fileID: 2934814755427066457}
+  postClearDialogue: 0
   enemyPrefabs:
-  - {fileID: 6724541046560202250, guid: 69b2f238488e7f64fa4ad1c03c84f06e, type: 3}
+  - {fileID: 1772945055527555024, guid: 775355ec764fe1b4ca0da48454abb954, type: 3}
   spawnPoints:
   - {fileID: 3971909701462455422}
   - {fileID: 1679779325339040758}
+  enemy5LoopPoints: []
 --- !u!61 &6178680545461424916
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5492,11 +5494,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Go:
   - {fileID: 8064982603720689349}
+  postClearDialogue: 0
   enemyPrefabs:
   - {fileID: 6724541046560202250, guid: 69b2f238488e7f64fa4ad1c03c84f06e, type: 3}
   spawnPoints:
   - {fileID: 7219935016556181114}
   - {fileID: 8204932246582899151}
+  enemy5LoopPoints: []
 --- !u!61 &578517681990738800
 BoxCollider2D:
   m_ObjectHideFlags: 0

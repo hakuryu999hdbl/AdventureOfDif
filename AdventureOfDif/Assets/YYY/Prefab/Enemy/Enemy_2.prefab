@@ -464,7 +464,7 @@ MonoBehaviour:
   attack_Collider_1: {fileID: 4012528079770986967}
   attack_Collider_2: {fileID: 4133272993052739693}
   attackRate: 1
-  attackRange: 4
+  attackRange: 1
   attackList: []
   targetPoint: {fileID: 0}
   Obstacle_Attack: {fileID: 4068797132111943887, guid: 7f590ac600da84d409a29714e876394d,
@@ -531,6 +531,7 @@ MonoBehaviour:
   blockColor: {r: 1, g: 0.5, b: 0.4, a: 1}
   JumpStrikeColor: {r: 0.5, g: 0.9, b: 0.6, a: 1}
   deadColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  minThrowDistance: 4
 --- !u!114 &9125160553215111691
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Enemy_2 : EnemyController
 {
+    [SerializeField, Min(0f)] private float minThrowDistance = 4f;
+
     public override void EnterBattleState()
     {
-        //一半几率进入瞄准投掷攻击一半几率进入普通攻击
-        //if (Random.value < 0.5f)
-        //{
-        //    TransitionToState(aimThrowSkillState);
-        //}
-        //else
-        //{
-        //    TransitionToState(attackState);
-        //}
+        Transform target = GetNearestTarget(attackList);
+        PlayerController player = target != null ? target.GetComponent<PlayerController>() : null;
+        TransitionToState(CanAimThrowAt(player) ? (EnemyBaseState)aimThrowSkillState : attackState);
+    }
 
-        TransitionToState(aimThrowSkillState);
+    public bool CanAimThrowAt(PlayerController player)
+    {
+        return player != null && !player.isDead && !player.isCaptured && !player.isHurt &&
+            Vector2.Distance(transform.position, player.transform.position) >= minThrowDistance;
     }
 }

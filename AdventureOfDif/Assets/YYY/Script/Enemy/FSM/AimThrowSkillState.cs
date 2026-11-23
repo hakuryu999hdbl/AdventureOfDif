@@ -60,6 +60,18 @@ public class AimThrowSkillState : EnemyBaseState
 
     private void UpdateReady(EnemyController enemy)
     {
+        if (enemy is Enemy_2 thrower)
+        {
+            PlayerController player = enemy.targetPoint != null
+                ? enemy.targetPoint.GetComponent<PlayerController>()
+                : null;
+            if (!thrower.CanAimThrowAt(player))
+            {
+                enemy.TransitionToState(enemy.attackState);
+                return;
+            }
+        }
+
         timer -= Time.deltaTime;
 
         enemy.StopMove();
