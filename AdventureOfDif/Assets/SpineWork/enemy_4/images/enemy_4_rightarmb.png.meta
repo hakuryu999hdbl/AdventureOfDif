@@ -143,7 +143,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      enemy_4_rightarmb_0: -4775138974591576387
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

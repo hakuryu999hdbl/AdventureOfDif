@@ -143,7 +143,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      rage_rightfeet_0: -7767532206537402738
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

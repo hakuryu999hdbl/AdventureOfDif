@@ -143,7 +143,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      enemy_5_hairc_0: -2904460392257139724
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

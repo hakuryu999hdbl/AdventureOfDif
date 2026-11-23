@@ -143,7 +143,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      yeyuyan_mouthb_0: 3467109043423802963
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

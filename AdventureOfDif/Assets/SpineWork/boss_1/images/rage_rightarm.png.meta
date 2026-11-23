@@ -143,7 +143,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      rage_rightarm_0: 7437185628664608005
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
