@@ -15,10 +15,11 @@ public class JumpStrikeSkillState : EnemyBaseState
 
     private Enemy_5 enemy5;
 
+    public bool CanHit => enemy5 != null && !enemy5.isDead &&
+        (phase == Phase.Fall || phase == Phase.Attack);
+
     public override void EnterState(EnemyController enemy)
     {
-        enemy.targetPoint = enemy.GetNearestTarget(enemy.attackList);//追寻攻击状态下的目标
-
         enemy5 = enemy as Enemy_5;
 
         if (enemy5 == null)
@@ -34,6 +35,10 @@ public class JumpStrikeSkillState : EnemyBaseState
         enemy.SetAnimState(4);
 
         phase = Phase.Jump;
+
+        enemy5.jumpStrikeTargetPos = enemy.targetPoint != null
+            ? (Vector2)enemy.targetPoint.position + enemy5.landingOffset
+            : (Vector2)enemy.transform.position;
 
         enemy.anim.SetInteger("skillState", 1);
 
@@ -51,7 +56,7 @@ public class JumpStrikeSkillState : EnemyBaseState
 
         if (enemy.isHurt)
         {
-            CancelSkill(enemy);
+            enemy.TransitionToState(enemy.hitState);
             return;
         }
 
@@ -109,8 +114,12 @@ public class JumpStrikeSkillState : EnemyBaseState
         if (enemy5.jumpAimTarget != null)
             enemy5.jumpAimTarget.gameObject.SetActive(false);
 
-        enemy.transform.position =
-            enemy5.jumpStrikeTargetPos;
+        Vector3 landingPosition = enemy5.jumpStrikeTargetPos;
+        landingPosition.z = enemy.transform.position.z;
+        if (enemy.aiPath != null)
+            enemy.aiPath.Teleport(landingPosition);
+        else
+            enemy.transform.position = landingPosition;
 
 
 
@@ -119,33 +128,34 @@ public class JumpStrikeSkillState : EnemyBaseState
 
     public void StartAim(EnemyController enemy)
     {
-        if (enemy5 == null)
-            enemy5 = enemy as Enemy_5;
-
-        if (enemy5 == null)
+        if (enemy5 == null || enemy.isDead || phase != Phase.Jump)
             return;
 
         enemy5.isJumpStrikeUntargetable = true;//进入无敌状态
 
         if (enemy.targetPoint != null)
-        {
-
-            enemy5.jumpAimTarget.position =
-                enemy5.jumpStrikeTargetPos;
-        }
+            enemy5.jumpStrikeTargetPos = (Vector2)enemy.targetPoint.position + enemy5.landingOffset;
 
         phase = Phase.Aim;
         timer = enemy5.jumpAimTime;
 
-        enemy5.jumpAimTarget.gameObject.SetActive(true);
+        if (enemy5.jumpAimTarget != null)
+        {
+            enemy5.jumpAimTarget.position = enemy5.jumpStrikeTargetPos;
+            enemy5.jumpAimTarget.gameObject.SetActive(true);
+        }
 
         enemy.anim.SetInteger("skillState", 2);
 
-        enemy.shadow.gameObject.SetActive(false);//先把影子藏一下
+        if (enemy.shadow != null)
+            enemy.shadow.gameObject.SetActive(false);//先把影子藏一下
     }
 
     public void StartAttack(EnemyController enemy)
     {
+        if (enemy5 == null || enemy.isDead || phase != Phase.Fall)
+            return;
+
         phase = Phase.Attack;
 
         enemy.StopMove();
@@ -155,65 +165,25 @@ public class JumpStrikeSkillState : EnemyBaseState
 
     public void EndSkill(EnemyController enemy)
     {
-        if (enemy5 == null)
-            enemy5 = enemy as Enemy_5;
-
-        if (enemy5 == null)
-            return;
-
-        enemy5.isJumpStrikeUntargetable = false;//离开无敌状态
-
-        enemy.shadow.gameObject.SetActive(true);//显示影子
-
-
-        if (enemy5.jumpAimTarget != null)
-            enemy5.jumpAimTarget.gameObject.SetActive(false);
-
-        if (enemy5.jumpStrikeCollider != null)
-            enemy5.jumpStrikeCollider.SetActive(false);
-
-
-
-        enemy.anim.SetInteger("skillState", 0);
-
-        if (enemy.isDead)
-            return;
-
-        if (enemy.attackList.Count > 0)
-            enemy5.TryEnterJumpStrikeOrAttack();//随机是否进入再度技能状态
-        else
-            enemy.TransitionToState(enemy.patrolState);
-    }
-
-    private void CancelSkill(EnemyController enemy)
-    {
-        if (enemy5 != null)
-        {
-            if (enemy5.jumpAimTarget != null)
-                enemy5.jumpAimTarget.gameObject.SetActive(false);
-
-            if (enemy5.jumpStrikeCollider != null)
-                enemy5.jumpStrikeCollider.SetActive(false);
-
-
-        }
-
-        enemy5.isJumpStrikeUntargetable = false;//离开无敌状态
-
-        enemy.shadow.gameObject.SetActive(true);//显示影子
-
-        enemy.anim.SetInteger("skillState", 0);
-        enemy.TransitionToState(enemy.hitState);
+        if (enemy5 != null && !enemy.isDead && phase == Phase.Attack)
+            enemy5.RecoverFromJumpStrike();
     }
 
     public override void ExitState(EnemyController enemy)
     {
-        enemy.StopMove();
+        if (enemy5 == null)
+            return;
 
-        if (enemy5 != null &&
-            enemy5.jumpAimTarget != null)
-        {
+        enemy.StopMove();
+        enemy5.isJumpStrikeUntargetable = false;
+        if (enemy.shadow != null)
+            enemy.shadow.gameObject.SetActive(true);
+        if (enemy5.jumpAimTarget != null)
             enemy5.jumpAimTarget.gameObject.SetActive(false);
-        }
+        if (enemy5.jumpStrikeCollider != null)
+            enemy5.jumpStrikeCollider.SetActive(false);
+
+        enemy.anim.SetInteger("skillState", 0);
+        enemy5 = null;
     }
 }

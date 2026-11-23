@@ -473,7 +473,7 @@ public class CharacterSkin : MonoBehaviour
     //特殊大范围攻击
     public void JumpStrikeHit()
     {
-        if (enemyController is Enemy_5 enemy5)
+        if (enemyController is Enemy_5 enemy5 && enemy5.jumpStrikeState.CanHit)
         {
             if (enemy5.jumpStrikeCollider != null)
             {

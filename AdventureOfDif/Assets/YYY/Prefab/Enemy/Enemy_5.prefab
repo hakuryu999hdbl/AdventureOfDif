@@ -1045,6 +1045,7 @@ MonoBehaviour:
   deadColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   canUseJumpStrike: 1
   jumpAimTime: 1
+  jumpRecoveryTime: 1
   landingOffset: {x: 0, y: 0}
   jumpAimTarget: {fileID: 8124093733062802302}
   jumpStrikeCollider: {fileID: 5944926356558366118}

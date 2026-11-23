@@ -11,6 +11,8 @@ public class AreaEncounterController : MonoBehaviour
     [Header("敌人生成")]
     public GameObject[] enemyPrefabs; // 敌人预制体数组
     public Transform[] spawnPoints;   // 生成点数组
+    [SerializeField, Tooltip("按顺时针或逆时针排列，首尾自动相连。")]
+    private Transform[] enemy5LoopPoints;
     private List<GameObject> aliveEnemies = new List<GameObject>();
 
     private bool areaActivated = false;//是否被触发一遍
@@ -47,6 +49,9 @@ public class AreaEncounterController : MonoBehaviour
             Vector3 spawnPosition = spawnPoint.position + new Vector3(offset.x, offset.y, 0);
 
             GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            Enemy_5 enemy5 = enemy.GetComponentInChildren<Enemy_5>();
+            if (enemy5 != null)
+                enemy5.SetLoopPoints(enemy5LoopPoints);
             aliveEnemies.Add(enemy);
         }
 

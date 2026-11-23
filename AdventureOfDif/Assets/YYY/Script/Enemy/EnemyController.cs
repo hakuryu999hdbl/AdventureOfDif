@@ -54,7 +54,7 @@ public class EnemyController : MonoBehaviour
 
         if (enemyTarget == null)
         {
-            var t = transform.parent.Find("Enemy_Target");
+            var t = transform.parent?.Find("Enemy_Target");
             if (t != null) enemyTarget = t;
         }
 
@@ -70,7 +70,7 @@ public class EnemyController : MonoBehaviour
         Init();
     }
 
-    void Start()
+    protected virtual void Start()
     {
 
 
@@ -495,7 +495,7 @@ public class EnemyController : MonoBehaviour
 
     public GameObject Catch_Collider;//让动画产生，防止bug
 
-    public void StartCatchPlayer(PlayerController player)
+    public virtual void StartCatchPlayer(PlayerController player)
     {
 
         if (isHurt) return;
@@ -592,15 +592,7 @@ public class EnemyController : MonoBehaviour
 
         SetAnimState(0);
 
-        // 玩家还在敌人索敌范围
-        if (attackList != null && attackList.Count > 0)
-        {
-            TransitionToState(attackState);
-        }
-        else
-        {
-            TransitionToState(patrolState);
-        }
+        ResumeAfterInterruption();
 
         Debug.Log("抓取动画结束");
     }
@@ -724,16 +716,18 @@ public class EnemyController : MonoBehaviour
 
         if (isDead) return;
 
-        if (attackList.Count > 0)
-            TransitionToState(attackState);
-        else
-            TransitionToState(patrolState);
+        ResumeAfterInterruption();
 
 
 
 
 
     }//受伤后恢复
+
+    protected virtual void ResumeAfterInterruption()
+    {
+        TransitionToState(attackList != null && attackList.Count > 0 ? (EnemyBaseState)attackState : patrolState);
+    }
 
     public void ResumeAI()
     {
