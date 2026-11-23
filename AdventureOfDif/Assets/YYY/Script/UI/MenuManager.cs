@@ -16,6 +16,7 @@ public class MenuManager : MonoBehaviour
     #region
     [Header("多端输入")]
     public GameObject newGameButton;//开头默认选中
+    [SerializeField] private GameObject cgButton;
     public GameObject saveFirstSelected;//打开存档界面首个选中
     private PlayerInputControl inputControl;
 
@@ -109,6 +110,7 @@ public class MenuManager : MonoBehaviour
         SaveList.SetActive(true);
 
         newGameButton.SetActive(false);
+        cgButton.SetActive(false);
 
 
         EventSystem.current.SetSelectedGameObject(null);
@@ -129,6 +131,7 @@ public class MenuManager : MonoBehaviour
 
                 SaveList.SetActive(false);
                 newGameButton.SetActive(true);
+                cgButton.SetActive(true);
 
 
                 EventSystem.current.SetSelectedGameObject(null);
@@ -182,6 +185,11 @@ public class MenuManager : MonoBehaviour
 
 
     }//开始游戏
+
+    public void OpenCG()
+    {
+        SceneTransitionController.Instance.StartGame("CG");
+    }
 
 
     public void Exit_Yes()
